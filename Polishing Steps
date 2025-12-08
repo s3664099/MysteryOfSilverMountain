@@ -1,0 +1,66 @@
+1) Remove C64_Code & IOS_Notes
+2) Reset all of the comments in all of the files
+3) Clear out all of the game specific data
+4) Removed all command classes except move (so as to have class for each command instead)
+
+	- Add file descriptions back
+
+- No Need to Modify
+  - (default package)
+  - command_process
+    - ActionResult
+
+    
+Default Package
+	- Main
+	- Start
+command_process
+	- CommandExecutor
+	- CommandParser
+	- CommandProcessor
+	- CommandValidator
+	- ParsedCommand
+commands
+	- Combat
+	- Consume
+	- Examine
+	- ItemCommands
+	- Miscellaneous
+	- Move
+controller
+	- BookButton
+	- CommandButton
+	- CommandListener
+	- MapButton
+	- MapController
+	- QuitButton
+	- SearchGameButton
+	- ShelterButton
+	- ShowMainViewButton
+game
+	- Game
+	- GameEngine
+	- GameIntialiser
+	- MessageBuilder
+	- Player
+	- PostCommand
+	- RandomExitHandler
+	- SpecialExitHandler
+	- SpecialItemHandler
+	- Swimming
+	- SwimmingHandler
+persistence
+	- Persistence
+ui
+	- GameController
+	- GameState
+view
+	- CommandPanel
+	- GameFrame
+	- GamePanel
+	- LighningPanel
+	- MainGamePanel
+	- MapPanel
+	- MessagePanel
+	- RoomPanle
+	- StatusPanel
