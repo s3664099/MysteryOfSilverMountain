@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Move Command
-Author: 
+Title: Mystery of Silver Mountain Move Command
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
-Source: https://archive.org/details/island-of-secrets_202303
+Version: 1.1
+Date: 9 December 2025
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package commands;
@@ -191,4 +191,5 @@ public class Move {
  * 6 December 2025 - Removed game specific code
  * 8 December 2025 - Fixed errors
  * 				   - Increased version number
+ * 9 December 2025 - Added Title
  */

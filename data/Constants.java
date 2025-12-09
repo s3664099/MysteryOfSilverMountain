@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Constant Class
-Author: 
+Title: Mystery of Silver Mountain Constant Class
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
-Source: 
+Version: 1.1
+Date: 10 December 2025
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
 do not change, and it makes them easily accessible
@@ -60,4 +60,5 @@ public class Constants {
  * 6 December 2025 - Cleared values
  * 7 December 2025 - Made direction names public
  * 8 December 2025 - Increased version number
+ * 10 December 2025 - Added title
  */

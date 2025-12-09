@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Raw Data
-Author: 
+Title: Mystery of Silver Mountain Raw Data
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
-Source:
+Version: 1.1
+Date: 10 December 2025
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package data;
@@ -88,4 +88,5 @@ public class RawData {
 /* 3 December 2025 - Created File
  * 6 December 2025 - Removed game specific code
  * 8 December 2025 - Increased version number
+ * 10 December 2025 - Added title
  */

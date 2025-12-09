@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Parsed Command
-Author:
+Title: Mystery of Silver Mountain Parsed Command
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
-Source: https://archive.org/details/island-of-secrets_202303
+Version: 1.1
+Date: 9 December 2025
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package command_process;
@@ -274,4 +274,5 @@ public class ParsedCommand {
  * 6 December 2025 - Removed coded command
  * 8 December 2025 - Fixed errors and removed noun table & room functions
  * 				   - Increased version number
+ * 9 December 2025 - Added Title
  */

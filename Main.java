@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Main 
-Author: 
+Title: Mystery of Silver Mountain Main 
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
-Source: 
+Version: 1.1
+Date: 9 December 2025
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 import javax.swing.SwingUtilities;
@@ -54,4 +54,5 @@ public class Main {
 3 December 2025 - Created File
 4 December 2025 - Added Title Name
 8 December 2025 - Increased version number
+9 December 2025 - Added title
 */

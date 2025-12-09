@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Action Result Class
-Author: 
+Title: Mystery of Silver Mountain Action Result Class
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
-Source: 
+Version: 1.1
+Date: 9 December 2025
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package command_process;
@@ -115,4 +115,5 @@ public class ActionResult {
 /* 3 December 2025 - Created File
  * 4 December 2025 - Added class name back
  * 8 December 2025 - Increased version number
+ * 9 December 2025 - Added Title
  */
