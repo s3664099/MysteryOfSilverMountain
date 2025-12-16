@@ -16,7 +16,32 @@ public class RawData {
 	
     private static final String[] LOCATION_IMAGE = {};
 		    
-	private static final String[] LOCATIONS = {};
+	private static final String[] LOCATIONS = {
+		"11Half-dug Grave",
+		"12Goblin Graveyared",
+		"11Hollow Tomb",
+		"23Stalactites and Stalagmites",
+		"11Maze of Tunnels",
+		"11Vaulted Cavern",
+		"23High Glass Gates",
+		"12Entrance Hall to the Palace",
+		"31Grarg Sentry Post",
+		"12Guard Room",
+		"31Marshy In",
+		"23Rusty Gates",
+		"12Gamekeeper's Cottage",
+		"31Misty Pool",
+		"11High-Walled Garden",
+		"14Inscribed Cavern",
+		"34Ornate Fountain",
+		"11Dank Corridor",
+		"12Long Gallery",
+		"12Kitchens of the Palace",
+		"34Old Kiln",
+		"44Overgrown Track",
+		"31Disused Waterwheel",
+		"33Sluice Gates"
+	};
 		
 	private static final String[] OBJECTS = {};
 		
