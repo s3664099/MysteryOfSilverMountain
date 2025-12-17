@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 10 December 2025
+Version: 1.3
+Date: 17 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -40,7 +40,63 @@ public class RawData {
 		"34Old Kiln",
 		"44Overgrown Track",
 		"31Disused Waterwheel",
-		"33Sluice Gates"
+		"33Sluice Gates",
+		"11Gap between some Boulder",
+		"41Perilous Path",
+		"31Silver Bell in the Rock",
+		"12Dungeons of the Palace",
+		"11Banqueting Hall",
+		"42Palace Battlements",
+		"44Island Shore",
+		"31Beached Ketch",
+		"13Barren Countryside",
+		"33Sacks on the Upper Floor",
+		"46Frozen Pond",
+		"21Mountain Hut",
+		"31Row of Casks",
+		"11Wine Cellar",
+		"12Hall of Tapestries",
+		"11Dusty Library",
+		"13Rough Water",
+		"11Ploughed Field",
+		"55Outside a Windmill",
+		"42Lower Floor of the Mill",
+		"44Icy Path",
+		"41Scree Slope",
+		"12Silver Chamber",
+		"12Wizard's Lair",
+		"11Mosaic Floor Hall",
+		"12Silver Throne Room",
+		"12Middle of the Lake",
+		"42Edge of an Icy Lake",
+		"41Pitted Track",
+		"31High Pinnacle",
+		"55Above a Glacier",
+		"21Huge Fallen Oak",
+		"11Turret Room with a Slot Machine",
+		"11Cobwebby Room",
+		"31Safe in Ogban's Chamber",
+		"31Cupboard in the Corner",
+		"11Narrow Passage",
+		"16Cave",
+		"11Woodman's Hut",
+		"42Side of a  Wooded Valley",
+		"21Stream in a Valley Bottom",
+		"11Deep Dark Wood",
+		"11Shady Hollow",
+		"34Ancient Stone Circle",
+		"16Stable",
+		"14Attic Bedroom",
+		"11Damp Well Bottom",
+		"32Top of a Deep Well",
+		"31Burnt-Out Campfire",
+		"16Orchard",
+		"62End of a Bridge",
+		"62End of a Bridge",
+		"61Crossroads",
+		"41Winding Road",
+		"11Village of Rustic Houses",
+		"11White Cottage"
 	};
 		
 	private static final String[] OBJECTS = {};
@@ -114,4 +170,6 @@ public class RawData {
  * 6 December 2025 - Removed game specific code
  * 8 December 2025 - Increased version number
  * 10 December 2025 - Added title
+ * 16 December 2025 - Started Adding locations
+ * 17 December 2025 - Finished adding locations
  */
