@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 10 December 2025
+Version: 1.2
+Date: 17 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -20,7 +20,7 @@ public class Constants {
     }
 	
 	//Game related constants
-	public static final int NUMBER_OF_ROOMS = 0;
+	public static final int NUMBER_OF_ROOMS = 80;
 	public static final int NUMBER_OF_ITEMS = 0;
 	public static final int NUMBER_OF_VERBS = 0;
 	public static final int NUMBER_OF_NOUNS = 0;
@@ -61,4 +61,5 @@ public class Constants {
  * 7 December 2025 - Made direction names public
  * 8 December 2025 - Increased version number
  * 10 December 2025 - Added title
+ * 17 December 2025 - Added number of rooms
  */
