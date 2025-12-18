@@ -61,28 +61,28 @@ public class GameEntities {
     public static final int ROOM_WINE_CELLAR = 38;
     public static final int ROOM_TAPESTRIES = 39;
     public static final int ROOM_LIBRARY = 40;
+    public static final int ROOM_ROUGH_WATER = 41;
+    public static final int ROOM_PLOUGHED_FIELD = 42;
+    public static final int ROOM_OUTSIDE_WINDMILL = 43;
+    public static final int ROOM_LOWER_MILL = 44;
+    public static final int ROOM_ICY_PATH = 45;
+    public static final int ROOM_SCREE_SLOPE = 46;
+    public static final int ROOM_SILVER_CHAMBER = 47;
+    public static final int ROOM_WIZARD_LAIR = 48;
+    public static final int ROOM_MOSAIC_HALL = 49;
+    public static final int ROOM_THRONE_ROOM = 50;
+    public static final int ROOM_MIDDLE_LAKE = 51;
+    public static final int ROOM_EDGE_LAKE = 52;
+    public static final int ROOM_PITTED_TRACK = 53;
+    public static final int ROOM_PINNACLE = 54;
+    public static final int ROOM_GLACIER = 55;
+    public static final int ROOM_FALLEN_OAK = 56;
+    public static final int ROOM_TURRET = 57;
+    public static final int	ROOM_COBWEB = 58;
+    public static final int ROOM_OGBAN_CHAMBER = 59;
+    public static final int ROOM_CUPBOARD = 60;
     
-    
-	/*	"13Rough Water",
-		"11Ploughed Field",
-		"55Outside a Windmill",
-		"42Lower Floor of the Mill",
-		"44Icy Path",
-		"41Scree Slope",
-		"12Silver Chamber",
-		"12Wizard's Lair",
-		"11Mosaic Floor Hall",
-		"12Silver Throne Room",
-		"12Middle of the Lake",
-		"42Edge of an Icy Lake",
-		"41Pitted Track",
-		"31High Pinnacle",
-		"55Above a Glacier",
-		"21Huge Fallen Oak",
-		"11Turret Room with a Slot Machine",
-		"11Cobwebby Room",
-		"31Safe in Ogban's Chamber",
-		"31Cupboard in the Corner",
+	/*
 		"11Narrow Passage",
 		"16Cave",
 		"11Woodman's Hut",
