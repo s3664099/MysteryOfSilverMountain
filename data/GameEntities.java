@@ -41,30 +41,29 @@ public class GameEntities {
     public static final int ROOM_CORRIDOR = 18;
     public static final int ROOM_GALLERY = 19;
     public static final int ROOM_KITCHEN = 20;
+    public static final int ROOM_KILN = 21;
+    public static final int ROOM_TRACK = 22;
+    public static final int ROOM_WATERWHEEL = 23;
+    public static final int ROOM_SLUICE_GATES = 24;
+    public static final int ROOM_BOULDER = 25;
+    public static final int ROOM_PATH = 26;
+    public static final int ROOM_BELL = 27;
+    public static final int ROOM_DUNGEONS = 28;
+    public static final int ROOM_BANQUET_HALL = 29;
+    public static final int ROOM_BATTLEMENTS = 30;
+    public static final int ROOM_SHORE = 31;
+    public static final int ROOM_KETCH = 32;
+    public static final int ROOM_COUNTRYSIDE = 33;
+    public static final int ROOM_SACKS = 34;
+    public static final int ROOM_POND = 35;
+    public static final int ROOM_HUT = 36;
+    public static final int ROOM_CASKS = 37;
+    public static final int ROOM_WINE_CELLAR = 38;
+    public static final int ROOM_TAPESTRIES = 39;
+    public static final int ROOM_LIBRARY = 40;
     
     
-	/*
-		"34Old Kiln",
-		"44Overgrown Track",
-		"31Disused Waterwheel",
-		"33Sluice Gates",
-		"11Gap between some Boulder",
-		"41Perilous Path",
-		"31Silver Bell in the Rock",
-		"12Dungeons of the Palace",
-		"11Banqueting Hall",
-		"42Palace Battlements",
-		"44Island Shore",
-		"31Beached Ketch",
-		"13Barren Countryside",
-		"33Sacks on the Upper Floor",
-		"46Frozen Pond",
-		"21Mountain Hut",
-		"31Row of Casks",
-		"11Wine Cellar",
-		"12Hall of Tapestries",
-		"11Dusty Library",
-		"13Rough Water",
+	/*	"13Rough Water",
 		"11Ploughed Field",
 		"55Outside a Windmill",
 		"42Lower Floor of the Mill",
