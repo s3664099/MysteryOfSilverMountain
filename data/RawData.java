@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 17 December 2025
+Version: 1.4
+Date: 18 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -18,9 +18,9 @@ public class RawData {
     private static final String[] LOCATION_IMAGE = {};
 		    
 	private static final String[] LOCATIONS = {
-		"11Half-dug Grave",                   // 1
-		"12Goblin Graveyared",                // 2
-		"11Hollow Tomb",                      // 3
+		"11Half-dug Grave",                   // 1		G		1 (Grave)
+		"12Goblin Graveyared",                // 2		GY		2 (Graveyard)
+		"11Hollow Tomb",                      // 3		G		1 (Grave)
 		"23Stalactites and Stalagmites",      // 4
 		"11Maze of Tunnels",                  // 5
 		"11Vaulted Cavern",                   // 6
@@ -173,4 +173,5 @@ public class RawData {
  * 10 December 2025 - Added title
  * 16 December 2025 - Started Adding locations
  * 17 December 2025 - Finished adding locations
+ * 18 December 2025 - Started Adding icon notes for locations
  */

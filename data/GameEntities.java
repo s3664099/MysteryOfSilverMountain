@@ -81,29 +81,27 @@ public class GameEntities {
     public static final int	ROOM_COBWEB = 58;
     public static final int ROOM_OGBAN_CHAMBER = 59;
     public static final int ROOM_CUPBOARD = 60;
+    public static final int ROOM_PASSAGE = 61;
+    public static final int ROOM_CAVE = 62;
+    public static final int ROOM_WOODMAN_HUT = 63;
+    public static final int ROOM_VALLEY = 64;
+    public static final int ROOM_VALLEY_BOTTOM = 65;
+    public static final int ROOM_DARK_WOOD = 66;
+    public static final int ROOM_SHADY_HOLLOW = 67;
+    public static final int ROOM_STONE_CIRCLE = 68;
+    public static final int ROOM_STABLE = 69;
+    public static final int ROOM_ATTIC = 70;
+    public static final int ROOM_WELL_BOTTOM = 71;
+    public static final int ROOM_WELL = 72;
+    public static final int ROOM_CAMPFIRE = 73;
+    public static final int ROOM_ORCHARD = 74;
+    public static final int ROOM_BRIDGE_WEST = 75;
+    public static final int ROOM_BRIDGE_EAST = 76;
+    public static final int ROOM_CROSSROADS = 77;
+    public static final int ROOM_WINDING_ROAD = 78;
+    public static final int ROOM_VILLAGE = 79;
+    public static final int ROOM_WHITE_COTTAGE = 80;
     
-	/*
-		"11Narrow Passage",
-		"16Cave",
-		"11Woodman's Hut",
-		"42Side of a  Wooded Valley",
-		"21Stream in a Valley Bottom",
-		"11Deep Dark Wood",
-		"11Shady Hollow",
-		"34Ancient Stone Circle",
-		"16Stable",
-		"14Attic Bedroom",
-		"11Damp Well Bottom",
-		"32Top of a Deep Well",
-		"31Burnt-Out Campfire",
-		"16Orchard",
-		"62End of a Bridge",
-		"62End of a Bridge",
-		"61Crossroads",
-		"41Winding Road",
-		"11Village of Rustic Houses",
-		"11White Cottage"
-	 */
 	// === Items ===
 
 	// === Commands ===
@@ -140,5 +138,5 @@ public class GameEntities {
  * 8 December 2025 - Added back required codes
  * 				   - Increased version number
  * 10 December 2025 - Added title
- * 18 December 2025 - Started adding the room constants
+ * 18 December 2025 - Added the room constants
  */
