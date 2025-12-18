@@ -28,7 +28,7 @@ public class RawData {
 		"12Entrance Hall to the Palace",      // 8
 		"31Grarg Sentry Post",                // 9
 		"12Guard Room",                       // 10
-		"31Marshy In",                        // 11
+		"31Marshy Inlet",                     // 11
 		"23Rusty Gates",                      // 12
 		"12Gamekeeper's Cottage",             // 13
 		"31Misty Pool",                       // 14

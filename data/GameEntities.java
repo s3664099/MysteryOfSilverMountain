@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 10 December 2025
+Version: 1.2
+Date: 18 December 2025
 Source: 
 
 This class is designed to hold the constants. They have been made public since they
@@ -20,27 +20,30 @@ public class GameEntities {
     }
 
 	// === Rooms ===
+    
+    public static final int ROOM_GRAVE = 1;
+    public static final int ROOM_GRAVEYARD = 2;
+    public static final int ROOM_TOMB = 3;
+    public static final int ROOM_STALACTITES = 4;
+    public static final int ROOM_TUNNELS = 5;
+    public static final int ROOM_VAULTED_CAVERN = 6;
+    public static final int ROOM_GLASS_GATES = 7;
+    public static final int ROOM_ENTRANCE_HALL = 8;
+    public static final int ROOM_SENTRY_POST = 9;
+    public static final int ROOM_GUARD_ROOM = 10;
+    public static final int ROOM_INLET = 11;
+    public static final int ROOM_RUSTY_GATES = 12;
+    public static final int ROOM_COTTAGE = 13;
+    public static final int ROOM_POOL = 14;
+    public static final int ROOM_GARDEN = 15;
+    public static final int ROOM_INSCRIBED_CAVERN = 16;
+    public static final int ROOM_FOUNTAIN = 17;
+    public static final int ROOM_CORRIDOR = 18;
+    public static final int ROOM_GALLERY = 19;
+    public static final int ROOM_KITCHEN = 20;
+    
+    
 	/*
-	 * 		"11Half-dug Grave",
-		"12Goblin Graveyared",
-		"11Hollow Tomb",
-		"23Stalactites and Stalagmites",
-		"11Maze of Tunnels",
-		"11Vaulted Cavern",
-		"23High Glass Gates",
-		"12Entrance Hall to the Palace",
-		"31Grarg Sentry Post",
-		"12Guard Room",
-		"31Marshy In",
-		"23Rusty Gates",
-		"12Gamekeeper's Cottage",
-		"31Misty Pool",
-		"11High-Walled Garden",
-		"14Inscribed Cavern",
-		"34Ornate Fountain",
-		"11Dank Corridor",
-		"12Long Gallery",
-		"12Kitchens of the Palace",
 		"34Old Kiln",
 		"44Overgrown Track",
 		"31Disused Waterwheel",
@@ -138,4 +141,5 @@ public class GameEntities {
  * 8 December 2025 - Added back required codes
  * 				   - Increased version number
  * 10 December 2025 - Added title
+ * 18 December 2025 - Started adding the room constants
  */
