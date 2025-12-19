@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 18 December 2025
+Version: 1.5
+Date: 19 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -13,10 +13,10 @@ package data;
 public class RawData {
 	
 	
-	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9};
+	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9,10};
 	
     private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
-    												"guardhouse","marsh","house"};
+    												"guardhouse","marsh","house","pool"};
 		    
 	private static final String[] LOCATIONS = {
 		"11Half-dug Grave",                   // 1		G		1  (Grave)
@@ -175,4 +175,5 @@ public class RawData {
  * 16 December 2025 - Started Adding locations
  * 17 December 2025 - Finished adding locations
  * 18 December 2025 - Started Adding icon notes for locations
+ * 19 December 2025 - Added first 14 icons for rooms
  */
