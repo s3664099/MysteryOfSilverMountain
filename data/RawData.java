@@ -13,25 +13,26 @@ package data;
 public class RawData {
 	
 	
-	private static final Integer[] LOCATION_TYPES = {};
+	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9};
 	
-    private static final String[] LOCATION_IMAGE = {};
+    private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
+    												"guardhouse","marsh","house"};
 		    
 	private static final String[] LOCATIONS = {
-		"11Half-dug Grave",                   // 1		G		1 (Grave)
-		"12Goblin Graveyared",                // 2		GY		2 (Graveyard)
-		"11Hollow Tomb",                      // 3		G		1 (Grave)
-		"23Stalactites and Stalagmites",      // 4
-		"11Maze of Tunnels",                  // 5
-		"11Vaulted Cavern",                   // 6
-		"23High Glass Gates",                 // 7
-		"12Entrance Hall to the Palace",      // 8
-		"31Grarg Sentry Post",                // 9
-		"12Guard Room",                       // 10
-		"31Marshy Inlet",                     // 11
-		"23Rusty Gates",                      // 12
-		"12Gamekeeper's Cottage",             // 13
-		"31Misty Pool",                       // 14
+		"11Half-dug Grave",                   // 1		G		1  (Grave)
+		"12Goblin Graveyared",                // 2		GY		2  (Graveyard)
+		"11Hollow Tomb",                      // 3		G		1  (Grave)
+		"23Stalactites and Stalagmites",      // 4		GR		3  (Grotto)
+		"11Maze of Tunnels",                  // 5		MZ		4  (Maze)
+		"11Vaulted Cavern",                   // 6		GR		3  (Grotto)
+		"23High Glass Gates",                 // 7		GT		5  (Gate)
+		"12Entrance Hall to the Palace",      // 8		EH		6  (Entrance)
+		"31Grarg Sentry Post",                // 9		GH		7  (Guardhouse)
+		"12Guard Room",                       // 10		GH		7  (Guardhouse)
+		"31Marshy Inlet",                     // 11		M		8  (Marsh)
+		"23Rusty Gates",                      // 12		GT		5  (Gate)
+		"12Gamekeeper's Cottage",             // 13		H		9  (House)
+		"31Misty Pool",                       // 14		P		10 (Pool)
 		"11High-Walled Garden",               // 15
 		"14Inscribed Cavern",                 // 16
 		"34Ornate Fountain",                  // 17

@@ -129,3 +129,16 @@ This is a blank template to be used to build a grid adventure (where the locatio
 * **Lead Developer:** David Sarkies
 
 ### Image Acknowledgements ###
+grave.png - https://www.flaticon.com/free-icons/resurrection - Resurrection icons created by Freepik - Flaticon
+graveyard.png - https://www.flaticon.com/free-icons/cemetery - Cemetery icons created by Eucalyp - Flaticon
+grotto.png - https://www.flaticon.com/free-icons/cave - Cave icons created by Freepik - Flaticon
+maze.png - https://www.flaticon.com/free-icons/maze - Maze icons created by Freepik - Flaticon
+gate.png - https://www.flaticon.com/free-icons/fence - Fence icons created by Aranagraphics - Flaticon
+entrance.png - https://www.flaticon.com/free-icons/entryway - Entryway icons created by Freepik - Flaticon
+guardhouse.png - https://www.flaticon.com/free-icons/royal-guard - Royal guard icons created by Freepik - Flaticon
+marsh - https://www.flaticon.com/free-icons/marsh - Marsh icons created by kerismaker - Flaticon
+cottage - https://www.flaticon.com/free-icons/hut - Hut icons created by Freepik - Flaticon
+
+
+
+
