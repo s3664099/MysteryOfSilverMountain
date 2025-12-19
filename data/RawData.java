@@ -13,10 +13,11 @@ package data;
 public class RawData {
 	
 	
-	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9,10};
+	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9,10,11,3,12,13,14,15};
 	
     private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
-    												"guardhouse","marsh","house","pool"};
+    												"guardhouse","marsh","house","pool","garden","fountain",
+    												"corridor","gallery","kitchen"};
 		    
 	private static final String[] LOCATIONS = {
 		"11Half-dug Grave",                   // 1		G		1  (Grave)
@@ -33,12 +34,12 @@ public class RawData {
 		"23Rusty Gates",                      // 12		GT		5  (Gate)
 		"12Gamekeeper's Cottage",             // 13		H		9  (House)
 		"31Misty Pool",                       // 14		P		10 (Pool)
-		"11High-Walled Garden",               // 15
-		"14Inscribed Cavern",                 // 16
-		"34Ornate Fountain",                  // 17
-		"11Dank Corridor",                    // 18
-		"12Long Gallery",                     // 19
-		"12Kitchens of the Palace",           // 20
+		"11High-Walled Garden",               // 15		GD		11 (Garden)
+		"14Inscribed Cavern",                 // 16		GR		3  (Grotto)
+		"34Ornate Fountain",                  // 17		F		12 (Fountain)
+		"11Dank Corridor",                    // 18		CD		13 (Corridor)
+		"12Long Gallery",                     // 19		GL		14 (Gallery)
+		"12Kitchens of the Palace",           // 20		K		15 (Kitchen)
 		"34Old Kiln",                         // 21
 		"44Overgrown Track",                  // 22
 		"31Disused Waterwheel",               // 23
@@ -175,5 +176,5 @@ public class RawData {
  * 16 December 2025 - Started Adding locations
  * 17 December 2025 - Finished adding locations
  * 18 December 2025 - Started Adding icon notes for locations
- * 19 December 2025 - Added first 14 icons for rooms
+ * 19 December 2025 - Added first 20 icons for rooms
  */

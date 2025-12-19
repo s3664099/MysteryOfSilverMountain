@@ -139,6 +139,8 @@ guardhouse.png - https://www.flaticon.com/free-icons/royal-guard - Royal guard i
 marsh - https://www.flaticon.com/free-icons/marsh - Marsh icons created by kerismaker - Flaticon
 cottage - https://www.flaticon.com/free-icons/hut - Hut icons created by Freepik - Flaticon
 pool - https://www.flaticon.com/free-icons/pond - Pond icons created by Icon home - Flaticon
-
-
-
+garden - https://www.flaticon.com/free-icons/flower - Flower icons created by Freepik - Flaticon
+fountain - https://www.flaticon.com/free-icons/fountain - Fountain icons created by Eucalyp - Flaticon
+corridor - https://www.flaticon.com/free-icons/hallway - Hallway icons created by IYIKON - Flaticon
+gallery - https://www.flaticon.com/free-icons/gallery - Gallery icons created by Good Ware - Flaticon
+kitchen - https://www.flaticon.com/free-icons/kitchen - Kitchen icons created by kmg design - Flaticon
