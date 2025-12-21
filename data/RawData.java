@@ -13,11 +13,13 @@ package data;
 public class RawData {
 	
 	
-	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9,10,11,3,12,13,14,15};
+	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9,10,11,3,12,13,14,15,
+													 16,17,18,19,17,17,20,21,22,23};
 	
     private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
     												"guardhouse","marsh","house","pool","garden","fountain",
-    												"corridor","gallery","kitchen"};
+    												"corridor","gallery","kitchen","kiln","road","watermill",
+    												"dam","bell","dungeon","banquet","battlement"};
 		    
 	private static final String[] LOCATIONS = {
 		"11Half-dug Grave",                   // 1		G		1  (Grave)
@@ -38,18 +40,18 @@ public class RawData {
 		"14Inscribed Cavern",                 // 16		GR		3  (Grotto)
 		"34Ornate Fountain",                  // 17		F		12 (Fountain)
 		"11Dank Corridor",                    // 18		CD		13 (Corridor)
-		"12Long Gallery",                     // 19		GL		14 (Gallery)
+		"12Long Gallery",                     // 19		GL		14 (Gallery)}
 		"12Kitchens of the Palace",           // 20		K		15 (Kitchen)
-		"34Old Kiln",                         // 21
-		"44Overgrown Track",                  // 22
-		"31Disused Waterwheel",               // 23
-		"33Sluice Gates",                     // 24
-		"11Gap between some Boulder",         // 25
-		"41Perilous Path",                    // 26
-		"31Silver Bell in the Rock",          // 27
-		"12Dungeons of the Palace",           // 28
-		"11Banqueting Hall",                  // 29
-		"42Palace Battlements",               // 30
+		"34Old Kiln",                         // 21		KL		16 (Kiln)
+		"44Overgrown Track",                  // 22		R		17 (Road)
+		"31Disused Waterwheel",               // 23		WM		18 (Water Mill)
+		"33Sluice Gates",                     // 24		DM		19 (Dam)
+		"11Gap between some Boulder",         // 25		R		17 (Road)
+		"41Perilous Path",                    // 26		R		17 (Road)
+		"31Silver Bell in the Rock",          // 27		B		20 (Bell)
+		"12Dungeons of the Palace",           // 28		D		21 (Dungeon)
+		"11Banqueting Hall",                  // 29		BQ      22 (Banquet)
+		"42Palace Battlements",               // 30		BT		23 (Battlement)
 		"44Island Shore",                     // 31
 		"31Beached Ketch",                    // 32
 		"13Barren Countryside",               // 33

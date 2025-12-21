@@ -144,3 +144,12 @@ fountain - https://www.flaticon.com/free-icons/fountain - Fountain icons created
 corridor - https://www.flaticon.com/free-icons/hallway - Hallway icons created by IYIKON - Flaticon
 gallery - https://www.flaticon.com/free-icons/gallery - Gallery icons created by Good Ware - Flaticon
 kitchen - https://www.flaticon.com/free-icons/kitchen - Kitchen icons created by kmg design - Flaticon
+kiln - https://www.flaticon.com/free-icons/oven - Oven icons created by Smashicons - Flaticon
+road - https://www.flaticon.com/free-icons/path - Path icons created by Freepik - Flaticon
+waterwheel - https://www.flaticon.com/free-icons/waterwheel - Waterwheel icons created by Ylivdesign - Flaticon
+dam -https://www.flaticon.com/free-icons/dam - Dam icons created by Umeicon - Flaticon
+bell - https://www.flaticon.com/free-icons/notifications - Notifications icons created by Lagot Design - Flaticon
+dungeon - https://www.flaticon.com/free-icons/dungeon - dungeon icons">Dungeon icons created by Iconic Panda - Flaticon
+banquet - https://www.flaticon.com/free-icons/banquet - Banquet icons created by Freepik - Flaticon
+battlement - https://www.flaticon.com/free-icons/battlement - Battlement icons created by ppangman - Flaticon
+
