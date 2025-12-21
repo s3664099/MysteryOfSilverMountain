@@ -152,4 +152,10 @@ bell - https://www.flaticon.com/free-icons/notifications - Notifications icons c
 dungeon - https://www.flaticon.com/free-icons/dungeon - dungeon icons">Dungeon icons created by Iconic Panda - Flaticon
 banquet - https://www.flaticon.com/free-icons/banquet - Banquet icons created by Freepik - Flaticon
 battlement - https://www.flaticon.com/free-icons/battlement - Battlement icons created by ppangman - Flaticon
+island - https://www.flaticon.com/free-icons/island - Island icons created by SetitikPixelStudio - Flaticon
+shipwreck - https://www.flaticon.com/free-icons/shipwreck - Shipwreck icons created by Smashicons - Flaticon
+wasteland - https://www.flaticon.com/free-icons/desert - Desert icons created by Flat Icons - Flaticon
+sacks - https://www.flaticon.com/free-icons/sack - Sack icons created by Freepik - Flaticon
+casks - https://www.flaticon.com/free-icons/wine - Wine icons created by Smashicons - Flaticon
+library - https://www.flaticon.com/free-icons/library - Library icons created by Freepik - Flaticon
 

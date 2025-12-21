@@ -14,12 +14,15 @@ public class RawData {
 	
 	
 	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9,10,11,3,12,13,14,15,
-													 16,17,18,19,17,17,20,21,22,23};
+													 16,17,18,19,17,17,20,21,22,23,24,25,26,27,28,9,29,29,14,30,
+													 };
 	
     private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
     												"guardhouse","marsh","house","pool","garden","fountain",
     												"corridor","gallery","kitchen","kiln","road","watermill",
-    												"dam","bell","dungeon","banquet","battlement"};
+    												"dam","bell","dungeon","banquet","battlement","island",
+    												"shipwreck","wasteland","sacks","frozenpond","casks",
+    												"library"};
 		    
 	private static final String[] LOCATIONS = {
 		"11Half-dug Grave",                   // 1		G		1  (Grave)
@@ -52,16 +55,16 @@ public class RawData {
 		"12Dungeons of the Palace",           // 28		D		21 (Dungeon)
 		"11Banqueting Hall",                  // 29		BQ      22 (Banquet)
 		"42Palace Battlements",               // 30		BT		23 (Battlement)
-		"44Island Shore",                     // 31
-		"31Beached Ketch",                    // 32
-		"13Barren Countryside",               // 33
-		"33Sacks on the Upper Floor",         // 34
-		"46Frozen Pond",                      // 35
-		"21Mountain Hut",                     // 36
-		"31Row of Casks",                     // 37
-		"11Wine Cellar",                      // 38
-		"12Hall of Tapestries",               // 39
-		"11Dusty Library",                    // 40
+		"44Island Shore",                     // 31		I		24 (Island)
+		"31Beached Ketch",                    // 32		SW		25 (Shipwreck)
+		"13Barren Countryside",               // 33		W		26 (Wasteland)
+		"33Sacks on the Upper Floor",         // 34		SK		27 (Sacks)
+		"46Frozen Pond",                      // 35		FP		28 (Frozen Pond)
+		"21Mountain Hut",                     // 36		H		9  (House)
+		"31Row of Casks",                     // 37		C		29 (Casks)
+		"11Wine Cellar",                      // 38		C		29 (Casks)
+		"12Hall of Tapestries",               // 39		GL		14 (Gallery)
+		"11Dusty Library",                    // 40		L		30 (Library)
 		"13Rough Water",                      // 41
 		"11Ploughed Field",                   // 42
 		"55Outside a Windmill",               // 43
@@ -179,4 +182,5 @@ public class RawData {
  * 17 December 2025 - Finished adding locations
  * 18 December 2025 - Started Adding icon notes for locations
  * 19 December 2025 - Added first 20 icons for rooms
+ * 21 December 2025 - Added next 20 icons for rooms
  */
