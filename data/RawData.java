@@ -115,8 +115,28 @@ public class RawData {
 		"11White Cottage"                     // 80		H		9  (House)
 	};
 		
-	private static final String[] OBJECTS = {};
+	private static final String[] OBJECTS = {
+		"coins",								// 1	- 3
+		"sheet",								// 2	- 1
+		"boots",								// 3	- 3
+		"horseshoe",							// 4	- 1
+		"apples",								// 5	- 2
+		"bucket",								// 6	- 1
+		"axe",									// 7	- 4
+		"boat",									// 8	- 1
+		"phial",								// 9	- 1
+		"reeds",								// 10	- 3
+		"bone",									// 11	- 1
+		"shield",								// 12	- 1
+		"planks",								// 13	- 3
+		"rope",									// 14	- 1
+		"rings",								// 15	- 1
+		"jug",									// 16	- 1
+		"net",									// 17	- 1
+		"sword"									// 18	- 1
 		
+	};
+	//
 	private static final String[] VERBS = {};
 	
 	private static final String[] NOUNS = {};
@@ -192,4 +212,5 @@ public class RawData {
  * 19 December 2025 - Added icons to first 20 rooms
  * 21 December 2025 - Added icons to next 20 rooms
  * 22 December 2025 - Added icons to final 40 rooms
+ * 					- Added first 16 items (and noted numbers at front)
  */
