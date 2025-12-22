@@ -175,6 +175,8 @@ forest - https://www.flaticon.com/free-icons/forest - Forest icons created by Fr
 stonehenge - https://www.flaticon.com/free-icons/stonehenge - Stonehenge icons created by Freepik - Flaticon
 stable - https://www.flaticon.com/free-icons/stable - Stable icons created by juicy_fish - Flaticon
 attic - https://www.flaticon.com/free-icons/attic - Attic icons created by Smashicons - Flaticon
-
-
-
+well - https://www.flaticon.com/free-icons/water-well - Water well icons created by Freepik - Flaticon
+campfire - https://www.flaticon.com/free-icons/campfire - Campfire icons created by Freepik - Flaticon
+orchard - https://www.flaticon.com/free-icons/orchard - Orchard icons created by Eucalyp - Flaticon
+bridge - https://www.flaticon.com/free-icons/wooden-bridge - Wooden bridge icons created by amonrat rungreangfangsai - Flaticon
+village - https://www.flaticon.com/free-icons/village - Village icons created by Freepik - Flaticon

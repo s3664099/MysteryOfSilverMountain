@@ -20,16 +20,17 @@ public class RawData {
 													 31,32,34,34,17,35,36,30,13,37,
 													 31,31,17,38,38,39,40,41,42,43,
 													 17,3,9,38,44,45,45,46,47,48,
-													 };
+													 49,49,50,51,52,52,17,17,53,9};
 	
-    private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
+    private static final String[] LOCATION_IMAGE = {"","grave","graveyard","grotto","maze","gate","entrance",
     												"guardhouse","marsh","house","pool","garden","fountain",
     												"corridor","gallery","kitchen","kiln","road","watermill",
     												"dam","bell","dungeon","banquet","battlement","island",
     												"shipwreck","wasteland","sacks","frozenpond","casks",
     												"library","water","field","windmill","slope","chamber",
     												"throne" ,"mountain","log","turret","cobweb","safe",
-    												"cupboard","creek","forest","stonehenge","stable","attic"};
+    												"cupboard","creek","forest","stonehenge","stable","attic",
+    												"well","campfire","orchard","bridge","village"};
 		    
 	private static final String[] LOCATIONS = {
 		"11Half-dug Grave",                   // 1		G		1  (Grave)
@@ -64,7 +65,7 @@ public class RawData {
 		"42Palace Battlements",               // 30		BT		23 (Battlement)
 		"44Island Shore",                     // 31		I		24 (Island)
 		"31Beached Ketch",                    // 32		SW		25 (Shipwreck)
-		"13Barren Countryside",               // 33		W		26 (Wasteland)
+		"13Barren Countryside",               // 33		WL		26 (Wasteland)
 		"33Sacks on the Upper Floor",         // 34		SK		27 (Sacks)
 		"46Frozen Pond",                      // 35		FP		28 (Frozen Pond)
 		"21Mountain Hut",                     // 36		H		9  (House)
@@ -102,16 +103,16 @@ public class RawData {
 		"34Ancient Stone Circle",             // 68		SH		46 (Stonehenge)
 		"16Stable",                           // 69		ST		47 (Stable)
 		"14Attic Bedroom",                    // 70		AT		48 (Attic)
-		"11Damp Well Bottom",                 // 71
-		"32Top of a Deep Well",               // 72
-		"31Burnt-Out Campfire",               // 73
-		"16Orchard",                          // 74
-		"62End of a Bridge",                  // 75
-		"62End of a Bridge",                  // 76
-		"61Crossroads",                       // 77
-		"41Winding Road",                     // 78
-		"11Village of Rustic Houses",         // 79
-		"11White Cottage"                     // 80
+		"11Damp Well Bottom",                 // 71		WL		49 (Well)
+		"32Top of a Deep Well",               // 72		WL		49 (Well)
+		"31Burnt-Out Campfire",               // 73		CF		50 (Campfire)
+		"16Orchard",                          // 74     OH		51 (Orchard)
+		"62End of a Bridge",                  // 75		BD		52 (Bridge)
+		"62End of a Bridge",                  // 76		BD		52 (Bridge)
+		"61Crossroads",                       // 77		R		17 (Road)
+		"41Winding Road",                     // 78		R		17 (Road)
+		"11Village of Rustic Houses",         // 79		V		53 (Village)
+		"11White Cottage"                     // 80		H		9  (House)
 	};
 		
 	private static final String[] OBJECTS = {};
@@ -190,5 +191,5 @@ public class RawData {
  * 18 December 2025 - Started Adding icon notes for locations
  * 19 December 2025 - Added icons to first 20 rooms
  * 21 December 2025 - Added icons to next 20 rooms
- * 22 December 2025 - Added icons to next 30 rooms
+ * 22 December 2025 - Added icons to final 40 rooms
  */
