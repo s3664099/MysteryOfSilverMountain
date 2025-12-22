@@ -13,9 +13,13 @@ package data;
 public class RawData {
 	
 	
-	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9,10,11,3,12,13,14,15,
-													 16,17,18,19,17,17,20,21,22,23,24,25,26,27,28,9,29,29,14,30,
-													 31,32,34,34,17,35,36,30,13,37,31,31};
+	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,
+													 8,5,9,10,11,3,12,13,14,15,
+													 16,17,18,19,17,17,20,21,22,23,
+													 24,25,26,27,28,9,29,29,14,30,
+													 31,32,34,34,17,35,36,30,13,37,
+													 31,31,17,38,39,40,41,42,43,44,
+													 17};
 	
     private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
     												"guardhouse","marsh","house","pool","garden","fountain",
@@ -23,7 +27,8 @@ public class RawData {
     												"dam","bell","dungeon","banquet","battlement","island",
     												"shipwreck","wasteland","sacks","frozenpond","casks",
     												"library","water","field","windmill","slope","chamber",
-    												"throne"};
+    												"throne" ,"mountain","log","turret","cobweb","safe",
+    												"cupboard"};
 		    
 	private static final String[] LOCATIONS = {
 		"11Half-dug Grave",                   // 1		G		1  (Grave)
@@ -78,15 +83,15 @@ public class RawData {
 		"12Silver Throne Room",               // 50 	TH		37 (Throne)
 		"12Middle of the Lake",               // 51		W		31 (Water)
 		"42Edge of an Icy Lake",              // 52		W		31 (Water)
-		"41Pitted Track",                     // 53
-		"31High Pinnacle",                    // 54
-		"55Above a Glacier",                  // 55
-		"21Huge Fallen Oak",                  // 56
-		"11Turret Room with a Slot Machine",  // 57
-		"11Cobwebby Room",                    // 58
-		"31Safe in Ogban's Chamber",          // 59
-		"31Cupboard in the Corner",           // 60
-		"11Narrow Passage",                   // 61
+		"41Pitted Track",                     // 53		R		17 (Road)
+		"31High Pinnacle",                    // 54		MT		38 (Mountain)
+		"55Above a Glacier",                  // 55		MT		39 (Mountain)
+		"21Huge Fallen Oak",                  // 56		LG		40 (Log)
+		"11Turret Room with a Slot Machine",  // 57		TT		41 (Turret)
+		"11Cobwebby Room",                    // 58		CB		42 (Cobweb)
+		"31Safe in Ogban's Chamber",          // 59		SF		43 (Safe)
+		"31Cupboard in the Corner",           // 60		CP		44 (Cupboard)
+		"11Narrow Passage",                   // 61		CD		13 (Corridor)
 		"16Cave",                             // 62
 		"11Woodman's Hut",                    // 63
 		"42Side of a  Wooded Valley",         // 64

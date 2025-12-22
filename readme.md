@@ -164,5 +164,9 @@ windmill- https://www.flaticon.com/free-icons/windmill - Windmill icons created 
 slope - https://www.flaticon.com/free-icons/hiking - Hiking icons created by Freepik - Flaticon
 chamber - https://www.flaticon.com/free-icons/room - Room icons created by Andrejs Kirma - Flaticon
 throne - https://www.flaticon.com/free-icons/throne - Throne icons created by wanicon - Flaticon
-
-
+mountain - https://www.flaticon.com/free-icons/rocky-mountains - Rocky mountains icons created by Pop Vectors - Flaticon
+log - https://www.flaticon.com/free-icons/log - Log icons created by Freepik - Flaticon
+turret - https://www.flaticon.com/free-icons/log - Log icons created by Freepik - Flaticon
+cobweb - https://www.flaticon.com/free-icons/spider-web - Spider web icons created by vectorsmarket15 - Flaticon
+safe - https://www.flaticon.com/free-icons/safe-box - Safe box icons created by nawicon - Flaticon
+cupboard - https://www.flaticon.com/free-icons/wardrobe - Wardrobe icons created by Freepik - Flaticon
