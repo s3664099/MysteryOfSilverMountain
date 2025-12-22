@@ -170,3 +170,11 @@ turret - https://www.flaticon.com/free-icons/log - Log icons created by Freepik 
 cobweb - https://www.flaticon.com/free-icons/spider-web - Spider web icons created by vectorsmarket15 - Flaticon
 safe - https://www.flaticon.com/free-icons/safe-box - Safe box icons created by nawicon - Flaticon
 cupboard - https://www.flaticon.com/free-icons/wardrobe - Wardrobe icons created by Freepik - Flaticon
+creek  - https://www.flaticon.com/free-icons/forest - Forest icons created by Freepik - Flaticon
+forest - https://www.flaticon.com/free-icons/forest - Forest icons created by Freepik - Flaticon
+stonehenge - https://www.flaticon.com/free-icons/stonehenge - Stonehenge icons created by Freepik - Flaticon
+stable - https://www.flaticon.com/free-icons/stable - Stable icons created by juicy_fish - Flaticon
+attic - https://www.flaticon.com/free-icons/attic - Attic icons created by Smashicons - Flaticon
+
+
+

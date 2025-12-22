@@ -18,8 +18,9 @@ public class RawData {
 													 16,17,18,19,17,17,20,21,22,23,
 													 24,25,26,27,28,9,29,29,14,30,
 													 31,32,34,34,17,35,36,30,13,37,
-													 31,31,17,38,39,40,41,42,43,44,
-													 17};
+													 31,31,17,38,38,39,40,41,42,43,
+													 17,3,9,38,44,45,45,46,47,48,
+													 };
 	
     private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
     												"guardhouse","marsh","house","pool","garden","fountain",
@@ -28,7 +29,7 @@ public class RawData {
     												"shipwreck","wasteland","sacks","frozenpond","casks",
     												"library","water","field","windmill","slope","chamber",
     												"throne" ,"mountain","log","turret","cobweb","safe",
-    												"cupboard"};
+    												"cupboard","creek","forest","stonehenge","stable","attic"};
 		    
 	private static final String[] LOCATIONS = {
 		"11Half-dug Grave",                   // 1		G		1  (Grave)
@@ -85,22 +86,22 @@ public class RawData {
 		"42Edge of an Icy Lake",              // 52		W		31 (Water)
 		"41Pitted Track",                     // 53		R		17 (Road)
 		"31High Pinnacle",                    // 54		MT		38 (Mountain)
-		"55Above a Glacier",                  // 55		MT		39 (Mountain)
-		"21Huge Fallen Oak",                  // 56		LG		40 (Log)
-		"11Turret Room with a Slot Machine",  // 57		TT		41 (Turret)
-		"11Cobwebby Room",                    // 58		CB		42 (Cobweb)
-		"31Safe in Ogban's Chamber",          // 59		SF		43 (Safe)
-		"31Cupboard in the Corner",           // 60		CP		44 (Cupboard)
+		"55Above a Glacier",                  // 55		MT		38 (Mountain)
+		"21Huge Fallen Oak",                  // 56		LG		39 (Log)
+		"11Turret Room with a Slot Machine",  // 57		TT		40 (Turret)
+		"11Cobwebby Room",                    // 58		CB		41 (Cobweb)
+		"31Safe in Ogban's Chamber",          // 59		SF		42 (Safe)
+		"31Cupboard in the Corner",           // 60		CP		43 (Cupboard)
 		"11Narrow Passage",                   // 61		CD		13 (Corridor)
-		"16Cave",                             // 62
-		"11Woodman's Hut",                    // 63
-		"42Side of a  Wooded Valley",         // 64
-		"21Stream in a Valley Bottom",        // 65
-		"11Deep Dark Wood",                   // 66
-		"11Shady Hollow",                     // 67
-		"34Ancient Stone Circle",             // 68
-		"16Stable",                           // 69
-		"14Attic Bedroom",                    // 70
+		"16Cave",                             // 62		GR		3  (Grotto)
+		"11Woodman's Hut",                    // 63		H		9  (House)
+		"42Side of a  Wooded Valley",         // 64		MT      38 (Mountain)
+		"21Stream in a Valley Bottom",        // 65		CK		44 (Creek)
+		"11Deep Dark Wood",                   // 66		FS		45 (Forest)
+		"11Shady Hollow",                     // 67		FS		45 (Forest)
+		"34Ancient Stone Circle",             // 68		SH		46 (Stonehenge)
+		"16Stable",                           // 69		ST		47 (Stable)
+		"14Attic Bedroom",                    // 70		AT		48 (Attic)
 		"11Damp Well Bottom",                 // 71
 		"32Top of a Deep Well",               // 72
 		"31Burnt-Out Campfire",               // 73
@@ -189,5 +190,5 @@ public class RawData {
  * 18 December 2025 - Started Adding icon notes for locations
  * 19 December 2025 - Added icons to first 20 rooms
  * 21 December 2025 - Added icons to next 20 rooms
- * 22 December 2025 - Added icons to next 12 rooms
+ * 22 December 2025 - Added icons to next 30 rooms
  */
