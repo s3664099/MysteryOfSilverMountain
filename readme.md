@@ -158,4 +158,11 @@ wasteland - https://www.flaticon.com/free-icons/desert - Desert icons created by
 sacks - https://www.flaticon.com/free-icons/sack - Sack icons created by Freepik - Flaticon
 casks - https://www.flaticon.com/free-icons/wine - Wine icons created by Smashicons - Flaticon
 library - https://www.flaticon.com/free-icons/library - Library icons created by Freepik - Flaticon
+water - https://www.flaticon.com/free-icons/wave - Wave icons created by Freepik - Flaticon
+field - https://www.flaticon.com/free-icons/farming - Farming icons created by Freepik - Flaticon
+windmill- https://www.flaticon.com/free-icons/windmill - Windmill icons created by Freepik - Flaticon
+slope - https://www.flaticon.com/free-icons/hiking - Hiking icons created by Freepik - Flaticon
+chamber - https://www.flaticon.com/free-icons/room - Room icons created by Andrejs Kirma - Flaticon
+throne - https://www.flaticon.com/free-icons/throne - Throne icons created by wanicon - Flaticon
+
 

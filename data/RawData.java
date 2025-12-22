@@ -15,14 +15,15 @@ public class RawData {
 	
 	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,8,5,9,10,11,3,12,13,14,15,
 													 16,17,18,19,17,17,20,21,22,23,24,25,26,27,28,9,29,29,14,30,
-													 };
+													 31,32,34,34,17,35,36,30,13,37,31,31};
 	
     private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
     												"guardhouse","marsh","house","pool","garden","fountain",
     												"corridor","gallery","kitchen","kiln","road","watermill",
     												"dam","bell","dungeon","banquet","battlement","island",
     												"shipwreck","wasteland","sacks","frozenpond","casks",
-    												"library"};
+    												"library","water","field","windmill","slope","chamber",
+    												"throne"};
 		    
 	private static final String[] LOCATIONS = {
 		"11Half-dug Grave",                   // 1		G		1  (Grave)
@@ -41,7 +42,7 @@ public class RawData {
 		"31Misty Pool",                       // 14		P		10 (Pool)
 		"11High-Walled Garden",               // 15		GD		11 (Garden)
 		"14Inscribed Cavern",                 // 16		GR		3  (Grotto)
-		"34Ornate Fountain",                  // 17		F		12 (Fountain)
+		"34Ornate Fountain",                  // 17		FT		12 (Fountain)
 		"11Dank Corridor",                    // 18		CD		13 (Corridor)
 		"12Long Gallery",                     // 19		GL		14 (Gallery)}
 		"12Kitchens of the Palace",           // 20		K		15 (Kitchen)
@@ -65,18 +66,18 @@ public class RawData {
 		"11Wine Cellar",                      // 38		C		29 (Casks)
 		"12Hall of Tapestries",               // 39		GL		14 (Gallery)
 		"11Dusty Library",                    // 40		L		30 (Library)
-		"13Rough Water",                      // 41
-		"11Ploughed Field",                   // 42
-		"55Outside a Windmill",               // 43
-		"42Lower Floor of the Mill",          // 44
-		"44Icy Path",                         // 45
-		"41Scree Slope",                      // 46
-		"12Silver Chamber",                   // 47
-		"12Wizard's Lair",                    // 48
-		"11Mosaic Floor Hall",                // 49
-		"12Silver Throne Room",               // 50
-		"12Middle of the Lake",               // 51
-		"42Edge of an Icy Lake",              // 52
+		"13Rough Water",                      // 41		W		31 (Water)
+		"11Ploughed Field",                   // 42		F		32 (Field)
+		"55Outside a Windmill",               // 43		WM		33 (Windmill)
+		"42Lower Floor of the Mill",          // 44		WM		34 (Windmill)
+		"44Icy Path",                         // 45		R		17 (Road)
+		"41Scree Slope",                      // 46		SL		35 (Slope)
+		"12Silver Chamber",                   // 47		CB		36 (Chamber)
+		"12Wizard's Lair",                    // 48		L		30 (Library)
+		"11Mosaic Floor Hall",                // 49		CD		13 (Corridor)
+		"12Silver Throne Room",               // 50 	TH		37 (Throne)
+		"12Middle of the Lake",               // 51		W		31 (Water)
+		"42Edge of an Icy Lake",              // 52		W		31 (Water)
 		"41Pitted Track",                     // 53
 		"31High Pinnacle",                    // 54
 		"55Above a Glacier",                  // 55
@@ -181,6 +182,7 @@ public class RawData {
  * 16 December 2025 - Started Adding locations
  * 17 December 2025 - Finished adding locations
  * 18 December 2025 - Started Adding icon notes for locations
- * 19 December 2025 - Added first 20 icons for rooms
- * 21 December 2025 - Added next 20 icons for rooms
+ * 19 December 2025 - Added icons to first 20 rooms
+ * 21 December 2025 - Added icons to next 20 rooms
+ * 22 December 2025 - Added icons to next 12 rooms
  */
