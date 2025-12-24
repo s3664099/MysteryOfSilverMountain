@@ -62,4 +62,5 @@ public class Constants {
  * 8 December 2025 - Increased version number
  * 10 December 2025 - Added title
  * 17 December 2025 - Added number of rooms
+ * 24 December 2025 - Added number of items
  */

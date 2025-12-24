@@ -105,70 +105,28 @@ public class GameEntities {
 	// === Items ===
     public static final int ITEM_COINS = 1;
     public static final int ITEM_SHEET = 2;
+    public static final int ITEM_BOOTS = 3;
+    public static final int ITEM_HORSESHOE = 4;
+    public static final int ITEM_APPLES = 5;
+    public static final int ITEM_BUCKET = 6;
+    public static final int ITEM_AXE = 7;
+    public static final int ITEM_BOAT = 8;
+    public static final int ITEM_PHIAL = 9;
+    public static final int ITEM_REEDS = 10;
+    public static final int ITEM_BONE = 11;
+    public static final int ITEM_SHIELD = 12;
+    public static final int ITEM_PLANKS = 13;
+    public static final int ITEM_ROPE = 14;
+    public static final int ITEM_RINGS = 15;
+    public static final int ITEM_JUG = 16;
+    public static final int ITEM_NET = 17;
+    public static final int ITEM_SWORD = 18;
+    public static final int ITEM_PLATE = 19;
+    public static final int ITEM_UNIFORM = 20;
+    
     
     
     /*
-		"boots",								// 3	- 3
-		"horseshoe",							// 4	- 1
-		"apples",								// 5	- 2
-		"bucket",								// 6	- 1
-		"axe",									// 7	- 4
-		"boat",									// 8	- 1
-		"phial",								// 9	- 1
-		"reeds",								// 10	- 3
-		"bone",									// 11	- 1
-		"shield",								// 12	- 1
-		"planks",								// 13	- 3
-		"rope",									// 14	- 1
-		"rings",								// 15	- 1
-		"jug",									// 16	- 1
-		"net",									// 17	- 1
-		"sword",								// 18	- 1
-		"silver plate",							// 19	- 1
-		"uniform",								// 20	- 1
-		"key",									// 21	- 1
-		"seeds",								// 22	- 3
-		"lamp",									// 23	- 1
-		"bread",								// 24	- 3
-		"brooch",								// 25	- 1
-		"matches",								// 26	- 3
-		"stone of destiny",						// 27	- 2
-		"apple",								// 28	- 4
-		"cupboard",								// 29
-		"bridge",								// 30
-		"trees",								// 31
-		"sail",									// 32
-		"kiln",									// 34
-		"ketch",								// 35
-		"bricks",								// 36
-		"windmill",								// 37
-		"sacks",								// 38
-		"Ogban's boar",							// 39
-		"wheel",								// 40
-		"pony",									// 41
-		"gravestones",							// 42
-		"pool",									// 43
-		"gates",								// 44
-		"handle",			"coins",								// 1	- 3
-		"sheet",								// 2	- 1
-		"boots",								// 3	- 3
-		"horseshoe",							// 4	- 1
-		"apples",								// 5	- 2
-		"bucket",								// 6	- 1
-		"axe",									// 7	- 4
-		"boat",									// 8	- 1
-		"phial",								// 9	- 1
-		"reeds",								// 10	- 3
-		"bone",									// 11	- 1
-		"shield",								// 12	- 1
-		"planks",								// 13	- 3
-		"rope",									// 14	- 1
-		"rings",								// 15	- 1
-		"jug",									// 16	- 1
-		"net",									// 17	- 1
-		"sword",								// 18	- 1
-		"silver plate",							// 19	- 1
-		"uniform",								// 20	- 1
 		"key",									// 21	- 1
 		"seeds",								// 22	- 3
 		"lamp",									// 23	- 1
@@ -193,49 +151,6 @@ public class GameEntities {
 		"pool",									// 43
 		"gates",								// 44
 		"handle",								// 45
-		"hut",									// 46
-		"vine",									// 47
-		"inscriptions",							// 48
-		"troll",								// 49
-		"rubble",								// 50
-		"hound",								// 51
-		"fountain",								// 52
-		"circle",								// 53
-		"mosaics",								// 54
-		"books",								// 55
-		"casks",								// 56
-		"well",									// 57
-		"walls",								// 58
-		"rats",									// 59
-		"safe",									// 60
-		"cobwebs",								// 61
-		"coin",									// 62
-		"bell",									// 63
-		"up silver plate",						// 64
-		"stones",								// 65
-		"kitchens",								// 66
-		"goblet",								// 67
-		"wine",									// 68
-		"grargs",								// 69
-		"door",									// 70
-		"awake",								// 71
-		"guide",								// 72
-		"protect",								// 73
-		"lead",									// 74
-		"help",									// 75
-		"chest",								// 76
-		"water",								// 77
-		"stables",								// 78
-		"sluice gates",							// 79
-		"pot",									// 80
-		"statue",								// 81
-		"pinnacle",								// 82
-		"music",								// 83
-		"magic words",							// 84
-		"misty pool",							// 85
-		"well bottom",							// 86
-		"old kiln",								// 87
-		"mountain hut"							// 88							// 45
 		"hut",									// 46
 		"vine",									// 47
 		"inscriptions",							// 48
@@ -316,4 +231,5 @@ public class GameEntities {
  * 				   - Increased version number
  * 10 December 2025 - Added title
  * 18 December 2025 - Added the room constants
+ * 24 December 2025 - Added first 20 item constants
  */
