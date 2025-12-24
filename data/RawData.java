@@ -145,9 +145,10 @@ public class RawData {
 		"stone of destiny",						// 27	- 2
 		"apple",								// 28	- 4
 		"cupboard",								// 29
-		"bridge",								// 30
-		"trees",								// 31
-		"sail",									// 32
+		"bed",									// 30
+		"bridge",								// 31
+		"trees",								// 32
+		"sail",									// 33
 		"kiln",									// 34
 		"ketch",								// 35
 		"bricks",								// 36

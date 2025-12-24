@@ -123,30 +123,30 @@ public class GameEntities {
     public static final int ITEM_SWORD = 18;
     public static final int ITEM_PLATE = 19;
     public static final int ITEM_UNIFORM = 20;
-    
+    public static final int ITEM_KEY = 21;
+    public static final int ITEM_SEEDS = 22;
+    public static final int ITEM_LAMP = 23;
+    public static final int ITEM_BREAD = 24;
+    public static final int ITEM_BROOCH = 25;
+    public static final int ITEM_MATCHES = 26;
+    public static final int ITEM_STONE_DESTINY = 27;
+    public static final int ITEM_APPLE = 28;
+    public static final int ITEM_BED = 29;
+    public static final int ITEM_CUPBOARD = 30;
+    public static final int ITEM_BRIDGE = 31;
+    public static final int ITEM_TREES = 32;
+    public static final int ITEM_SAIL = 33;
+    public static final int ITEM_KILN = 34;
+    public static final int ITEM_KETCH = 35;
+    public static final int ITEM_BRICKS = 36;
+    public static final int ITEM_WINDMILL = 37;
+    public static final int ITEM_SACK = 38;
+    public static final int ITEM_BOAR = 39;
+    public static final int ITEM_WHEEL = 40;
+    public static final int ITEM_PONY = 41;
     
     
     /*
-		"key",									// 21	- 1
-		"seeds",								// 22	- 3
-		"lamp",									// 23	- 1
-		"bread",								// 24	- 3
-		"brooch",								// 25	- 1
-		"matches",								// 26	- 3
-		"stone of destiny",						// 27	- 2
-		"apple",								// 28	- 4
-		"cupboard",								// 29
-		"bridge",								// 30
-		"trees",								// 31
-		"sail",									// 32
-		"kiln",									// 34
-		"ketch",								// 35
-		"bricks",								// 36
-		"windmill",								// 37
-		"sacks",								// 38
-		"Ogban's boar",							// 39
-		"wheel",								// 40
-		"pony",									// 41
 		"gravestones",							// 42
 		"pool",									// 43
 		"gates",								// 44
@@ -231,5 +231,5 @@ public class GameEntities {
  * 				   - Increased version number
  * 10 December 2025 - Added title
  * 18 December 2025 - Added the room constants
- * 24 December 2025 - Added first 20 item constants
+ * 24 December 2025 - Added first 41 item constants
  */

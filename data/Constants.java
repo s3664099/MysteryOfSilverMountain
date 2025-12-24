@@ -32,7 +32,7 @@ public class Constants {
 	public static final int MESSAGE_LENGTH = 100;
 	
 	//Threshold for item categories in the item list
-	public static final int MAX_CARRIABLE_ITEMS = 0; // Items with IDs <= 24 are carriable
+	public static final int MAX_CARRIABLE_ITEMS = 28; // Items with IDs <= 28 are carriable
 	public static final int FOOD_THRESHOLD = 0; // Items with IDs >16 are food
 	public static final int DRINK_THRESHOLD = 0; // Items with IDs > 21 are drinks
 	public static final int LINE_LENGTH = 90;
