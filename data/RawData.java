@@ -175,10 +175,36 @@ public class RawData {
 		"walls",								// 58
 		"rats",									// 59
 		"safe",									// 60
-		
-		
+		"cobwebs",								// 61
+		"coin",									// 62
+		"bell",									// 63
+		"up silver plate",						// 64
+		"stones",								// 65
+		"kitchens",								// 66
+		"goblet",								// 67
+		"wine",									// 68
+		"grargs",								// 69
+		"door",									// 70
+		"awake",								// 71
+		"guide",								// 72
+		"protect",								// 73
+		"lead",									// 74
+		"help",									// 75
+		"chest",								// 76
+		"water",								// 77
+		"stables",								// 78
+		"sluice gates",							// 79
+		"pot",									// 80
+		"statue",								// 81
+		"pinnacle",								// 82
+		"music",								// 83
+		"magic words",							// 84
+		"misty pool",							// 85
+		"well bottom",							// 86
+		"old kiln",								// 87
+		"mountain hut"							// 88
 	};
-	//
+	
 	private static final String[] VERBS = {};
 	
 	private static final String[] NOUNS = {};
