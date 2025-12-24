@@ -144,28 +144,27 @@ public class GameEntities {
     public static final int ITEM_BOAR = 39;
     public static final int ITEM_WHEEL = 40;
     public static final int ITEM_PONY = 41;
-    
+    public static final int ITEM_GRAVESTONE = 42;
+    public static final int ITEM_POOL = 43;
+    public static final int ITEM_GATE = 44;
+    public static final int ITEM_HANDLE = 45;
+    public static final int ITEM_HUT = 46;
+    public static final int ITEM_VINE = 47;
+    public static final int ITEM_INSCRIPTION = 48;
+    public static final int ITEM_TROLL = 49;
+    public static final int ITEM_RUBBLE = 50;
+    public static final int ITEM_HOUND = 51;
+    public static final int ITEM_FOUNTAIN = 52;
+    public static final int ITEM_CIRCLE = 53;
+    public static final int ITEM_MOSAICS = 54;
+    public static final int ITEM_BOOKS = 55;
+    public static final int ITEM_CASKS = 56;
+    public static final int ITEM_WELL = 57;
+    public static final int ITEM_WALL = 58;
+    public static final int ITEM_RAT = 59;
+    public static final int ITEM_SAFE = 60;
     
     /*
-		"gravestones",							// 42
-		"pool",									// 43
-		"gates",								// 44
-		"handle",								// 45
-		"hut",									// 46
-		"vine",									// 47
-		"inscriptions",							// 48
-		"troll",								// 49
-		"rubble",								// 50
-		"hound",								// 51
-		"fountain",								// 52
-		"circle",								// 53
-		"mosaics",								// 54
-		"books",								// 55
-		"casks",								// 56
-		"well",									// 57
-		"walls",								// 58
-		"rats",									// 59
-		"safe",									// 60
 		"cobwebs",								// 61
 		"coin",									// 62
 		"bell",									// 63
