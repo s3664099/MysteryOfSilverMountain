@@ -133,7 +133,49 @@ public class RawData {
 		"rings",								// 15	- 1
 		"jug",									// 16	- 1
 		"net",									// 17	- 1
-		"sword"									// 18	- 1
+		"sword",								// 18	- 1
+		"silver plate",							// 19	- 1
+		"uniform",								// 20	- 1
+		"key",									// 21	- 1
+		"seeds",								// 22	- 3
+		"lamp",									// 23	- 1
+		"bread",								// 24	- 3
+		"brooch",								// 25	- 1
+		"matches",								// 26	- 3
+		"stone of destiny",						// 27	- 2
+		"apple",								// 28	- 4
+		"cupboard",								// 29
+		"bridge",								// 30
+		"trees",								// 31
+		"sail",									// 32
+		"kiln",									// 34
+		"ketch",								// 35
+		"bricks",								// 36
+		"windmill",								// 37
+		"sacks",								// 38
+		"Ogban's boar",							// 39
+		"wheel",								// 40
+		"pony",									// 41
+		"gravestones",							// 42
+		"pool",									// 43
+		"gates",								// 44
+		"handle",								// 45
+		"hut",									// 46
+		"vine",									// 47
+		"inscriptions",							// 48
+		"troll",								// 49
+		"rubble",								// 50
+		"hound",								// 51
+		"fountain",								// 52
+		"circle",								// 53
+		"mosaics",								// 54
+		"books",								// 55
+		"casks",								// 56
+		"well",									// 57
+		"walls",								// 58
+		"rats",									// 59
+		"safe",									// 60
+		
 		
 	};
 	//
