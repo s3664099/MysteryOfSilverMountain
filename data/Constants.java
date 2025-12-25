@@ -38,7 +38,7 @@ public class Constants {
 	public static final int LINE_LENGTH = 90;
 	
 	//Constants for the Game Class
-	public static final int START_LOCATION = 0;
+	public static final int START_LOCATION = 77;
 	
 	//Constants for the player starting values
 	public static final float STARTING_STRENGTH = 0;

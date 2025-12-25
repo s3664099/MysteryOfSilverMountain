@@ -216,8 +216,17 @@ public class RawData {
 	
 	private static final String[] NOUNS = {};
 			
-	private static final String ITEM_LOCATION = "";
-	private static final String ITEM_FLAG = "";
+	
+	//4230 DATA 80,70,60,69,74,72,63,52,20,11,1,14,36,54,61,21,32,10,50
+	//4240 DATA 29,59,34,13,80,30,81,47,74
+	
+	private static final int[] ITEM_LOCATION = {};
+	
+	//4250 DATA 1,2,3,4,5,9,12,13,16,17,20,21,22
+	//4470 FOR I=1 TO 13:READ A: F(A)=1:NEXT I
+	//4480 F(41)=INT(RND(1)*900)+100: F(42)=INT(RND(1)*3)+2
+	//4490 F(44)=4: F(57)=68: F(58)=54: F(59)=15: F(52)=INT(RND(1)*3)
+	private static final int[] ITEM_FLAG = {};
 	
 	private static final String[] PREPOSITIONS = {
 		"in","a","near","the","by","some","on","an","","","at","a small"
@@ -254,22 +263,22 @@ public class RawData {
 		return PREPOSITIONS;
 	}
 		
-	public static char getItemLocation(int number) {
+	public static int getItemLocation(int number) {
 		
-		if (number<0 || number >= ITEM_LOCATION.length()) {
+		if (number<0 || number >= ITEM_LOCATION.length) {
 			throw new IllegalArgumentException("Raw Data - Invalid object location number: "+number);
 		}
 		
-		return ITEM_LOCATION.charAt(number-1);
+		return ITEM_LOCATION[number-1];
 	}
 	
-	public static char getItemFlag(int number) {
+	public static int getItemFlag(int number) {
 		
-		if (number<0 || number >= ITEM_FLAG.length()) {
+		if (number<0 || number >= ITEM_FLAG.length) {
 			throw new IllegalArgumentException("Raw Data - Invalid object flag number: "+number);
 		}		
 		
-		return ITEM_FLAG.charAt(number-1);
+		return ITEM_FLAG[number-1];
 	}
 	
 	public static String[] getVerbs() {
@@ -293,4 +302,5 @@ public class RawData {
  * 					- Added first 16 items (and noted numbers at front)
  * 24 December 2025 - Added items
  * 25 December 2025 - Added prepositions & nouns
+ * 					- Updated for ints as item flags and locations
  */
