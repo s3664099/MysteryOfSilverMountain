@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 18 December 2025
+Version: 1.4
+Date: 25 December 2025
 Source: 
 
 This class is designed to hold the constants. They have been made public since they
@@ -163,37 +163,34 @@ public class GameEntities {
     public static final int ITEM_WALL = 58;
     public static final int ITEM_RAT = 59;
     public static final int ITEM_SAFE = 60;
-    
-    /*
-		"cobwebs",								// 61
-		"coin",									// 62
-		"bell",									// 63
-		"up silver plate",						// 64
-		"stones",								// 65
-		"kitchens",								// 66
-		"goblet",								// 67
-		"wine",									// 68
-		"grargs",								// 69
-		"door",									// 70
-		"awake",								// 71
-		"guide",								// 72
-		"protect",								// 73
-		"lead",									// 74
-		"help",									// 75
-		"chest",								// 76
-		"water",								// 77
-		"stables",								// 78
-		"sluice gates",							// 79
-		"pot",									// 80
-		"statue",								// 81
-		"pinnacle",								// 82
-		"music",								// 83
-		"magic words",							// 84
-		"misty pool",							// 85
-		"well bottom",							// 86
-		"old kiln",								// 87
-		"mountain hut"							// 88
-     */
+    public static final int ITEM_COBWEBS = 61;
+    public static final int ITEM_COIN = 62;
+    public static final int ITEM_BELL = 63;
+    public static final int ITEM_SILVER_PLATE = 64;
+    public static final int ITEM_STONES = 65;
+    public static final int ITEM_KITCHEN = 66;
+    public static final int ITEM_GOBLET = 67;
+    public static final int ITEM_WINE = 68;
+    public static final int ITEM_GRARG = 69;
+    public static final int ITEM_DOOR = 70;
+    public static final int ITEM_AWAKE = 71;
+    public static final int ITEM_GUIDE = 72;
+    public static final int ITEM_PROTECT = 73;
+    public static final int ITEM_LEAD = 74;
+    public static final int ITEM_HELP = 75;
+    public static final int ITEM_CHEST = 76;
+    public static final int ITEM_WATER = 77;
+    public static final int ITEM_STABLES = 78;
+    public static final int ITEM_SLUICE = 79;
+    public static final int ITEM_POT = 80;
+    public static final int ITEM_STATUE = 81;
+    public static final int ITEM_PINNACLE = 82;
+    public static final int ITEM_MUSIC = 83;
+    public static final int ITEM_MAGIC_WORDS = 84;
+    public static final int ITEM_MISTY_POOL = 85;
+    public static final int ITEM_WELL_BOTTOM = 86;
+    public static final int ITEM_OLD_KILN = 87;
+    public static final int ITEM_MOUNTAIN_HUT = 88;
     
 	// === Commands ===
 	public static final int MOVE_BOTTOM = 0;
@@ -230,5 +227,6 @@ public class GameEntities {
  * 				   - Increased version number
  * 10 December 2025 - Added title
  * 18 December 2025 - Added the room constants
- * 24 December 2025 - Added first 41 item constants
+ * 24 December 2025 - Added first 60 item constants
+ * 25 December 2025 - Completed adding item constants
  */
