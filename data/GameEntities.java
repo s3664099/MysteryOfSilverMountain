@@ -191,16 +191,16 @@ public class GameEntities {
     public static final int ITEM_WELL_BOTTOM = 86;
     public static final int ITEM_OLD_KILN = 87;
     public static final int ITEM_MOUNTAIN_HUT = 88;
-    
+        
 	// === Commands ===
 	public static final int MOVE_BOTTOM = 0;
 	public static final int MOVE_NOT_DIRECTION = 0;
 	public static final int MOVE_TOP = 6;
 
 	public static final int CMD_NORTH = 1;
-	public static final int CMD_SOUTH = 2;
-	public static final int CMD_EAST = 3;
-	public static final int CMD_WEST =4;
+	public static final int CMD_EAST = 2;
+	public static final int CMD_SOUTH = 3;
+	public static final int CMD_WEST = 4;
 	public static final int CMD_UP = 5;
 	public static final int CMD_DOWN = 6;
 	public static final int CMD_INVENTORY = 7;
@@ -210,7 +210,7 @@ public class GameEntities {
 	public static final int CMD_READ = 11;
 	public static final int CMD_GIVE = 12;
 	public static final int CMD_SAY = 13;
-	public static final int CMD_PICK = 14;
+	public static final int CMD_PICK = 14;	
 	public static final int CMD_WEAR = 15;
 	public static final int CMD_TIE = 16;
 	public static final int CMD_CLIMB = 17;
@@ -223,7 +223,7 @@ public class GameEntities {
 	public static final int CMD_WATER = 24;
 	public static final int CMD_SWING = 25;
 	public static final int CMD_EMPTY = 26;
-	public static final int CMD_ENTER = 27;
+    public static final int CMD_ENTER = 27;
 	public static final int CMD_CROSS = 28;
 	public static final int CMD_REMOVE = 29;
 	public static final int CMD_FEED = 30;
@@ -236,15 +236,25 @@ public class GameEntities {
 	public static final int CMD_BLOW = 37;
 	public static final int CMD_DROP = 38;
 	public static final int CMD_EAT = 39;
-	public static final int CMD_MOVE = 40;
-	
-	/*	
-		"light","fill","plant","water","swing","empty",
-		"enter","cross","remove","feed","turn","dive","bail","leave","throw","insert","blow",
-		"drop","eat","move","into","ring","cut","hold","burn","poison","show","unlock","with",
-		"drink","count","pay","make","break","steal","gather","reflect"
-	 */
-	
+	public static final int CMD_MOVE = 40;					
+	public static final int CMD_INTO = 41;
+	public static final int CMD_RING = 42;
+	public static final int CMD_CUT = 43;
+	public static final int CMD_HOLD = 44;
+	public static final int CMD_BURN = 45;
+	public static final int CMD_POISON = 46;
+	public static final int CMD_SHOW = 47;
+	public static final int CMD_UNLOCK = 48;
+	public static final int CMD_WITH = 49;
+	public static final int CMD_DRINK = 50;
+	public static final int CMD_COUNT = 51;
+	public static final int CMD_PAY = 52;
+	public static final int CMD_MAKE = 53;
+	public static final int CMD_BREAK = 54;
+	public static final int CMD_STEAL = 55;
+	public static final int CMD_GATHER = 56;
+	public static final int CMD_RELFECT = 57;
+		
 	public static final String SPACE = " ";
     
 	// === Codes ===
