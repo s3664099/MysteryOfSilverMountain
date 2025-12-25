@@ -212,7 +212,10 @@ public class RawData {
 			
 	private static final String ITEM_LOCATION = "";
 	private static final String ITEM_FLAG = "";
-	private static final String[] PREPOSITIONS = {};
+	
+	private static final String[] PREPOSITIONS = {
+		"in","a","near","the","by","some","on","an","","","at","a small"
+	};
 	
 	public static String getLocation(int number) {
 		
