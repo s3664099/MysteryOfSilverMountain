@@ -1,11 +1,13 @@
 10 EL=39:NO=88:NV=57:G=28
-20 GOSUB 3380
-30 GOSUB 4400
+20 GOSUB 3380 - Start Game
+30 GOSUB 4400 - Display Title
 40 LL=0
-50 GOSUB 3310
-60 P$=X$(VAL(LEFT$(D$,1)))+" "+Y$(VAL(MID$(D$,2,1)))+" "
-70 J$=R$+". "+"YOU ARE "+P$+RIGHT$(D$,LEN(D$)-2)+" ":GOSUB 4830
-80 GOSUB 3330:J$=""
+50 GOSUB 3310 - Get Current Room
+60 P$=X$(VAL(LEFT$(D$,1)))+" "+Y$(VAL(MID$(D$,2,1)))+" " - Retrieves preposition for the room
+70 J$=R$+". "+"YOU ARE "+P$+RIGHT$(D$,LEN(D$)-2)+" ":GOSUB 4830 - Displays the locations
+80 GOSUB 3330:J$="" - resets
+
+-- Reads through the items
 90 FOR I=1 TO G-1
 100 READ O$
 110 P$=Y$(VAL(LEFT(O$,1))):GOSUB 3350
@@ -328,6 +330,8 @@
 3280 RETURN
 3290 T=R: R=F(F(52)+57):GOSUB 3310: R=T
 3300 R$=X4$+RIGHT$(D$,LEN(D$)-2):RETURN
+
+--- Reads up to room player currently in
 3310 RESTORE:FOR I=1 TO R:READ D$:NEXT I
 3320 RETURN
 
@@ -473,6 +477,9 @@
 4370 IF W$="G" THEN F(56)=1:RETURN
 4380 IF J$<>G$(MP) THEN NG=NG+1:GOTO 4320
 4390 RETURN
+
+=== Title ===
+
 4400 PRINT CHR$(147):PRINT
 4410 PRINT TAB(EL/2-9);"MYSTERY OF SILVER"
 4420 PRINT TAB(EL/2-9);"  MOUNTAIN"
@@ -517,6 +524,9 @@
 4720 FOR I-1 TO 70:INPUT#1,F(I):NEXT
 4730 INPUT#1,G$(1):INPUT#1,G$(2)
 4740 CLOSE 1:RETURN
+
+=== Save Game ===
+
 4750 REM SAVE DATA FILE
 4760 REM
 4770 OPEN 1,1,1,FL$:PRINT "OK. SAVING"
@@ -525,6 +535,9 @@
 4800 FOR I=1 TO 70:PRINT#1,F(I):NEXT
 4810 PRINT#1,G$(1):PRINT#1,G$(2)
 4820 CLOSE 1:RETURN
+
+=== Displays the message - if message goes over the screen length it breaks it up
+
 4830 LS=1: LP=1
 4840 FOR I=1 TO LEN(J$)
 4850 IF MID$(J$,I,1)=" " AND LL>EL THEN PRINT MID$(J$,LP,LS-LP): LL=I-LS: LP=LS+1

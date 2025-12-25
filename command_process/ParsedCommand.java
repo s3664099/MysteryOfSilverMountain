@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 9 December 2025
+Version: 1.2
+Date: 25 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -99,10 +99,8 @@ public class ParsedCommand {
 		
 		if (verbNumber>GameEntities.MOVE_BOTTOM && verbNumber<GameEntities.MOVE_TOP) {
 			commandState = CommandState.MOVE;
-		} else if (verbNumber == GameEntities.CMD_LOAD || verbNumber == GameEntities.CMD_SAVE || 
-				   verbNumber == GameEntities.CMD_QUIT || verbNumber == GameEntities.CMD_NORTH ||
-					verbNumber == GameEntities.CMD_SOUTH || verbNumber == GameEntities.CMD_EAST ||
-					verbNumber == GameEntities.CMD_WEST || verbNumber == GameEntities.CMD_RESTART) {
+		} else if (verbNumber == GameEntities.CMD_NORTH || verbNumber == GameEntities.CMD_SOUTH || 
+					verbNumber == GameEntities.CMD_EAST || verbNumber == GameEntities.CMD_WEST) {
 			commandState = CommandState.SINGLE_COMMAND;
 			setSingleCommand(verbNumber);
 		} else {
@@ -122,13 +120,6 @@ public class ParsedCommand {
      */
 	private void setSingleCommand(int verbNumber) {
 		
-		if (verbNumber == GameEntities.CMD_SAVE) {
-			commandType = CommandType.SAVE;
-		} else if (verbNumber == GameEntities.CMD_QUIT) {
-			commandType = CommandType.QUIT;
-		} else if (verbNumber == GameEntities.CMD_RESTART) {
-			commandType = CommandType.RESTART;
-		}
 	}
 	
     /**
@@ -275,4 +266,5 @@ public class ParsedCommand {
  * 8 December 2025 - Fixed errors and removed noun table & room functions
  * 				   - Increased version number
  * 9 December 2025 - Added Title
+ * 25 December 2025 - Removed commands not added
  */

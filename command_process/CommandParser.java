@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Parser
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 9 December 2025
+Version: 1.2
+Date: 25 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -136,11 +136,9 @@ public class CommandParser {
 			}
 		} else {
 			nounNumber = -1;
-			if(verbNumber>0 && verbNumber<5) {
+			if(verbNumber>0 && verbNumber<7) {
 				nounNumber = new Move().parseSingleDirection(nounNumber, verbNumber);
-			} else if (verbNumber==GameEntities.CMD_GO && nounNumber>0 && nounNumber<7) {
-				nounNumber = 8;
-			}
+			} 
 		}
 				
 		return nounNumber;
@@ -222,4 +220,5 @@ public class CommandParser {
  * 6 December 2025 - Removed coded command
  * 8 December 2025 - Increased version number
  * 9 December 2025 - Added title
+ * 25 December 2025 - Removed commands not being used
  */
