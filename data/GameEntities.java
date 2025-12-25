@@ -217,6 +217,26 @@ public class GameEntities {
 	public static final int CMD_RIG = 18;
 	public static final int CMD_USE = 19;
 	public static final int CMD_OPEN = 20;
+	public static final int CMD_LIGHT = 21;
+	public static final int CMD_FILL = 22;
+	public static final int CMD_PLANT = 23;
+	public static final int CMD_WATER = 24;
+	public static final int CMD_SWING = 25;
+	public static final int CMD_EMPTY = 26;
+	public static final int CMD_ENTER = 27;
+	public static final int CMD_CROSS = 28;
+	public static final int CMD_REMOVE = 29;
+	public static final int CMD_FEED = 30;
+	public static final int CMD_TURN = 31;
+	public static final int CMD_DIVE = 32;
+	public static final int CMD_BAIL = 33;
+	public static final int CMD_LEAVE = 34;
+	public static final int CMD_THROW = 35;
+	public static final int CMD_INSERT = 36;
+	public static final int CMD_BLOW = 37;
+	public static final int CMD_DROP = 38;
+	public static final int CMD_EAT = 39;
+	public static final int CMD_MOVE = 40;
 	
 	/*	
 		"light","fill","plant","water","swing","empty",
