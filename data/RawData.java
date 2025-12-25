@@ -205,8 +205,14 @@ public class RawData {
 		"old kiln",								// 87
 		"mountain hut"							// 88
 	};
-	
-	private static final String[] VERBS = {};
+
+	private static final String[] VERBS = {
+		"n","e","s","w","u","d","inventory","get","take","examine","read","give","say","pick",
+		"wear","tie","climb","rig","use","open","light","fill","plant","water","swing","empty",
+		"enter","cross","remove","feed","turn","dive","bail","leave","throw","insert","blow",
+		"drop","eat","move","into","ring","cut","hold","burn","poison","show","unlock","with",
+		"drink","count","pay","make","break","steal","gather","reflect"
+	};
 	
 	private static final String[] NOUNS = {};
 			
