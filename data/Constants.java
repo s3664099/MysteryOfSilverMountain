@@ -22,8 +22,8 @@ public class Constants {
 	//Game related constants
 	public static final int NUMBER_OF_ROOMS = 80;
 	public static final int NUMBER_OF_ITEMS = 88;
-	public static final int NUMBER_OF_VERBS = 0;
-	public static final int NUMBER_OF_NOUNS = 0;
+	public static final int NUMBER_OF_VERBS = 57;
+	public static final int NUMBER_OF_NOUNS = 88;
 	public static final int NUMBER_EXITS = 4;
 	public static final int FLAG_HIDDEN = 9;
 	public static final int INITIAL_SAVE_COUNT = 2;

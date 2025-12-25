@@ -201,13 +201,29 @@ public class GameEntities {
 	public static final int CMD_SOUTH = 2;
 	public static final int CMD_EAST = 3;
 	public static final int CMD_WEST =4;
-	public static final int CMD_GO = 5;
-	public static final int CMD_DROP = 9;
-	public static final int CMD_TAKE = 6;
-	public static final int CMD_LOAD = 40;
-	public static final int CMD_SAVE = 41;
-	public static final int CMD_QUIT = 42;
-	public static final int CMD_RESTART = 43;
+	public static final int CMD_UP = 5;
+	public static final int CMD_DOWN = 6;
+	public static final int CMD_INVENTORY = 7;
+	public static final int CMD_GET = 8;
+	public static final int CMD_TAKE = 9;
+	public static final int CMD_EXAMINE = 10;
+	public static final int CMD_READ = 11;
+	public static final int CMD_GIVE = 12;
+	public static final int CMD_SAY = 13;
+	public static final int CMD_PICK = 14;
+	public static final int CMD_WEAR = 15;
+	public static final int CMD_TIE = 16;
+	public static final int CMD_CLIMB = 17;
+	public static final int CMD_RIG = 18;
+	public static final int CMD_USE = 19;
+	public static final int CMD_OPEN = 20;
+	
+	/*	
+		"light","fill","plant","water","swing","empty",
+		"enter","cross","remove","feed","turn","dive","bail","leave","throw","insert","blow",
+		"drop","eat","move","into","ring","cut","hold","burn","poison","show","unlock","with",
+		"drink","count","pay","make","break","steal","gather","reflect"
+	 */
 	
 	public static final String SPACE = " ";
     
@@ -229,4 +245,5 @@ public class GameEntities {
  * 18 December 2025 - Added the room constants
  * 24 December 2025 - Added first 60 item constants
  * 25 December 2025 - Completed adding item constants
+ * 					- Added nouns
  */

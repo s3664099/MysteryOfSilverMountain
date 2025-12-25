@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 19 December 2025
+Version: 1.7
+Date: 25 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -292,4 +292,5 @@ public class RawData {
  * 22 December 2025 - Added icons to final 40 rooms
  * 					- Added first 16 items (and noted numbers at front)
  * 24 December 2025 - Added items
+ * 25 December 2025 - Added prepositions & nouns
  */
