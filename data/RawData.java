@@ -5,6 +5,8 @@ Translator: David Sarkies
 Version: 1.8
 Date: 26 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
+
+change the caps
 */
 
 
@@ -86,7 +88,7 @@ public class RawData {
 		"12Middle of the Lake",               // 51		W		31 (Water)
 		"42Edge of an Icy Lake",              // 52		W		31 (Water)
 		"41Pitted Track",                     // 53		R		17 (Road)
-		"31High Pinnacle",                    // 54		MT		37 (Mountain)
+		"41High Pinnacle",                    // 54		MT		37 (Mountain)
 		"55Above a Glacier",                  // 55		MT		37 (Mountain)
 		"21Huge Fallen Oak",                  // 56		LG		38 (Log)
 		"11Turret Room with a Slot Machine",  // 57		TT		39 (Turret)
@@ -233,7 +235,7 @@ public class RawData {
 	};
 	
 	private static final String[] PREPOSITIONS_TWO = {
-		"","a","the","some","an","","a small"
+		"","a ","the ","some ","an ","","a small "
 	};
 	
 	public static String getLocation(int number) {

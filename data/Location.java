@@ -45,8 +45,8 @@ public class Location implements Serializable {
 		int preposition_2 = Integer.parseInt(name.substring(1,2));
 				
 		//Parse the name
-		this.name = prepositionsOne[preposition_2]+prepositionsTwo[preposition_1]+
-					" "+name.substring(2);
+		this.name = prepositionsOne[preposition_1]+prepositionsTwo[preposition_2]+
+					name.substring(2);
 		
 		System.out.println(this.name);
 		
