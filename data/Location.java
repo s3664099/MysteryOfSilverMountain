@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Location Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 10 December 2025
+Version: 1.2
+Date: 26 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -30,7 +30,7 @@ public class Location implements Serializable {
      * @param roomType     The type of the room (e.g., "forest", "cave").
      * @throws IllegalArgumentException If the input parameters are invalid.
      */
-	public Location(String name, String[] prepositions, String roomType) {		
+	public Location(String name, String[] prepositionsOne, String[] prepositionsTwo, String roomType) {		
 
 		//Validate inputs
 		if (name == null||name.length()<5) {
@@ -41,8 +41,14 @@ public class Location implements Serializable {
 			throw new IllegalArgumentException("Room type cannot be null or empty");
 		}
 				
+		int preposition_1 = Integer.parseInt(name.substring(0, 1));
+		int preposition_2 = Integer.parseInt(name.substring(1,2));
+				
 		//Parse the name
-		this.name = name;
+		this.name = prepositionsOne[preposition_2]+prepositionsTwo[preposition_1]+
+					" "+name.substring(2);
+		
+		System.out.println(this.name);
 		
 		//Parse the exits
 		
@@ -92,4 +98,5 @@ public class Location implements Serializable {
  * 6 December 2025 - Removed game specific code
  * 8 December 2025 - Increased version number
  * 10 December 2025 - Added title
+ * 26 December 2025 - Built location name
  */

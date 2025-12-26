@@ -64,11 +64,13 @@ public final class GameInitialiser {
 
     	//Room 0 is unused
     	locations[0] = null;
-    	
+    	  	
     	// Initialize locations starting from 1
 		for (int roomId=1;roomId<= Constants.NUMBER_OF_ROOMS;roomId++) {
+
 			locations[roomId] = new Location(RawData.getLocation(roomId-1),
-												RawData.getPrepositions(),
+												RawData.getPrepositionsOne(),
+												RawData.getPrepositionsTwo(),
 												RawData.getImage(roomId-1));
 			final int id = roomId;
 			logger.log(Level.FINE, String.format("Initializing room %d", id));
@@ -84,7 +86,7 @@ public final class GameInitialiser {
      *
      * @return an array of {@link Item} objects
      */
-	public static Item[] createItems() {
+	private static Item[] createItems() {
 		
 		Item[] items = new Item[Constants.NUMBER_OF_NOUNS+1];
 		

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 25 December 2025
+Version: 1.8
+Date: 26 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -14,15 +14,15 @@ public class RawData {
 	
 	
 	private static final Integer[] LOCATION_TYPES = {1,2,1,3,4,3,5,6,7,7,
-													 8,5,9,10,11,3,12,13,14,15,
-													 16,17,18,19,17,17,20,21,22,23,
-													 24,25,26,27,28,9,29,29,14,30,
-													 31,32,34,34,17,35,36,30,13,37,
-													 31,31,17,38,38,39,40,41,42,43,
-													 17,3,9,38,44,45,45,46,47,48,
-													 49,49,50,51,52,52,17,17,53,9};
+													8,5,9,10,11,3,12,13,14,15,
+													16,17,18,19,17,17,20,21,22,23,
+													24,25,26,27,28,9,29,29,14,30,
+													31,32,33,33,17,34,35,30,13,36,
+													31,31,17,37,37,38,39,40,41,42,
+													13,3,9,37,43,44,44,45,46,47,
+													48,48,49,50,51,51,17,17,52,9};
 	
-    private static final String[] LOCATION_IMAGE = {"","grave","graveyard","grotto","maze","gate","entrance",
+    private static final String[] LOCATION_IMAGE = {"grave","graveyard","grotto","maze","gate","entrance",
     												"guardhouse","marsh","house","pool","garden","fountain",
     												"corridor","gallery","kitchen","kiln","road","watermill",
     												"dam","bell","dungeon","banquet","battlement","island",
@@ -31,7 +31,7 @@ public class RawData {
     												"throne" ,"mountain","log","turret","cobweb","safe",
     												"cupboard","creek","forest","stonehenge","stable","attic",
     												"well","campfire","orchard","bridge","village"};
-		    
+	    
 	private static final String[] LOCATIONS = {
 		"11Half-dug Grave",                   // 1		G		1  (Grave)
 		"12Goblin Graveyared",                // 2		GY		2  (Graveyard)
@@ -76,42 +76,42 @@ public class RawData {
 		"13Rough Water",                      // 41		W		31 (Water)
 		"11Ploughed Field",                   // 42		F		32 (Field)
 		"55Outside a Windmill",               // 43		WM		33 (Windmill)
-		"42Lower Floor of the Mill",          // 44		WM		34 (Windmill)
+		"42Lower Floor of the Mill",          // 44		WM		33 (Windmill)
 		"44Icy Path",                         // 45		R		17 (Road)
-		"41Scree Slope",                      // 46		SL		35 (Slope)
-		"12Silver Chamber",                   // 47		CB		36 (Chamber)
+		"41Scree Slope",                      // 46		SL		34 (Slope)
+		"12Silver Chamber",                   // 47		CB		35 (Chamber)
 		"12Wizard's Lair",                    // 48		L		30 (Library)
 		"11Mosaic Floor Hall",                // 49		CD		13 (Corridor)
-		"12Silver Throne Room",               // 50 	TH		37 (Throne)
+		"12Silver Throne Room",               // 50 	TH		36 (Throne)
 		"12Middle of the Lake",               // 51		W		31 (Water)
 		"42Edge of an Icy Lake",              // 52		W		31 (Water)
 		"41Pitted Track",                     // 53		R		17 (Road)
-		"31High Pinnacle",                    // 54		MT		38 (Mountain)
-		"55Above a Glacier",                  // 55		MT		38 (Mountain)
-		"21Huge Fallen Oak",                  // 56		LG		39 (Log)
-		"11Turret Room with a Slot Machine",  // 57		TT		40 (Turret)
-		"11Cobwebby Room",                    // 58		CB		41 (Cobweb)
-		"31Safe in Ogban's Chamber",          // 59		SF		42 (Safe)
-		"31Cupboard in the Corner",           // 60		CP		43 (Cupboard)
+		"31High Pinnacle",                    // 54		MT		37 (Mountain)
+		"55Above a Glacier",                  // 55		MT		37 (Mountain)
+		"21Huge Fallen Oak",                  // 56		LG		38 (Log)
+		"11Turret Room with a Slot Machine",  // 57		TT		39 (Turret)
+		"11Cobwebby Room",                    // 58		CB		40 (Cobweb)
+		"31Safe in Ogban's Chamber",          // 59		SF		41 (Safe)
+		"31Cupboard in the Corner",           // 60		CP		42 (Cupboard)
 		"11Narrow Passage",                   // 61		CD		13 (Corridor)
 		"16Cave",                             // 62		GR		3  (Grotto)
 		"11Woodman's Hut",                    // 63		H		9  (House)
-		"42Side of a  Wooded Valley",         // 64		MT      38 (Mountain)
-		"21Stream in a Valley Bottom",        // 65		CK		44 (Creek)
-		"11Deep Dark Wood",                   // 66		FS		45 (Forest)
-		"11Shady Hollow",                     // 67		FS		45 (Forest)
-		"34Ancient Stone Circle",             // 68		SH		46 (Stonehenge)
-		"16Stable",                           // 69		ST		47 (Stable)
-		"14Attic Bedroom",                    // 70		AT		48 (Attic)
-		"11Damp Well Bottom",                 // 71		WL		49 (Well)
-		"32Top of a Deep Well",               // 72		WL		49 (Well)
-		"31Burnt-Out Campfire",               // 73		CF		50 (Campfire)
-		"16Orchard",                          // 74     OH		51 (Orchard)
-		"62End of a Bridge",                  // 75		BD		52 (Bridge)
-		"62End of a Bridge",                  // 76		BD		52 (Bridge)
+		"42Side of a  Wooded Valley",         // 64		MT      37 (Mountain)
+		"21Stream in a Valley Bottom",        // 65		CK		43 (Creek)
+		"11Deep Dark Wood",                   // 66		FS		44 (Forest)
+		"11Shady Hollow",                     // 67		FS		44 (Forest)
+		"34Ancient Stone Circle",             // 68		SH		45 (Stonehenge)
+		"16Stable",                           // 69		ST		46 (Stable)
+		"14Attic Bedroom",                    // 70		AT		47 (Attic)
+		"11Damp Well Bottom",                 // 71		WL		48 (Well)
+		"32Top of a Deep Well",               // 72		WL		48 (Well)
+		"31Burnt-Out Campfire",               // 73		CF		49 (Campfire)
+		"16Orchard",                          // 74     OH		50 (Orchard)
+		"62End of a Bridge",                  // 75		BD		51 (Bridge)
+		"62End of a Bridge",                  // 76		BD		51 (Bridge)
 		"61Crossroads",                       // 77		R		17 (Road)
 		"41Winding Road",                     // 78		R		17 (Road)
-		"11Village of Rustic Houses",         // 79		V		53 (Village)
+		"11Village of Rustic Houses",         // 79		V		52 (Village)
 		"11White Cottage"                     // 80		H		9  (House)
 	};
 		
@@ -228,8 +228,12 @@ public class RawData {
 	//4490 F(44)=4: F(57)=68: F(58)=54: F(59)=15: F(52)=INT(RND(1)*3)
 	private static final int[] ITEM_FLAG = {};
 	
-	private static final String[] PREPOSITIONS = {
-		"in","a","near","the","by","some","on","an","","","at","a small"
+	private static final String[] PREPOSITIONS_ONE = {
+		"","in ","near ","by ","on ","","at "
+	};
+	
+	private static final String[] PREPOSITIONS_TWO = {
+		"","a","the","some","an","","a small"
 	};
 	
 	public static String getLocation(int number) {
@@ -246,7 +250,7 @@ public class RawData {
 		if (number<0 || number >= LOCATION_TYPES.length) {
 			throw new IllegalArgumentException("Raw Data - Invalid location type number: "+number);
 		}
-		
+
 		return LOCATION_IMAGE[LOCATION_TYPES[number]-1];
 	}
 	
@@ -259,8 +263,12 @@ public class RawData {
 		return OBJECTS[number-1];
 	}
 
-	public static String[] getPrepositions() {
-		return PREPOSITIONS;
+	public static String[] getPrepositionsOne() {
+		return PREPOSITIONS_ONE;
+	}
+	
+	public static String[] getPrepositionsTwo() {
+		return PREPOSITIONS_TWO;
 	}
 		
 	public static int getItemLocation(int number) {
@@ -303,4 +311,5 @@ public class RawData {
  * 24 December 2025 - Added items
  * 25 December 2025 - Added prepositions & nouns
  * 					- Updated for ints as item flags and locations
+ * 26 December 2025 - Updated data and split prepositions into two arrays
  */
