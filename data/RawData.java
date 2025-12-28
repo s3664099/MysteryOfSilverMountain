@@ -217,12 +217,15 @@ public class RawData {
 	};
 	
 	private static final String[] NOUNS = {};
-			
 	
-	//4230 DATA 80,70,60,69,74,72,63,52,20,11,1,14,36,54,61,21,32,10,50
-	//4240 DATA 29,59,34,13,80,30,81,47,74
-	
-	private static final int[] ITEM_LOCATION = {};
+	private static final int[] ITEM_LOCATION = {80,70,60,69,74,72,63,52,20,11,
+												1,14,36,54,61,21,32,10,50,29,
+												59,34,13,80,30,81,47,74,-1,-1,
+												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+												-1,-1,-1,-1,-1,-1,-1,-1};
 	
 	//4250 DATA 1,2,3,4,5,9,12,13,16,17,20,21,22
 	//4470 FOR I=1 TO 13:READ A: F(A)=1:NEXT I
@@ -314,4 +317,6 @@ public class RawData {
  * 25 December 2025 - Added prepositions & nouns
  * 					- Updated for ints as item flags and locations
  * 26 December 2025 - Updated data and split prepositions into two arrays
+ * 28 December 2025 - Added item locations, prepositions, and flags
+ * 					- Added location exits
  */
