@@ -118,94 +118,94 @@ public class RawData {
 	};
 		
 	private static final String[] OBJECTS = {
-		"coins",								// 1	- 3
-		"sheet",								// 2	- 1
-		"boots",								// 3	- 3
-		"horseshoe",							// 4	- 1
-		"apples",								// 5	- 2
-		"bucket",								// 6	- 1
-		"axe",									// 7	- 4
-		"boat",									// 8	- 1
-		"phial",								// 9	- 1
-		"reeds",								// 10	- 3
-		"bone",									// 11	- 1
-		"shield",								// 12	- 1
-		"planks",								// 13	- 3
-		"rope",									// 14	- 1
-		"rings",								// 15	- 1
-		"jug",									// 16	- 1
-		"net",									// 17	- 1
-		"sword",								// 18	- 1
-		"silver plate",							// 19	- 1
-		"uniform",								// 20	- 1
-		"key",									// 21	- 1
-		"seeds",								// 22	- 3
-		"lamp",									// 23	- 1
-		"bread",								// 24	- 3
-		"brooch",								// 25	- 1
-		"matches",								// 26	- 3
-		"stone of destiny",						// 27	- 2
-		"apple",								// 28	- 4
-		"cupboard",								// 29
-		"bed",									// 30
-		"bridge",								// 31
-		"trees",								// 32
-		"sail",									// 33
-		"kiln",									// 34
-		"ketch",								// 35
-		"bricks",								// 36
-		"windmill",								// 37
-		"sacks",								// 38
-		"Ogban's boar",							// 39
-		"wheel",								// 40
-		"pony",									// 41
-		"gravestones",							// 42
-		"pool",									// 43
-		"gates",								// 44
-		"handle",								// 45
-		"hut",									// 46
-		"vine",									// 47
-		"inscriptions",							// 48
-		"troll",								// 49
-		"rubble",								// 50
-		"hound",								// 51
-		"fountain",								// 52
-		"circle",								// 53
-		"mosaics",								// 54
-		"books",								// 55
-		"casks",								// 56
-		"well",									// 57
-		"walls",								// 58
-		"rats",									// 59
-		"safe",									// 60
-		"cobwebs",								// 61
-		"coin",									// 62
-		"bell",									// 63
-		"up silver plate",						// 64
-		"stones",								// 65
-		"kitchens",								// 66
-		"goblet",								// 67
-		"wine",									// 68
-		"grargs",								// 69
-		"door",									// 70
-		"awake",								// 71
-		"guide",								// 72
-		"protect",								// 73
-		"lead",									// 74
-		"help",									// 75
-		"chest",								// 76
-		"water",								// 77
-		"stables",								// 78
-		"sluice gates",							// 79
-		"pot",									// 80
-		"statue",								// 81
-		"pinnacle",								// 82
-		"music",								// 83
-		"magic words",							// 84
-		"misty pool",							// 85
-		"well bottom",							// 86
-		"old kiln",								// 87
-		"mountain hut"							// 88
+		"3coins",								// 1
+		"1sheet",								// 2
+		"3boots",								// 3
+		"1horseshoe",							// 4
+		"2apples",								// 5
+		"1bucket",								// 6
+		"4axe",									// 7
+		"1boat",								// 8
+		"1phial",								// 9
+		"3reeds",								// 10
+		"1bone",								// 11
+		"1shield",								// 12
+		"3planks",								// 13
+		"1rope",								// 14
+		"1rings",								// 15
+		"1jug",									// 16
+		"1net",									// 17
+		"1sword",								// 18
+		"1silver plate",						// 19
+		"1uniform",								// 20
+		"1key",									// 21
+		"3seeds",								// 22
+		"1lamp",								// 23
+		"3bread",								// 24
+		"1brooch",								// 25
+		"3matches",								// 26
+		"2stone of destiny",					// 27
+		"4apple",								// 28
+		"0cupboard",							// 29
+		"0bed",									// 30
+		"0bridge",								// 31
+		"0trees",								// 32
+		"0sail",								// 33
+		"0kiln",								// 34
+		"0ketch",								// 35
+		"0bricks",								// 36
+		"0windmill",							// 37
+		"0sacks",								// 38
+		"0Ogban's boar",						// 39
+		"0wheel",								// 40
+		"0pony",								// 41
+		"0gravestones",							// 42
+		"0pool",								// 43
+		"0gates",								// 44
+		"0handle",								// 45
+		"0hut",									// 46
+		"0vine",								// 47
+		"0inscriptions",						// 48
+		"0troll",								// 49
+		"0rubble",								// 50
+		"0hound",								// 51
+		"0fountain",							// 52
+		"0circle",								// 53
+		"0mosaics",								// 54
+		"0books",								// 55
+		"0casks",								// 56
+		"0well",								// 57
+		"0walls",								// 58
+		"0rats",								// 59
+		"0safe",								// 60
+		"0cobwebs",								// 61
+		"0coin",								// 62
+		"0bell",								// 63
+		"0up silver plate",						// 64
+		"0stones",								// 65
+		"0kitchens",							// 66
+		"0goblet",								// 67
+		"0wine",								// 68
+		"0grargs",								// 69
+		"0door",								// 70
+		"0awake",								// 71
+		"0guide",								// 72
+		"0protect",								// 73
+		"0lead",								// 74
+		"0help",								// 75
+		"0chest",								// 76
+		"0water",								// 77
+		"0stables",								// 78
+		"0sluice gates",						// 79
+		"0pot",									// 80
+		"0statue",								// 81
+		"0pinnacle",							// 82
+		"0music",								// 83
+		"0magic words",							// 84
+		"0misty pool",							// 85
+		"0well bottom",							// 86
+		"0old kiln",							// 87
+		"0mountain hut"							// 88
 	};
 
 	private static final String[] VERBS = {

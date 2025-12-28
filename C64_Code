@@ -20,6 +20,8 @@
 180 IF R=18 AND E$(18)="N" THEN J$=$J+" AN OAK DOOR,"
 190 IF R=59 AND F(68)=1 THEN J$=J$+" OGBAN (DEAD),"
 200 IF J$<>"" THEN J$=", YOU CAN SEE"+J$
+
+-- Displays Exits
 210 J$=J$+" AND YOU CAN GO "
 220 GOSUB 4830:PRINT " ";
 230 FOR I=1 TO LEN(E$(R)):PRINT MID$(E$(R),I,1);",";
