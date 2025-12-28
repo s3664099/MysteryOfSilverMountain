@@ -27,7 +27,10 @@ public class Item implements Serializable {
      * @param description The item's description.
      */
 	public Item(String item) {
-				
+		
+		//Random Item Flags
+		//4480 F(41)=INT(RND(1)*900)+100: F(42)=INT(RND(1)*3)+2: F(52)=INT(RND(1)*3)
+		
 		//Saves the descriptions
 		this.itemName = item;
 	}

@@ -33,65 +33,68 @@ public class RawData {
     												"throne" ,"mountain","log","turret","cobweb","safe",
     												"cupboard","creek","forest","stonehenge","stable","attic",
     												"well","campfire","orchard","bridge","village"};
-	    
+    
 	private static final String[] LOCATIONS = {
-		"11half-dug grave",                   // 1		G		1  (Grave)
-		"12goblin graveyared",                // 2		GY		2  (Graveyard)
-		"11hollow tomb",                      // 3		G		1  (Grave)
-		"23stalactites and stalagmites",      // 4		GR		3  (Grotto)
-		"11maze of tunnels",                  // 5		MZ		4  (Maze)
-		"11vaulted cavern",                   // 6		GR		3  (Grotto)
-		"23high glass gates",                 // 7		GT		5  (Gate)
-		"12Eentrance hall to the palace",      // 8		EH		6  (Entrance)
-		"31grarg sentry post",                // 9		GH		7  (Guardhouse)
-		"12guard room",                       // 10		GH		7  (Guardhouse)
-		"31marshy inlet",                     // 11		M		8  (Marsh)
-		"23rusty gates",                      // 12		GT		5  (Gate)
-		"12gamekeeper's cottage",             // 13		H		9  (House)
-		"31misty pool",                       // 14		P		10 (Pool)
-		"11high-walled garden",               // 15		GD		11 (Garden)
-		"14inscribed cavern",                 // 16		GR		3  (Grotto)
-		"34ornate fountain",                  // 17		FT		12 (Fountain)
-		"11dank corridor",                    // 18		CD		13 (Corridor)
-		"12long gallery",                     // 19		GL		14 (Gallery)}
-		"12kitchens of the palace",           // 20		K		15 (Kitchen)
-		"34old kiln",                         // 21		KL		16 (Kiln)
-		"44overgrown track",                  // 22		R		17 (Road)
-		"31disused waterwheel",               // 23		WM		18 (Water Mill)
-		"33sluice gates",                     // 24		DM		19 (Dam)
-		"11gap between some boulder",         // 25		R		17 (Road)
-		"41perilous path",                    // 26		R		17 (Road)
-		"31silver bell in the rock",          // 27		B		20 (Bell)
-		"12dungeons of the palace",           // 28		D		21 (Dungeon)
-		"11banqueting hall",                  // 29		BQ      22 (Banquet)
-		"42palace battlements",               // 30		BT		23 (Battlement)
-		"44island shore",                     // 31		I		24 (Island)
-		"31beached ketch",                    // 32		SW		25 (Shipwreck)
-		"13barren countryside",               // 33		WL		26 (Wasteland)
-		"33sacks on the upper floor",         // 34		SK		27 (Sacks)
-		"46frozen pond",                      // 35		FP		28 (Frozen Pond)
-		"21mountain hut",                     // 36		H		9  (House)
-		"31row of casks",                     // 37		C		29 (Casks)
-		"11wine cellar",                      // 38		C		29 (Casks)
-		"12Hall of Tapestries",               // 39		GL		14 (Gallery)
-		"11dusty library",                    // 40		L		30 (Library)
-		"13rough water",                      // 41		W		31 (Water)
-		"11ploughed field",                   // 42		F		32 (Field)
-		"55outside a windmill",               // 43		WM		33 (Windmill)
-		"42lower floor of the mill",          // 44		WM		33 (Windmill)
-		"44icy path",                         // 45		R		17 (Road)
-		"41scree slope",                      // 46		SL		34 (Slope)
-		"12Silver Chamber",                   // 47		CB		35 (Chamber)
-		"12wizard's lair",                    // 48		L		30 (Library)
-		"11mosaic floor hall",                // 49		CD		13 (Corridor)
-		"12Silver Throne Room",               // 50 	TH		36 (Throne)
-		"12middle of the lake",               // 51		W		31 (Water)
-		"42edge of an icy lake",              // 52		W		31 (Water)
-		"41pitted track",                     // 53		R		17 (Road)
-		"41high pinnacle",                    // 54		MT		37 (Mountain)
-		"55above a glacier",                  // 55		MT		37 (Mountain)
-		"21huge fallen oak",                  // 56		LG		38 (Log)
-		"11turret room with a slot machine",  // 57		TT		39 (Turret)
+		"11half-dug grave1101",					// 1		G		1  (Grave)			E
+		"12goblin graveyared1000",				// 2		GY		2  (Graveyard)		ESW
+		"11hollow tomb1100",					// 3		G		1  (Grave)			WE
+		"23stalactites and stalagmites1100",	// 4		GR		3  (Grotto)			WE
+		"11maze of tunnels1101",				// 5		MZ		4  (Maze)			ESW
+		"11vaulted cavern1000",					// 6		GR		3  (Grotto)			ESW
+		"23high glass gates1100",				// 7		GT		5  (Gate)			ES
+		"12Eentrance hall to the palace1100",	// 8		EH		6  (Entrance)		EW
+		"31grarg sentry post1100",				// 9		GH		7  (Guardhouse)		SW
+		"12guard room1000",						// 10		GH		7  (Guardhouse)		N
+		"31marshy inlet1000",					// 11		M		8  (Marsh)			ES
+		"23rusty gates1001",					// 12		GT		5  (Gate)			SW
+		"12gamekeeper's cottage1100",			// 13		H		9  (House)			S
+		"31misty pool1010",						// 14		P		10 (Pool)			NW
+		"11high-walled garden1011",				// 15		GD		11 (Garden)			N
+		"14inscribed cavern0111",				// 16		GR		3  (Grotto)			N
+		"34ornate fountain",					// 17		FT		12 (Fountain)		ES
+		"11dank corridor",						// 18		CD		13 (Corridor)		NSW
+		"12long gallery",						// 19		GL		14 (Gallery)}		N
+		"12kitchens of the palace",				// 20		K		15 (Kitchen)		ES
+		"34old kiln",							// 21		KL		16 (Kiln)			SW
+		"44overgrown track",					// 22		R		17 (Road)			S
+		"31disused waterwheel",					// 23		WM		18 (Water Mill)		NW
+		"33sluice gates",						// 24		DM		19 (Dam)			N
+		"11gap between some boulder",			// 25		R		17 (Road)			N
+		"41perilous path",						// 26		R		17 (Road)			ES
+		"31silver bell in the rock",			// 27		B		20 (Bell)			NSW
+		"12dungeons of the palace",				// 28		D		21 (Dungeon)		NS
+		"11banqueting hall",					// 29		BQ      22 (Banquet)		E
+		"42palace battlements",					// 30		BT		23 (Battlement)		NSW
+		"44island shore",						// 31		I		24 (Island)			N
+		"31beached ketch",						// 32		SW		25 (Shipwreck)		NEW
+		"13barren countryside",					// 33		WL		26 (Wasteland)		EW
+		"33sacks on the upper floor",			// 34		SK		27 (Sacks)			W
+		"46frozen pond",						// 35		FP		28 (Frozen Pond)	S
+		"21mountain hut",						// 36		H		9  (House)			NS
+		"31row of casks",						// 37		C		29 (Casks)			N
+		"11wine cellar",						// 38		C		29 (Casks)			NES
+		"12Hall of Tapestries",					// 39		GL		14 (Gallery)		W
+		"11dusty library",						// 40		L		30 (Library)		NS
+		"13rough water",						// 41		W		31 (Water)			D
+		"11ploughed field",						// 42		F		32 (Field)			NES
+		"55outside a windmill",					// 43		WM		33 (Windmill)		SW
+		"42lower floor of the mill",			// 44		WM		33 (Windmill)		E
+		"44icy path",							// 45		R		17 (Road)			NW
+		"41scree slope",						// 46		SL		34 (Slope)			NS
+		"12Silver Chamber",						// 47		CB		35 (Chamber)		S
+		"12wizard's lair",						// 48		L		30 (Library)		NS
+		"11mosaic floor hall",					// 49		CD		13 (Corridor)		E
+		"12Silver Throne Room",					// 50 		TH		36 (Throne)			NSEW	
+		"12middle of the lake",					// 51		W		31 (Water)			WU
+		"42edge of an icy lake",				// 52		W		31 (Water)			UD
+		"41pitted track",						// 53		R		17 (Road)			NS			
+		"41high pinnacle",						// 54		MT		37 (Mountain)		E
+		"55above a glacier",					// 55		MT		37 (Mountain)		SW
+		"21huge fallen oak",					// 56		LG		38 (Log)			NSE
+		"11turret room with a slot machine",	// 57		TT		39 (Turret)			NW
+	    //4200 DATA NE,EW,NSW,E,WN,S,E,NEW,NW,S
+	    //4210 DATA ES,SW,NES,EW,SW,NE,EW,ESW,SW,ND
+	    //4220 DATA " ",E,NEW,EW,NEW,EW,EW,NEW,NEW,WU
 		"11cobwebby room",                    // 58		CB		40 (Cobweb)
 		"31safe in Ogban's Chamber",          // 59		SF		41 (Safe)
 		"31cupboard in the corner",           // 60		CP		42 (Cupboard)
@@ -225,13 +228,18 @@ public class RawData {
 												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
 												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
 												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
+												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
 												-1,-1,-1,-1,-1,-1,-1,-1};
 	
-	//4250 DATA 1,2,3,4,5,9,12,13,16,17,20,21,22
-	//4470 FOR I=1 TO 13:READ A: F(A)=1:NEXT I
-	//4480 F(41)=INT(RND(1)*900)+100: F(42)=INT(RND(1)*3)+2
-	//4490 F(44)=4: F(57)=68: F(58)=54: F(59)=15: F(52)=INT(RND(1)*3)
-	private static final int[] ITEM_FLAG = {};
+	private static final int[] ITEM_FLAG = {1,1,1,1,1,0,0,0,1,0,
+											0,1,1,0,0,1,1,0,0,1,
+											1,1,0,0,0,0,0,0,0,0,
+											0,0,0,0,0,0,0,0,0,0,
+											0,0,0,4,0,0,0,0,0,0,
+											0,0,0,0,0,0,68,54,15,0,
+											0,0,0,0,0,0,0,0,0,0,
+											0,0,0,0,0,0,0,0,0,0,
+											0,0,0,0,0,0,0,0};
 	
 	private static final String[] PREPOSITIONS_ONE = {
 		"","in ","near ","by ","on ","","at "
@@ -318,5 +326,5 @@ public class RawData {
  * 					- Updated for ints as item flags and locations
  * 26 December 2025 - Updated data and split prepositions into two arrays
  * 28 December 2025 - Added item locations, prepositions, and flags
- * 					- Added location exits
+ * 					- Added Started added notes for location exits
  */
