@@ -33,28 +33,30 @@ public class RawData {
     												"throne" ,"mountain","log","turret","cobweb","safe",
     												"cupboard","creek","forest","stonehenge","stable","attic",
     												"well","campfire","orchard","bridge","village"};
-    
+
 	private static final String[] LOCATIONS = {
-		"11half-dug grave1101",					// 1		G		1  (Grave)
-		"12goblin graveyared1000",				// 2		GY		2  (Graveyard)
-		"11hollow tomb1100",					// 3		G		1  (Grave)
-		"23stalactites and stalagmites1100",	// 4		GR		3  (Grotto)
-		"11maze of tunnels1101",				// 5		MZ		4  (Maze)
-		"11vaulted cavern1000",					// 6		GR		3  (Grotto)
-		"23high glass gates1100",				// 7		GT		5  (Gate)
-		"12Eentrance hall to the palace1100",	// 8		EH		6  (Entrance)
-		"31grarg sentry post1100",				// 9		GH		7  (Guardhouse)
-		"12guard room1000",						// 10		GH		7  (Guardhouse)
-		"31marshy inlet1000",					// 11		M		8  (Marsh)
-		"23rusty gates1001",					// 12		GT		5  (Gate)
-		"12gamekeeper's cottage1100",			// 13		H		9  (House)
-		"31misty pool1010",						// 14		P		10 (Pool)
-		"11high-walled garden1011",				// 15		GD		11 (Garden)
-		"14inscribed cavern0111",				// 16		GR		3  (Grotto)
+		"11half-dug grave",						// 1		G		1  (Grave)
+		"12goblin graveyared",					// 2		GY		2  (Graveyard)
+		"11hollow tomb",						// 3		G		1  (Grave)
+		"23stalactites and stalagmites",		// 4		GR		3  (Grotto)
+		"11maze of tunnels",					// 5		MZ		4  (Maze)
+		"11vaulted cavern",						// 6		GR		3  (Grotto)
+		"23high glass gates",					// 7		GT		5  (Gate)
+		"12Eentrance hall to the palace",		// 8		EH		6  (Entrance)
+		"31grarg sentry post",					// 9		GH		7  (Guardhouse)
+		"12guard room",							// 10		GH		7  (Guardhouse)
+		//E,ESW,WE,EW,EW,ESW,ESW,ES,EW,SW
+		"31marshy inlet",						// 11		M		8  (Marsh)
+		"23rusty gates",						// 12		GT		5  (Gate)
+		"12gamekeeper's cottage",				// 13		H		9  (House)
+		"31misty pool",							// 14		P		10 (Pool)
+		"11high-walled garden",					// 15		GD		11 (Garden)
+		"14inscribed cavern",					// 16		GR		3  (Grotto)
 		"34ornate fountain",					// 17		FT		12 (Fountain)
 		"11dank corridor",						// 18		CD		13 (Corridor)
 		"12long gallery",						// 19		GL		14 (Gallery)
 		"12kitchens of the palace",				// 20		K		15 (Kitchen)
+		//S,N,ES,SW,S,NW,N,N,ES,NSW
 		"34old kiln",							// 21		KL		16 (Kiln)
 		"44overgrown track",					// 22		R		17 (Road)
 		"31disused waterwheel",					// 23		WM		18 (Water Mill)
@@ -65,6 +67,7 @@ public class RawData {
 		"12dungeons of the palace",				// 28		D		21 (Dungeon)
 		"11banqueting hall",					// 29		BQ      22 (Banquet)
 		"42palace battlements",					// 30		BT		23 (Battlement)
+		//NS,E,NSW,N,NEW,EW,W,S,NS,N
 		"44island shore",						// 31		I		24 (Island)
 		"31beached ketch",						// 32		SW		25 (Shipwreck)
 		"13barren countryside",					// 33		WL		26 (Wasteland)
@@ -75,6 +78,7 @@ public class RawData {
 		"11wine cellar",						// 38		C		29 (Casks)
 		"12Hall of Tapestries",					// 39		GL		14 (Gallery)
 		"11dusty library",						// 40		L		30 (Library)
+		//NES,W,NS,D,NES,SW,E,NW,NS,S
 		"13rough water",						// 41		W		31 (Water)
 		"11ploughed field",						// 42		F		32 (Field)
 		"55outside a windmill",					// 43		WM		33 (Windmill)
@@ -84,7 +88,8 @@ public class RawData {
 		"12Silver Chamber",						// 47		CB		35 (Chamber)
 		"12wizard's lair",						// 48		L		30 (Library)
 		"11mosaic floor hall",					// 49		CD		13 (Corridor)
-		"12Silver Throne Room",					// 50 	TH		36 (Throne)
+		"12Silver Throne Room",					// 50		TH		36 (Throne)
+		//NS,E,NSEW,WU,UD,NS,E,SW,NSE,NW
 		"12middle of the lake",					// 51		W		31 (Water)
 		"42edge of an icy lake",				// 52		W		31 (Water)
 		"41pitted track",						// 53		R		17 (Road)
@@ -95,6 +100,7 @@ public class RawData {
 		"11cobwebby room",						// 58		CB		40 (Cobweb)
 		"31safe in Ogban's Chamber",			// 59		SF		41 (Safe)
 		"31cupboard in the corner",				// 60		CP		42 (Cupboard)
+		//NE,EW,NSW,E,WN,S,E,NEW,NW,S
 		"11narrow passage",						// 61		CD		13 (Corridor)
 		"16cave",								// 62		GR		3  (Grotto)
 		"11woodman's hut",						// 63		H		9  (House)
@@ -105,16 +111,18 @@ public class RawData {
 		"34ancient stone circle",				// 68		SH		45 (Stonehenge)
 		"16stable",								// 69		ST		46 (Stable)
 		"14attic bedroom",						// 70		AT		47 (Attic)
+		//ES,SW,NES,EW,SW,NE,EW,ESW,SW,ND
 		"11damp well bottom",					// 71		WL		48 (Well)
 		"32top of a deep well",					// 72		WL		48 (Well)
 		"31burnt-out campfire",					// 73		CF		49 (Campfire)
-		"16orchard",							// 74     OH		50 (Orchard)
+		"16orchard",							// 74		OH		50 (Orchard)
 		"62end of a bridge",					// 75		BD		51 (Bridge)
 		"62end of a bridge",					// 76		BD		51 (Bridge)
 		"61crossroads",							// 77		R		17 (Road)
 		"41winding road",						// 78		R		17 (Road)
 		"11village of rustic houses",			// 79		V		52 (Village)
 		"11white cottage"						// 80		H		9  (House)
+		//" ",E,NEW,EW,NEW,EW,EW,NEW,NEW,WU
 	};
 		
 	private static final String[] OBJECTS = {
