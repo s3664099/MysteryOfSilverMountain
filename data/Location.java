@@ -59,8 +59,6 @@ public class Location implements Serializable {
 		}
 		
 		this.roomType = roomType;
-		
-		System.out.println(this.toString());
 	}
 	
 	public String getName() {

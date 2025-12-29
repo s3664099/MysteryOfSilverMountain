@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 10 December 2025
+Version: 1.2
+Date: 29 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -14,6 +14,10 @@ import java.io.Serializable;
 public class Item implements Serializable {
 	
 	private static final long serialVersionUID = -2697850646469797958L;
+	
+	private static final int PREPOSITION_INDEX = 0;
+	private static final int NAME_START_INDEX = 1;
+	
 	private int itemFlag;
 	private int itemLocation;
 	private String itemName;
@@ -26,13 +30,19 @@ public class Item implements Serializable {
      * @param location The location character (e.g., from ITEM_LOCATION).
      * @param description The item's description.
      */
-	public Item(String item) {
+	public Item(String item, int location, int flag, String[] prepositions) {
 		
 		//Random Item Flags
 		//4480 F(41)=INT(RND(1)*900)+100: F(42)=INT(RND(1)*3)+2: F(52)=INT(RND(1)*3)
 		
+		this.itemFlag = flag;
+		this.itemLocation = location;
+		
 		//Saves the descriptions
-		this.itemName = item;
+		int prep = Integer.parseInt(item.substring(PREPOSITION_INDEX,NAME_START_INDEX));
+		this.itemName = String.format("%s%s",prepositions[prep],item.substring(NAME_START_INDEX));
+		
+		System.out.println(this.toString());
 	}
 	
 	public String getItemName() {
@@ -86,4 +96,5 @@ public class Item implements Serializable {
  * 6 December 2025 - Removed game specific code
  * 8 December 2025 - Increased version number
  * 10 December 2025 - Added title
+ * 29 December 2025 - Added locations,flags,and prepotisions for item.
  */

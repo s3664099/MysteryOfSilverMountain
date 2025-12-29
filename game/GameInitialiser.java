@@ -97,11 +97,19 @@ public final class GameInitialiser {
 		for (int itemId=1;itemId<=Constants.NUMBER_OF_NOUNS;itemId++) {
 			String itemName = (itemId < Constants.NUMBER_OF_ITEMS+1)
 					? RawData.getObjects(itemId):"";
-			items[itemId] = new Item(itemName);
+			int itemFlag = generateFlag(itemId);
+			items[itemId] = new Item(itemName,RawData.getItemLocation(itemId),itemFlag,
+									 RawData.getPrepositionsTwo());
 			final int id = itemId;
 			logger.log(Level.FINE, String.format("Initializing item %d, %s", id,itemName));
 		}	
 		return items;
+	}
+	
+	private static int generateFlag(int itemNumber) {
+		int itemFlag = RawData.getItemFlag(itemNumber);
+		
+		return itemFlag;
 	}
 }
 
