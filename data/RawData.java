@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 26 December 2025
+Version: 1.10
+Date: 29 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 change the caps
@@ -45,7 +45,6 @@ public class RawData {
 		"12Eentrance hall to the palace1001",	// 8		EH		6  (Entrance)
 		"31grarg sentry post1100",				// 9		GH		7  (Guardhouse)
 		"12guard room1010",						// 10		GH		7  (Guardhouse)
-		
 		"31marshy inlet1011",					// 11		M		8  (Marsh)
 		"23rusty gates0111",					// 12		GT		5  (Gate)
 		"12gamekeeper's cottage1001",			// 13		H		9  (House)
@@ -56,7 +55,6 @@ public class RawData {
 		"11dank corridor0111",					// 18		CD		13 (Corridor)
 		"12long gallery1001",					// 19		GL		14 (Gallery)
 		"12kitchens of the palace0010",			// 20		K		15 (Kitchen)
-		
 		"34old kiln0011",						// 21		KL		16 (Kiln)
 		"44overgrown track1101",				// 22		R		17 (Road)
 		"31disused waterwheel0010",				// 23		WM		18 (Water Mill)
@@ -67,7 +65,6 @@ public class RawData {
 		"12dungeons of the palace1011",			// 28		D		21 (Dungeon)
 		"11banqueting hall0011",				// 29		BQ      22 (Banquet)
 		"42palace battlements0111",				// 30		BT		23 (Battlement)
-
 		"44island shore0001",					// 31		I		24 (Island)
 		"31beached ketch1110",					// 32		SW		25 (Shipwreck)
 		"13barren countryside0011",				// 33		WL		26 (Wasteland)
@@ -78,7 +75,6 @@ public class RawData {
 		"11wine cellar0110",					// 38		C		29 (Casks)
 		"12Hall of Tapestries0011",				// 39		GL		14 (Gallery)
 		"11dusty library1011",					// 40		L		30 (Library)
-
 		"13rough water0011",					// 41		W		31 (Water)
 		"11ploughed field1101",					// 42		F		32 (Field)
 		"55outside a windmill0000",				// 43		WM		33 (Windmill)
@@ -89,7 +85,6 @@ public class RawData {
 		"12wizard's lair1010",					// 48		L		30 (Library)
 		"11mosaic floor hall0001",				// 49		CD		13 (Corridor)
 		"12Silver Throne Room0110",				// 50		TH		36 (Throne)
-
 		"12middle of the lake0101",				// 51		W		31 (Water)
 		"42edge of an icy lake1001",			// 52		W		31 (Water)
 		"41pitted track0010",					// 53		R		17 (Road)
@@ -100,31 +95,28 @@ public class RawData {
 		"11cobwebby room0100",					// 58		CB		40 (Cobweb)
 		"31safe in Ogban's Chamber0110",		// 59		SF		41 (Safe)
 		"31cupboard in the corner1011",			// 60		CP		42 (Cupboard)
-
-		"11narrow passage",						// 61		CD		13 (Corridor)
-		"16cave",								// 62		GR		3  (Grotto)
-		"11woodman's hut",						// 63		H		9  (House)
-		"42side of a  wooded valley",			// 64		MT      37 (Mountain)
-		"21stream in a valley bottom",			// 65		CK		43 (Creek)
-		"11deep dark wood",						// 66		FS		44 (Forest)
-		"11shady hollow",						// 67		FS		44 (Forest)
-		"34ancient stone circle",				// 68		SH		45 (Stonehenge)
-		"16stable",								// 69		ST		46 (Stable)
-		"14attic bedroom",						// 70		AT		47 (Attic)
-		//ES,SW,NES,EW,SW,NE,EW,ESW,SW,ND
-		"11damp well bottom",					// 71		WL		48 (Well)
-		"32top of a deep well",					// 72		WL		48 (Well)
-		"31burnt-out campfire",					// 73		CF		49 (Campfire)
-		"16orchard",							// 74		OH		50 (Orchard)
-		"62end of a bridge",					// 75		BD		51 (Bridge)
-		"62end of a bridge",					// 76		BD		51 (Bridge)
-		"61crossroads",							// 77		R		17 (Road)
-		"41winding road",						// 78		R		17 (Road)
-		"11village of rustic houses",			// 79		V		52 (Village)
-		"11white cottage"						// 80		H		9  (House)
-		//" ",E,NEW,EW,NEW,EW,EW,NEW,NEW,WU
+		"11narrow passage1001",					// 61		CD		13 (Corridor)
+		"16cave1010",							// 62		GR		3  (Grotto)
+		"11woodman's hut0001",					// 63		H		9  (House)
+		"42side of a  wooded valley1100",		// 64		MT      37 (Mountain)
+		"21stream in a valley bottom1010",		// 65		CK		43 (Creek)
+		"11deep dark wood0101",					// 66		FS		44 (Forest)
+		"11shady hollow1100",					// 67		FS		44 (Forest)
+		"34ancient stone circle1000",			// 68		SH		45 (Stonehenge)
+		"16stable1010",							// 69		ST		46 (Stable)
+		"14attic bedroom0011",					// 70		AT		47 (Attic)			Down - South
+		"11damp well bottom1111",				// 71		WL		48 (Well)
+		"32top of a deep well1101",				// 72		WL		48 (Well)
+		"31burnt-out campfire0100",				// 73		CF		49 (Campfire)
+		"16orchard1100",						// 74		OH		50 (Orchard)
+		"62end of a bridge0100",				// 75		BD		51 (Bridge)
+		"62end of a bridge1100",				// 76		BD		51 (Bridge)
+		"61crossroads1100",						// 77		R		17 (Road)
+		"41winding road0100",					// 78		R		17 (Road)
+		"11village of rustic houses0100",		// 79		V		52 (Village)
+		"11white cottage0110"					// 80		H		9  (House)
 	};
-		
+	
 	private static final String[] OBJECTS = {
 		"3coins",								// 1
 		"1sheet",								// 2
@@ -332,4 +324,5 @@ public class RawData {
  * 26 December 2025 - Updated data and split prepositions into two arrays
  * 28 December 2025 - Added item locations, prepositions, and flags
  * 					- Added location exits
+ * 29 December 2025 - Completed adding exits to locations
  */
