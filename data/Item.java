@@ -31,10 +31,7 @@ public class Item implements Serializable {
      * @param description The item's description.
      */
 	public Item(String item, int location, int flag, String[] prepositions) {
-		
-		//Random Item Flags
-		//4480 F(41)=INT(RND(1)*900)+100: F(42)=INT(RND(1)*3)+2: F(52)=INT(RND(1)*3)
-		
+				
 		this.itemFlag = flag;
 		this.itemLocation = location;
 		

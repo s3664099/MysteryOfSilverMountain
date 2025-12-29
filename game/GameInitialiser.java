@@ -11,8 +11,10 @@ package game;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Random;
 
 import data.Constants;
+import data.GameEntities;
 import data.Item;
 import data.Location;
 import data.RawData;
@@ -29,6 +31,7 @@ import data.RawData;
 public final class GameInitialiser {
 
 	private static final Logger logger = Logger.getLogger(GameInitialiser.class.getName());
+	private static final Random rand = new Random();
 	
     /**
      * Private constructor to prevent instantiation.
@@ -108,6 +111,14 @@ public final class GameInitialiser {
 	
 	private static int generateFlag(int itemNumber) {
 		int itemFlag = RawData.getItemFlag(itemNumber);
+ 		
+		if (itemNumber == GameEntities.ITEM_PONY) {
+			itemFlag = rand.nextInt(100,1000);
+		} else if (itemNumber == GameEntities.ITEM_GRAVESTONE) {
+			itemFlag = rand.nextInt(2,5);
+		} else if (itemNumber == GameEntities.ITEM_FOUNTAIN) {
+			itemFlag = rand.nextInt(0,3);
+		}
 		
 		return itemFlag;
 	}
