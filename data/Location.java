@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Location Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 26 December 2025
+Version: 1.3
+Date: 29 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -15,6 +15,11 @@ import java.util.Arrays;
 public class Location implements Serializable {
 	
 	private static final long serialVersionUID = 7421397108414613755L;
+	
+	private static final int PREPOSITION_ONE_INDEX = 0;
+	private static final int PREPOSITION_TWO_INDEX = 1;
+	private static final int NAME_START_INDEX = 2;
+	private static final int EXIT_START_INDEX = 4;
 	
 	private final String name;
 	private final boolean[] exits = new boolean[4];
@@ -41,18 +46,21 @@ public class Location implements Serializable {
 			throw new IllegalArgumentException("Room type cannot be null or empty");
 		}
 				
-		int preposition_1 = Integer.parseInt(name.substring(0, 1));
-		int preposition_2 = Integer.parseInt(name.substring(1,2));
-				
 		//Parse the name
-		this.name = prepositionsOne[preposition_1]+prepositionsTwo[preposition_2]+
-					name.substring(2);
-		
-		System.out.println(this.name);
+		int prep_1 = Integer.parseInt(name.substring(PREPOSITION_ONE_INDEX,PREPOSITION_TWO_INDEX));
+		int prep_2 = Integer.parseInt(name.substring(PREPOSITION_TWO_INDEX,NAME_START_INDEX));
+		this.name = String.format("%s%s%s",prepositionsOne[prep_1],prepositionsTwo[prep_2],
+										   name.substring(NAME_START_INDEX,name.length()-EXIT_START_INDEX)); 
 		
 		//Parse the exits
+		String exitString = name.substring(name.length()-EXIT_START_INDEX);
+		for (int x=0;x<4;x++) {
+			exits[x] = exitString.charAt(x) == '0';
+		}
 		
 		this.roomType = roomType;
+		
+		System.out.println(this.toString());
 	}
 	
 	public String getName() {
@@ -99,4 +107,5 @@ public class Location implements Serializable {
  * 8 December 2025 - Increased version number
  * 10 December 2025 - Added title
  * 26 December 2025 - Built location name
+ * 29 December 2025 - Added exits and updated name
  */
