@@ -2,8 +2,8 @@
 Title: <Game Name> Game Engine
 Author: 
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
+Version: 1.1
+Date: 31 December 2025
 Source: 
 */
 
@@ -288,8 +288,7 @@ public class GameEngine implements GameCommandHandler,GameStateProvider {
 		boolean timeBonus = (int) player.getStat("timeRemaining")<640;
 		double timeScore = (int) player.getStat("timeRemaining")/7.0;
 		double applyTimeBonus = timeBonus ? -timeScore:0;
-		int wisdom = (int) player.getStat("wisdom");
-		return (int) ((int) ((float) player.getStat("strength"))+wisdom+applyTimeBonus);
+		return 0;
 	}
 	
 	//=== Room Queries ===//
@@ -334,4 +333,5 @@ public class GameEngine implements GameCommandHandler,GameStateProvider {
 3 December 2025 - Created File
 7 December 2025 - Removed game related code
 8 December 2025 - Increased version number
+31 December 2025 - Removed wisdom/strength from score
 */

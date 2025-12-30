@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Game Class
-Author: 
+Title: Mystery of Silver Mountain Game Class
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
-Source: 
+Version: 1.1
+Date: 31 December 2025
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package game;
@@ -47,7 +47,7 @@ public class Game implements Serializable {
 	private SpecialItemHandler specialItemHandler = new SpecialItemHandler();
 	
 	/** Standard in-game message builder. */
-	private MessageBuilder normalMessage = new MessageBuilder("Let your quest begin!");
+	private MessageBuilder normalMessage = new MessageBuilder(Constants.STARTING_MESSAGE);
 	
 	/** Special message builder. */
 	private MessageBuilder panelMessage = new MessageBuilder();
@@ -407,4 +407,5 @@ public class Game implements Serializable {
 /* 3 December 2025 - Created File
  * 7 December 2025 - Removed game related code
  * 8 December 2025 - Increased version number
+ * 31 December 2025 - Added starting message
  */

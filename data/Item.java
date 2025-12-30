@@ -38,8 +38,6 @@ public class Item implements Serializable {
 		//Saves the descriptions
 		int prep = Integer.parseInt(item.substring(PREPOSITION_INDEX,NAME_START_INDEX));
 		this.itemName = String.format("%s%s",prepositions[prep],item.substring(NAME_START_INDEX));
-		
-		System.out.println(this.toString());
 	}
 	
 	public String getItemName() {

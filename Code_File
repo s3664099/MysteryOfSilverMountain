@@ -447,7 +447,7 @@
 
 
 
-4500 R=77: R$="GOOD LUCK ON YOUR QUEST!"
+
 4510 G$(1)="":FOR I=1 TO 8
 4520 F$=MID$(B$,1+INT(RND(1)*4)*3,1)
 4530 G$(1)=G$(1)+F$

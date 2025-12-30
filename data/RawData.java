@@ -5,8 +5,6 @@ Translator: David Sarkies
 Version: 1.10
 Date: 29 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
-
-change the caps
 */
 
 
