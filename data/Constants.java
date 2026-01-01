@@ -56,6 +56,7 @@ public class Constants {
 	public static final String STAT_TIME = "timeRemaining";
 	
 	public static final String STARTING_MESSAGE = "Good luck on your quest";
+	public static final String TITLE = "The Mystery of Silver Mountain";
 	
 }
 

@@ -11,6 +11,7 @@ package view;
 
 import javax.swing.JFrame;
 
+import data.Constants;
 import game.GameEngine;
 import interfaces.GameUI;
 import ui.GameController;
@@ -54,7 +55,7 @@ public class GameFrame extends JFrame implements GameUI {
      *               must not be {@code null}
      */
 	public GameFrame(GameEngine engine) {
-		super("Island of Secrets");
+		super(Constants.TITLE);
 		GameController controller = new GameController(engine,this);
 		this.gamePanel = new GamePanel(controller);
 		initialiseUI();
