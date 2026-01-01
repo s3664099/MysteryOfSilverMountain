@@ -205,14 +205,69 @@ public class RawData {
 		"0old kiln",							// 87
 		"0mountain hut"							// 88
 	};
-
+	
 	private static final String[] VERBS = {
-		"n","e","s","w","u","d","inventory","get","take","examine",
-		"read","give","say","pick","wear","tie","climb","rig","use","open",
-		"light","fill","plant","water","swing","empty","enter","cross","remove","feed",
-		"turn","dive","bail","leave","throw","insert","blow","drop","eat","move","into",
-		"ring","cut","hold","burn","poison","show","unlock","with","drink","count",
-		"pay","make","break","steal","gather","reflect"
+		"n",					// 1			800				MOVE
+		"e",					// 2			800				MOVE
+		"s",					// 3			800				MOVE
+		"w",					// 4			800				MOVE
+		"u",					// 5			800				MOVE
+		"d",					// 6			800				MOVE
+		"inventory",			// 7			1220			INVENTORY
+		"get",					// 8			1290			TAKE
+		"take",					// 9			1290			TAKE
+		"examine",				// 10			1470			EXAMINE
+		"read",					// 11			1470			EXAMINE
+		"give",					// 12			1750			GIVE
+		"say",					// 13			1890			SAY
+		"pick",					// 14			1960			PICK
+		"wear",					// 15			1980			WEAR
+		"tie",					// 16			2010			TIE
+		"climb",				// 17			2050			CLIMB
+		"rig",					// 18			2870			RIG
+		"use",					// 19			2120			USE
+		"open",					// 20			2220			OPEN
+		"light",				// 21			2310			LIGHT
+		"fill",					// 22			2380			FILL
+		"plant",				// 23			2420			PLANT
+		"water",				// 24			2450			WATER
+		"swing",				// 25			2470			SWING
+		"empty",				// 26			2520			EMPTY
+		"enter",
+		/*	GOSUB2550,2580,2610,2650,2670,2700,2720,2730,2830,2800,2870,2730,2920
+		GOSUB2950,2990,3010,3050,3070,2310,2990,3070,3130,2120,3190,1470,3100
+		GOSUB 2870,3150,1290,1290,3170,3200
+	 */
+		"cross",
+		"remove",
+		"feed",
+		"turn",
+		"dive",
+		"bail",
+		"leave",
+		"throw",
+		"insert",
+		"blow",
+		"drop",
+		"eat",
+		"move",
+		"into",
+		"ring",
+		"cut",
+		"hold",
+		"burn",
+		"poison",
+		"show",
+		"unlock",
+		"with",
+		"drink",
+		"count",
+		"pay",
+		"make",
+		"break",
+		"steal",
+		"gather",
+		"reflect"
 	};
 	
 	private static final String[] NOUNS = {};
