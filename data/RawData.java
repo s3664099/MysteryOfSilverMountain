@@ -250,7 +250,7 @@ public class RawData {
 		"into",					// 41			2990			POISON
 		"ring",					// 42			3010			RING
 		"cut",					// 43			3050			CUT
-		"hold",					// 44			3070			HOLD
+		"hold",					// 44			3070			SHOW
 		"burn",					// 45			2310			BURN
 		"poison",				// 46			2990			POISON
 		"show",					// 47			3070			SHOW
