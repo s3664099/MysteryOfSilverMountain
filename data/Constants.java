@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 31 December 2025
+Version: 1.4
+Date: 1 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -68,4 +68,5 @@ public class Constants {
  * 17 December 2025 - Added number of rooms
  * 24 December 2025 - Added number of items
  * 31 December 2025 - Added starting message
+ * 1 January 2026 - Added title as a constant
  */

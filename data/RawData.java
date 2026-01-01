@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.10
-Date: 29 December 2025
+Version: 1.11
+Date: 1 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -227,47 +227,43 @@ public class RawData {
 		"rig",					// 18			2870			RIG
 		"use",					// 19			2120			USE
 		"open",					// 20			2220			OPEN
-		"light",				// 21			2310			LIGHT
+		"light",				// 21			2310			BURN
 		"fill",					// 22			2380			FILL
 		"plant",				// 23			2420			PLANT
 		"water",				// 24			2450			WATER
 		"swing",				// 25			2470			SWING
 		"empty",				// 26			2520			EMPTY
-		"enter",
-		/*	GOSUB2550,2580,2610,2650,2670,2700,2720,2730,2830,2800,2870,2730,2920
-		GOSUB2950,2990,3010,3050,3070,2310,2990,3070,3130,2120,3190,1470,3100
-		GOSUB 2870,3150,1290,1290,3170,3200
-	 */
-		"cross",
-		"remove",
-		"feed",
-		"turn",
-		"dive",
-		"bail",
-		"leave",
-		"throw",
-		"insert",
-		"blow",
-		"drop",
-		"eat",
-		"move",
-		"into",
-		"ring",
-		"cut",
-		"hold",
-		"burn",
-		"poison",
-		"show",
-		"unlock",
-		"with",
-		"drink",
-		"count",
-		"pay",
-		"make",
-		"break",
-		"steal",
-		"gather",
-		"reflect"
+		"enter",				// 27			2550			ENTER
+		"cross",				// 28			2580			CROSS
+		"remove",				// 29			2610			REMOVE
+		"feed",					// 30			2650			FEED
+		"turn",					// 31			2670			TURN
+		"dive",					// 32			2700			DIVE
+		"bail",					// 33			2720			BAIL
+		"leave",				// 34			2730			DROP
+		"throw",				// 35			2830			THROW
+		"insert",				// 36			2800			INSERT
+		"blow",					// 37			2870			RIG
+		"drop",					// 38			2730			DROP
+		"eat",					// 39			2920			EAT
+		"move",					// 40			2950			MOVE
+		"into",					// 41			2990			POISON
+		"ring",					// 42			3010			RING
+		"cut",					// 43			3050			CUT
+		"hold",					// 44			3070			HOLD
+		"burn",					// 45			2310			BURN
+		"poison",				// 46			2990			POISON
+		"show",					// 47			3070			SHOW
+		"unlock",				// 48			3130			UNLOCK
+		"with",					// 49			2120			USE
+		"drink",				// 50			3190			DRINK
+		"count",				// 51			1470			EXAMINE
+		"pay",					// 52			3100			PAY
+		"make",					// 53			2870			RIG	
+		"break",				// 54			3150			BREAK
+		"steal",				// 55			1290			TAKE
+		"gather",				// 56 			1290			TAKE
+		"reflect"				// 57			3170			REFLECT
 	};
 	
 	private static final String[] NOUNS = {};
@@ -471,4 +467,5 @@ public class RawData {
  * 					- Added location exits
  * 29 December 2025 - Completed adding exits to locations
  * 					- Fixed problem with not enough flags/locations
+ * 1 January 2026 - Notated commands
  */
