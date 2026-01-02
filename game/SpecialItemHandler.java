@@ -13,7 +13,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import data.Constants;
 import data.GameEntities;
 import data.Item;
 import data.Location;
@@ -38,19 +37,12 @@ public class SpecialItemHandler implements Serializable {
      */
 	public SpecialItemHandler() {
 		
-		//140 IF R=29 AND F(48)=0 THEN J$=J$+" GRARGS FEASTING,"
-		//150 IF R=29 AND F(48)=1 THEN J$=J$+" A SLEEPNG GRARG,"
-		
-		
-		//180 IF R=18 AND E$(18)="N" THEN J$=$J+" AN OAK DOOR,"
-		//190 IF R=59 AND F(68)=1 THEN J$=J$+" OGBAN (DEAD),"
-		
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_GRARG_FEASTING,"grargs feasting");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_GRARG_SLEEPING,"a sleeing grarg");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_PONY_PRESENT," a pony");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_HERMIT_PRESENT," a hermit");
-		itemDescriptions.put(GameEntities.ROOM_CORRIDOR," an oak door");
-		itemDescriptions.put(GameEntities.ROOM_OGBAN_CHAMBER," a dead Ogban");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_DOOR_OPEN," an oak door");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_OGBAN_DEAD," a dead Ogban");
 	}
 	
     /**
@@ -78,6 +70,10 @@ public class SpecialItemHandler implements Serializable {
 			specialItemType = GameEntities.SPECIAL_ITEM_PONY_PRESENT;
 		} else if (checkHermitPresent(roomNumber)) {
 			specialItemType = GameEntities.SPECIAL_ITEM_HERMIT_PRESENT;
+		} else if (checkDoorOpen(roomNumber,locationList[GameEntities.ROOM_CORRIDOR].getExits())) {
+			specialItemType = GameEntities.SPECIAL_ITEM_DOOR_OPEN;
+		} else if (checkOgbanDead(roomNumber,itemList[GameEntities.ITEM_WINE].getItemFlag())) {
+			specialItemType = GameEntities.SPECIAL_ITEM_OGBAN_DEAD;
 		}
 		
 		String description = itemDescriptions.getOrDefault(specialItemType,"");
@@ -99,6 +95,16 @@ public class SpecialItemHandler implements Serializable {
 	
 	private boolean checkHermitPresent(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_VALLEY;
+	}
+	
+	private boolean checkDoorOpen(int roomNumber, boolean[] exits) {
+		return roomNumber == GameEntities.ROOM_CORRIDOR &&
+				exits[GameEntities.NORTH-1];
+	}
+	
+	private boolean checkOgbanDead(int roomNumber, int itemFlag) {
+		return roomNumber == GameEntities.ROOM_OGBAN_CHAMBER &&
+				itemFlag == 1;
 	}
 }
 

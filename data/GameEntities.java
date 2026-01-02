@@ -270,6 +270,8 @@ public class GameEntities {
 	public static final int SPECIAL_ITEM_GRARG_SLEEPING = 2;
 	public static final int SPECIAL_ITEM_PONY_PRESENT = 3;
 	public static final int SPECIAL_ITEM_HERMIT_PRESENT = 4;
+	public static final int SPECIAL_ITEM_DOOR_OPEN = 5;
+	public static final int SPECIAL_ITEM_OGBAN_DEAD = 6;
 
 }
 
