@@ -118,13 +118,14 @@ public class Game implements Serializable {
 	    List<String> itemsFound = new ArrayList<>();
 		
 		String specialItems = specialItemHandler.getSpecialItems(roomNumber, itemList, locationList);
+		
 		if(!specialItems.isEmpty()) {
 			itemsFound.add(specialItems);
 		}
 				
 		//Goes through each of the items
 		for (Item item:itemList) {
-			if(item != null && item.isAtLocation(roomNumber) && item.getItemFlag()<1) {
+			if(item != null && item.isAtLocation(roomNumber) && item.getItemFlag()==0) {
 				itemsFound.add(item.getItemName());
 			}
 		}
@@ -408,4 +409,5 @@ public class Game implements Serializable {
  * 7 December 2025 - Removed game related code
  * 8 December 2025 - Increased version number
  * 31 December 2025 - Added starting message
+ * 2 January 2025 - Updated flag to display item
  */

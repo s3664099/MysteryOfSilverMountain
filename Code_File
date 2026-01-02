@@ -6,11 +6,11 @@
 
 
 
-90 FOR I=1 TO G-1
-100 READ O$
-110 P$-Y$(VAL(LEFT(O$,1))):GOSUB 3350
-120 IF F(I)=0 AND C(I)=R THEN J$=J$+" "+P$+" "+$O++","
-130 NEXT I
+
+
+
+
+
 
 
 

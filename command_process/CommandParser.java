@@ -174,17 +174,7 @@ public class CommandParser {
 
 			input = input.toLowerCase();
 			
-			if (input.equals("u") || input.equals("up")) {
-				input = "go up";
-			} else if (input.equals("d") || input.equals("down")) {
-				input = "go down";
-			} else if (input.equals("i") || input.equals("enter") ||
-					input.equals("inside") || input.equals("go inside")) {
-				input = "go in";
-			} else if (input.equals("o") || input.equals("exit") ||				
-					input.equals("outside") || input.equals("go outside")) {
-				input = "go out";
-			} else if (input.equals("north")) {
+			if (input.equals("north")) {
 				input = "n";
 			} else if (input.equals("south")) {
 				input = "s";
@@ -192,7 +182,8 @@ public class CommandParser {
 				input = "e";
 			} else if (input.equals("west")) {
 				input = "w";
-			}			
+			}
+			
 			return input;
 		}
 	}
