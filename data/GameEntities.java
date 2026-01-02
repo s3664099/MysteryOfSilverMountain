@@ -264,6 +264,12 @@ public class GameEntities {
 	public static final int SOUTH = 2;
 	public static final int EAST = 3;
 	public static final int WEST = 4;
+	
+	// === Special Items ===
+	public static final int SPECIAL_ITEM_GRARG_FEASTING = 1;
+	public static final int SPECIAL_ITEM_GRARG_SLEEPING = 2;
+	public static final int SPECIAL_ITEM_PONY_PRESENT = 3;
+	public static final int SPECIAL_ITEM_HERMIT_PRESENT = 4;
 
 }
 

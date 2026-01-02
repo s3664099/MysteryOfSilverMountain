@@ -266,7 +266,9 @@ public class RawData {
 		"reflect"				// 57			3170			REFLECT
 	};
 	
-	private static final String[] NOUNS = {};
+	private static final String[] NOUNS = {
+		
+	};
 	
 	/*
 	 * 	"3coins",								// 1
