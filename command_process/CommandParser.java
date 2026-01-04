@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Parser
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 25 December 2025
+Version: 1.3
+Date: 4 January 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -171,35 +171,44 @@ public class CommandParser {
 		 * @return the normalized command string
 		 */
 		public String normalise(String input) {
-
-			input = input.toLowerCase();
-			
-			if (input.equals("north")) {
-				input = "n";
-			} else if (input.equals("south")) {
-				input = "s";
-			} else if (input.equals("east")) {
-				input = "e";
-			} else if (input.equals("west")) {
-				input = "w";
-			}
-			
+			input = input.toLowerCase();			
 			return input;
 		}
 	}
 	
 	/**
-	 * Ensures movement-related commands ("in", "out", "up", "down") are prefixed
-	 * with "go" for consistency.
+	 * Ensures the movement commands come out as "n","s","e" or "w"
+	 * Changes "u" & "d" to "n" & "s" respectively
 	 *
 	 * @param command the input command string
 	 * @return the normalized movement command string
 	 */
 	public String parseMovement(String command) {
 		
-		if (command.equals("in") || command.equals("out") ||
-			command.equals("up") || command.equals("down")) {
-			command = "go "+command;
+		String[] splitCommand = splitCommand(command);
+		
+		if (splitCommand[0].trim().equals("go")) {
+			command = splitCommand[1].trim();
+		}
+		
+		if (command.equals("north")) {
+			command = "n";
+		} else if (command.equals("south")) {
+			command = "s";
+		} else if (command.equals("east")) {
+			command = "e";
+		} else if (command.equals("west")) {
+			command = "w";
+		} else if (command.equals("up")) {
+			command = "u";
+		} else if (command.equals("down")) {
+			command = "d";
+		}
+		
+		if (command.equals("u")) {
+			command = "n";
+		} else if (command.equals("d")) {
+			command = "s";
 		}
 				
 		return command;
@@ -212,4 +221,5 @@ public class CommandParser {
  * 8 December 2025 - Increased version number
  * 9 December 2025 - Added title
  * 25 December 2025 - Removed commands not being used
+ * 4 January 2025 - Added parsing of movement commands
  */
