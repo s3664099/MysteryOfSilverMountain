@@ -131,7 +131,16 @@ public class Move {
      * @return an {@link ActionResult} indicating if movement is blocked
      */
 	private ActionResult evaluateMovementRestrictions(Game game, Player player, ParsedCommand command) {
-		ActionResult result = new ActionResult(game,player,false);		
+		
+		ActionResult result = new ActionResult(game,player,false);
+		
+		if (!isCrossingBridge(player.getRoom(),command.getVerbNumber(),
+			game.getItem(GameEntities.ITEM_SILVER_PLATE).getItemFlag())) {
+			game.addMessage("A troll stops you crossing!", true, true);
+			result = new ActionResult(game,player,true);	
+		}
+			
+			
 		return result;
 	}
 	
@@ -181,6 +190,16 @@ public class Move {
 		game.addMessage("You can't go that way",true,true);
 		return new ActionResult(game, player, false);
 	}
+	
+	/**
+	 * Checks if the player is crossing the bridge
+	 */
+	private boolean isCrossingBridge(int roomNumber, int direction, int silverPlateFlag) {
+
+		return (!((roomNumber == GameEntities.ROOM_BRIDGE_EAST && direction == GameEntities.CMD_WEST) ||
+				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST)) ||
+				silverPlateFlag == 1);
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -189,4 +208,5 @@ public class Move {
  * 				   - Increased version number
  * 9 December 2025 - Added Title
  * 5 Janaury 2025 - Fixed code so can now move
+ * 				  - Added troll
  */

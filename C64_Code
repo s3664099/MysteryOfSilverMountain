@@ -565,6 +565,8 @@
 -- Item flags
 
 4250 DATA 1,2,3,4,5,9,12,13,16,17,20,21,22
+
+=== Decodes a coded string (1 letter back) ===
 4260 Z$="":FOR I=1 TO LEN(R$)
 4270 C$=MID$(R$,I,1):IF C$<"A" THEN Z$=Z$+C$:GOTO 4300
 4280 C=ASC(C$)-1:IF C=64 THEN C=90
