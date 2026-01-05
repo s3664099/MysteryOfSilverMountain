@@ -210,7 +210,6 @@ public class CommandParser {
 		} else if (command.equals("d")) {
 			command = "s";
 		}
-				
 		return command;
 	}
 }

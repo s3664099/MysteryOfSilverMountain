@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 9 December 2025
+Version: 1.2
+Date: 5 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -23,8 +23,8 @@ import command_process.ParsedCommand;
  */
 public class Move {
 	
-    /** Direction modifiers for room transitions (N, S, E, W). */
-	private static final int[] DIRECTION_MODIFIERS = {-10, +10, +01, -01};
+    /** Direction modifiers for room transitions (N, E, S, W). */
+	private static final int[] DIRECTION_MODIFIERS = {-10, +01, +10, -01};
 		
     /**
      * Normalizes a parsed move command by resolving direction, special rooms,
@@ -37,11 +37,7 @@ public class Move {
 	public ParsedCommand normaliseMoveCommand(ParsedCommand command,int room) {
 		
 		int verbNumber = command.getVerbNumber();
-		int nounNumber = command.getNounNumber();
-
-		if(nounNumber>GameEntities.MOVE_NOT_DIRECTION) {
-			nounNumber -= Constants.NUMBER_OF_ITEMS;
-		}
+		int nounNumber = GameEntities.NOUN_NIL;
 		
 		return new ParsedCommand(verbNumber,nounNumber,command.getSplitTwoCommand(),command.getCommand());
 	}
@@ -103,7 +99,7 @@ public class Move {
 		//Move is not blocked
 		if (!blockedCheck.isValid()) {
 			
-			int direction = command.getNounNumber();
+			int direction = command.getVerbNumber();
 			int newRoom = calculateNewRoom(player.getRoom(),direction);
 			player.setRoom(newRoom);
 			game.addMessage("Ok",true,true);
@@ -192,4 +188,5 @@ public class Move {
  * 8 December 2025 - Fixed errors
  * 				   - Increased version number
  * 9 December 2025 - Added Title
+ * 5 Janaury 2025 - Fixed code so can now move
  */

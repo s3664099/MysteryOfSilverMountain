@@ -2,7 +2,7 @@
 Title: <Mystery of Silver Mountain Command Processor
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
+Version: 1.2
 Date: 9 December 2025
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */

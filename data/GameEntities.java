@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 25 December 2025
+Version: 1.5
+Date: 5 January 2026
 Source: 
 
 This class is designed to hold the constants. They have been made public since they
@@ -195,7 +195,7 @@ public class GameEntities {
 	// === Commands ===
 	public static final int MOVE_BOTTOM = 0;
 	public static final int MOVE_NOT_DIRECTION = 0;
-	public static final int MOVE_TOP = 6;
+	public static final int MOVE_TOP = 7;
 
 	public static final int CMD_NORTH = 1;
 	public static final int CMD_EAST = 2;
@@ -254,6 +254,8 @@ public class GameEntities {
 	public static final int CMD_STEAL = 55;
 	public static final int CMD_GATHER = 56;
 	public static final int CMD_RELFECT = 57;
+	
+	public static final int NOUN_NIL = 0;
 		
 	public static final String SPACE = " ";
     
@@ -284,4 +286,5 @@ public class GameEntities {
  * 24 December 2025 - Added first 60 item constants
  * 25 December 2025 - Completed adding item constants
  * 					- Added nouns
+ * 5 January 2026 - Added a zero value for movement
  */

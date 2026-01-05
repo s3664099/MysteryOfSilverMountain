@@ -108,8 +108,7 @@ public class CommandValidator {
      */
 	private boolean isNounMissing(ParsedCommand command) {
 		boolean validCommand = false;
-		if (command.checkMultipleCommandState()||
-			(command.checkMoveState() && command.getSplitTwoCommand()[0].equals("go"))) {
+		if (command.checkMoveState() && command.getSplitTwoCommand()[0].equals("go")) {
 			if(command.getSplitFullCommand().length==1) {
 				validCommand = true;
 			}

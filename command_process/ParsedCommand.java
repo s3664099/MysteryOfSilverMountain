@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 25 December 2025
+Version: 1.3
+Date: 5 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -38,9 +38,6 @@ public class ParsedCommand {
 		
 		/** Movement command (e.g. north, south, etc.). */
 		MOVE,
-		
-		/** Standalone command with no noun (e.g. WAIT, SAVE, QUIT). */
-		SINGLE_COMMAND, 
 		
 		/** Command requiring an additional noun (e.g. TAKE SWORD). */
 		MULTIPLE_COMMAND 
@@ -99,29 +96,12 @@ public class ParsedCommand {
 		
 		if (verbNumber>GameEntities.MOVE_BOTTOM && verbNumber<GameEntities.MOVE_TOP) {
 			commandState = CommandState.MOVE;
-		} else if (verbNumber == GameEntities.CMD_NORTH || verbNumber == GameEntities.CMD_SOUTH || 
-					verbNumber == GameEntities.CMD_EAST || verbNumber == GameEntities.CMD_WEST) {
-			commandState = CommandState.SINGLE_COMMAND;
-			setSingleCommand(verbNumber);
 		} else {
 			commandState = CommandState.MULTIPLE_COMMAND;
 			setMultipleCommand(verbNumber);
 		}
 	}
-	
-    /**
-     * Assigns the {@link CommandType} for commands that operate independently (no target needed).  
-     * Examples include simple actions like EAT, DRINK, WAIT, or SAVE.  
-     * <p>
-     * This method is called when {@link #setState(int)} identifies the command as a 
-     * {@link CommandState#SINGLE_COMMAND}.
-     *
-     * @param verbNumber the numeric identifier of the verb to classify as a single command
-     */
-	private void setSingleCommand(int verbNumber) {
 		
-	}
-	
     /**
      * Assigns the {@link CommandType} for commands that usually involve a target object or entity.  
      * Examples include TAKE, GIVE, DROP, ATTACK, or EXAMINE.  
@@ -200,13 +180,6 @@ public class ParsedCommand {
 	}
 	
     /**
-     * @return true if this command is a single-command (no noun required)
-     */
-	public boolean checkSingleCommandState() {
-		return commandState == CommandState.SINGLE_COMMAND;
-	}
-	
-    /**
      * @return true if this command is a multi-command (noun required)
      */
 	public boolean checkMultipleCommandState() {
@@ -267,4 +240,5 @@ public class ParsedCommand {
  * 				   - Increased version number
  * 9 December 2025 - Added Title
  * 25 December 2025 - Removed commands not added
+ * 5 January 2026 - Removed the single command enum
  */
