@@ -134,11 +134,15 @@ public class Move {
 		
 		ActionResult result = new ActionResult(game,player,false);
 		
-		if (!isCrossingBridgeWithTroll(player.getRoom(),command.getVerbNumber(),
-			game.getItem(GameEntities.ITEM_SILVER_PLATE).getItemFlag())) {
-			game.addMessage("A troll stops you crossing!", true, true);
-			result = new ActionResult(game,player,true);
-			//850 IF F(64)=1 THEN F(64)=0 - if the bridge was crossed successfully, this is reset (can only do it once)
+		if (isCrossingBridge(player.getRoom(),command.getVerbNumber())) {
+			
+			if (doesTrollStop(game.getItem(GameEntities.ITEM_SILVER_PLATE).getItemFlag())) {
+				game.addMessage("A troll stops you crossing!", true, true);
+				result = new ActionResult(game,player,true);
+			} else {
+				game.getItem(GameEntities.ITEM_SILVER_PLATE).setItemFlag(0);
+				result = new ActionResult(game,player,false);
+			}
 		}
 		//860 IF F(51)=1 OR F(29)=1 THEN GOTO 900
 		//860 IF F(51)=1 OR F(29)=1 THEN GOTO 900
@@ -202,11 +206,14 @@ public class Move {
 	/**
 	 * Checks if the player is crossing the bridge
 	 */
-	private boolean isCrossingBridgeWithTroll(int roomNumber, int direction, int silverPlateFlag) {
+	private boolean isCrossingBridge(int roomNumber, int direction) {
 
-		return (!((roomNumber == GameEntities.ROOM_BRIDGE_EAST && direction == GameEntities.CMD_WEST) ||
-				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST)) ||
-				silverPlateFlag == 1);
+		return (roomNumber == GameEntities.ROOM_BRIDGE_EAST && direction == GameEntities.CMD_WEST) ||
+				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST);
+	}
+	
+	private boolean doesTrollStop(int silverPlateFlag) {
+		return silverPlateFlag == 0;
 	}
 }
 
