@@ -136,30 +136,33 @@ public class Move {
 		
 		if (isCrossingBridge(player.getRoom(),command.getVerbNumber())) {
 			
-			if (doesTrollStop(game.getItem(GameEntities.ITEM_SILVER_PLATE).getItemFlag())) {
+			if (doesTrollStop(game.getItem(GameEntities.FLAG_TROLL).getItemFlag())) {
 				game.addMessage("A troll stops you crossing!", true, true);
 				result = new ActionResult(game,player,true);
 			} else {
-				game.getItem(GameEntities.ITEM_SILVER_PLATE).setItemFlag(0);
+				game.getItem(GameEntities.FLAG_TROLL).setItemFlag(0);
 				result = new ActionResult(game,player,false);
 			}
 		}
 		
-		if (areGragsInvolved(game.getItem(GameEntities.ITEM_HOUND).getItemFlag(),
-							game.getItem(GameEntities.ITEM_CUPBOARD).getItemFlag())) {
-			if (haveGrargsGotYou(game.getItem(GameEntities.ITEM_BOOKS).getItemFlag())) {
-				game.getItem(GameEntities.ITEM_CASKS).setItemFlag(1);
+		if (areGragsInvolved(game.getItem(GameEntities.FLAG_FIFTY_ONE).getItemFlag(),
+							game.getItem(GameEntities.FLAG_TWENTY_NINE).getItemFlag())) {
+			
+			if (haveGrargsGotYou(game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).getItemFlag())) {
+				game.getItem(GameEntities.FLAG_PLAYER_CAPTURED).setItemFlag(1);
 				game.addMessage("Grargs have got you!", true, true);
 				result = new ActionResult(game,player,true);
-			} else if (doGrargsSeeYou(player.getRoom(),game.getItem(GameEntities.ITEM_INSCRIPTION).getItemFlag())) {
-				game.addMessage("Grargs will see you!", false, false);
+			} else if (doGrargsSeeYou(player.getRoom(),game.getItem(GameEntities.FLAG_FORTY_EIGHT).getItemFlag())) {
+				game.addMessage("Grargs will see you!", true, true);
 				result = new ActionResult(game,player,true);
 			} else if (isPatrolApproaching(player.getRoom())) {
-				
+				game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).setItemFlag(1);
+				game.addMessage("A Grarg patrol approaches!", true, true);
+				result = new ActionResult(game,player,true);
 			}
 
 			
-			//890 IF  THEN R$="A GRARG PATROL APPROACHES":F(55)=1:RETURN
+			
 			
 		}
 		
@@ -226,8 +229,8 @@ public class Move {
 				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST);
 	}
 	
-	private boolean doesTrollStop(int silverPlateFlag) {
-		return silverPlateFlag == 0;
+	private boolean doesTrollStop(int trollFlag) {
+		return trollFlag == 0;
 	}
 	
 	private boolean areGragsInvolved(int houndFlag,int cupboardFlag) {

@@ -39,7 +39,7 @@ public class Constants {
 	
 	//Constants for the Game Class
 	public static final int START_LOCATION = GameEntities.ROOM_CROSSROADS;
-	//public static final int START_LOCATION = GameEntities.ROOM_WHITE_COTTAGE;
+	//public static final int START_LOCATION = 29;
 	
 	//Constants for the player starting values
 	public static final float STARTING_STRENGTH = 0;
