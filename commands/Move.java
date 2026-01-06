@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 5 January 2026
+Version: 1.3
+Date: 6 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -134,17 +134,35 @@ public class Move {
 		
 		ActionResult result = new ActionResult(game,player,false);
 		
-		if (!isCrossingBridgeWithTroll(player.getRoom(),command.getVerbNumber(),
-			game.getItem(GameEntities.ITEM_SILVER_PLATE).getItemFlag())) {
-			game.addMessage("A troll stops you crossing!", true, true);
-			result = new ActionResult(game,player,true);
-			//850 IF F(64)=1 THEN F(64)=0 - if the bridge was crossed successfully, this is reset (can only do it once)
+		if (isCrossingBridge(player.getRoom(),command.getVerbNumber())) {
+			
+			if (doesTrollStop(game.getItem(GameEntities.ITEM_SILVER_PLATE).getItemFlag())) {
+				game.addMessage("A troll stops you crossing!", true, true);
+				result = new ActionResult(game,player,true);
+			} else {
+				game.getItem(GameEntities.ITEM_SILVER_PLATE).setItemFlag(0);
+				result = new ActionResult(game,player,false);
+			}
 		}
-		//860 IF F(51)=1 OR F(29)=1 THEN GOTO 900
-		//860 IF F(51)=1 OR F(29)=1 THEN GOTO 900
-		//870 IF F(55)=1 THEN F(56)=1:R$="GRARGS HAVE GOT YOU!":RETURN
-		//880 IF R=29 AND F(48)=0 THEN R$="GRARGS WILL SEE YOU!":RETURN
-		//890 IF R=73 OR R=42 OR R=9 OR R=10 THEN R$=X3$:F(55)=1:RETURN
+		
+		if (areGragsInvolved(game.getItem(GameEntities.ITEM_HOUND).getItemFlag(),
+							game.getItem(GameEntities.ITEM_CUPBOARD).getItemFlag())) {
+			if (haveGrargsGotYou(game.getItem(GameEntities.ITEM_BOOKS).getItemFlag())) {
+				game.getItem(GameEntities.ITEM_CASKS).setItemFlag(1);
+				game.addMessage("Grargs have got you!", true, true);
+				result = new ActionResult(game,player,true);
+			} else if (doGrargsSeeYou(player.getRoom(),game.getItem(GameEntities.ITEM_INSCRIPTION).getItemFlag())) {
+				game.addMessage("Grargs will see you!", false, false);
+				result = new ActionResult(game,player,true);
+			} else if (isPatrolApproaching(player.getRoom())) {
+				
+			}
+
+			
+			//890 IF  THEN R$="A GRARG PATROL APPROACHES":F(55)=1:RETURN
+			
+		}
+		
 		//900 IFC(8)=0AND((R=52 AND D=2)OR(R=31ANDD<>3))THENR$="THE BOAR IS TOO HEAVY":RET
 		//910 IFC(8)<>0AND((R=52ANDD=4)OR(R=31ANDD=3))THENR$="YOU CANNOT SWIM":RETURN
 		//920 IF R=52 AND C(8)=0 AND D=4 AND F(30)=0 THEN R$="NO POWER!":RETURN
@@ -202,11 +220,33 @@ public class Move {
 	/**
 	 * Checks if the player is crossing the bridge
 	 */
-	private boolean isCrossingBridgeWithTroll(int roomNumber, int direction, int silverPlateFlag) {
+	private boolean isCrossingBridge(int roomNumber, int direction) {
 
-		return (!((roomNumber == GameEntities.ROOM_BRIDGE_EAST && direction == GameEntities.CMD_WEST) ||
-				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST)) ||
-				silverPlateFlag == 1);
+		return (roomNumber == GameEntities.ROOM_BRIDGE_EAST && direction == GameEntities.CMD_WEST) ||
+				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST);
+	}
+	
+	private boolean doesTrollStop(int silverPlateFlag) {
+		return silverPlateFlag == 0;
+	}
+	
+	private boolean areGragsInvolved(int houndFlag,int cupboardFlag) {
+		return houndFlag == 0 && cupboardFlag == 0;
+	}
+	
+	private boolean haveGrargsGotYou(int bookFlag) {
+		return bookFlag == 1;
+	}
+	
+	private boolean doGrargsSeeYou(int currentRoom, int inscriptionFlag) {
+		return currentRoom == GameEntities.ROOM_BANQUET_HALL && inscriptionFlag == 0;
+	}
+	
+	private boolean isPatrolApproaching(int currentRoom) {
+		return currentRoom == GameEntities.ROOM_CAMPFIRE ||
+				currentRoom == GameEntities.ROOM_PLOUGHED_FIELD ||
+				currentRoom == GameEntities.ROOM_SENTRY_POST ||
+				currentRoom == GameEntities.ROOM_GUARD_ROOM;
 	}
 }
 
@@ -215,6 +255,8 @@ public class Move {
  * 8 December 2025 - Fixed errors
  * 				   - Increased version number
  * 9 December 2025 - Added Title
- * 5 Janaury 2025 - Fixed code so can now move
+ * 5 January 2025 - Fixed code so can now move
  * 				  - Added troll
+ * 6 January 2025 - Completed troll blocking
+ * 				  - Added Grarg Movement blocking
  */

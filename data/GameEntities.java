@@ -131,8 +131,8 @@ public class GameEntities {
     public static final int ITEM_MATCHES = 26;
     public static final int ITEM_STONE_DESTINY = 27;
     public static final int ITEM_APPLE = 28;
-    public static final int ITEM_BED = 29;
-    public static final int ITEM_CUPBOARD = 30;
+    public static final int ITEM_CUPBOARD = 29;
+    public static final int ITEM_BED = 30;
     public static final int ITEM_BRIDGE = 31;
     public static final int ITEM_TREES = 32;
     public static final int ITEM_SAIL = 33;
