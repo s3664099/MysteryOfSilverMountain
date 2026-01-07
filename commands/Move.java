@@ -168,10 +168,10 @@ public class Move {
 		} else if (isNotCarryingBoat(game,player.getRoom(),command.getVerbNumber())) {
 			game.addMessage("You cannot swim", true, true);
 			result = new ActionResult(game,player,true);			
-		}
-		
-		//920 IF R=52 AND C(8)=0 AND D=4 AND F(30)=0 THEN R$="NO POWER!":RETURN
-			
+		} else if (boatHasNoPower(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("No power!", true, true);
+			result = new ActionResult(game,player,true);	
+		}	
 		return result;
 	}
 	
@@ -264,6 +264,12 @@ public class Move {
 		return game.getItem(GameEntities.ITEM_BOAT).getItemLocation() != GameEntities.CARRYING &&
 				((roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST) ||
 				 (roomNumber == GameEntities.ROOM_SHORE && command == GameEntities.CMD_SOUTH));		
+	}
+	
+	private boolean boatHasNoPower(Game game,int roomNumber,int command) {
+		return (roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST &&
+				game.getItem(GameEntities.ITEM_BOAT).getItemLocation() == GameEntities.CARRYING &&
+				game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() == 0);
 	}
 }
 

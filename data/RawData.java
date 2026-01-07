@@ -470,5 +470,5 @@ public class RawData {
  * 29 December 2025 - Completed adding exits to locations
  * 					- Fixed problem with not enough flags/locations
  * 1 January 2026 - Notated commands
- * 7 January 2026 - Fixed exit
+ * 7 January 2026 - Fixed exits in room 30
  */
