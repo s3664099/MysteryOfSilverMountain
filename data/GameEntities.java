@@ -350,12 +350,14 @@ public class GameEntities {
 	public static final String SPACE = " ";
     
 	// === Codes ===
-	
+
 	// === Directions ===
 	public static final int NORTH = 1;
 	public static final int SOUTH = 2;
 	public static final int EAST = 3;
 	public static final int WEST = 4;
+	
+	public static final int CARRYING = 0;
 	
 	// === Special Items ===
 	public static final int SPECIAL_ITEM_GRARG_FEASTING = 1;

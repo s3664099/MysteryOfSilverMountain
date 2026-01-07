@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.11
-Date: 1 January 2026
+Version: 1.12
+Date: 7 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -84,7 +84,7 @@ public class RawData {
 		"11mosaic floor hall0001",				// 49		CD		13 (Corridor)
 		"12Silver Throne Room0110",				// 50		TH		36 (Throne)
 		"12middle of the lake0101",				// 51		W		31 (Water)
-		"42edge of an icy lake1001",			// 52		W		31 (Water)
+		"42edge of an icy lake1100",			// 52		W		31 (Water)
 		"41pitted track0010",					// 53		R		17 (Road)
 		"41high pinnacle1101",					// 54		MT		37 (Mountain)
 		"55above a glacier0110",				// 55		MT		37 (Mountain)
@@ -470,4 +470,5 @@ public class RawData {
  * 29 December 2025 - Completed adding exits to locations
  * 					- Fixed problem with not enough flags/locations
  * 1 January 2026 - Notated commands
+ * 7 January 2026 - Fixed exit
  */

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 6 January 2026
+Version: 1.4
+Date: 7 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -160,14 +160,16 @@ public class Move {
 				game.addMessage("A Grarg patrol approaches!", true, true);
 				result = new ActionResult(game,player,true);
 			}
-
-			
-			
-			
 		}
 		
-		//900 IFC(8)=0AND((R=52 AND D=2)OR(R=31ANDD<>3))THENR$="THE BOAR IS TOO HEAVY":RET
-		//910 IFC(8)<>0AND((R=52ANDD=4)OR(R=31ANDD=3))THENR$="YOU CANNOT SWIM":RETURN
+		if (isCarryingBoat(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("The boat is too heavy", true, true);
+			result = new ActionResult(game,player,true);
+		} else if (isNotCarryingBoat(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("You cannot swim", true, true);
+			result = new ActionResult(game,player,true);			
+		}
+		
 		//920 IF R=52 AND C(8)=0 AND D=4 AND F(30)=0 THEN R$="NO POWER!":RETURN
 			
 		return result;
@@ -251,6 +253,18 @@ public class Move {
 				currentRoom == GameEntities.ROOM_SENTRY_POST ||
 				currentRoom == GameEntities.ROOM_GUARD_ROOM;
 	}
+	
+	private boolean isCarryingBoat(Game game,int roomNumber,int command) {
+		return game.getItem(GameEntities.ITEM_BOAT).getItemLocation() == GameEntities.CARRYING &&
+				((roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_EAST) ||
+				 (roomNumber == GameEntities.ROOM_SHORE && command != GameEntities.CMD_SOUTH));		
+	}
+	
+	private boolean isNotCarryingBoat(Game game,int roomNumber,int command) {
+		return game.getItem(GameEntities.ITEM_BOAT).getItemLocation() != GameEntities.CARRYING &&
+				((roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST) ||
+				 (roomNumber == GameEntities.ROOM_SHORE && command == GameEntities.CMD_SOUTH));		
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -258,8 +272,9 @@ public class Move {
  * 8 December 2025 - Fixed errors
  * 				   - Increased version number
  * 9 December 2025 - Added Title
- * 5 January 2025 - Fixed code so can now move
+ * 5 January 2026 - Fixed code so can now move
  * 				  - Added troll
- * 6 January 2025 - Completed troll blocking
+ * 6 January 2026 - Completed troll blocking
  * 				  - Added Grarg Movement blocking
+ * 7 January 2026 - Added boat related blocking
  */
