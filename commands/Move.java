@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 7 January 2026
+Version: 1.5
+Date: 9 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -171,12 +171,16 @@ public class Move {
 		} else if (boatHasNoPower(game,player.getRoom(),command.getVerbNumber())) {
 			game.addMessage("No power!", true, true);
 			result = new ActionResult(game,player,true);	
-		}	
+		} else if (isBoatSinking(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("The boat is sinking", true, true);
+			result = new ActionResult(game,player,true);
+		} else if (isBoarBlocking(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("Ogban's boar blocks your path", true, true);
+			result = new ActionResult(game,player,true);
+		}
 		return result;
 	}
 	
-	//930 IF R=41 AND D=3 AND F(31)=0 THEN R$="UIF CPBU JT TJOLJOH!":GOSUB 2460:RETURN
-	//940 IF R=22 AND D=1 AND F(31)=0 THEN R$="OGBAN'S BOAR BLOCKS YOUR PATH":RETURN
 	//950 IF ((R=3 AND D=2) OR (R=4 AND D=4)) AND F(45)=0 THEN R$=X5$:RETURN
 	//960 IF R=35 AND C(13)<>R THEN R$="THE ICE IS BREAKING!":RETURN
 	//970 IF R=5 AND (D=2 OR D=4) THEN GOSUB 4310
@@ -199,6 +203,7 @@ public class Move {
 	//1200 IFF(39)>5ANDF(29)=1THENR$="CPPUT IBWF XPSO PVU":GOSUB4260:F(29)=0:C(3)=81
 	
 	//Need to do the up/down. Special directions & also can only do u/d in those rooms (and blocks the cardinals)
+	//Errors in map
 	
     /**
      * Handles effects that trigger upon entering a room (e.g., traps, ferry).
@@ -296,6 +301,16 @@ public class Move {
 				game.getItem(GameEntities.ITEM_BOAT).getItemLocation() == GameEntities.CARRYING &&
 				game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() == 0);
 	}
+	
+	private boolean isBoatSinking(Game game, int roomNumber,int command) {
+		return (roomNumber == GameEntities.ROOM_ROUGH_WATER && command == GameEntities.CMD_SOUTH
+				&& game.getItem(GameEntities.FLAG_BOAT_FLAG).getItemFlag()==0);
+	}
+	
+	private boolean isBoarBlocking(Game game,int roomNumber,int command) {
+		return (roomNumber == GameEntities.ROOM_COUNTRYSIDE && command == GameEntities.CMD_NORTH
+				&& game.getItem(GameEntities.FLAG_OGBANS_BOAR).getItemFlag()==0);
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -308,4 +323,5 @@ public class Move {
  * 6 January 2026 - Completed troll blocking
  * 				  - Added Grarg Movement blocking
  * 7 January 2026 - Added boat related blocking
+ * 9 January 2025 - Added boat sinking and boar
  */
