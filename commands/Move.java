@@ -68,18 +68,24 @@ public class Move {
      * @param player the player attempting the move
      * @return an {@link ActionResult} describing validity and effects
      */
-	public ActionResult validateMove(ParsedCommand command, Game game, Player player) {
-
+	private ActionResult validateMove(ParsedCommand command, Game game, Player player){
+		
 		boolean validMove = true;
 		int room = player.getRoom();
+		int direction = command.getVerbNumber();
 		ActionResult result = new ActionResult(game,player,validMove);
+		
+		if (direction == GameEntities.CMD_SOUTH) {
+			direction = GameEntities.CMD_VALID_SOUTH;
+		} else if (direction == GameEntities.CMD_EAST) {
+			direction = GameEntities.CMD_VALID_EAST;
+		}
 		
 		if (isNotDirection(command)) {
 			result = notDirection(game,player);
-		} else if (isExitBlocked(game,room,command.getNounNumber())) {
+		} else if (isExitBlocked(game,room,direction)) {
 			result = exitBlocked(game,player);
-		} 
-		
+		} 		
 		return result;
 	}
 	
@@ -98,13 +104,15 @@ public class Move {
 		
 		//Move is not blocked
 		if (!blockedCheck.isValid()) {
-			
-			int direction = command.getVerbNumber();
-			int newRoom = calculateNewRoom(player.getRoom(),direction);
-			player.setRoom(newRoom);
-			game.addMessage("Ok",true,true);
-			game.getRoom(newRoom).setVisited();			
-			blockedCheck = handleRoomEntryEffects(game,player,command);
+			blockedCheck = validateMove(command,game,player);
+			if (blockedCheck.isValid()) {
+				int direction = command.getVerbNumber();
+				int newRoom = calculateNewRoom(player.getRoom(),direction);
+				player.setRoom(newRoom);
+				game.addMessage("Ok",true,true);
+				game.getRoom(newRoom).setVisited();			
+				blockedCheck = handleRoomEntryEffects(game,player,command);
+			}	
 		}
 		
 		return blockedCheck;
@@ -222,7 +230,7 @@ public class Move {
      * Checks if the command is not a valid direction.
      */
 	private boolean isNotDirection(ParsedCommand command) {
-		return command.getNounNumber()>GameEntities.MOVE_NOT_DIRECTION;
+		return command.getVerbNumber()>GameEntities.MOVE_NOT_DIRECTION;
 	}
 	
     /**
@@ -231,6 +239,7 @@ public class Move {
      * @return an {@link ActionResult} indicating invalid input
      */
 	private ActionResult notDirection(Game game,Player player) {
+		System.out.println("Hello");
 		game.addMessage("I don't understand",true,true);
 		return new ActionResult(game,player,false);
 	}
@@ -324,4 +333,5 @@ public class Move {
  * 				  - Added Grarg Movement blocking
  * 7 January 2026 - Added boat related blocking
  * 9 January 2025 - Added boat sinking and boar
+ * 				  - Added validation of movement
  */

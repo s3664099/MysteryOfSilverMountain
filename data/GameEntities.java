@@ -284,7 +284,7 @@ public class GameEntities {
     
 	// === Commands ===
 	public static final int MOVE_BOTTOM = 0;
-	public static final int MOVE_NOT_DIRECTION = 0;
+	public static final int MOVE_NOT_DIRECTION = 6;
 	public static final int MOVE_TOP = 7;
 
 	public static final int CMD_NORTH = 1;
@@ -345,6 +345,11 @@ public class GameEntities {
 	public static final int CMD_GATHER = 56;
 	public static final int CMD_RELFECT = 57;
 	
+	public static final int CMD_VALID_NORTH = 1;
+	public static final int CMD_VALID_SOUTH = 2;
+	public static final int CMD_VALID_EAST = 3;
+	public static final int CMD_VALID_WEST = 4;
+	
 	public static final int NOUN_NIL = 0;
 		
 	public static final String SPACE = " ";
@@ -380,4 +385,5 @@ public class GameEntities {
  * 					- Added nouns
  * 5 January 2026 - Added a zero value for movement
  * 6 January 2025 - Added flags
+ * 9 January 2025 - Added validation for directions (they differ from the previous game).
  */
