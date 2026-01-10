@@ -9,6 +9,7 @@ Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 TODO: Once done this - move the responses to separate functions
 TODO: Add special items were necessary
 TODO: The room name should be 'dark' if it is dark
+TODO: Need to do the up/down. Special directions & also can only do u/d in those rooms (and blocks the cardinals)
 TODO: Do the maze
 */
 
@@ -215,30 +216,30 @@ public class Move {
 			game.addMessage("You met Ogban!!", true, true);
 			game.getItem(GameEntities.FLAG_PLAYER_CAPTURED).setItemFlag(1);
 			result = new ActionResult(game,player,true);			
+		} else if (areRatsPresent(game,player.getRoom())) {
+			game.addMessage("Rats nibble your ankles.", true, true);
+			result = new ActionResult(game,player,true);			
+		} else if (isCaughtInWebs(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("You get caught in the webs!", true, true);
+			result = new ActionResult(game,player,true);			
+		} else if (isDoorClosed(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("The door does not open.", true, true);
+			result = new ActionResult(game,player,true);			
 		}
 		
 		return result;
 	}
-	
-	
-	
-	
 
-	//1030 IF R=38 AND F(65)=0 THEN R$="RATS NIBBLE YOUR ANKLES":RETURN
-	//1040 IFR=58AND(D=1ORD=4)ANDF(66)=0THENR$="YOU GET CAUGHT IN THE WEBS!":RETURN
-	//1050 IF R=48 AND D=4 AND F(70)=0 THEN R$="THE DOOR DOES NOT OPEN":RETURN
+
 	//1060 IF R=40 AND F(47)=1 THEN F(68)=1
 	//1070 IFR=37ANDD=4ANDE$(37)="EW"THENR=67:R$="THE PASSAGE WAS STEEP!":RETURN
 	//1080 IF R=29 AND D=3 THEN F(48)=1:F(20)=0
 	//1090 IF R=8 AND D=2 THEN F(46)=0
-	//1100 OM=R:FOR I=1 TO LEN(E$(R))
-	//1170 IF R=OM THEN R$="YOU CANNOT GO THAT WAY"
+
+
 	//1180 IF ((OM=75 AND D=2) OR (OM=76 AND D=4)) THEN R$="OK, YOU CROSSED"
 	//1190 IF F(29)=1 THEN F(39)=F(39)+1
 	//1200 IFF(39)>5ANDF(29)=1THENR$="CPPUT IBWF XPSO PVU":GOSUB4260:F(29)=0:C(3)=81
-	
-	//Need to do the up/down. Special directions & also can only do u/d in those rooms (and blocks the cardinals)
-	//Errors in map
 	
     /**
      * Handles effects that trigger upon entering a room (e.g., traps, ferry).
@@ -387,6 +388,22 @@ public class Move {
 	private boolean isOgbanPresent(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_MOSAIC_HALL && command == GameEntities.CMD_SOUTH &&
 				game.getItem(GameEntities.FLAG_OBGAN_PRESENT).getItemFlag() == 0);
+	}
+	
+	private boolean areRatsPresent(Game game, int roomNumber) {
+		return (roomNumber == GameEntities.ROOM_WINE_CELLAR &&
+				game.getItem(GameEntities.FLAG_RATS).getItemFlag()==0);
+	}
+	
+	private boolean isCaughtInWebs(Game game, int roomNumber, int command) {
+		return (roomNumber == GameEntities.ROOM_COBWEB && 
+				(command==GameEntities.CMD_NORTH || command == GameEntities.CMD_WEST) &&
+				game.getItem(GameEntities.FLAG_COBWEBS).getItemFlag()==0);
+	}
+	
+	private boolean isDoorClosed(Game game, int roomNumber, int command) {
+		return (roomNumber == GameEntities.ROOM_WIZARD_LAIR && command == GameEntities.CMD_WEST &&
+				game.getItem(GameEntities.FLAG_DOOR).getItemFlag()==0);
 	}
 }
 
