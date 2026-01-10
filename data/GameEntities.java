@@ -238,15 +238,15 @@ public class GameEntities {
     public static final int FLAG_FORTY_THREE = 43;
     public static final int FLAG_FORTY_FOUR = 44;
     public static final int FLAG_RUBBLE_BLOCKING = 45;
-    public static final int FLAG_FORTY_SIX = 46;
+    public static final int FLAG_HOUND = 46;
     public static final int FLAG_FORTY_SEVEN = 47;
     public static final int FLAG_FORTY_EIGHT = 48;
     public static final int FLAG_FORTY_NINE = 49;
-    public static final int FLAG_FIFTY= 50;
+    public static final int FLAG_IS_DARK= 50;
     public static final int FLAG_FIFTY_ONE = 51;
     public static final int FLAG_FIFTY_TWO = 52;
     public static final int FLAG_FIFTY_THREE = 53;
-    public static final int FLAG_FIFTY_FOUR = 54;
+    public static final int FLAG_FORCES = 54;
     public static final int FLAG_PLAYER_SPOTTED = 55;
     public static final int FLAG_PLAYER_CAPTURED = 56;
     public static final int FLAG_FIFTY_SEVEN = 57;
@@ -260,7 +260,7 @@ public class GameEntities {
     public static final int FLAG_SIXTY_FIVE = 65;
     public static final int FLAG_SIXTY_SIX = 66;
     public static final int FLAG_SIXTY_SEVEN = 67;
-    public static final int FLAG_SIXTY_EIGHT = 68;
+    public static final int FLAG_OBGAN_PRESENT = 68;
     public static final int FLAG_SIXTY_NINE = 69;
     public static final int FLAG_SEVENTY = 70;
     public static final int FLAG_SEVENTY_ONE = 71;

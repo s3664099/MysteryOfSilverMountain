@@ -8,6 +8,7 @@ Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 TODO: Once done this - move the responses to separate functions
 TODO: Add special items were necessary
+TODO: The room name should be 'dark' if it is dark
 TODO: Do the maze
 */
 
@@ -201,15 +202,28 @@ public class Move {
 		} else if (isPassageSteep(player.getRoom(),command.getVerbNumber())) {
 			game.addMessage("The passage is too steep!", true, true);
 			result = new ActionResult(game,player,true);
+		} else if (isHoundBlocking(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("A huge hound bars your way.", true, true);
+			result = new ActionResult(game,player,true);
+		} else if (isItDark(game,player.getRoom())) {
+			game.addMessage("It is too dark.", true, true);
+			result = new ActionResult(game,player,true);			
+		} else if (areForcesPresent(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("Mysterious forces hold you back.", true, true);
+			result = new ActionResult(game,player,true);
+		} else if (isOgbanPresent(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("You met Ogban!!", true, true);
+			game.getItem(GameEntities.FLAG_PLAYER_CAPTURED).setItemFlag(1);
+			result = new ActionResult(game,player,true);			
 		}
 		
 		return result;
 	}
 	
-	//990 IF R=7 AND D=2 AND F(46)=0 THEN R$="A HUGE HOUND BARS YOUR WAY":RETURN
-	//1000 IF (R=38 OR R=37) AND F(50)=0 THEN R$="JU JT UPP EBSL":GOSUB 3260:RETURN
-	//1010 IFR=49ANDD=2ANDF(54)=0THENR$="MYSTERIOUS FORCES HOLD YOU BACK":RETURN
-	//1020 IF R=49 AND D=3 AND F(68)=0 THEN R$="YOU MET OGBAN!!":F(56)=1:RETURN
+	
+	
+	
+
 	//1030 IF R=38 AND F(65)=0 THEN R$="RATS NIBBLE YOUR ANKLES":RETURN
 	//1040 IFR=58AND(D=1ORD=4)ANDF(66)=0THENR$="YOU GET CAUGHT IN THE WEBS!":RETURN
 	//1050 IF R=48 AND D=4 AND F(70)=0 THEN R$="THE DOOR DOES NOT OPEN":RETURN
@@ -353,6 +367,26 @@ public class Move {
 	
 	private boolean isPassageSteep(int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_STALACTITES && command == GameEntities.CMD_WEST);
+	}
+	
+	private boolean isHoundBlocking(Game game, int roomNumber, int command) {
+		return (roomNumber == GameEntities.ROOM_GLASS_GATES && command == GameEntities.CMD_EAST &&
+				game.getItem(GameEntities.FLAG_HOUND).getItemFlag() == 0);
+	}
+	
+	private boolean isItDark(Game game, int roomNumber) {
+		return ((roomNumber == GameEntities.ROOM_CASKS || roomNumber == GameEntities.ROOM_WINE_CELLAR) &&
+				game.getItem(GameEntities.FLAG_IS_DARK).getItemFlag() == 0);
+	}
+	
+	private boolean areForcesPresent(Game game, int roomNumber, int command) {
+		return (roomNumber == GameEntities.ROOM_MOSAIC_HALL && command == GameEntities.CMD_EAST &&
+				game.getItem(GameEntities.FLAG_FORCES).getItemFlag() == 0);
+	}
+	
+	private boolean isOgbanPresent(Game game, int roomNumber, int command) {
+		return (roomNumber == GameEntities.ROOM_MOSAIC_HALL && command == GameEntities.CMD_SOUTH &&
+				game.getItem(GameEntities.FLAG_OBGAN_PRESENT).getItemFlag() == 0);
 	}
 }
 
