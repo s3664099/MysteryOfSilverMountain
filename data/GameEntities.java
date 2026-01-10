@@ -237,7 +237,7 @@ public class GameEntities {
     public static final int FLAG_FORTY_TWO = 42;
     public static final int FLAG_FORTY_THREE = 43;
     public static final int FLAG_FORTY_FOUR = 44;
-    public static final int FLAG_FORTY_FIVE = 45;
+    public static final int FLAG_RUBBLE_BLOCKING = 45;
     public static final int FLAG_FORTY_SIX = 46;
     public static final int FLAG_FORTY_SEVEN = 47;
     public static final int FLAG_FORTY_EIGHT = 48;

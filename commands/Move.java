@@ -2,9 +2,13 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 9 January 2026
+Version: 1.6
+Date: 10 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
+
+TODO: Once done this - move the responses to separate functions
+TODO: Add special items were necessary
+TODO: Do the maze
 */
 
 package commands;
@@ -185,14 +189,23 @@ public class Move {
 		} else if (isBoarBlocking(game,player.getRoom(),command.getVerbNumber())) {
 			game.addMessage("Ogban's boar blocks your path", true, true);
 			result = new ActionResult(game,player,true);
+		} else if (isRubbleBlockingPath(game,player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("A pile of rubble blocks your path", true, true);
+			result = new ActionResult(game,player,true);
+		} else if (isIceBreaking(game,player.getRoom())) {
+			game.addMessage("The ice is breaking!", true, true);
+			result = new ActionResult(game,player,true);
+		} else if (isEnteringTunnels(player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("You are lost in the tunnels!", true, true);
+			result = new ActionResult(game,player,true);
+		} else if (isPassageSteep(player.getRoom(),command.getVerbNumber())) {
+			game.addMessage("The passage is too steep!", true, true);
+			result = new ActionResult(game,player,true);
 		}
+		
 		return result;
 	}
 	
-	//950 IF ((R=3 AND D=2) OR (R=4 AND D=4)) AND F(45)=0 THEN R$=X5$:RETURN
-	//960 IF R=35 AND C(13)<>R THEN R$="THE ICE IS BREAKING!":RETURN
-	//970 IF R=5 AND (D=2 OR D=4) THEN GOSUB 4310
-	//980 IF R=4 AND D=4 THEN R$="PASSAGE IS TOO STEEP":RETURN
 	//990 IF R=7 AND D=2 AND F(46)=0 THEN R$="A HUGE HOUND BARS YOUR WAY":RETURN
 	//1000 IF (R=38 OR R=37) AND F(50)=0 THEN R$="JU JT UPP EBSL":GOSUB 3260:RETURN
 	//1010 IFR=49ANDD=2ANDF(54)=0THENR$="MYSTERIOUS FORCES HOLD YOU BACK":RETURN
@@ -320,6 +333,27 @@ public class Move {
 		return (roomNumber == GameEntities.ROOM_COUNTRYSIDE && command == GameEntities.CMD_NORTH
 				&& game.getItem(GameEntities.FLAG_OGBANS_BOAR).getItemFlag()==0);
 	}
+	
+	private boolean isRubbleBlockingPath(Game game, int roomNumber, int command) {
+		
+		return (((roomNumber == GameEntities.ROOM_TOMB && command == GameEntities.CMD_EAST) ||
+				(roomNumber == GameEntities.ROOM_STALACTITES && command == GameEntities.CMD_WEST)) &&
+				game.getItem(GameEntities.FLAG_RUBBLE_BLOCKING).getItemFlag() == 0);
+	}
+	
+	private boolean isIceBreaking(Game game, int roomNumber) {
+		return (game.getItem(GameEntities.ITEM_PLANKS).getItemLocation() != GameEntities.ROOM_POND &&
+				roomNumber == GameEntities.ROOM_POND);
+	}
+	
+	private boolean isEnteringTunnels(int roomNumber, int command) {
+		return (roomNumber == GameEntities.ROOM_TUNNELS && 
+				(command == GameEntities.CMD_EAST || command == GameEntities.CMD_WEST));
+	}
+	
+	private boolean isPassageSteep(int roomNumber, int command) {
+		return (roomNumber == GameEntities.ROOM_STALACTITES && command == GameEntities.CMD_WEST);
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -332,6 +366,7 @@ public class Move {
  * 6 January 2026 - Completed troll blocking
  * 				  - Added Grarg Movement blocking
  * 7 January 2026 - Added boat related blocking
- * 9 January 2025 - Added boat sinking and boar
+ * 9 January 2026 - Added boat sinking and boar
  * 				  - Added validation of movement
+ * 10 January 2026 - Added next lot of restrictions to movement
  */
