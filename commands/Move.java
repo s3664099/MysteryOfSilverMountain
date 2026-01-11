@@ -225,21 +225,13 @@ public class Move {
 		} else if (isDoorClosed(game,player.getRoom(),command.getVerbNumber())) {
 			game.addMessage("The door does not open.", true, true);
 			result = new ActionResult(game,player,true);			
+		} else if (isSteep(game,player.getRoom(),command.getVerbNumber())) {
+			player.setRoom(GameEntities.ROOM_SHADY_HOLLOW);
+			game.addMessage("The passage was steep.", true, true);
+			result = new ActionResult(game,player,true);
 		}
-		
 		return result;
 	}
-
-
-	//1060 IF R=40 AND F(47)=1 THEN F(68)=1
-	//1070 IFR=37ANDD=4ANDE$(37)="EW"THENR=67:R$="THE PASSAGE WAS STEEP!":RETURN
-	//1080 IF R=29 AND D=3 THEN F(48)=1:F(20)=0
-	//1090 IF R=8 AND D=2 THEN F(46)=0
-
-
-	//1180 IF ((OM=75 AND D=2) OR (OM=76 AND D=4)) THEN R$="OK, YOU CROSSED"
-	//1190 IF F(29)=1 THEN F(39)=F(39)+1
-	//1200 IFF(39)>5ANDF(29)=1THENR$="CPPUT IBWF XPSO PVU":GOSUB4260:F(29)=0:C(3)=81
 	
     /**
      * Handles effects that trigger upon entering a room (e.g., traps, ferry).
@@ -253,6 +245,15 @@ public class Move {
 		ActionResult result = new ActionResult(game,player,true);
 		return result;
 	}
+	
+	//1080 IF R=29 AND D=3 THEN F(48)=1:F(20)=0
+	//1090 IF R=8 AND D=2 THEN F(46)=0
+	//else if (isInLibrary(game,player.getRoom())) {
+		//1060 IF R=40 AND F(47)=1 THEN F(68)=1
+
+	//1180 IF ((OM=75 AND D=2) OR (OM=76 AND D=4)) THEN R$="OK, YOU CROSSED"
+	//1190 IF F(29)=1 THEN F(39)=F(39)+1
+	//1200 IFF(39)>5ANDF(29)=1THENR$="CPPUT IBWF XPSO PVU":GOSUB4260:F(29)=0:C(3)=81
 	
     /**
      * Checks if the command is not a valid direction.
@@ -404,6 +405,17 @@ public class Move {
 	private boolean isDoorClosed(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_WIZARD_LAIR && command == GameEntities.CMD_WEST &&
 				game.getItem(GameEntities.FLAG_DOOR).getItemFlag()==0);
+	}
+	
+	private boolean isInLibrary(Game game, int roomNumber) {
+		return (game.getItem(GameEntities.FLAG_FORTY_SEVEN).getItemFlag()==1 &&
+				roomNumber == GameEntities.ROOM_LIBRARY);
+	}
+	
+	private boolean isSteep(Game game, int roomNumber, int command) {
+		boolean[] exits = game.getRoomExits(GameEntities.ROOM_CASKS);
+		return (roomNumber == GameEntities.ROOM_CASKS && command == GameEntities.CMD_WEST &&
+				!exits[0] && !exits[1] && exits[2] && exits[3]);
 	}
 }
 
