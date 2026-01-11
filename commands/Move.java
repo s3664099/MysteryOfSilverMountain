@@ -148,40 +148,25 @@ public class Move {
 		
 		ActionResult result = new ActionResult(game,player,false);
 		
-		if (isCrossingBridge(player.getRoom(),command.getVerbNumber())) {
-			
-			if (doesTrollStop(game.getItem(GameEntities.FLAG_TROLL).getItemFlag())) {
-				game.addMessage("A troll stops you crossing!", true, true);
-				result = new ActionResult(game,player,true);
-			} else {
-				game.getItem(GameEntities.FLAG_TROLL).setItemFlag(0);
-				result = new ActionResult(game,player,false);
-			}
+		if (isTrollBlockingBridge(game, player.getRoom(),command.getVerbNumber())) {
+			result = trollBlocking(game,player);
 		}
 		
-		if (areGragsInvolved(game.getItem(GameEntities.FLAG_FIFTY_ONE).getItemFlag(),
-							game.getItem(GameEntities.FLAG_TWENTY_NINE).getItemFlag())) {
+		if (areGragsInvolved(game)) {
 			
-			if (haveGrargsGotYou(game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).getItemFlag())) {
-				game.getItem(GameEntities.FLAG_PLAYER_CAPTURED).setItemFlag(1);
-				game.addMessage("Grargs have got you!", true, true);
-				result = new ActionResult(game,player,true);
-			} else if (doGrargsSeeYou(player.getRoom(),game.getItem(GameEntities.FLAG_FORTY_EIGHT).getItemFlag())) {
-				game.addMessage("Grargs will see you!", true, true);
-				result = new ActionResult(game,player,true);
+			if (haveGrargsGotYou(game)) {
+				result = grargsCaptureYou(game,player);
+			} else if (doGrargsSeeYou(game, player.getRoom())) {
+				result = grargsSpotYou(game,player);
 			} else if (isPatrolApproaching(player.getRoom())) {
-				game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).setItemFlag(1);
-				game.addMessage("A Grarg patrol approaches!", true, true);
-				result = new ActionResult(game,player,true);
+				result = grargPatrolApproaching(game,player);
 			}
 		}
 		
 		if (isCarryingBoat(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("The boat is too heavy", true, true);
-			result = new ActionResult(game,player,true);
+			result = carryingBoat(game,player);
 		} else if (isNotCarryingBoat(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("You cannot swim", true, true);
-			result = new ActionResult(game,player,true);			
+			result = notCarryingBoat(game,player);
 		} else if (boatHasNoPower(game,player.getRoom(),command.getVerbNumber())) {
 			game.addMessage("No power!", true, true);
 			result = new ActionResult(game,player,true);	
@@ -252,6 +237,7 @@ public class Move {
 		//1060 IF R=40 AND F(47)=1 THEN F(68)=1
 
 	//1180 IF ((OM=75 AND D=2) OR (OM=76 AND D=4)) THEN R$="OK, YOU CROSSED"
+		//game.getItem(GameEntities.FLAG_TROLL).setItemFlag(0);
 	//1190 IF F(29)=1 THEN F(39)=F(39)+1
 	//1200 IFF(39)>5ANDF(29)=1THENR$="CPPUT IBWF XPSO PVU":GOSUB4260:F(29)=0:C(3)=81
 	
@@ -293,26 +279,41 @@ public class Move {
 	/**
 	 * Checks if the player is crossing the bridge
 	 */
-	private boolean isCrossingBridge(int roomNumber, int direction) {
+	private boolean isTrollBlockingBridge(Game game, int roomNumber, int direction) {
 
-		return (roomNumber == GameEntities.ROOM_BRIDGE_EAST && direction == GameEntities.CMD_WEST) ||
-				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST);
+		return ((roomNumber == GameEntities.ROOM_BRIDGE_EAST && direction == GameEntities.CMD_WEST) ||
+				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST) &&
+				game.getItem(GameEntities.FLAG_TROLL).getItemFlag()==0);
 	}
 	
-	private boolean doesTrollStop(int trollFlag) {
-		return trollFlag == 0;
+	private ActionResult trollBlocking(Game game, Player player) {
+		game.addMessage("A troll stops you crossing!", true, true);
+		return new ActionResult(game,player,true);
+	}
+		
+	private boolean areGragsInvolved(Game game) {
+		return game.getItem(GameEntities.FLAG_FIFTY_ONE).getItemFlag() == 0 &&
+				game.getItem(GameEntities.FLAG_TWENTY_NINE).getItemFlag() == 0;
 	}
 	
-	private boolean areGragsInvolved(int houndFlag,int cupboardFlag) {
-		return houndFlag == 0 && cupboardFlag == 0;
+	private boolean haveGrargsGotYou(Game game) {
+		return game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).getItemFlag()==1;
 	}
 	
-	private boolean haveGrargsGotYou(int bookFlag) {
-		return bookFlag == 1;
+	private ActionResult grargsCaptureYou(Game game, Player player) {
+		game.getItem(GameEntities.FLAG_PLAYER_CAPTURED).setItemFlag(1);
+		game.addMessage("Grargs have got you!", true, true);
+		return new ActionResult(game,player,true);
 	}
 	
-	private boolean doGrargsSeeYou(int currentRoom, int inscriptionFlag) {
-		return currentRoom == GameEntities.ROOM_BANQUET_HALL && inscriptionFlag == 0;
+	private boolean doGrargsSeeYou(Game game, int currentRoom) {
+		return currentRoom == GameEntities.ROOM_BANQUET_HALL &&
+				game.getItem(GameEntities.FLAG_FORTY_EIGHT).getItemFlag()==0;
+	}
+	
+	private ActionResult grargsSpotYou(Game game, Player player) {
+		game.addMessage("Grargs will see you!", true, true);
+		return new ActionResult(game,player,true);
 	}
 	
 	private boolean isPatrolApproaching(int currentRoom) {
@@ -322,16 +323,32 @@ public class Move {
 				currentRoom == GameEntities.ROOM_GUARD_ROOM;
 	}
 	
+	private ActionResult grargPatrolApproaching(Game game, Player player) {
+		game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).setItemFlag(1);
+		game.addMessage("A Grarg patrol approaches!", true, true);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean isCarryingBoat(Game game,int roomNumber,int command) {
 		return game.getItem(GameEntities.ITEM_BOAT).getItemLocation() == GameEntities.CARRYING &&
 				((roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_EAST) ||
 				 (roomNumber == GameEntities.ROOM_SHORE && command != GameEntities.CMD_SOUTH));		
 	}
 	
+	private ActionResult carryingBoat(Game game, Player player) {
+		game.addMessage("The boat is too heavy", true, true);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean isNotCarryingBoat(Game game,int roomNumber,int command) {
 		return game.getItem(GameEntities.ITEM_BOAT).getItemLocation() != GameEntities.CARRYING &&
 				((roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST) ||
 				 (roomNumber == GameEntities.ROOM_SHORE && command == GameEntities.CMD_SOUTH));		
+	}
+	
+	private ActionResult notCarryingBoat(Game game, Player player) {
+		game.addMessage("You cannot swim", true, true);
+		return new ActionResult(game,player,true);	
 	}
 	
 	private boolean boatHasNoPower(Game game,int roomNumber,int command) {
@@ -432,4 +449,6 @@ public class Move {
  * 9 January 2026 - Added boat sinking and boar
  * 				  - Added validation of movement
  * 10 January 2026 - Added next lot of restrictions to movement
+ * 11 January 2026 - Completed Movement restrictions
+ * 				   - Fixed up some minor issues and started moving results into separate function
  */
