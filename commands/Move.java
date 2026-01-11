@@ -167,21 +167,16 @@ public class Move {
 			result = carryingBoat(game,player);
 		} else if (isNotCarryingBoat(game,player.getRoom(),command.getVerbNumber())) {
 			result = notCarryingBoat(game,player);
-		} else if (boatHasNoPower(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("No power!", true, true);
-			result = new ActionResult(game,player,true);	
+		} else if (hasBoatNoPower(game,player.getRoom(),command.getVerbNumber())) {
+			result = boatHasNoPower(game,player);
 		} else if (isBoatSinking(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("The boat is sinking", true, true);
-			result = new ActionResult(game,player,true);
+			result = boatIsSinking(game,player);
 		} else if (isBoarBlocking(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("Ogban's boar blocks your path", true, true);
-			result = new ActionResult(game,player,true);
+			result = boarIsBlocking(game,player);
 		} else if (isRubbleBlockingPath(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("A pile of rubble blocks your path", true, true);
-			result = new ActionResult(game,player,true);
+			result = rubbleBlockingPath(game,player);
 		} else if (isIceBreaking(game,player.getRoom())) {
-			game.addMessage("The ice is breaking!", true, true);
-			result = new ActionResult(game,player,true);
+			result = iceIsBreaking(game,player);
 		} else if (isEnteringTunnels(player.getRoom(),command.getVerbNumber())) {
 			game.addMessage("You are lost in the tunnels!", true, true);
 			result = new ActionResult(game,player,true);
@@ -351,10 +346,15 @@ public class Move {
 		return new ActionResult(game,player,true);	
 	}
 	
-	private boolean boatHasNoPower(Game game,int roomNumber,int command) {
+	private boolean hasBoatNoPower(Game game,int roomNumber,int command) {
 		return (roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST &&
 				game.getItem(GameEntities.ITEM_BOAT).getItemLocation() == GameEntities.CARRYING &&
 				game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() == 0);
+	}
+	
+	private ActionResult boatHasNoPower(Game game,Player player) {
+		game.addMessage("No power!", true, true);
+		return new ActionResult(game,player,true);
 	}
 	
 	private boolean isBoatSinking(Game game, int roomNumber,int command) {
@@ -362,9 +362,19 @@ public class Move {
 				&& game.getItem(GameEntities.FLAG_BOAT_FLAG).getItemFlag()==0);
 	}
 	
+	private ActionResult boatIsSinking(Game game,Player player) {
+		game.addMessage("The boat is sinking", true, true);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean isBoarBlocking(Game game,int roomNumber,int command) {
 		return (roomNumber == GameEntities.ROOM_COUNTRYSIDE && command == GameEntities.CMD_NORTH
 				&& game.getItem(GameEntities.FLAG_OGBANS_BOAR).getItemFlag()==0);
+	}
+	
+	private ActionResult boarIsBlocking(Game game,Player player) {
+		game.addMessage("Ogban's boar blocks your path", true, true);
+		return new ActionResult(game,player,true);
 	}
 	
 	private boolean isRubbleBlockingPath(Game game, int roomNumber, int command) {
@@ -374,9 +384,19 @@ public class Move {
 				game.getItem(GameEntities.FLAG_RUBBLE_BLOCKING).getItemFlag() == 0);
 	}
 	
+	private ActionResult rubbleBlockingPath(Game game,Player player) {
+		game.addMessage("A pile of rubble blocks your path", true, true);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean isIceBreaking(Game game, int roomNumber) {
 		return (game.getItem(GameEntities.ITEM_PLANKS).getItemLocation() != GameEntities.ROOM_POND &&
 				roomNumber == GameEntities.ROOM_POND);
+	}
+	
+	private ActionResult iceIsBreaking(Game game,Player player) {
+		game.addMessage("The ice is breaking!", true, true);
+		return new ActionResult(game,player,true);
 	}
 	
 	private boolean isEnteringTunnels(int roomNumber, int command) {
