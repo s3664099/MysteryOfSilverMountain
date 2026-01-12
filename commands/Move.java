@@ -6,7 +6,7 @@ Version: 1.6
 Date: 10 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
-TODO: Once done this - move the responses to separate functions
+
 TODO: Add special items were necessary
 TODO: The room name should be 'dark' if it is dark
 TODO: Need to do the up/down. Special directions & also can only do u/d in those rooms (and blocks the cardinals)
@@ -178,37 +178,25 @@ public class Move {
 		} else if (isIceBreaking(game,player.getRoom())) {
 			result = iceIsBreaking(game,player);
 		} else if (isEnteringTunnels(player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("You are lost in the tunnels!", true, true);
-			result = new ActionResult(game,player,true);
+			result = enteringTunnels(game,player);
 		} else if (isPassageSteep(player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("The passage is too steep!", true, true);
-			result = new ActionResult(game,player,true);
+			result = steepPassage(game,player);
 		} else if (isHoundBlocking(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("A huge hound bars your way.", true, true);
-			result = new ActionResult(game,player,true);
+			result = houndBlocking(game,player);
 		} else if (isItDark(game,player.getRoom())) {
-			game.addMessage("It is too dark.", true, true);
-			result = new ActionResult(game,player,true);			
+			result = tooDark(game,player);
 		} else if (areForcesPresent(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("Mysterious forces hold you back.", true, true);
-			result = new ActionResult(game,player,true);
+			result = forcesArePresent(game,player);
 		} else if (isOgbanPresent(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("You met Ogban!!", true, true);
-			game.getItem(GameEntities.FLAG_PLAYER_CAPTURED).setItemFlag(1);
-			result = new ActionResult(game,player,true);			
+			result = ogbanIsPresent(game,player);
 		} else if (areRatsPresent(game,player.getRoom())) {
-			game.addMessage("Rats nibble your ankles.", true, true);
-			result = new ActionResult(game,player,true);			
+			result = ratsArePresent(game,player);
 		} else if (isCaughtInWebs(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("You get caught in the webs!", true, true);
-			result = new ActionResult(game,player,true);			
+			result = caughtInwebs(game,player);
 		} else if (isDoorClosed(game,player.getRoom(),command.getVerbNumber())) {
-			game.addMessage("The door does not open.", true, true);
-			result = new ActionResult(game,player,true);			
+			result = doorIsClosed(game,player);
 		} else if (isSteep(game,player.getRoom(),command.getVerbNumber())) {
-			player.setRoom(GameEntities.ROOM_SHADY_HOLLOW);
-			game.addMessage("The passage was steep.", true, true);
-			result = new ActionResult(game,player,true);
+			result = passageIsSteep(game,player);
 		}
 		return result;
 	}
@@ -404,8 +392,18 @@ public class Move {
 				(command == GameEntities.CMD_EAST || command == GameEntities.CMD_WEST));
 	}
 	
+	private ActionResult enteringTunnels(Game game, Player player) {
+		game.addMessage("You are lost in the tunnels!", true, true);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean isPassageSteep(int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_STALACTITES && command == GameEntities.CMD_WEST);
+	}
+	
+	private ActionResult steepPassage(Game game,Player player) {
+		game.addMessage("The passage is too steep!", true, true);
+		return new ActionResult(game,player,true);
 	}
 	
 	private boolean isHoundBlocking(Game game, int roomNumber, int command) {
@@ -413,9 +411,19 @@ public class Move {
 				game.getItem(GameEntities.FLAG_HOUND).getItemFlag() == 0);
 	}
 	
+	private ActionResult houndBlocking(Game game,Player player) {
+		game.addMessage("A huge hound bars your way.", true, true);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean isItDark(Game game, int roomNumber) {
 		return ((roomNumber == GameEntities.ROOM_CASKS || roomNumber == GameEntities.ROOM_WINE_CELLAR) &&
 				game.getItem(GameEntities.FLAG_IS_DARK).getItemFlag() == 0);
+	}
+	
+	private ActionResult tooDark(Game game,Player player) {
+		game.addMessage("It is too dark.", true, true);
+		return new ActionResult(game,player,true);	
 	}
 	
 	private boolean areForcesPresent(Game game, int roomNumber, int command) {
@@ -423,14 +431,30 @@ public class Move {
 				game.getItem(GameEntities.FLAG_FORCES).getItemFlag() == 0);
 	}
 	
+	private ActionResult forcesArePresent(Game game, Player player) {
+		game.addMessage("Mysterious forces hold you back.", true, true);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean isOgbanPresent(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_MOSAIC_HALL && command == GameEntities.CMD_SOUTH &&
 				game.getItem(GameEntities.FLAG_OBGAN_PRESENT).getItemFlag() == 0);
 	}
 	
+	private ActionResult ogbanIsPresent(Game game, Player player) {
+		game.addMessage("You met Ogban!!", true, true);
+		game.getItem(GameEntities.FLAG_PLAYER_CAPTURED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean areRatsPresent(Game game, int roomNumber) {
 		return (roomNumber == GameEntities.ROOM_WINE_CELLAR &&
 				game.getItem(GameEntities.FLAG_RATS).getItemFlag()==0);
+	}
+	
+	private ActionResult ratsArePresent(Game game,Player player) {
+		game.addMessage("Rats nibble your ankles.", true, true);
+		return new ActionResult(game,player,true);
 	}
 	
 	private boolean isCaughtInWebs(Game game, int roomNumber, int command) {
@@ -439,9 +463,19 @@ public class Move {
 				game.getItem(GameEntities.FLAG_COBWEBS).getItemFlag()==0);
 	}
 	
+	private ActionResult caughtInwebs(Game game,Player player) {
+		game.addMessage("You get caught in the webs!", true, true);
+		return new ActionResult(game,player,true);	
+	}
+	
 	private boolean isDoorClosed(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_WIZARD_LAIR && command == GameEntities.CMD_WEST &&
 				game.getItem(GameEntities.FLAG_DOOR).getItemFlag()==0);
+	}
+	
+	private ActionResult doorIsClosed(Game game,Player player) {
+		game.addMessage("The door does not open.", true, true);
+		return new ActionResult(game,player,true);	
 	}
 	
 	private boolean isInLibrary(Game game, int roomNumber) {
@@ -453,6 +487,12 @@ public class Move {
 		boolean[] exits = game.getRoomExits(GameEntities.ROOM_CASKS);
 		return (roomNumber == GameEntities.ROOM_CASKS && command == GameEntities.CMD_WEST &&
 				!exits[0] && !exits[1] && exits[2] && exits[3]);
+	}
+	
+	private ActionResult passageIsSteep(Game game, Player player) {
+		player.setRoom(GameEntities.ROOM_SHADY_HOLLOW);
+		game.addMessage("The passage was steep.", true, true);
+		return new ActionResult(game,player,true);
 	}
 }
 
