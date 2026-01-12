@@ -2,8 +2,8 @@
 Title: <Game Name> Initialise Game Class
 Author: 
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
+Version: 1.1
+Date: 12 January 2025
 Source: 
 */
 
@@ -31,7 +31,7 @@ public class Player implements Serializable {
 	private int room = Constants.START_LOCATION;
 	private int roomToDisplay = this.room;
 	private final Map<String,Object> stats = new HashMap<>();
-	private enum PlayerState { NORMAL };
+	private enum PlayerState { NORMAL,MAZE,DARK };
 	private PlayerState playerState = PlayerState.NORMAL;
 		
     /**
@@ -119,6 +119,16 @@ public class Player implements Serializable {
 		playerState = PlayerState.NORMAL;
 	}
 	
+    /** Sets the player back to the {@link PlayerState#MAZE} state. */
+	public void setPlayerStateMaze() {
+		playerState = PlayerState.MAZE;
+	}
+	
+    /** Sets the player back to the {@link PlayerState#DARK} state. */
+	public void setPlayerStateDark() {
+		playerState = PlayerState.DARK;
+	}
+	
     /**
      * Checks if the player is in the {@link PlayerState#NORMAL} state.
      *
@@ -126,6 +136,24 @@ public class Player implements Serializable {
      */
 	public boolean isPlayerStateNormal() {
 		return playerState == PlayerState.NORMAL;
+	}
+	
+    /**
+     * Checks if the player is in the {@link PlayerState#MAZE} state.
+     *
+     * @return true if in the maze
+     */
+	public boolean isPlayerStateMaze() {
+		return playerState == PlayerState.MAZE;
+	}
+	
+    /**
+     * Checks if the player is in the {@link PlayerState#MAZE} state.
+     *
+     * @return true if it is dark
+     */
+	public boolean isPlayerStateDark() {
+		return playerState == PlayerState.DARK;
 	}
 			
     /** @return formatted string of strength and wisdom */
@@ -152,4 +180,5 @@ public class Player implements Serializable {
 /* 3 December 2025 - Created File
  * 7 December 2025 - Cleared Game Related code
  * 8 December 2025 - Increased version number
+ * 12 January 2026 - Added player states
  */
