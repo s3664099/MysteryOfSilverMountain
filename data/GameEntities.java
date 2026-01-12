@@ -260,7 +260,7 @@ public class GameEntities {
     public static final int FLAG_RATS = 65;
     public static final int FLAG_COBWEBS = 66;
     public static final int FLAG_SIXTY_SEVEN = 67;
-    public static final int FLAG_OBGAN_PRESENT = 68;
+    public static final int FLAG_OBGAN = 68;
     public static final int FLAG_SIXTY_NINE = 69;
     public static final int FLAG_DOOR = 70;
     public static final int FLAG_SEVENTY_ONE = 71;
@@ -371,6 +371,8 @@ public class GameEntities {
 	public static final int SPECIAL_ITEM_HERMIT_PRESENT = 4;
 	public static final int SPECIAL_ITEM_DOOR_OPEN = 5;
 	public static final int SPECIAL_ITEM_OGBAN_DEAD = 6;
+	public static final int SPECIAL_ITEM_OGBAN = 7;
+	public static final int SPECIAL_ITEM_TROLL = 8;
 
 }
 

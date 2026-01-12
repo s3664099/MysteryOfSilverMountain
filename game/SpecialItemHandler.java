@@ -2,8 +2,8 @@
 Title: <Game Name> Special Item Handler Class
 Author: 
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
+Version: 1.2
+Date: 12 January 2026
 Source: 
 */
 
@@ -37,12 +37,19 @@ public class SpecialItemHandler implements Serializable {
      */
 	public SpecialItemHandler() {
 		
+		//TODO:Ogban's Boar
+		//TODO:Rubble
+		//TODO:Hound
+		//TODO:Rats
+		
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_GRARG_FEASTING,"grargs feasting");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_GRARG_SLEEPING,"a sleeing grarg");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_PONY_PRESENT," a pony");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_HERMIT_PRESENT," a hermit");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_DOOR_OPEN," an oak door");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_OGBAN_DEAD," a dead Ogban");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_OGBAN," Lord Ogban");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_TROLL," A nasty troll lurking under the bridge");
 	}
 	
     /**
@@ -72,8 +79,12 @@ public class SpecialItemHandler implements Serializable {
 			specialItemType = GameEntities.SPECIAL_ITEM_HERMIT_PRESENT;
 		} else if (checkDoorOpen(roomNumber,locationList[GameEntities.ROOM_CORRIDOR].getExits())) {
 			specialItemType = GameEntities.SPECIAL_ITEM_DOOR_OPEN;
-		} else if (checkOgbanDead(roomNumber,itemList[GameEntities.ITEM_WINE].getItemFlag())) {
+		} else if (checkOgbanDead(roomNumber,itemList[GameEntities.FLAG_OBGAN].getItemFlag())) {
 			specialItemType = GameEntities.SPECIAL_ITEM_OGBAN_DEAD;
+		} else if (checkOgbanAlive(roomNumber,itemList[GameEntities.FLAG_OBGAN].getItemFlag())) {
+			specialItemType = GameEntities.SPECIAL_ITEM_OGBAN;
+		} else if (checkTrollPresent(roomNumber,itemList[GameEntities.FLAG_TROLL].getItemFlag())) {
+			specialItemType = GameEntities.SPECIAL_ITEM_TROLL;
 		}
 		
 		String description = itemDescriptions.getOrDefault(specialItemType,"");
@@ -102,14 +113,25 @@ public class SpecialItemHandler implements Serializable {
 				exits[GameEntities.NORTH-1];
 	}
 	
-	private boolean checkOgbanDead(int roomNumber, int itemFlag) {
+	private boolean checkOgbanDead(int roomNumber, int ogbanFlag) {
 		return roomNumber == GameEntities.ROOM_OGBAN_CHAMBER &&
-				itemFlag == 1;
+				ogbanFlag == 1;
+	}
+	
+	private boolean checkOgbanAlive(int roomNumber, int ogbanFlag) {
+		return roomNumber == GameEntities.ROOM_OGBAN_CHAMBER &&
+				ogbanFlag == 0;
+	}
+	
+	private boolean checkTrollPresent(int roomNumber, int trollFlag) {
+		return ((roomNumber == GameEntities.ROOM_BRIDGE_EAST || roomNumber == GameEntities.ROOM_BRIDGE_WEST)
+				&& trollFlag ==0);
 	}
 }
 
 /* 3 December 2025 - Created File
  * 7 December 2025 - Removed game related code
  * 8 December 2025 - Increased version
- * 2 January 2025 - Added special items, and code to display them correctly.
+ * 2 January 2026 - Added special items, and code to display them correctly.
+ * 12 January 2026 - Added more special items
  */

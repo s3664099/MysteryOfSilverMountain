@@ -2,12 +2,12 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 10 January 2026
+Version: 1.7
+Date: 12 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 
-TODO: Add special items were necessary
+
 TODO: The room name should be 'dark' if it is dark
 TODO: Need to do the up/down. Special directions & also can only do u/d in those rooms (and blocks the cardinals)
 TODO: Do the maze
@@ -438,7 +438,7 @@ public class Move {
 	
 	private boolean isOgbanPresent(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_MOSAIC_HALL && command == GameEntities.CMD_SOUTH &&
-				game.getItem(GameEntities.FLAG_OBGAN_PRESENT).getItemFlag() == 0);
+				game.getItem(GameEntities.FLAG_OBGAN).getItemFlag() == 0);
 	}
 	
 	private ActionResult ogbanIsPresent(Game game, Player player) {
@@ -511,4 +511,5 @@ public class Move {
  * 10 January 2026 - Added next lot of restrictions to movement
  * 11 January 2026 - Completed Movement restrictions
  * 				   - Fixed up some minor issues and started moving results into separate function
+ * 12 January 2026 - Completed moving results to separate functions
  */
