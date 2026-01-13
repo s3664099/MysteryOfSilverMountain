@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 12 January 2026
+Version: 1.8
+Date: 13 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 
@@ -197,7 +197,17 @@ public class Move {
 			result = doorIsClosed(game,player);
 		} else if (isSteep(game,player.getRoom(),command.getVerbNumber())) {
 			result = passageIsSteep(game,player);
+		} else {
+		
+			if(isLeavingBanquetHall(player.getRoom(),command.getVerbNumber())) {
+				result = leavingBanquetHall(game,player);
+			}
+			
+			if (isInLibrary(game,player.getRoom())) {
+				result = inLibrary(game,player);
+			}
 		}
+		
 		return result;
 	}
 	
@@ -211,18 +221,21 @@ public class Move {
      */
 	private ActionResult handleRoomEntryEffects(Game game,Player player,ParsedCommand command) {
 		ActionResult result = new ActionResult(game,player,true);
+		
+		if (isCrossingBridge(player.getDisplayRoom(),command.getVerbNumber())) {
+			result = crossingBridge(game,player);
+		}
+		
+		if (isWearingBoots(game)) {
+			result = increaseWearStatus(result.getGame(),result.getPlayer());
+			
+			if (haveBootsWornOut(result.getGame())) {
+				result = bootsWornOut(result.getGame(),result.getPlayer());
+			}
+		}
+
 		return result;
 	}
-	
-	//1080 IF R=29 AND D=3 THEN F(48)=1:F(20)=0
-	//1090 IF R=8 AND D=2 THEN F(46)=0
-	//else if (isInLibrary(game,player.getRoom())) {
-		//1060 IF R=40 AND F(47)=1 THEN F(68)=1
-
-	//1180 IF ((OM=75 AND D=2) OR (OM=76 AND D=4)) THEN R$="OK, YOU CROSSED"
-		//game.getItem(GameEntities.FLAG_TROLL).setItemFlag(0);
-	//1190 IF F(29)=1 THEN F(39)=F(39)+1
-	//1200 IFF(39)>5ANDF(29)=1THENR$="CPPUT IBWF XPSO PVU":GOSUB4260:F(29)=0:C(3)=81
 	
     /**
      * Checks if the command is not a valid direction.
@@ -276,7 +289,7 @@ public class Move {
 		
 	private boolean areGragsInvolved(Game game) {
 		return game.getItem(GameEntities.FLAG_FIFTY_ONE).getItemFlag() == 0 &&
-				game.getItem(GameEntities.FLAG_TWENTY_NINE).getItemFlag() == 0;
+				game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 0;
 	}
 	
 	private boolean haveGrargsGotYou(Game game) {
@@ -483,6 +496,11 @@ public class Move {
 				roomNumber == GameEntities.ROOM_LIBRARY);
 	}
 	
+	private ActionResult inLibrary(Game game, Player player) {
+		game.getItem(GameEntities.FLAG_OBGAN).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean isSteep(Game game, int roomNumber, int command) {
 		boolean[] exits = game.getRoomExits(GameEntities.ROOM_CASKS);
 		return (roomNumber == GameEntities.ROOM_CASKS && command == GameEntities.CMD_WEST &&
@@ -493,6 +511,47 @@ public class Move {
 		player.setRoom(GameEntities.ROOM_SHADY_HOLLOW);
 		game.addMessage("The passage was steep.", true, true);
 		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isLeavingBanquetHall(int roomNumber, int command) {
+		return roomNumber == GameEntities.ROOM_BANQUET_HALL && command == GameEntities.CMD_SOUTH;
+	}
+	
+	private ActionResult leavingBanquetHall(Game game,Player player) {
+		game.getItem(GameEntities.FLAG_FORTY_EIGHT).setItemFlag(1);
+		game.getItem(GameEntities.FLAG_TWENTY).setItemFlag(0);
+		return new ActionResult(game,player,false);
+	}
+
+	private boolean isCrossingBridge(int roomNumber, int command) {
+		return (roomNumber == GameEntities.ROOM_BRIDGE_EAST && command == GameEntities.CMD_EAST) ||
+				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && command == GameEntities.CMD_WEST);
+	}
+	
+	private ActionResult crossingBridge(Game game,Player player) {
+		game.addMessage("You crossed", true, true);
+		return new ActionResult(game,player,false);
+	}
+	
+	private boolean isWearingBoots(Game game) {
+		return game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 1;
+	}
+	
+	private ActionResult increaseWearStatus(Game game,Player player) {
+		int flag = game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag();
+		game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).setItemFlag(flag+=1);
+		return new ActionResult(game,player,false);
+	}
+	//1200 IFF(39)>5ANDF(29)=1THENR$="Boots have worn out":GOSUB4260:F(29)=0:C(3)=81
+	private boolean haveBootsWornOut(Game game) {
+		return game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag()>5;
+	}
+	
+	private ActionResult bootsWornOut(Game game, Player player) {
+		game.addMessage("Your boots have worn out", true, true);
+		game.getItem(GameEntities.FLAG_WEARING_BOOTS).setItemFlag(0);
+		game.getItem(GameEntities.ITEM_BOOTS).setItemLocation(GameEntities.ROOM_DESTROYED);
+		return new ActionResult(game,player,false);
 	}
 }
 
@@ -512,4 +571,5 @@ public class Move {
  * 11 January 2026 - Completed Movement restrictions
  * 				   - Fixed up some minor issues and started moving results into separate function
  * 12 January 2026 - Completed moving results to separate functions
+ * 13 January 2026 - Added the after move updates
  */

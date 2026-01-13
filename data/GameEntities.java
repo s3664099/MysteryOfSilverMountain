@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 6 January 2026
+Version: 1.7
+Date: 13 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -101,6 +101,7 @@ public class GameEntities {
     public static final int ROOM_WINDING_ROAD = 78;
     public static final int ROOM_VILLAGE = 79;
     public static final int ROOM_WHITE_COTTAGE = 80;
+    public static final int ROOM_DESTROYED = 81;
     
 	// === Items ===
     public static final int ITEM_COINS = 1;
@@ -221,7 +222,7 @@ public class GameEntities {
     public static final int FLAG_TWENTY_SIX = 26;
     public static final int FLAG_TWENTY_SEVEN = 27;
     public static final int FLAG_TWENTY_EIGHT = 28;
-    public static final int FLAG_TWENTY_NINE = 29;
+    public static final int FLAG_WEARING_BOOTS = 29;
     public static final int FLAG_BOAT_POWER = 30;
     public static final int FLAG_BOAT_FLAG = 31;
     public static final int FLAG_OGBANS_BOAR = 32;
@@ -231,7 +232,7 @@ public class GameEntities {
     public static final int FLAG_THIRTY_SIX = 36;
     public static final int FLAG_THIRTY_SEVEN = 37;
     public static final int FLAG_THIRTY_EIGHT = 38;
-    public static final int FLAG_THIRTY_NINE = 39;
+    public static final int FLAG_BOOT_WEAR_STATUS = 39;
     public static final int FLAG_FORTY = 40;
     public static final int FLAG_FORTY_ONE = 41;
     public static final int FLAG_FORTY_TWO = 42;
@@ -386,6 +387,8 @@ public class GameEntities {
  * 25 December 2025 - Completed adding item constants
  * 					- Added nouns
  * 5 January 2026 - Added a zero value for movement
- * 6 January 2025 - Added flags
- * 9 January 2025 - Added validation for directions (they differ from the previous game).
+ * 6 January 2026 - Added flags
+ * 9 January 2026 - Added validation for directions (they differ from the previous game).
+ * 12 January 2026 - Updated flag names
+ * 13 January 2026 - Updated flag names and added destroyed location for items.
  */
