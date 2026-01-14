@@ -2,8 +2,8 @@
 Title: <Game Name> Game Engine
 Author: 
 Translator: David Sarkies
-Version: 1.1
-Date: 31 December 2025
+Version: 1.2
+Date: 14 January 2026
 Source: 
 */
 
@@ -129,8 +129,15 @@ public class GameEngine implements GameCommandHandler,GameStateProvider {
      *
      * @return the room description
      */
-	public String getRoom() {	
-		return String.format("You are %s",game.getRoomName(player.getDisplayRoom()));	
+	public String getRoom() {
+		
+		String roomDescription = String.format("You are %s",game.getRoomName(player.getDisplayRoom()));
+		
+		if (player.isPlayerStateDark()) {
+			roomDescription = "It's too dark to see";
+		}
+		
+		return roomDescription;
 	}
 
     /**
@@ -334,4 +341,5 @@ public class GameEngine implements GameCommandHandler,GameStateProvider {
 7 December 2025 - Removed game related code
 8 December 2025 - Increased version number
 31 December 2025 - Removed wisdom/strength from score
+14 January 2026 - Added check to display if room is dark
 */

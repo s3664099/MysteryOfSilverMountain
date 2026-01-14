@@ -6,9 +6,6 @@ Version: 1.9
 Date: 14 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
-
-
-TODO: The room name should be 'dark' if it is dark
 TODO: Need to do the up/down. Special directions & also can only do u/d in those rooms (and blocks the cardinals)
 TODO: Do the maze
 */
@@ -224,6 +221,12 @@ public class Move {
 		
 		if (isTrollAway(game)) {
 			result = trollAway(result.getGame(),result.getPlayer());
+		}
+		
+		if (isItDark(game,player.getRoom())) {
+			result = itIsDark(result.getGame(),result.getPlayer());
+		} else {
+			result = itIsNotDark(result.getGame(),result.getPlayer());
 		}
 		
 		if (isCrossingBridge(player.getDisplayRoom(),command.getVerbNumber())) {
@@ -450,6 +453,18 @@ public class Move {
 	private ActionResult tooDark(Game game,Player player) {
 		game.addMessage("It is too dark.", true, true);
 		return new ActionResult(game,player,true);	
+	}
+	
+	private ActionResult itIsDark(Game game,Player player) {
+		player.setPlayerStateDark();
+		return new ActionResult(game,player,false);
+	}
+	
+	private ActionResult itIsNotDark(Game game,Player player) {
+		if (player.isPlayerStateDark()) {
+			player.setPlayerStateNormal();
+		}
+		return new ActionResult(game,player,false);
 	}
 	
 	private boolean areForcesPresent(Game game, int roomNumber, int command) {
