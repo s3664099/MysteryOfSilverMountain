@@ -2,8 +2,8 @@
 Title: <Game Name> Special Item Handler Class
 Author: 
 Translator: David Sarkies
-Version: 1.2
-Date: 12 January 2026
+Version: 1.3
+Date: 14 January 2026
 Source: 
 */
 
@@ -37,19 +37,18 @@ public class SpecialItemHandler implements Serializable {
      */
 	public SpecialItemHandler() {
 		
-		//TODO:Ogban's Boar
-		//TODO:Rubble
-		//TODO:Hound
-		//TODO:Rats
-		
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_GRARG_FEASTING,"grargs feasting");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_GRARG_SLEEPING,"a sleeing grarg");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_PONY_PRESENT," a pony");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_HERMIT_PRESENT," a hermit");
-		itemDescriptions.put(GameEntities.SPECIAL_ITEM_DOOR_OPEN," an oak door");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_DOOR_OPEN," an open oak door");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_OGBAN_DEAD," a dead Ogban");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_OGBAN," Lord Ogban");
-		itemDescriptions.put(GameEntities.SPECIAL_ITEM_TROLL," A nasty troll lurking under the bridge");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_TROLL," a nasty troll lurking under the bridge");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_BOAR," Ogban's Boar");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_RUBBLE," rubble blocking the exit");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_HOUND," a vicious looking hound");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_RATS," rats swarming the floor");
 	}
 	
     /**
@@ -85,6 +84,14 @@ public class SpecialItemHandler implements Serializable {
 			specialItemType = GameEntities.SPECIAL_ITEM_OGBAN;
 		} else if (checkTrollPresent(roomNumber,itemList[GameEntities.FLAG_TROLL].getItemFlag())) {
 			specialItemType = GameEntities.SPECIAL_ITEM_TROLL;
+		} else if (checkBoarPresent(roomNumber,itemList[GameEntities.FLAG_OGBANS_BOAR].getItemFlag())) {
+			specialItemType = GameEntities.SPECIAL_ITEM_BOAR;
+		} else if (checkRubbleBlocking(roomNumber,itemList[GameEntities.FLAG_RUBBLE_BLOCKING].getItemFlag())) {
+			specialItemType = GameEntities.SPECIAL_ITEM_RUBBLE;
+		} else if (checkHoundPresent(roomNumber,itemList[GameEntities.FLAG_HOUND].getItemFlag())) {
+			specialItemType = GameEntities.SPECIAL_ITEM_HOUND;
+		} else if (checkRatsPresent(roomNumber,itemList[GameEntities.FLAG_RATS].getItemFlag())) {
+			specialItemType = GameEntities.SPECIAL_ITEM_RATS;
 		}
 		
 		String description = itemDescriptions.getOrDefault(specialItemType,"");
@@ -127,6 +134,23 @@ public class SpecialItemHandler implements Serializable {
 		return ((roomNumber == GameEntities.ROOM_BRIDGE_EAST || roomNumber == GameEntities.ROOM_BRIDGE_WEST)
 				&& trollFlag ==0);
 	}
+	
+	private boolean checkBoarPresent(int roomNumber, int boarFlag) {
+		return (roomNumber == GameEntities.ROOM_COUNTRYSIDE && boarFlag == 0);
+	}
+	
+	private boolean checkRubbleBlocking(int roomNumber, int rubbleFlag) {
+		return ((roomNumber == GameEntities.ROOM_STALACTITES || roomNumber == GameEntities.ROOM_TOMB) &&
+				rubbleFlag == 0);
+	}
+	
+	private boolean checkHoundPresent(int roomNumber, int houndFlag) {
+		return roomNumber == GameEntities.ROOM_GLASS_GATES && houndFlag == 0;
+	}
+	
+	private boolean checkRatsPresent(int roomNumber, int ratFlag) {
+		return roomNumber == GameEntities.ROOM_WINE_CELLAR && ratFlag == 0;
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -134,4 +158,5 @@ public class SpecialItemHandler implements Serializable {
  * 8 December 2025 - Increased version
  * 2 January 2026 - Added special items, and code to display them correctly.
  * 12 January 2026 - Added more special items
+ * 14 January 2026 - Added special items
  */

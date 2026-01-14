@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 13 January 2026
+Version: 1.9
+Date: 14 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 
@@ -222,8 +222,12 @@ public class Move {
 	private ActionResult handleRoomEntryEffects(Game game,Player player,ParsedCommand command) {
 		ActionResult result = new ActionResult(game,player,true);
 		
+		if (isTrollAway(game)) {
+			result = trollAway(result.getGame(),result.getPlayer());
+		}
+		
 		if (isCrossingBridge(player.getDisplayRoom(),command.getVerbNumber())) {
-			result = crossingBridge(game,player);
+			result = crossingBridge(result.getGame(),result.getPlayer());
 		}
 		
 		if (isWearingBoots(game)) {
@@ -277,14 +281,23 @@ public class Move {
 	 */
 	private boolean isTrollBlockingBridge(Game game, int roomNumber, int direction) {
 
-		return ((roomNumber == GameEntities.ROOM_BRIDGE_EAST && direction == GameEntities.CMD_WEST) ||
-				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST) &&
+		return (((roomNumber == GameEntities.ROOM_BRIDGE_EAST && direction == GameEntities.CMD_WEST) ||
+				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && direction == GameEntities.CMD_EAST)) &&
 				game.getItem(GameEntities.FLAG_TROLL).getItemFlag()==0);
 	}
 	
 	private ActionResult trollBlocking(Game game, Player player) {
 		game.addMessage("A troll stops you crossing!", true, true);
 		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isTrollAway(Game game) {
+		return game.getItem(GameEntities.FLAG_TROLL).getItemFlag()==1;
+	}
+	
+	private ActionResult trollAway(Game game, Player player) {
+		game.getItem(GameEntities.FLAG_TROLL).setItemFlag(0);
+		return new ActionResult(game,player,false);
 	}
 		
 	private boolean areGragsInvolved(Game game) {
@@ -572,4 +585,5 @@ public class Move {
  * 				   - Fixed up some minor issues and started moving results into separate function
  * 12 January 2026 - Completed moving results to separate functions
  * 13 January 2026 - Added the after move updates
+ * 14 January 2026 - Added function to reset troll.
  */
