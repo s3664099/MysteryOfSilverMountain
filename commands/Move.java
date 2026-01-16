@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.9
-Date: 14 January 2026
+Version: 1.10
+Date: 16 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 TODO: Need to do the up/down. Special directions & also can only do u/d in those rooms (and blocks the cardinals)
@@ -222,13 +222,7 @@ public class Move {
 		if (isTrollAway(game)) {
 			result = trollAway(result.getGame(),result.getPlayer());
 		}
-		
-		if (isItDark(game,player.getRoom())) {
-			result = itIsDark(result.getGame(),result.getPlayer());
-		} else {
-			result = itIsNotDark(result.getGame(),result.getPlayer());
-		}
-		
+				
 		if (isCrossingBridge(player.getDisplayRoom(),command.getVerbNumber())) {
 			result = crossingBridge(result.getGame(),result.getPlayer());
 		}
@@ -454,19 +448,7 @@ public class Move {
 		game.addMessage("It is too dark.", true, true);
 		return new ActionResult(game,player,true);	
 	}
-	
-	private ActionResult itIsDark(Game game,Player player) {
-		player.setPlayerStateDark();
-		return new ActionResult(game,player,false);
-	}
-	
-	private ActionResult itIsNotDark(Game game,Player player) {
-		if (player.isPlayerStateDark()) {
-			player.setPlayerStateNormal();
-		}
-		return new ActionResult(game,player,false);
-	}
-	
+		
 	private boolean areForcesPresent(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_MOSAIC_HALL && command == GameEntities.CMD_EAST &&
 				game.getItem(GameEntities.FLAG_FORCES).getItemFlag() == 0);
@@ -601,4 +583,5 @@ public class Move {
  * 12 January 2026 - Completed moving results to separate functions
  * 13 January 2026 - Added the after move updates
  * 14 January 2026 - Added function to reset troll.
+ * 16 January 2026 - Moved setting dark to post condition
  */
