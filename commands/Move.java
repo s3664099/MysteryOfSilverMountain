@@ -2,11 +2,10 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.10
-Date: 16 January 2026
+Version: 1.11
+Date: 17 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
-TODO: Need to do the up/down. Special directions & also can only do u/d in those rooms (and blocks the cardinals)
 TODO: Do the maze
 */
 
@@ -79,9 +78,27 @@ public class Move {
 		ActionResult result = new ActionResult(game,player,validMove);
 		
 		if (direction == GameEntities.CMD_SOUTH) {
-			direction = GameEntities.CMD_VALID_SOUTH;
+			if (!isSouthDown(room)) {
+				direction = GameEntities.CMD_VALID_SOUTH;
+			} 
 		} else if (direction == GameEntities.CMD_EAST) {
 			direction = GameEntities.CMD_VALID_EAST;
+		} else if (direction == GameEntities.CMD_NORTH) {
+			if (isNorthUp(room)) {
+				direction = GameEntities.CMD_VALID_EAST;
+			}
+		} else if (direction == GameEntities.CMD_DOWN) {
+			if (isSouthDown(room)) {
+				direction = GameEntities.CMD_VALID_SOUTH;
+			} else {
+				result = exitBlocked(game,player);
+			}
+		} else if (direction == GameEntities.CMD_UP) {
+			if (isNorthUp(room)) {
+				direction = GameEntities.CMD_NORTH;
+			} else {
+				result = exitBlocked(game,player);
+			}
 		}
 		
 		if (isNotDirection(command)) {
@@ -90,6 +107,24 @@ public class Move {
 			result = exitBlocked(game,player);
 		} 		
 		return result;
+	}
+	
+	/**
+	 * Returns true if the command is executed in a room where south is instead down
+	 */
+	private boolean isSouthDown(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_SACKS ||
+				roomNumber == GameEntities.ROOM_ICY_PATH ||
+				roomNumber == GameEntities.ROOM_ATTIC;
+	}
+	
+	/**
+	 * Returns true if the command is executed in a room where north is instead up
+	 */
+	private boolean isNorthUp(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_LOWER_MILL ||
+				roomNumber == GameEntities.ROOM_ICY_PATH ||
+				roomNumber == GameEntities.ROOM_WHITE_COTTAGE;
 	}
 	
     /**
@@ -109,7 +144,7 @@ public class Move {
 		if (!blockedCheck.isValid()) {
 			blockedCheck = validateMove(command,game,player);
 			if (blockedCheck.isValid()) {
-				int direction = command.getVerbNumber();
+				int direction = getDirectionNumber(command.getVerbNumber(),player.getRoom());
 				int newRoom = calculateNewRoom(player.getRoom(),direction);
 				player.setRoom(newRoom);
 				game.addMessage("Ok",true,true);
@@ -119,6 +154,29 @@ public class Move {
 		}
 		
 		return blockedCheck;
+	}
+	
+	/**
+	 * Determines the direction the player is heading numerically
+	 * This is for converting up to north and down to south where applicable.
+	 * 
+	 * @param directionNumber the direction that the player is heading
+	 * @param roomNumber the room the player is currently in
+	 * @return the actual direction number
+	 */
+	private int getDirectionNumber(int directionNumber, int roomNumber) {
+		
+		if (directionNumber == GameEntities.CMD_DOWN) {
+			if (isSouthDown(roomNumber)) {
+				directionNumber = GameEntities.CMD_SOUTH;
+			} 
+		} else if (directionNumber == GameEntities.CMD_UP) {
+			if (isNorthUp(roomNumber)) {
+				directionNumber = GameEntities.CMD_NORTH;
+			}
+		}
+		
+		return directionNumber;
 	}
 	
     /**
@@ -584,4 +642,5 @@ public class Move {
  * 13 January 2026 - Added the after move updates
  * 14 January 2026 - Added function to reset troll.
  * 16 January 2026 - Moved setting dark to post condition
+ * 17 January 2026 - Added functionality for going up and down
  */

@@ -149,7 +149,6 @@ public class SpecialExitHandler implements Serializable {
 	 * returns true if the room has up instead of north
 	 */
 	private boolean isNorthUp(int roomNumber) {
-		//810 IF D=5 THEN D=1 - Up 44,45,80
 		return roomNumber == GameEntities.ROOM_LOWER_MILL ||
 				roomNumber == GameEntities.ROOM_ICY_PATH ||
 				roomNumber == GameEntities.ROOM_WHITE_COTTAGE;
@@ -159,7 +158,6 @@ public class SpecialExitHandler implements Serializable {
 	 * returns true if the room has down instead of north
 	 */
 	private boolean isSouthDown(int roomNumber) {
-		//820 IF D=6 THEN D=3 - Down 34,45,70
 		return roomNumber == GameEntities.ROOM_SACKS ||
 				roomNumber == GameEntities.ROOM_ICY_PATH ||
 				roomNumber == GameEntities.ROOM_ATTIC;
