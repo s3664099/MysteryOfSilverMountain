@@ -552,7 +552,7 @@ public class Move {
 		game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).setItemFlag(flag+=1);
 		return new ActionResult(game,player,false);
 	}
-	//1200 IFF(39)>5ANDF(29)=1THENR$="Boots have worn out":GOSUB4260:F(29)=0:C(3)=81
+
 	private boolean haveBootsWornOut(Game game) {
 		return game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag()>5;
 	}

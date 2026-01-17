@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 31 December 2025
+Version: 1.2
+Date: 17 December 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -144,9 +144,10 @@ public class Game implements Serializable {
 		exitNumbers = locationList[roomNumber].getExits();
 
 		String exits = "";
-		for (int i=0;i<Constants.DIRECTIONS.length;i++) {
-			if (exitNumbers[i] && specialExitHandler.displayExit(roomNumber, Constants.DIRECTIONS[i])) {
-				exits = addExit(Constants.DIRECTIONS[i],exits);
+		for (int exitNumber=0;exitNumber<Constants.DIRECTIONS.length;exitNumber++) {
+			if (exitNumbers[exitNumber] && specialExitHandler.displayExit(roomNumber, Constants.DIRECTIONS[exitNumber])) {
+				String exit = specialExitHandler.getExitName(roomNumber,exitNumber,Constants.DIRECTIONS[exitNumber]);
+				exits = addExit(exit,exits);
 			}
 		}
 		
@@ -409,5 +410,6 @@ public class Game implements Serializable {
  * 7 December 2025 - Removed game related code
  * 8 December 2025 - Increased version number
  * 31 December 2025 - Added starting message
- * 2 January 2025 - Updated flag to display item
+ * 2 January 2026 - Updated flag to display item
+ * 17 January 2026 - Added function call to retrieve different direction name
  */
