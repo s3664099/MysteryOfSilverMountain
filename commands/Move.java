@@ -2,11 +2,9 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.11
-Date: 17 January 2026
+Version: 1.12
+Date: 18 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
-
-TODO: Do the maze
 */
 
 package commands;
@@ -137,6 +135,16 @@ public class Move {
      * @return an {@link ActionResult} describing the outcome
      */
 	public ActionResult executeMove(Game game, Player player, ParsedCommand command) {
+		
+		//4310 J$="SSSSSSSS": NG=0
+		//4320 MP=D/2:GOSUB 4400
+		//4340 PRINT "WHICH WAY? (N,S,W OR E)"
+		//4350 IF NG>15 THEN PRINT "(OR G TO GIVE UP!)"
+		//4360 PRINT:INPUT W$: J$=RIGHT$(J$+RIGHT$(W$,1),8)
+		//4370 IF W$="G" THEN F(56)=1:RETURN
+		//4380 IF J$<>G$(MP) THEN NG=NG+1:GOTO 4320
+		//4390 RETURN
+		//4400 PRINT CHR$(147):PRINT
 		
 		ActionResult blockedCheck = evaluateMovementRestrictions(game,player,command);
 		
@@ -475,6 +483,7 @@ public class Move {
 	
 	private ActionResult enteringTunnels(Game game, Player player) {
 		game.addMessage("You are lost in the tunnels!", true, true);
+		player.setPlayerStateMaze();
 		return new ActionResult(game,player,true);
 	}
 	
@@ -643,4 +652,5 @@ public class Move {
  * 14 January 2026 - Added function to reset troll.
  * 16 January 2026 - Moved setting dark to post condition
  * 17 January 2026 - Added functionality for going up and down
+ * 18 January 2026 - 
  */
