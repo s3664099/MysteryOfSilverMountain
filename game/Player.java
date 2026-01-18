@@ -33,6 +33,7 @@ public class Player implements Serializable {
 	private final Map<String,Object> stats = new HashMap<>();
 	private enum PlayerState { NORMAL,MAZE,DARK };
 	private PlayerState playerState = PlayerState.NORMAL;
+	private int mazeMove = 0;
 		
     /**
      * Creates a new player with default starting stats.

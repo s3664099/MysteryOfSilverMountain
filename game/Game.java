@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 17 December 2026
+Version: 1.4
+Date: 18 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -67,6 +67,7 @@ public class Game implements Serializable {
 	private boolean upperLimitSavedGames = false;
 	private boolean lowerLimitSavedGames = false;
 	private String[] savedGamesDisplayed = {"","","","",""};
+	private int[] maze;
 		
 	/**
 	 * Creates a new game instance with the given locations, items, and exit handler.
@@ -80,6 +81,8 @@ public class Game implements Serializable {
 		this.locationList = locations;
 		this.itemList = items;
 		this.specialExitHandler = specialExitHandler;
+		
+		//Add the two mazes - each has 8 directions, one selected at random, the other opposite
 		
 		// Sets start location as visited
 		locationList[Constants.START_LOCATION].setVisited();
@@ -412,4 +415,5 @@ public class Game implements Serializable {
  * 31 December 2025 - Added starting message
  * 2 January 2026 - Updated flag to display item
  * 17 January 2026 - Added function call to retrieve different direction name
+ * 18 January 2026 - Added array to hold maze directions
  */

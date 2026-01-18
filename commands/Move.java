@@ -136,29 +136,24 @@ public class Move {
      */
 	public ActionResult executeMove(Game game, Player player, ParsedCommand command) {
 		
-		//4310 J$="SSSSSSSS": NG=0
-		//4320 MP=D/2:GOSUB 4400
-		//4340 PRINT "WHICH WAY? (N,S,W OR E)"
-		//4350 IF NG>15 THEN PRINT "(OR G TO GIVE UP!)"
-		//4360 PRINT:INPUT W$: J$=RIGHT$(J$+RIGHT$(W$,1),8)
-		//4370 IF W$="G" THEN F(56)=1:RETURN
-		//4380 IF J$<>G$(MP) THEN NG=NG+1:GOTO 4320
-		//4390 RETURN
-		//4400 PRINT CHR$(147):PRINT
-		
 		ActionResult blockedCheck = evaluateMovementRestrictions(game,player,command);
-		
-		//Move is not blocked
-		if (!blockedCheck.isValid()) {
-			blockedCheck = validateMove(command,game,player);
-			if (blockedCheck.isValid()) {
-				int direction = getDirectionNumber(command.getVerbNumber(),player.getRoom());
-				int newRoom = calculateNewRoom(player.getRoom(),direction);
-				player.setRoom(newRoom);
-				game.addMessage("Ok",true,true);
-				game.getRoom(newRoom).setVisited();			
-				blockedCheck = handleRoomEntryEffects(game,player,command);
-			}	
+
+		if (player.isPlayerStateMaze()) {
+			blockedCheck = moveInMaze(game,player,command);
+		} else {
+			
+			//Move is not blocked
+			if (!blockedCheck.isValid()) {
+				blockedCheck = validateMove(command,game,player);
+				if (blockedCheck.isValid()) {
+					int direction = getDirectionNumber(command.getVerbNumber(),player.getRoom());
+					int newRoom = calculateNewRoom(player.getRoom(),direction);
+					player.setRoom(newRoom);
+					game.addMessage("Ok",true,true);
+					game.getRoom(newRoom).setVisited();			
+					blockedCheck = handleRoomEntryEffects(game,player,command);
+				}	
+			}
 		}
 		
 		return blockedCheck;
@@ -302,6 +297,17 @@ public class Move {
 		}
 
 		return result;
+	}
+	
+	private ActionResult moveInMaze(Game game, Player player, ParsedCommand command) {
+		//4310 J$="SSSSSSSS": NG=0
+		//4320 MP=D/2:GOSUB 4400
+		//4340 PRINT "WHICH WAY? (N,S,W OR E)"
+		//4350 IF NG>15 THEN PRINT "(OR G TO GIVE UP!)"
+		//4360 PRINT:INPUT W$: J$=RIGHT$(J$+RIGHT$(W$,1),8)
+		//4370 IF W$="G" THEN F(56)=1:RETURN
+		//4380 IF J$<>G$(MP) THEN NG=NG+1:GOTO 4320
+		return new ActionResult(game,player,true);
 	}
 	
     /**
@@ -652,5 +658,5 @@ public class Move {
  * 14 January 2026 - Added function to reset troll.
  * 16 January 2026 - Moved setting dark to post condition
  * 17 January 2026 - Added functionality for going up and down
- * 18 January 2026 - 
+ * 18 January 2026 - Added functionality for moving through the maze
  */
