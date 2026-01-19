@@ -45,6 +45,7 @@ public class Constants {
 	public static final float STARTING_STRENGTH = 0;
 	public static final int STARTING_WISDOM = 0;
 	public static final int STARTING_TIME = 0;
+	public static final int MAZE_LENGTH = 8;
 	
 	public static final String NORTH = "North";
 	public static final String SOUTH = "South";

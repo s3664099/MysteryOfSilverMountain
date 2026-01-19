@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 18 January 2026
+Version: 1.5
+Date: 19 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -12,6 +12,7 @@ package game;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import data.Constants;
@@ -67,7 +68,9 @@ public class Game implements Serializable {
 	private boolean upperLimitSavedGames = false;
 	private boolean lowerLimitSavedGames = false;
 	private String[] savedGamesDisplayed = {"","","","",""};
-	private int[] maze;
+	private String maze[] = new String[2];
+	
+	private Random random = new Random();
 		
 	/**
 	 * Creates a new game instance with the given locations, items, and exit handler.
@@ -81,12 +84,38 @@ public class Game implements Serializable {
 		this.locationList = locations;
 		this.itemList = items;
 		this.specialExitHandler = specialExitHandler;
-		
-		//Add the two mazes - each has 8 directions, one selected at random, the other opposite
-		
+			
 		// Sets start location as visited
 		locationList[Constants.START_LOCATION].setVisited();
 		
+		createMaze();
+	}
+	
+	/**
+	 * Creates 2 maze solutions, one is the opposite of the other
+	 */
+	private void createMaze() {
+		
+		maze[0] = "";
+		maze[1] = "";
+		
+		for (int x=0;x<Constants.MAZE_LENGTH;x++) {
+			int r = random.nextInt(4);
+			
+			if (r==0) {
+				maze[0] = maze[0]+"N";
+				maze[1] = maze[1]+"S";
+			} else if (r==1) {
+				maze[0] = maze[0]+"S";
+				maze[1] = maze[1]+"N";
+			} else if (r==2) {
+				maze[0] = maze[0]+"E";
+				maze[1] = maze[1]+"W";
+			} else {
+				maze[0] = maze[0]+"W";
+				maze[1] = maze[1]+"E";
+			}
+		}
 	}
 	
 	/**
@@ -334,6 +363,18 @@ public class Game implements Serializable {
 	public String[] getDisplayedSavedGames() {
 		return this.savedGamesDisplayed;
 	}
+	
+	/** Returns the maze requested
+	 *  @param the maze to be requested
+	 *  
+	 *  returns a string
+	 */
+	public String getMaze(int mazeNumber) {
+		if (mazeNumber >1) {
+			mazeNumber = 1;
+		}
+		return maze[mazeNumber];
+	}
 
 	/** Updates displayed saved games. */
 	public void setDisplayedGames(String[] gameDisplayed) {
@@ -416,4 +457,5 @@ public class Game implements Serializable {
  * 2 January 2026 - Updated flag to display item
  * 17 January 2026 - Added function call to retrieve different direction name
  * 18 January 2026 - Added array to hold maze directions
+ * 19 January 2026 - Added maze route generator
  */
