@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import data.Constants;
+import data.GameEntities;
 
 /**
  * Represents the player in the game.
@@ -35,6 +36,7 @@ public class Player implements Serializable {
 	private PlayerState playerState = PlayerState.NORMAL;
 	private String mazeMove = "";
 	private int mazeNumber = 0;
+	private int mazeDirection = 0;
 		
     /**
      * Creates a new player with default starting stats.
@@ -134,12 +136,31 @@ public class Player implements Serializable {
 		}
 	}
 	
+	/**
+     * sets the direction the player moved when entering the maze.
+     *
+     * @param mazeDirection
+     */
+	private void setMazeDirection(int mazeDirection) {
+		this.mazeDirection = mazeDirection;
+	}
+	
+    /**
+     * Retrieves the direction the player went when entering the maze.
+     *
+     * @return int the direction the player went
+     */
+	public int getMazeDirection() {
+		return this.mazeDirection;
+	}
+	
     /**
      * Retrieves maze number being used.
      *
      * @return maze number
      */
 	public int getMazeNumber() {
+		System.out.println(mazeNumber);
 		return this.mazeNumber;
 	}
 	
@@ -148,7 +169,7 @@ public class Player implements Serializable {
      *
      * @param mazeNumber is the number maze being user
      */
-	public void setMazeNumber(int mazeNumber) {
+	private void setMazeNumber(int mazeNumber) {
 		this.mazeNumber = mazeNumber;
 	}
 	
@@ -158,7 +179,14 @@ public class Player implements Serializable {
 	}
 	
     /** Sets the player back to the {@link PlayerState#MAZE} state. */
-	public void setPlayerStateMaze() {
+	public void setPlayerStateMaze(int direction) {
+		
+		if (direction == GameEntities.CMD_NORTH || direction == GameEntities.CMD_EAST) {
+			setMazeNumber(0);
+		} else if (direction == GameEntities.CMD_SOUTH || direction == GameEntities.CMD_WEST) {
+			setMazeNumber(1);
+		}
+		setMazeDirection(direction);
 		playerState = PlayerState.MAZE;
 	}
 	

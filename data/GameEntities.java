@@ -354,6 +354,7 @@ public class GameEntities {
 	public static final int NOUN_NIL = 0;
 		
 	public static final String SPACE = " ";
+	public static final String CLEAR = "";
     
 	// === Codes ===
 
