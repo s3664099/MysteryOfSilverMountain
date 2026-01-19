@@ -300,6 +300,8 @@ public class Move {
 	}
 	
 	private ActionResult moveInMaze(Game game, Player player, ParsedCommand command) {
+		
+		
 		//4310 J$="SSSSSSSS": NG=0
 		//4320 MP=D/2:GOSUB 4400
 		//4340 PRINT "WHICH WAY? (N,S,W OR E)"

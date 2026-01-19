@@ -367,7 +367,7 @@ public class Game implements Serializable {
 	/** Returns the maze requested
 	 *  @param the maze to be requested
 	 *  
-	 *  returns a string
+	 *  @return a string
 	 */
 	public String getMaze(int mazeNumber) {
 		if (mazeNumber >1) {

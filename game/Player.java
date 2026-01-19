@@ -2,8 +2,8 @@
 Title: <Game Name> Initialise Game Class
 Author: 
 Translator: David Sarkies
-Version: 1.1
-Date: 12 January 2025
+Version: 1.2
+Date: 19 January 2026
 Source: 
 */
 
@@ -33,7 +33,8 @@ public class Player implements Serializable {
 	private final Map<String,Object> stats = new HashMap<>();
 	private enum PlayerState { NORMAL,MAZE,DARK };
 	private PlayerState playerState = PlayerState.NORMAL;
-	private int mazeMove = 0;
+	private String mazeMove = "";
+	private int mazeNumber = 0;
 		
     /**
      * Creates a new player with default starting stats.
@@ -104,6 +105,24 @@ public class Player implements Serializable {
 	}
 	
     /**
+     * Retrieves the movement through the maze.
+     *
+     * @return string representing the movement through the maze
+     */
+	public String getMazeMove() {
+		return this.mazeMove;
+	}
+	
+	/**
+     * update the mazeMove string with the current movement.
+     *
+     * @param mazeMove the current movement through the maze
+     */
+	public void setMazeMove(String mazeMove) {
+		this.mazeMove = mazeMove;
+	}
+	
+    /**
      * Reduces a named stat by 1.
      *
      * @param statName the stat key
@@ -113,6 +132,24 @@ public class Player implements Serializable {
 		if(stat>0) {
 			stats.put(statName, stat-1);
 		}
+	}
+	
+    /**
+     * Retrieves maze number being used.
+     *
+     * @return maze number
+     */
+	public int getMazeNumber() {
+		return this.mazeNumber;
+	}
+	
+    /**
+     * update the current maze number
+     *
+     * @param mazeNumber is the number maze being user
+     */
+	public void setMazeNumber(int mazeNumber) {
+		this.mazeNumber = mazeNumber;
 	}
 	
     /** Sets the player back to the {@link PlayerState#NORMAL} state. */
@@ -182,4 +219,5 @@ public class Player implements Serializable {
  * 7 December 2025 - Cleared Game Related code
  * 8 December 2025 - Increased version number
  * 12 January 2026 - Added player states
+ * 19 January 2026 - Added mazeMovement string
  */
