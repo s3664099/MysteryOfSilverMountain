@@ -2,8 +2,8 @@
 Title: <Game Name> Special Exit Handler
 Author: 
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
+Version: 1.1
+Date: 17 January 2026
 Source: 
 */
 
@@ -13,7 +13,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import data.Constants;
 import data.GameEntities;
 import data.Item;
 
@@ -107,9 +106,66 @@ public class SpecialExitHandler implements Serializable {
 		
 		return baseDescription;
 	}
+	
+    /**
+     * Determines the name of the exit that is being returned.
+     * <p>
+     * If the room is flagged to have up/down instead of the cardinal direction, that is returned.
+     * </p>
+     * 
+     * @param roomNumber the ID of the current room
+     * @param directionNumber the number relating to the cardinal direction
+     * @return the name of the exit being returned
+     */
+	public String getExitName(int roomNumber, int directionNumber,String exit) {
+		if (isNorth(directionNumber)) {
+			if(isNorthUp(roomNumber)) {
+				exit = "Up";
+			}
+		} else if (isSouth(directionNumber)) {
+			if(isSouthDown(roomNumber)) {
+				exit = "Down";
+			}
+		}
+		
+		return exit;
+	}
+	
+	/**
+	 * returns true if the direction is north
+	 */
+	private boolean isNorth(int directionNumber) {
+		return directionNumber+1 == GameEntities.NORTH;
+	}
+	
+	/**
+	 * returns true if the direction is south
+	 */
+	private boolean isSouth(int directionNumber) {
+		return directionNumber+1 == GameEntities.SOUTH;
+	}
+	
+	/**
+	 * returns true if the room has up instead of north
+	 */
+	private boolean isNorthUp(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_LOWER_MILL ||
+				roomNumber == GameEntities.ROOM_ICY_PATH ||
+				roomNumber == GameEntities.ROOM_WHITE_COTTAGE;
+	}
+	
+	/**
+	 * returns true if the room has down instead of north
+	 */
+	private boolean isSouthDown(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_SACKS ||
+				roomNumber == GameEntities.ROOM_ICY_PATH ||
+				roomNumber == GameEntities.ROOM_ATTIC;
+	}
 }
 
 /* 3 December 2025 - Created File
  * 7 December 2025 - Removed game related code
  * 8 December 2025 - Increased version number
+ * 17 January 2026 - Added directions that are up/down instead or north/south
  */

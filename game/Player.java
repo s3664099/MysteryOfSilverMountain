@@ -2,8 +2,8 @@
 Title: <Game Name> Initialise Game Class
 Author: 
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
+Version: 1.2
+Date: 19 January 2026
 Source: 
 */
 
@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import data.Constants;
+import data.GameEntities;
 
 /**
  * Represents the player in the game.
@@ -31,8 +32,11 @@ public class Player implements Serializable {
 	private int room = Constants.START_LOCATION;
 	private int roomToDisplay = this.room;
 	private final Map<String,Object> stats = new HashMap<>();
-	private enum PlayerState { NORMAL };
+	private enum PlayerState { NORMAL,MAZE,DARK };
 	private PlayerState playerState = PlayerState.NORMAL;
+	private String mazeMove = "";
+	private int mazeNumber = 0;
+	private int mazeDirection = 0;
 		
     /**
      * Creates a new player with default starting stats.
@@ -103,6 +107,24 @@ public class Player implements Serializable {
 	}
 	
     /**
+     * Retrieves the movement through the maze.
+     *
+     * @return string representing the movement through the maze
+     */
+	public String getMazeMove() {
+		return this.mazeMove;
+	}
+	
+	/**
+     * update the mazeMove string with the current movement.
+     *
+     * @param mazeMove the current movement through the maze
+     */
+	public void setMazeMove(String mazeMove) {
+		this.mazeMove = mazeMove;
+	}
+	
+    /**
      * Reduces a named stat by 1.
      *
      * @param statName the stat key
@@ -114,9 +136,63 @@ public class Player implements Serializable {
 		}
 	}
 	
+	/**
+     * sets the direction the player moved when entering the maze.
+     *
+     * @param mazeDirection
+     */
+	private void setMazeDirection(int mazeDirection) {
+		this.mazeDirection = mazeDirection;
+	}
+	
+    /**
+     * Retrieves the direction the player went when entering the maze.
+     *
+     * @return int the direction the player went
+     */
+	public int getMazeDirection() {
+		return this.mazeDirection;
+	}
+	
+    /**
+     * Retrieves maze number being used.
+     *
+     * @return maze number
+     */
+	public int getMazeNumber() {
+		System.out.println(mazeNumber);
+		return this.mazeNumber;
+	}
+	
+    /**
+     * update the current maze number
+     *
+     * @param mazeNumber is the number maze being user
+     */
+	private void setMazeNumber(int mazeNumber) {
+		this.mazeNumber = mazeNumber;
+	}
+	
     /** Sets the player back to the {@link PlayerState#NORMAL} state. */
 	public void setPlayerStateNormal() {
 		playerState = PlayerState.NORMAL;
+	}
+	
+    /** Sets the player back to the {@link PlayerState#MAZE} state. */
+	public void setPlayerStateMaze(int direction) {
+		
+		if (direction == GameEntities.CMD_NORTH || direction == GameEntities.CMD_EAST) {
+			setMazeNumber(0);
+		} else if (direction == GameEntities.CMD_SOUTH || direction == GameEntities.CMD_WEST) {
+			setMazeNumber(1);
+		}
+		setMazeDirection(direction);
+		playerState = PlayerState.MAZE;
+	}
+	
+    /** Sets the player back to the {@link PlayerState#DARK} state. */
+	public void setPlayerStateDark() {
+		playerState = PlayerState.DARK;
 	}
 	
     /**
@@ -126,6 +202,24 @@ public class Player implements Serializable {
      */
 	public boolean isPlayerStateNormal() {
 		return playerState == PlayerState.NORMAL;
+	}
+	
+    /**
+     * Checks if the player is in the {@link PlayerState#MAZE} state.
+     *
+     * @return true if in the maze
+     */
+	public boolean isPlayerStateMaze() {
+		return playerState == PlayerState.MAZE;
+	}
+	
+    /**
+     * Checks if the player is in the {@link PlayerState#MAZE} state.
+     *
+     * @return true if it is dark
+     */
+	public boolean isPlayerStateDark() {
+		return playerState == PlayerState.DARK;
 	}
 			
     /** @return formatted string of strength and wisdom */
@@ -152,4 +246,6 @@ public class Player implements Serializable {
 /* 3 December 2025 - Created File
  * 7 December 2025 - Cleared Game Related code
  * 8 December 2025 - Increased version number
+ * 12 January 2026 - Added player states
+ * 19 January 2026 - Added mazeMovement string
  */

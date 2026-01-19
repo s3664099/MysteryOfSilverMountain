@@ -2,14 +2,15 @@
 Title: <Game Name> Post Command Functions
 Author: 
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
+Version: 1.1
+Date: 16 January 2026
 Source: 
 */
 
 package game;
 
 import command_process.ActionResult;
+import data.GameEntities;
 
 /**
  * Handles post-command updates in the adventure game.
@@ -33,6 +34,13 @@ public class PostCommand {
      * @param result the result of the previous player action containing game and player states
      */
 	public PostCommand(ActionResult result) {
+		
+		if (isItDark(result.getGame(),result.getPlayer().getRoom())) {
+			result = itIsDark(result.getGame(),result.getPlayer());
+		} else {
+			result = itIsNotDark(result.getGame(),result.getPlayer());
+		}
+		
 		game = result.getGame();
 		player = result.getPlayer();
 	}
@@ -64,7 +72,12 @@ public class PostCommand {
 	private boolean isLoseGame() {
 		return false;
 	}
-
+	
+	private boolean isItDark(Game game, int roomNumber) {
+		return ((roomNumber == GameEntities.ROOM_CASKS || roomNumber == GameEntities.ROOM_WINE_CELLAR) &&
+				game.getItem(GameEntities.FLAG_IS_DARK).getItemFlag() == 0);
+	}
+	
     // ================== Actions ================== //
 		
 	private void winGame() {
@@ -74,9 +87,22 @@ public class PostCommand {
 	private void loseGame() {
 
 	}
+	
+	private ActionResult itIsDark(Game game,Player player) {
+		player.setPlayerStateDark();
+		return new ActionResult(game,player,false);
+	}
+	
+	private ActionResult itIsNotDark(Game game,Player player) {
+		if (player.isPlayerStateDark()) {
+			player.setPlayerStateNormal();
+		}
+		return new ActionResult(game,player,false);
+	}
 }
 
 /* 3 December 2025 - Created File
  * 7 December 2025 - Cleared game related code
  * 8 December 2025 - Increased Version Number
+ * 16 January 2026 - Added condition for being dark
  */

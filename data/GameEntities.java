@@ -2,9 +2,9 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 5 January 2026
-Source: 
+Version: 1.8
+Date: 14 January 2026
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
 do not change, and it makes them easily accessible
@@ -101,6 +101,7 @@ public class GameEntities {
     public static final int ROOM_WINDING_ROAD = 78;
     public static final int ROOM_VILLAGE = 79;
     public static final int ROOM_WHITE_COTTAGE = 80;
+    public static final int ROOM_DESTROYED = 81;
     
 	// === Items ===
     public static final int ITEM_COINS = 1;
@@ -131,8 +132,8 @@ public class GameEntities {
     public static final int ITEM_MATCHES = 26;
     public static final int ITEM_STONE_DESTINY = 27;
     public static final int ITEM_APPLE = 28;
-    public static final int ITEM_BED = 29;
-    public static final int ITEM_CUPBOARD = 30;
+    public static final int ITEM_CUPBOARD = 29;
+    public static final int ITEM_BED = 30;
     public static final int ITEM_BRIDGE = 31;
     public static final int ITEM_TREES = 32;
     public static final int ITEM_SAIL = 33;
@@ -191,10 +192,100 @@ public class GameEntities {
     public static final int ITEM_WELL_BOTTOM = 86;
     public static final int ITEM_OLD_KILN = 87;
     public static final int ITEM_MOUNTAIN_HUT = 88;
-        
+    
+    // === Flags ===
+    public static final int FLAG_ONE = 1;
+    public static final int FLAG_TWO = 2;
+    public static final int FLAG_THREE = 3;
+    public static final int FLAG_FOUR = 4;
+    public static final int FLAG_FIVE = 5;
+    public static final int FLAG_SIX = 6;
+    public static final int FLAG_SEVEN = 7;
+    public static final int FLAG_EIGHT = 8;
+    public static final int FLAG_NINE = 9;
+    public static final int FLAG_TEN = 10;
+    public static final int FLAG_ELEVEN = 11;
+    public static final int FLAG_TWELVE = 12;
+    public static final int FLAG_THIRTEEN = 13;
+    public static final int FLAG_FOURTEEN = 14;
+    public static final int FLAG_FIFTEEN = 15;
+    public static final int FLAG_SIXTEEN = 16;
+    public static final int FLAG_SEVENTEEN = 17;
+    public static final int FLAG_EIGHTEEN = 18;
+    public static final int FLAG_NINETEEN = 19;
+    public static final int FLAG_TWENTY = 20;
+    public static final int FLAG_TWENTY_ONE = 21;
+    public static final int FLAG_TWENTY_TWO = 22;
+    public static final int FLAG_TWENTY_THREE = 23;
+    public static final int FLAG_TWENTY_FOUR = 24;
+    public static final int FLAG_TWENTY_FIVE = 25;
+    public static final int FLAG_TWENTY_SIX = 26;
+    public static final int FLAG_TWENTY_SEVEN = 27;
+    public static final int FLAG_TWENTY_EIGHT = 28;
+    public static final int FLAG_WEARING_BOOTS = 29;
+    public static final int FLAG_BOAT_POWER = 30;
+    public static final int FLAG_BOAT_FLAG = 31;
+    public static final int FLAG_OGBANS_BOAR = 32;
+    public static final int FLAG_THIRTY_THREE = 33;
+    public static final int FLAG_THIRTY_FOUR = 34;
+    public static final int FLAG_THIRTY_FIVE = 35;
+    public static final int FLAG_THIRTY_SIX = 36;
+    public static final int FLAG_THIRTY_SEVEN = 37;
+    public static final int FLAG_THIRTY_EIGHT = 38;
+    public static final int FLAG_BOOT_WEAR_STATUS = 39;
+    public static final int FLAG_FORTY = 40;
+    public static final int FLAG_FORTY_ONE = 41;
+    public static final int FLAG_FORTY_TWO = 42;
+    public static final int FLAG_FORTY_THREE = 43;
+    public static final int FLAG_FORTY_FOUR = 44;
+    public static final int FLAG_RUBBLE_BLOCKING = 45;
+    public static final int FLAG_HOUND = 46;
+    public static final int FLAG_FORTY_SEVEN = 47;
+    public static final int FLAG_FORTY_EIGHT = 48;
+    public static final int FLAG_FORTY_NINE = 49;
+    public static final int FLAG_IS_DARK= 50;
+    public static final int FLAG_FIFTY_ONE = 51;
+    public static final int FLAG_FIFTY_TWO = 52;
+    public static final int FLAG_FIFTY_THREE = 53;
+    public static final int FLAG_FORCES = 54;
+    public static final int FLAG_PLAYER_SPOTTED = 55;
+    public static final int FLAG_PLAYER_CAPTURED = 56;
+    public static final int FLAG_FIFTY_SEVEN = 57;
+    public static final int FLAG_FIFTY_EIGHT = 58;
+    public static final int FLAG_FIFTY_NINE = 59;
+    public static final int FLAG_SIXTY = 60;
+    public static final int FLAG_SIXTY_ONE = 61;
+    public static final int FLAG_SIXTY_TWO = 62;
+    public static final int FLAG_SIXTY_THREE = 63;
+    public static final int FLAG_TROLL = 64;
+    public static final int FLAG_RATS = 65;
+    public static final int FLAG_COBWEBS = 66;
+    public static final int FLAG_SIXTY_SEVEN = 67;
+    public static final int FLAG_OBGAN = 68;
+    public static final int FLAG_SIXTY_NINE = 69;
+    public static final int FLAG_DOOR = 70;
+    public static final int FLAG_SEVENTY_ONE = 71;
+    public static final int FLAG_SEVENTY_TWO = 72;
+    public static final int FLAG_SEVENTY_THREE = 73;
+    public static final int FLAG_SEVENTY_FOUR = 74;
+    public static final int FLAG_SEVENTY_FIVE = 75;
+    public static final int FLAG_SEVENTY_SIX = 76;
+    public static final int FLAG_SEVENTY_SEVEN = 77;
+    public static final int FLAG_SEVENTY_EIGHT = 78;
+    public static final int FLAG_SEVENTY_NINE = 79;
+    public static final int FLAG_EIGHTY = 80;
+    public static final int FLAG_EIGHTY_ONE = 81;
+    public static final int FLAG_EIGHTY_TWO = 82;
+    public static final int FLAG_EIGHTY_THREE = 83;
+    public static final int FLAG_EIGHTY_FOUR = 84;
+    public static final int FLAG_EIGHTY_FIVE = 85;
+    public static final int FLAG_EIGHTY_SIX = 86;
+    public static final int FLAG_EIGHTY_SEVEN = 87;
+    public static final int FLAG_EIGHTY_EIGHT = 88;
+    
 	// === Commands ===
 	public static final int MOVE_BOTTOM = 0;
-	public static final int MOVE_NOT_DIRECTION = 0;
+	public static final int MOVE_NOT_DIRECTION = 6;
 	public static final int MOVE_TOP = 7;
 
 	public static final int CMD_NORTH = 1;
@@ -255,17 +346,25 @@ public class GameEntities {
 	public static final int CMD_GATHER = 56;
 	public static final int CMD_RELFECT = 57;
 	
+	public static final int CMD_VALID_NORTH = 1;
+	public static final int CMD_VALID_SOUTH = 2;
+	public static final int CMD_VALID_EAST = 3;
+	public static final int CMD_VALID_WEST = 4;
+	
 	public static final int NOUN_NIL = 0;
 		
 	public static final String SPACE = " ";
+	public static final String CLEAR = "";
     
 	// === Codes ===
-	
+
 	// === Directions ===
 	public static final int NORTH = 1;
 	public static final int SOUTH = 2;
 	public static final int EAST = 3;
 	public static final int WEST = 4;
+	
+	public static final int CARRYING = 0;
 	
 	// === Special Items ===
 	public static final int SPECIAL_ITEM_GRARG_FEASTING = 1;
@@ -274,6 +373,12 @@ public class GameEntities {
 	public static final int SPECIAL_ITEM_HERMIT_PRESENT = 4;
 	public static final int SPECIAL_ITEM_DOOR_OPEN = 5;
 	public static final int SPECIAL_ITEM_OGBAN_DEAD = 6;
+	public static final int SPECIAL_ITEM_OGBAN = 7;
+	public static final int SPECIAL_ITEM_TROLL = 8;
+	public static final int SPECIAL_ITEM_BOAR = 9;
+	public static final int SPECIAL_ITEM_RUBBLE = 10;
+	public static final int SPECIAL_ITEM_HOUND = 11;
+	public static final int SPECIAL_ITEM_RATS = 12;
 
 }
 
@@ -287,4 +392,9 @@ public class GameEntities {
  * 25 December 2025 - Completed adding item constants
  * 					- Added nouns
  * 5 January 2026 - Added a zero value for movement
+ * 6 January 2026 - Added flags
+ * 9 January 2026 - Added validation for directions (they differ from the previous game).
+ * 12 January 2026 - Updated flag names
+ * 13 January 2026 - Updated flag names and added destroyed location for items.
+ * 14 January 2026 - Added further special items
  */

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Parser
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 4 January 2025
+Version: 1.5
+Date: 17 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -49,7 +49,7 @@ public class CommandParser {
 		rawInput = parseMovement(rawInput);
 		String[] splitCommand = splitCommand(rawInput);
 		int verbNumber = getVerbNumber(splitCommand[0]);
-							
+		
 		splitCommand[1] = splitCommand[1].trim();
 		int nounNumber = getNounNumber(splitCommand[1],verbNumber);
 		ParsedCommand command = new ParsedCommand(verbNumber,nounNumber,splitCommand,rawInput);
@@ -203,13 +203,7 @@ public class CommandParser {
 			command = "u";
 		} else if (command.equals("down")) {
 			command = "d";
-		}
-		
-		if (command.equals("u")) {
-			command = "n";
-		} else if (command.equals("d")) {
-			command = "s";
-		}
+		}		
 		return command;
 	}
 }
@@ -220,5 +214,6 @@ public class CommandParser {
  * 8 December 2025 - Increased version number
  * 9 December 2025 - Added title
  * 25 December 2025 - Removed commands not being used
- * 4 January 2025 - Added parsing of movement commands
+ * 4 January 2026 - Added parsing of movement commands
+ * 17 January 2026 - Removed section where up & down and being converted to north & south
  */
