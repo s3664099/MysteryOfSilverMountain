@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 5 January 2026
+Version: 1.4
+Date: 20 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -46,7 +46,7 @@ public class ParsedCommand {
     /**
      * Represents the specific type of command identified by the parser.
      */
-	private enum CommandType { NONE,TAKE,GIVE,DROP,LOAD,SAVE,QUIT,RESTART};
+	private enum CommandType { NONE,INVENTORY,TAKE,GIVE,DROP,LOAD,SAVE,QUIT,RESTART};
 
 	private CommandState commandState = CommandState.NONE;
 	private CommandType commandType = CommandType.NONE;
@@ -117,7 +117,9 @@ public class ParsedCommand {
 			commandType = CommandType.TAKE;
 		} else if (verbNumber == GameEntities.CMD_DROP) {
 			commandType = CommandType.DROP;
-		} 
+		} else if (verbNumber == GameEntities.CMD_INVENTORY) {
+			commandType = CommandType.INVENTORY;
+		}
 	}
 	
     // --------------------
@@ -197,6 +199,11 @@ public class ParsedCommand {
     // Command type checks
     // --------------------
 
+	/** @return true if the command is an INVENTORY command */
+	public boolean checkInventory() {
+		return commandType == CommandType.INVENTORY;
+	}
+	
     /** @return true if the command is a TAKE command */
 	public boolean checkTake() {
 		return commandType == CommandType.TAKE;
@@ -241,4 +248,5 @@ public class ParsedCommand {
  * 9 December 2025 - Added Title
  * 25 December 2025 - Removed commands not added
  * 5 January 2026 - Removed the single command enum
+ * 20 January 2026 - Added Inventory Command
  */
