@@ -62,7 +62,7 @@ public class Inventory {
 				String itemName = game.getItem(i).getItemName();
 				
 				if(countCoinNumber(i)) {
-					itemName = "coin";
+					itemName = "a coin";
 				}
 				
 				items = items+itemName;
