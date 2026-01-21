@@ -11,6 +11,7 @@ package command_process;
 
 import java.util.logging.Logger;
 
+import commands.Inventory;
 import commands.Move;
 import game.Game;
 import game.Player;
@@ -52,6 +53,7 @@ public class CommandExecutor {
 			result = new Move().executeMove(game,player,command);
 		} else if (command.checkInventory()) {
 			logger.info("Inventory");
+			result = new Inventory(game,player).getInventory();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
@@ -77,4 +79,5 @@ public class CommandExecutor {
  * 8 December 2025 - Increased version number
  * 9 December 2025 - Added Title
  * 20 January 2026 - Added Inventory command
+ * 21 January 2026 - Completed inventory
  */

@@ -21,6 +21,7 @@ public class GameEntities {
 
 	// === Rooms ===
     
+    public static final int ROOM_CARRYING = 0;
     public static final int ROOM_GRAVE = 1;
     public static final int ROOM_GRAVEYARD = 2;
     public static final int ROOM_TOMB = 3;
@@ -237,12 +238,12 @@ public class GameEntities {
     public static final int FLAG_FORTY_ONE = 41;
     public static final int FLAG_FORTY_TWO = 42;
     public static final int FLAG_FORTY_THREE = 43;
-    public static final int FLAG_FORTY_FOUR = 44;
+    public static final int FLAG_COIN_NUMBERS = 44;
     public static final int FLAG_RUBBLE_BLOCKING = 45;
     public static final int FLAG_HOUND = 46;
     public static final int FLAG_FORTY_SEVEN = 47;
     public static final int FLAG_FORTY_EIGHT = 48;
-    public static final int FLAG_FORTY_NINE = 49;
+    public static final int FLAG_CARRYING_ITEMS = 49;
     public static final int FLAG_IS_DARK= 50;
     public static final int FLAG_FIFTY_ONE = 51;
     public static final int FLAG_FIFTY_TWO = 52;
