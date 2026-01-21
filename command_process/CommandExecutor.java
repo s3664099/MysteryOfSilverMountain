@@ -51,7 +51,7 @@ public class CommandExecutor {
 			logger.info("Moving");
 			result = new Move().executeMove(game,player,command);
 		} else if (command.checkInventory()) {
-			
+			logger.info("Inventory");
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
