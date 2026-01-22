@@ -12,6 +12,7 @@ package command_process;
 import java.util.logging.Logger;
 
 import commands.Inventory;
+import commands.Take;
 import commands.Move;
 import game.Game;
 import game.Player;
@@ -54,6 +55,9 @@ public class CommandExecutor {
 		} else if (command.checkInventory()) {
 			logger.info("Inventory");
 			result = new Inventory(game,player).getInventory();
+		} else if (command.checkTake()) {
+			logger.info("Take");
+			result = new Take(game,player).executeTake();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
