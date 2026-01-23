@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 20 January 2026
+Version: 1.3
+Date: 23 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -57,7 +57,7 @@ public class CommandExecutor {
 			result = new Inventory(game,player).getInventory();
 		} else if (command.checkTake()) {
 			logger.info("Take");
-			result = new Take(game,player).executeTake();
+			result = new Take(game,player,command).executeTake();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
@@ -84,4 +84,5 @@ public class CommandExecutor {
  * 9 December 2025 - Added Title
  * 20 January 2026 - Added Inventory command
  * 21 January 2026 - Completed inventory
+ * 23 January 2026 - Passed Parsed Command through to take
  */
