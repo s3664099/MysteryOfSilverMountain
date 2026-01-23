@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 23 January 2026
+Version: 1.2
+Date: 24 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -30,8 +31,10 @@ public class Take {
 		
 		ActionResult result = new ActionResult(game,player,true);
 		
-		//1290 IF H=6577 THEN R$="HOW?":RETURN
-		//Take Water in stream
+		if (isTakingWater(player.getRoom(),command.getNounNumber())) {
+			result = takingWater(game,player);
+		}
+
 		
 		//1300 IF H=4177 OR H=5177 THEN B=16:GOSUB 2380:RETURN
 		//Take water in lake
@@ -79,8 +82,18 @@ public class Take {
 		
 		return result;
 	}
+	
+	private boolean isTakingWater(int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM && nounNumber == GameEntities.ITEM_WATER;
+	}
+	
+	private ActionResult takingWater(Game game, Player player) {
+		game.addMessage("How?", true, true);
+		return new ActionResult(game,player, true);
+	}
 }
 
 /* 22 January 2026 - Created File
  * 23 January 2026 - Added parsed command
+ * 24 January 2026 - Added taking water
  */
