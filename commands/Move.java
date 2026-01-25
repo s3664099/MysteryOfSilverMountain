@@ -399,7 +399,7 @@ public class Move {
 	}
 	
 	private ActionResult grargsCaptureYou(Game game, Player player) {
-		game.getItem(GameEntities.FLAG_PLAYER_CAPTURED).setItemFlag(1);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		game.addMessage("Grargs have got you!", true, true);
 		return new ActionResult(game,player,true);
 	}
@@ -559,7 +559,7 @@ public class Move {
 	
 	private ActionResult ogbanIsPresent(Game game, Player player) {
 		game.addMessage("You met Ogban!!", true, true);
-		game.getItem(GameEntities.FLAG_PLAYER_CAPTURED).setItemFlag(1);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 	

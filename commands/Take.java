@@ -33,18 +33,14 @@ public class Take {
 		
 		if (isTakingWater(player.getRoom(),command.getNounNumber())) {
 			result = takingWater(game,player);
+		} else if (isTakingWaterInLake(player.getRoom(),command.getNounNumber())) {
+			result = takingWaterInLake(game,player);
+		} else if (isTakingSacks(player.getRoom(),command.getNounNumber())) {
+			result = takingSacks(game,player);
+		} else if (isHorseShoeNailedOn(player.getRoom(),command.getNounNumber(),game)) {
+			result = horseShoeNailedOn(game,player);
 		}
-
-		
-		//1300 IF H=4177 OR H=5177 THEN B=16:GOSUB 2380:RETURN
-		//Take water in lake
-		
-		//1310 IF B=38 THEN R$="TOO HEAVY!":RETURN
-		//Take sacks
-		
-		//1320 IF B=4 AND F(43)=0 THEN R$="IT IS FIRMLY NAILED ON!":RETURN
-		//Horseshoe Nailed On
-		
+				
 		//1330 CO=0:FOR I=1 TO G-1: IF C(I)=0 THEN CO=CO+1
 		//1340 NEXT I:IF CO>13 THEN R$="YOU CANNOT CARRY ANY MORE":RETURN
 		//Carrying too much
@@ -86,10 +82,40 @@ public class Take {
 	private boolean isTakingWater(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM && nounNumber == GameEntities.ITEM_WATER;
 	}
-	
+		
 	private ActionResult takingWater(Game game, Player player) {
 		game.addMessage("How?", true, true);
 		return new ActionResult(game,player, true);
+	}
+	
+	private boolean isTakingWaterInLake(int roomNumber,int nounNumber) {
+		return (roomNumber == GameEntities.ROOM_ROUGH_WATER || roomNumber == GameEntities.ROOM_MIDDLE_LAKE) &&
+				nounNumber == GameEntities.ITEM_WATER;
+	}
+	
+	private ActionResult takingWaterInLake(Game game,Player player) {
+		game.addMessage("You capsized", true, true);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean isTakingSacks(int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_SACKS && nounNumber == GameEntities.ITEM_SACK;
+	}
+	
+	private ActionResult takingSacks(Game game,Player player) {
+		game.addMessage("Too heavy!", true, true);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isHorseShoeNailedOn(int roomNumber, int nounNumber, Game game) {
+		return roomNumber == GameEntities.ROOM_STABLE && nounNumber == GameEntities.ITEM_HORSESHOE &&
+				game.getItem(GameEntities.FLAG_HORSESHOE_NAILED_ON).getItemFlag() == 0;
+	}
+	
+	private ActionResult horseShoeNailedOn(Game game, Player player) {
+		game.addMessage("It is firmly nailed on!", true, true);
+		return new ActionResult(game,player,true);
 	}
 }
 
