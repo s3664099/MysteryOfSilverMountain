@@ -42,13 +42,15 @@ public class Take {
 			result = horseShoeNailedOn(game,player);
 		} else if (isCarryingTooMuch()) {
 			result = carryingTooMuch(game,player);
+		} else if (isItemCarriable(command.getNounNumber())) {
+			result = itemNotCarriable(game,player);
 		}
 						
-		//1350 IF B>G THEN R$="YOU CANNOT GET THE "+T$:RETURN
-		//Can take this?
 		
-		//1360 IF B=0 THEN RETURN
-		//Not an item?
+
+		
+
+
 		
 		//1390 IF C(B)=0 THEN R$="YOU ALREADY HAVE IT"
 		//Already carrying item
@@ -124,7 +126,16 @@ public class Take {
 	private ActionResult carryingTooMuch(Game game,Player player) {
 		game.addMessage("You cannot carry any more.", true, true);
 		return new ActionResult(game,player,true);
-	}	
+	}
+	
+	private boolean isItemCarriable(int nounNumber) {
+		return nounNumber>=Constants.MAX_CARRIABLE_ITEMS; 
+	}
+	
+	private ActionResult itemNotCarriable(Game game, Player player) {
+		game.addMessage("It is not possible to take that.", true, true);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 22 January 2026 - Created File

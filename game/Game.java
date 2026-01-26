@@ -455,7 +455,7 @@ public class Game implements Serializable {
 	public int countItemsCarrying() {
 		int numberItemsCarrying = 0;
 		for (Item item:itemList) {
-			if (item.getItemLocation()==GameEntities.CARRYING) {
+			if (item !=null && item.getItemLocation()==GameEntities.CARRYING) {
 				numberItemsCarrying++;
 			}
 		}

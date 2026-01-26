@@ -119,7 +119,6 @@ public class CommandParser {
 	private int getNounNumber(String noun,int verbNumber) {
 		
 		int nounNumber = Constants.NUMBER_OF_NOUNS;
-				
 		//Only called if more than two words
 		if (noun.length()>1) {
 			//Does not contain more than one word?

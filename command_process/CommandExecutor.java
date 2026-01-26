@@ -48,7 +48,7 @@ public class CommandExecutor {
 	public ActionResult executeCommand(Game game,Player player,ParsedCommand command) {
 		
 		ActionResult result = new ActionResult(game,player,false);
-		
+
 		if (command.checkMoveState()) {
 			logger.info("Moving");
 			result = new Move().executeMove(game,player,command);

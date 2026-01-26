@@ -2,8 +2,8 @@
 Title: <Mystery of Silver Mountain Command Processor
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 9 December 2025
+Version: 1.3
+Date: 26 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -78,6 +78,7 @@ public class CommandProcessor {
 			}
 		} catch (Exception e) {
 			logger.severe("An error occurred while processing the command.");
+			logger.severe(e.toString());
 	        result = new ActionResult(game, player, false);
 		}
 		return result;
@@ -88,4 +89,5 @@ public class CommandProcessor {
  * 6 December 2025 - Removed Coded Command
  * 8 December 2025 - Increased version number
  * 9 December 2025 - Added Title
+ * 26 January 2026 - Displayed error when command fails
  */
