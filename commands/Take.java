@@ -49,7 +49,7 @@ public class Take {
 		} else if (isItemNotPresent(command.getNounNumber(),player.getRoom())) {
 			result = itemNotPresent(game,player);
 		} else if (isItemNotTakeable(command.getNounNumber())) {
-			result = itemNotTakeable(game,player);
+			result = itemNotTakeable(game,player,command.getSplitTwoCommand()[1]);
 		}
 
 		//1400 IF C(B)=R AND F(B)=0 THEN C(B)=0:R$="YOU HAVE THE "+T$
@@ -146,8 +146,14 @@ public class Take {
 		return new ActionResult(game,player,true);
 	}
 	
-	//1380 IF F(B)=1 THEN R$="WHAT "+T$+"?"
-	//Flag of Item
+	private boolean isItemNotTakeable(int nounNumber) {
+		return game.getItem(nounNumber).getItemFlag() ==1;
+	}
+	
+	private ActionResult itemNotTakeable(Game game, Player player,String noun) {
+		game.addMessage("What "+noun+"?", isCarryingTooMuch(), isCarryingTooMuch());
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 22 January 2026 - Created File
