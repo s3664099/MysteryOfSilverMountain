@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 19 January 2026
+Version: 1.6
+Date: 26 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -16,6 +16,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 import data.Constants;
+import data.GameEntities;
 import data.Item;
 import data.Location;
 
@@ -448,6 +449,18 @@ public class Game implements Serializable {
 	public boolean isRunningState() {
 		return gameState == GameState.RUNNING;
 	}
+	
+	/** returns int representating the number of items at the location defined as
+	 *  the player is carrying an item */
+	public int countItemsCarrying() {
+		int numberItemsCarrying = 0;
+		for (Item item:itemList) {
+			if (item.getItemLocation()==GameEntities.CARRYING) {
+				numberItemsCarrying++;
+			}
+		}
+		return numberItemsCarrying;
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -458,4 +471,5 @@ public class Game implements Serializable {
  * 17 January 2026 - Added function call to retrieve different direction name
  * 18 January 2026 - Added array to hold maze directions
  * 19 January 2026 - Added maze route generator
+ * 26 January 2026 - Added function to count the number of items being carried
  */

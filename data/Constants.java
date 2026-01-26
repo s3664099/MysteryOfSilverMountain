@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 19 January 2026
+Version: 1.6
+Date: 26 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -40,6 +40,7 @@ public class Constants {
 	//Constants for the Game Class
 	//public static final int START_LOCATION = GameEntities.ROOM_CROSSROADS;
 	public static final int START_LOCATION = 6;
+	public static final int INVENTORY_SPACE = 13;
 	
 	//Constants for the player starting values
 	public static final float STARTING_STRENGTH = 0;
@@ -72,4 +73,5 @@ public class Constants {
  * 31 December 2025 - Added starting message
  * 1 January 2026 - Added title as a constant
  * 19 January 2026 - Added constants for the maze
+ * 26 January 2026 - Added Max inventory space
  */

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 24 January 2026
+Version: 1.4
+Date: 26 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.Constants;
 import data.GameEntities;
 import game.Game;
 import game.Player;
@@ -39,12 +40,10 @@ public class Take {
 			result = takingSacks(game,player);
 		} else if (isHorseShoeNailedOn(player.getRoom(),command.getNounNumber(),game)) {
 			result = horseShoeNailedOn(game,player);
+		} else if (isCarryingTooMuch()) {
+			result = carryingTooMuch(game,player);
 		}
-				
-		//1330 CO=0:FOR I=1 TO G-1: IF C(I)=0 THEN CO=CO+1
-		//1340 NEXT I:IF CO>13 THEN R$="YOU CANNOT CARRY ANY MORE":RETURN
-		//Carrying too much
-		
+						
 		//1350 IF B>G THEN R$="YOU CANNOT GET THE "+T$:RETURN
 		//Can take this?
 		
@@ -117,9 +116,20 @@ public class Take {
 		game.addMessage("It is firmly nailed on!", true, true);
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isCarryingTooMuch() {
+		return game.countItemsCarrying()>Constants.INVENTORY_SPACE; 
+	}
+	
+	private ActionResult carryingTooMuch(Game game,Player player) {
+		game.addMessage("You cannot carry any more.", true, true);
+		return new ActionResult(game,player,true);
+	}	
 }
 
 /* 22 January 2026 - Created File
  * 23 January 2026 - Added parsed command
  * 24 January 2026 - Added taking water
+ * 24 January 2026 - Added sacks & horseshoe
+ * 25 January 2026 - Added inventory limitation
  */
