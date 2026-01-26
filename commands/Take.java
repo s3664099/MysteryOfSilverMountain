@@ -44,23 +44,14 @@ public class Take {
 			result = carryingTooMuch(game,player);
 		} else if (isItemCarriable(command.getNounNumber())) {
 			result = itemNotCarriable(game,player);
+		} else if (isItemAlreadyCarried(command.getNounNumber())) {
+			result = itemAlreadyCarried(game,player);
+		} else if (isItemNotPresent(command.getNounNumber(),player.getRoom())) {
+			result = itemNotPresent(game,player);
+		} else if (isItemNotTakeable(command.getNounNumber())) {
+			result = itemNotTakeable(game,player);
 		}
-						
-		
 
-		
-
-
-		
-		//1390 IF C(B)=0 THEN R$="YOU ALREADY HAVE IT"
-		//Already carrying item
-		
-		//1370 IF C(B)<>R THEN R$="IT IS NOT HERE!"
-		//Item not in room
-		
-		//1380 IF F(B)=1 THEN R$="WHAT "+T$+"?"
-		//Flag of Item
-		
 		//1400 IF C(B)=R AND F(B)=0 THEN C(B)=0:R$="YOU HAVE THE "+T$
 		//Move item to inventory
 		
@@ -136,6 +127,27 @@ public class Take {
 		game.addMessage("It is not possible to take that.", true, true);
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isItemAlreadyCarried(int nounNumber) {
+		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+	
+	private ActionResult itemAlreadyCarried(Game game, Player player) {
+		game.addMessage("You already have it",true,true);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isItemNotPresent(int nounNumber,int playerLocation) {
+		return game.getItem(nounNumber).getItemLocation() != playerLocation;
+	}
+	
+	private ActionResult itemNotPresent(Game game, Player player) {
+		game.addMessage("It is not here!",true,true);
+		return new ActionResult(game,player,true);
+	}
+	
+	//1380 IF F(B)=1 THEN R$="WHAT "+T$+"?"
+	//Flag of Item
 }
 
 /* 22 January 2026 - Created File
