@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 26 January 2026
+Version: 1.5
+Date: 27 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -50,24 +50,10 @@ public class Take {
 			result = itemNotPresent(game,player);
 		} else if (isItemNotTakeable(command.getNounNumber())) {
 			result = itemNotTakeable(game,player,command.getSplitTwoCommand()[1]);
+		} else if (isItemTaken(game,command.getNounNumber(),player.getRoom())) {
+			result = itemTaken(game,player,command.getNounNumber());
 		}
-
-		//1400 IF C(B)=R AND F(B)=0 THEN C(B)=0:R$="YOU HAVE THE "+T$
-		//Move item to inventory
-		
-		//1410 IF B=28 THEN C(5)=81
-		//1420 IF B=5 THEN C(28)=0
-		//Apples?
-		
-		//1430 IF C(4)=0 AND C(12)=0 AND C(15)=0 THEN F(54)=1
-		//Carrying Horseshoe,Shield & rings
-		
-		//1440 IF B=8 AND F(30)=1 THEN C(2)=0
-		//Boat & takes sheet
-		
-		//1450 IF B=2 THEN F(30)=0
-		//Takes Sheet
-		
+				
 		return result;
 	}
 	
@@ -154,6 +140,43 @@ public class Take {
 		game.addMessage("What "+noun+"?", isCarryingTooMuch(), isCarryingTooMuch());
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isItemTaken(Game game,int nounNumber,int roomNumber) {
+		return game.getItem(nounNumber).getItemLocation() == nounNumber &&
+				game.getItem(nounNumber).getItemFlag() == 0;
+	}
+	
+	private ActionResult itemTaken(Game game, Player player, int nounNumber) {
+		game.addMessage("You have the "+game.getItem(nounNumber), true, true);
+		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_CARRYING);
+		
+		if (isItemApples(nounNumber)) {
+			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
+		}
+		
+		if (isItemApple(nounNumber)) {
+			game.getItem(GameEntities.ITEM_APPLES).setItemLocation(GameEntities.ROOM_CARRYING);
+		}
+		
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isItemApples(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_APPLE;
+	}
+	
+	private boolean isItemApple(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_APPLES;
+	}
+	
+	//1430 IF C(4)=0 AND C(12)=0 AND C(15)=0 THEN F(54)=1
+	//Carrying Horseshoe,Shield & rings
+	
+	//1440 IF B=8 AND F(30)=1 THEN C(2)=0
+	//Boat & takes sheet
+	
+	//1450 IF B=2 THEN F(30)=0
+	//Takes Sheet
 }
 
 /* 22 January 2026 - Created File
