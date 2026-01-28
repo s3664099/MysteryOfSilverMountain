@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 27 January 2026
+Version: 1.6
+Date: 28 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -40,6 +40,12 @@ public class Take {
 		this.command = command;
 	}
 	
+    /**
+     * Validates whether a take is possible based on the parsed command,
+     * player state, and room conditions.
+     *
+     * @return an {@link ActionResult} describing validity and effects
+     */
 	public ActionResult executeTake() {
 		
 		ActionResult result = new ActionResult(game,player,true);
@@ -69,95 +75,196 @@ public class Take {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the command is taking water
+	 */
 	private boolean isTakingWater(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM && nounNumber == GameEntities.ITEM_WATER;
 	}
-		
+	
+    /**
+     * Executes a response to taking the water
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult takingWater(Game game, Player player) {
 		game.addMessage("How?", true, true);
 		return new ActionResult(game,player, true);
 	}
 	
+	/**
+	 * Returns true if the command is taking water in the lake
+	 */
 	private boolean isTakingWaterInLake(int roomNumber,int nounNumber) {
 		return (roomNumber == GameEntities.ROOM_ROUGH_WATER || roomNumber == GameEntities.ROOM_MIDDLE_LAKE) &&
 				nounNumber == GameEntities.ITEM_WATER;
 	}
 	
+    /**
+     * Executes a response to taking the water in the lake
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult takingWaterInLake(Game game,Player player) {
 		game.addMessage("You capsized", true, true);
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 
+	/**
+	 * Returns true if the command is taking sacks
+	 */
 	private boolean isTakingSacks(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_SACKS && nounNumber == GameEntities.ITEM_SACK;
 	}
 	
+    /**
+     * Executes a response to taking the sacks
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult takingSacks(Game game,Player player) {
 		game.addMessage("Too heavy!", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the command is taking the horseshoe when it is nailed on
+	 */
 	private boolean isHorseShoeNailedOn(int roomNumber, int nounNumber, Game game) {
 		return roomNumber == GameEntities.ROOM_STABLE && nounNumber == GameEntities.ITEM_HORSESHOE &&
 				game.getItem(GameEntities.FLAG_HORSESHOE_NAILED_ON).getItemFlag() == 0;
 	}
 	
+    /**
+     * Executes a response to taking a horseshoe when nailed on
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult horseShoeNailedOn(Game game, Player player) {
 		game.addMessage("It is firmly nailed on!", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is carrying too much
+	 */
 	private boolean isCarryingTooMuch() {
 		return game.countItemsCarrying()>Constants.INVENTORY_SPACE; 
 	}
 	
+    /**
+     * Executes a response to the player carrying too much
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult carryingTooMuch(Game game,Player player) {
 		game.addMessage("You cannot carry any more.", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the item is not carryable
+	 */
 	private boolean isItemCarriable(int nounNumber) {
 		return nounNumber>=Constants.MAX_CARRIABLE_ITEMS; 
 	}
 	
+    /**
+     * Executes a response is the item is not carryable
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult itemNotCarriable(Game game, Player player) {
 		game.addMessage("It is not possible to take that.", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the item is being carried
+	 */
 	private boolean isItemAlreadyCarried(int nounNumber) {
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response is the item is being carried
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult itemAlreadyCarried(Game game, Player player) {
 		game.addMessage("You already have it",true,true);
 		return new ActionResult(game,player,true);
 	}
 	
+	
+	/**
+	 * Returns true if the item is not in the room
+	 */
 	private boolean isItemNotPresent(int nounNumber,int playerLocation) {
 		return game.getItem(nounNumber).getItemLocation() != playerLocation;
 	}
 	
+    /**
+     * Executes a response is the item is not in the room
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult itemNotPresent(Game game, Player player) {
 		game.addMessage("It is not here!",true,true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the item is not takeable at that time
+	 */
 	private boolean isItemNotTakeable(int nounNumber) {
 		return game.getItem(nounNumber).getItemFlag() ==1;
 	}
 	
+    /**
+     * Executes a response is the item is not takeable at that time
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult itemNotTakeable(Game game, Player player,String noun) {
 		game.addMessage("What "+noun+"?", isCarryingTooMuch(), isCarryingTooMuch());
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the item is taken
+	 */
 	private boolean isItemTaken(Game game,int nounNumber,int roomNumber) {
 		return game.getItem(nounNumber).getItemLocation() == roomNumber &&
 				game.getItem(nounNumber).getItemFlag() == 0;
 	}
 	
+    /**
+     * Executes a response is the item is taken
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult itemTaken(Game game, Player player, int nounNumber) {
 		
 		game.addMessage("You have the "+game.getItem(nounNumber).getItemName(), true, true);
@@ -187,23 +294,46 @@ public class Take {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the items are apples
+	 * 
+	 * @param int the item number being taken
+	 */
 	private boolean isItemApples(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_APPLE;
 	}
 	
+	/**
+	 * Returns true if the item is an apple
+	 * 
+	 * @param int the item number being taken
+	 */
 	private boolean isItemApple(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_APPLES;
 	}
 	
+	/**
+	 * Returns true if the item is the boat
+	 * 
+	 * @param int the item number being taken
+	 */
 	private boolean isItemBoat(Game game,int nounNumber) {
 		return game.getItem(GameEntities.FLAG_BOAT_POWER).getItemLocation() == 1 &&
 				nounNumber == GameEntities.ITEM_BOAT;
 	}
 	
+	/**
+	 * Returns true if the item is the sheet
+	 * 
+	 * @param int the item number being taken
+	 */
 	private boolean isItemSheet(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_SHEET;
 	}
 	
+	/**
+	 * Returns true if the player is carrying the special items
+	 */
 	private boolean haveSpecialItems() {
 		return game.getItem(GameEntities.ITEM_HORSESHOE).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				game.getItem(GameEntities.ITEM_SHIELD).getItemLocation() == GameEntities.ROOM_CARRYING &&
@@ -216,4 +346,6 @@ public class Take {
  * 24 January 2026 - Added taking water
  * 24 January 2026 - Added sacks & horseshoe
  * 25 January 2026 - Added inventory limitation
+ * 27 January 2026 - Added other limitations and the successful taking
+ * 28 January 2026 - Completed the take
  */
