@@ -18,10 +18,22 @@ import game.Player;
 
 public class Take {
 	
+    /** The active game instance. */
 	private final Game game;
+	
+    /** The active player instance. */
 	private final Player player;
+	
+    /** The current command instance. */
 	private final ParsedCommand command;
 	
+    /**
+     * Creates an {@code Take} handler for moving items into the users inventory
+     * 
+     * @param game   current game state
+     * @param player   current player state
+     * @param command   current command
+     */
 	public Take(Game game, Player player, ParsedCommand command) {
 		this.game = game;
 		this.player = player;
@@ -142,12 +154,13 @@ public class Take {
 	}
 	
 	private boolean isItemTaken(Game game,int nounNumber,int roomNumber) {
-		return game.getItem(nounNumber).getItemLocation() == nounNumber &&
+		return game.getItem(nounNumber).getItemLocation() == roomNumber &&
 				game.getItem(nounNumber).getItemFlag() == 0;
 	}
 	
 	private ActionResult itemTaken(Game game, Player player, int nounNumber) {
-		game.addMessage("You have the "+game.getItem(nounNumber), true, true);
+		
+		game.addMessage("You have the "+game.getItem(nounNumber).getItemName(), true, true);
 		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_CARRYING);
 		
 		if (isItemApples(nounNumber)) {
@@ -158,6 +171,19 @@ public class Take {
 			game.getItem(GameEntities.ITEM_APPLES).setItemLocation(GameEntities.ROOM_CARRYING);
 		}
 		
+		if (haveSpecialItems()) {
+			game.getItem(GameEntities.FLAG_FORCES).setItemFlag(1);
+		} else {
+			game.getItem(GameEntities.FLAG_FORCES).setItemFlag(0);
+		}
+		
+		if (isItemBoat(game,command.getNounNumber())) {
+			game.getItem(GameEntities.ITEM_SHEET).setItemLocation(GameEntities.ROOM_CARRYING);
+		}
+		
+		if (isItemSheet(command.getNounNumber())) {
+			game.getItem(GameEntities.FLAG_BOAT_POWER).setItemFlag(0);
+		}
 		return new ActionResult(game,player,true);
 	}
 	
@@ -169,14 +195,20 @@ public class Take {
 		return nounNumber == GameEntities.ITEM_APPLES;
 	}
 	
-	//1430 IF C(4)=0 AND C(12)=0 AND C(15)=0 THEN F(54)=1
-	//Carrying Horseshoe,Shield & rings
+	private boolean isItemBoat(Game game,int nounNumber) {
+		return game.getItem(GameEntities.FLAG_BOAT_POWER).getItemLocation() == 1 &&
+				nounNumber == GameEntities.ITEM_BOAT;
+	}
 	
-	//1440 IF B=8 AND F(30)=1 THEN C(2)=0
-	//Boat & takes sheet
+	private boolean isItemSheet(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_SHEET;
+	}
 	
-	//1450 IF B=2 THEN F(30)=0
-	//Takes Sheet
+	private boolean haveSpecialItems() {
+		return game.getItem(GameEntities.ITEM_HORSESHOE).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				game.getItem(GameEntities.ITEM_SHIELD).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				game.getItem(GameEntities.ITEM_RINGS).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
 }
 
 /* 22 January 2026 - Created File
