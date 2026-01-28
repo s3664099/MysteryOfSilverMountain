@@ -121,7 +121,7 @@ public class ParsedCommand {
 		if (verbNumber == GameEntities.CMD_TAKE || verbNumber == GameEntities.CMD_GET ||
 			verbNumber == GameEntities.CMD_STEAL || verbNumber == GameEntities.CMD_GATHER) {
 			commandType = CommandType.TAKE;
-		} else if (verbNumber == GameEntities.CMD_DROP) {
+		} else if (verbNumber == GameEntities.CMD_DROP || verbNumber == GameEntities.CMD_LEAVE) {
 			commandType = CommandType.DROP;
 		} 
 	}
@@ -254,5 +254,6 @@ public class ParsedCommand {
  * 5 January 2026 - Removed the single command enum
  * 20 January 2026 - Added Inventory Command
  * 21 January 2026 - Moved Inventory to CommandState
- * 22 January 2027 - Added all take like commands
+ * 22 January 2026 - Added all take like commands
+ * 28 January 2026 - Added all drop like commands
  */
