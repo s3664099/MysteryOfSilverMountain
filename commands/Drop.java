@@ -44,12 +44,34 @@ public class Drop {
 		
 		if (isPlayerCarryingItem(game,command.getNounNumber())) {
 			result = dropItem(game,player,command.getNounNumber());
+			
+			if (haveDroppedBoat(command.getNounNumber(),player.getRoom())) {
+				result = droppedBoat(result.getGame(),result.getPlayer());
+			}
+			
 		} else {
 			result = playerDoesNotHaveItem(game,player);
 		}
 		
 		return result;
 	}
+	
+	private boolean haveDroppedBoat(int nounNumber, int roomNumber) {
+		return nounNumber == GameEntities.ITEM_BOAT &&
+				(roomNumber == GameEntities.ROOM_ROUGH_WATER ||
+				 roomNumber == GameEntities.ROOM_MIDDLE_LAKE);
+	}
+	
+	private ActionResult droppedBoat(Game game, Player player) {
+		game.addMessage("You drowned!", true, true);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED);
+		return new ActionResult(game,player,true);
+	}
+	
+
+	//2760 IF B=8 AND F(30)=1 THEN C(2)=R
+	//2770 IF B=16 AND F(34)=1 THEN R$="YOU LOST THE WATER!": F(34)=0
+	//2780 IF B=2 AND F(30)=1 THEN F(30)=0
 	
 	private boolean isPlayerCarryingItem(Game game, int nounNumber) {
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
@@ -65,15 +87,6 @@ public class Drop {
 		game.addMessage("Done", true,true);
 		return new ActionResult(game,player,true);
 	}
-	
-	
-	
-
-	//2750 IF H=418 OR H=518 THEN R$="YOU DROWNED!": F(56)=1
-	//2760 IF B=8 AND F(30)=1 THEN C(2)=R
-	//2770 IF B=16 AND F(34)=1 THEN R$="YOU LOST THE WATER!": F(34)=0
-	//2780 IF B=2 AND F(30)=1 THEN F(30)=0
-	//2790 RETURN
 }
 
 /*
