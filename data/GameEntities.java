@@ -228,7 +228,7 @@ public class GameEntities {
     public static final int FLAG_BOAT_FLAG = 31;
     public static final int FLAG_OGBANS_BOAR = 32;
     public static final int FLAG_THIRTY_THREE = 33;
-    public static final int FLAG_THIRTY_FOUR = 34;
+    public static final int FLAG_JUG_FULL = 34;
     public static final int FLAG_THIRTY_FIVE = 35;
     public static final int FLAG_THIRTY_SIX = 36;
     public static final int FLAG_THIRTY_SEVEN = 37;

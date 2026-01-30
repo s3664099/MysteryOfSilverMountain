@@ -45,9 +45,13 @@ public class Drop {
 		if (isPlayerCarryingItem(game,command.getNounNumber())) {
 			result = dropItem(game,player,command.getNounNumber());
 			
-			if (haveDroppedBoat(command.getNounNumber(),player.getRoom())) {
+			if (haveDroppedBoatInLake(command.getNounNumber(),player.getRoom())) {
+				result = droppedBoatInLake(result.getGame(),result.getPlayer());
+			} else if (haveDroppedBoat(game,command.getNounNumber())) {
 				result = droppedBoat(result.getGame(),result.getPlayer());
-			}
+			} else if (haveDroppedJug(game,command.getNounNumber())) {
+				result = droppedJug(result.getGame(),result.getPlayer());
+			}	//2780 IF B=2 AND F(30)=1 THEN F(30)=0
 			
 		} else {
 			result = playerDoesNotHaveItem(game,player);
@@ -56,35 +60,51 @@ public class Drop {
 		return result;
 	}
 	
-	private boolean haveDroppedBoat(int nounNumber, int roomNumber) {
+	private boolean haveDroppedBoatInLake(int nounNumber, int roomNumber) {
 		return nounNumber == GameEntities.ITEM_BOAT &&
 				(roomNumber == GameEntities.ROOM_ROUGH_WATER ||
 				 roomNumber == GameEntities.ROOM_MIDDLE_LAKE);
 	}
 	
-	private ActionResult droppedBoat(Game game, Player player) {
-		game.addMessage("You drowned!", true, true);
+	private ActionResult droppedBoatInLake(Game game, Player player) {
+		game.addMessage("You drowned!", true, false);
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED);
 		return new ActionResult(game,player,true);
 	}
 	
+	private boolean haveDroppedBoat(Game game, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_BOAT && 
+				game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() ==1;
+	}
+	
+	private ActionResult droppedBoat(Game game, Player player) {
+		game.getItem(GameEntities.ITEM_SHEET).setItemLocation(player.getRoom());
+		return new ActionResult(game,player,true);
+	}
 
-	//2760 IF B=8 AND F(30)=1 THEN C(2)=R
-	//2770 IF B=16 AND F(34)=1 THEN R$="YOU LOST THE WATER!": F(34)=0
-	//2780 IF B=2 AND F(30)=1 THEN F(30)=0
+	private boolean haveDroppedJug(Game game, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_JUG &&
+				game.getItem(GameEntities.FLAG_JUG_FULL).getItemFlag() == 1;
+	}
+	
+	private ActionResult droppedJug(Game game,Player player) {
+		game.addMessage("You lost the water!", false, false);
+		game.getItem(GameEntities.FLAG_JUG_FULL).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
 	
 	private boolean isPlayerCarryingItem(Game game, int nounNumber) {
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
 	private ActionResult playerDoesNotHaveItem(Game game, Player player) {
-		game.addMessage("You do not have that!", true, true);
+		game.addMessage("You do not have that!", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
 	private ActionResult dropItem(Game game, Player player, int nounNumber) {
 		game.getItem(nounNumber).setItemLocation(player.getRoom());
-		game.addMessage("Done", true,true);
+		game.addMessage("Done", true,false);
 		return new ActionResult(game,player,true);
 	}
 }
