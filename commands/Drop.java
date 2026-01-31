@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Drop Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 29 January 2026
+Version: 1.3
+Date: 31 January 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -51,7 +51,9 @@ public class Drop {
 				result = droppedBoat(result.getGame(),result.getPlayer());
 			} else if (haveDroppedJug(game,command.getNounNumber())) {
 				result = droppedJug(result.getGame(),result.getPlayer());
-			}	//2780 IF B=2 AND F(30)=1 THEN F(30)=0
+			} else if (haveDroppedSheet(game,command.getNounNumber())) {
+				result = droppedSheet(result.getGame(),result.getPlayer());
+			}
 			
 		} else {
 			result = playerDoesNotHaveItem(game,player);
@@ -93,6 +95,16 @@ public class Drop {
 		return new ActionResult(game,player,true);
 	}
 	
+	private boolean haveDroppedSheet(Game game,int nounNumber) {
+		return game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() == 1 &&
+				nounNumber == GameEntities.ITEM_SHEET;
+	}
+	
+	private ActionResult droppedSheet(Game game,Player player) {
+		game.getItem(GameEntities.FLAG_BOAT_POWER).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
+	
 	private boolean isPlayerCarryingItem(Game game, int nounNumber) {
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
@@ -112,4 +124,6 @@ public class Drop {
 /*
  * 28 January 2026 - Created file
  * 29 January 2026 - Added drop functionality
+ * 30 January 2026 - Added post command responses
+ * 31 January 2026 - Completed code and added Javadocs
  */
