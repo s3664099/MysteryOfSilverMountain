@@ -28,7 +28,7 @@ public class Take {
 	private final ParsedCommand command;
 	
     /**
-     * Creates an {@code Take} handler for moving items into the users inventory
+     * Creates a {@code Take} handler for moving items into the users inventory
      * 
      * @param game   current game state
      * @param player   current player state

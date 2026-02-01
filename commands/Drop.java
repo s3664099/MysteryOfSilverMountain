@@ -27,7 +27,8 @@ public class Drop {
 	private final ParsedCommand command;
 	
     /**
-     * Creates an {@code Take} handler for moving items into the users inventory
+     * Creates a {@code Drop} handler for moving items from the users inventory
+     * to the current location
      * 
      * @param game   current game state
      * @param player   current player state
