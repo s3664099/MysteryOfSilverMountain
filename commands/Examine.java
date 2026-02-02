@@ -56,6 +56,8 @@ public class Examine {
 				result = examineMountainHut(game,player);
 			} else if (isExamineAttic(command.getNounNumber(),player.getRoom())) {
 				result = examineAttic(game,player);
+			} else if (isExamineUniform(command.getNounNumber(),game)) {
+				reuslt = examineUniform(game,player);
 			}
 		}
 				
@@ -83,14 +85,44 @@ public class Examine {
 		game.addMessage("It is empty", true, false);
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isExamineMountainHut(int noun, int room) {
+		return (room == GameEntities.ROOM_WHITE_COTTAGE && noun == GameEntities.ITEM_MOUNTAIN_HUT);
+	}
+	
+	private ActionResult examineMountainHut(Game game, Player player) {
+		game.addMessage("Aha!", true, false);
+		game.getItem(GameEntities.FLAG_COINS).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isExamineAttic(int noun, int room) {
+		return (room == GameEntities.ROOM_ATTIC && noun == GameEntities.ITEM_CUPBOARD);
+	}
+	
+	private ActionResult examineAttic(Game game, Player player) {
+		game.addMessage("Ok", true, false);
+		game.getItem(GameEntities.FLAG_SHEET).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean isExamineUniform(int noun, Player player) {
+		return (game.getItem(GameEntities.ITEM_UNIFORM).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				noun == GameEntities.ITEM_UNIFORM);
+	}
+	
+	private ActionResult examineUniform(Game game, Player player) {
+		game.addMessage("You find matches in the pocket", true, false);
+		game.getItem(GameEntities.ITEM_MATCHES).setItemLocation(GameEntities.ROOM_CARRYING);
+		return new ActionResult(game,player,true);
+	}
 
 
 
 
 
-	//1510 IF H=8080 THEN R$="AHA!": F(1)=0
-	//1520 IF H=7029 THEN R$="OK": F(2)=0
-	//1530 IF B=20 THEN R$="NBUDIFT JO QPDLFU":GOSUB 4260: C(26)=0
+
+
 	//1540 IF H=1648 THEN R$="THERE ARE SOME TERS '"+G$(2)+"'"
 	//1550 IF H=7432 THEN R$="UIFZ BSF BQQMF USFFT":GOSUB 4260: F(5)=0
 	//1560 IF H=2134 OR H=2187 THEN R$="OK": F(16)=0
