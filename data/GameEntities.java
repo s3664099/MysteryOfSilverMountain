@@ -207,7 +207,7 @@ public class GameEntities {
     public static final int FLAG_TEN = 10;
     public static final int FLAG_ELEVEN = 11;
     public static final int FLAG_TWELVE = 12;
-    public static final int FLAG_THIRTEEN = 13;
+    public static final int FLAG_PLANKS = 13;
     public static final int FLAG_FOURTEEN = 14;
     public static final int FLAG_FIFTEEN = 15;
     public static final int FLAG_SIXTEEN = 16;

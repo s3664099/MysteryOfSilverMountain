@@ -5,12 +5,15 @@ Translator: David Sarkies
 Version: 1.0
 Date: 1 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
+
+Need to set it so that examine can work as a single command
 */
 
 package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -40,13 +43,51 @@ public class Examine {
 	
 	public ActionResult executeExamine() {
 		game.addMessage("You see what you might expect!", true, false);
+		ActionResult result = new ActionResult(game,player,true);
+		
+		if (command.getNounNumber()>0) {
+			game.addMessage("You see nothing special!", true, false);
+			
+			if (isExamineHut(command.getNounNumber(),player.getRoom())) {
+				result = examineHut(game,player);
+			} else if (isExamineChest(command.getNounNumber(),player.getRoom())) {
+				result = examineChest(game,player);
+			} else if (isExamineMountainHut(command.getNounNumber(),player.getRoom())) {
+				result = examineMountainHut(game,player);
+			} else if (isExamineAttic(command.getNounNumber(),player.getRoom())) {
+				result = examineAttic(game,player);
+			}
+		}
+				
+		return result;
+	}
+	
+	private boolean isExamineHut(int command,int room) {
+		return ((command == GameEntities.ITEM_HUT || command == GameEntities.ITEM_MOUNTAIN_HUT) &&
+			room == GameEntities.ROOM_HUT);
+	}
+	
+	private ActionResult examineHut(Game game,Player player) {
+		
+		game.addMessage("You found something", true, false);
+		game.getItem(GameEntities.FLAG_PLANKS).setItemFlag(0);
+		
 		return new ActionResult(game,player,true);
 	}
 	
+	private boolean isExamineChest(int noun,int room) {
+		return (room == GameEntities.ROOM_WHITE_COTTAGE && noun == GameEntities.ITEM_CHEST);
+	}
+	
+	private ActionResult examineChest(Game game, Player player) {
+		game.addMessage("It is empty", true, false);
+		return new ActionResult(game,player,true);
+	}
 
-	//1480 IF B>0 THEN R$="NOTHING SPECIAL"
-	//1490 IF B=46 OR B=88 THEN GOSUB 2550
-	//1500 IF H=8076 THEN R$="IT IS EMPTY"
+
+
+
+
 	//1510 IF H=8080 THEN R$="AHA!": F(1)=0
 	//1520 IF H=7029 THEN R$="OK": F(2)=0
 	//1530 IF B=20 THEN R$="NBUDIFT JO QPDLFU":GOSUB 4260: C(26)=0
