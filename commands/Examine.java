@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 1 February 2026
+Version: 1.2
+Date: 3 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -57,7 +57,15 @@ public class Examine {
 			} else if (isExamineAttic(command.getNounNumber(),player.getRoom())) {
 				result = examineAttic(game,player);
 			} else if (isExamineUniform(command.getNounNumber(),game)) {
-				reuslt = examineUniform(game,player);
+				result = examineUniform(game,player);
+			} else if (isReadInscription(command.getNounNumber(),player.getRoom())) {
+				result = readInscription(game,player);
+			} else if (isExamineTrees(command.getNounNumber(),player.getRoom())) {
+				result = examineTrees(game,player);
+			} else if (isExamineKiln(command.getNounNumber(),player.getRoom())) {
+				result = examineKiln(game,player);
+			} else if (isExamineKetch(command.getNounNumber(),player.getRoom())) {
+				result = examineKetch(game,player);
 			}
 		}
 				
@@ -106,7 +114,7 @@ public class Examine {
 		return new ActionResult(game,player,true);
 	}
 
-	private boolean isExamineUniform(int noun, Player player) {
+	private boolean isExamineUniform(int noun, Game game) {
 		return (game.getItem(GameEntities.ITEM_UNIFORM).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				noun == GameEntities.ITEM_UNIFORM);
 	}
@@ -116,17 +124,52 @@ public class Examine {
 		game.getItem(GameEntities.ITEM_MATCHES).setItemLocation(GameEntities.ROOM_CARRYING);
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isReadInscription(int noun, int room) {
+		return noun == GameEntities.ITEM_INSCRIPTION && room == GameEntities.ROOM_INSCRIBED_CAVERN;
+	}
+
+	private ActionResult readInscription(Game game, Player player) {
+		game.addMessage("There are some letters '"+game.getMaze(1)+"'", true, false);		
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean isExamineTrees(int noun, int room) {
+		return noun == GameEntities.ITEM_TREES && room == GameEntities.ROOM_ORCHARD;
+	}
+	
+	private ActionResult examineTrees(Game game, Player player) {
+		game.addMessage("They are apple trees.", true, false);
+		game.getItem(GameEntities.FLAG_APPLES).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isExamineKiln(int noun, int room) {
+		return (noun == GameEntities.ITEM_KILN || noun == GameEntities.ITEM_OLD_KILN) &&
+				room == GameEntities.ROOM_KILN;
+	}
+	
+	private ActionResult examineKiln(Game game, Player player) {
+		game.addMessage("OK", true, false);
+		game.getItem(GameEntities.FLAG_JUG).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isExamineKetch(int noun, int room) {
+		return noun == GameEntities.ITEM_KETCH && room == GameEntities.ROOM_KETCH;
+	}
+	
+	private ActionResult examineKetch(Game game, Player player) {
+		game.addMessage("It is fishy!", true, false);
+		game.getItem(GameEntities.FLAG_NET).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
 
 
 
 
 
 
-
-	//1540 IF H=1648 THEN R$="THERE ARE SOME TERS '"+G$(2)+"'"
-	//1550 IF H=7432 THEN R$="UIFZ BSF BQQMF USFFT":GOSUB 4260: F(5)=0
-	//1560 IF H=2134 OR H=2187 THEN R$="OK": F(16)=0
-	//1570 IF B=35 THEN R$="IT IS FISHY!": F(17)=0
 	//1580 IF H=3438 THEN R$="OK": F(22)=0
 	//1590 IF H=242 THEN R$="A FADED INSCRIPTION"
 	//1600 IF(H=1443ORH=1485)ANDF(33)=0THENR$="B HMJNNFSJOH GSPN UIF EFQUIT":GOSUB4260
@@ -146,4 +189,6 @@ public class Examine {
 }
 
 /* 1 February 2026 - Created file
-*/
+ * 2 February 2026 - Started added examine results
+ * 3 February 2026 - Continued added examine results
+ */
