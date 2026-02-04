@@ -66,6 +66,14 @@ public class Examine {
 				result = examineKiln(game,player);
 			} else if (isExamineKetch(command.getNounNumber(),player.getRoom())) {
 				result = examineKetch(game,player);
+			} else if (isExamineSacks(command.getNounNumber(),player.getRoom())) {
+				result = examineSacks(game,player);
+			} else if (isExamineGravestone(command.getNounNumber(),player.getRoom())) {
+				result = examineGravestone(game,player);
+			} else if (isExaminePool(command.getNounNumber(),player.getRoom(),game)) {
+				result = examinePool(game,player);
+			} else if (isExaminePoolFoundShield(command.getNounNumber(),player.getRoom(),game)) {
+				result = examinePoolFoundShield(game,player);
 			}
 		}
 				
@@ -164,15 +172,52 @@ public class Examine {
 		game.getItem(GameEntities.FLAG_NET).setItemFlag(0);
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isExamineSacks(int noun, int room) {
+		return noun == GameEntities.ITEM_SACK && room == GameEntities.ROOM_SACKS;
+	}
+	
+	private ActionResult examineSacks(Game game, Player player) {
+		game.addMessage("Ok", true, false);
+		game.getItem(GameEntities.FLAG_SEEDS).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean isExamineGravestone(int noun, int room) {
+		return noun == GameEntities.ITEM_GRAVESTONE && room == GameEntities.ROOM_GRAVEYARD;
+	}
+
+	private ActionResult examineGravestone(Game game,Player player) {
+		game.addMessage("You see a faded inscription.", true, false);
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean isExaminePool(int noun, int room, Game game) {
+		return (noun == GameEntities.ITEM_POOL || noun == GameEntities.ITEM_MISTY_POOL) &&
+				game.getItem(GameEntities.FLAG_SHEILD_REVEALED).getItemFlag() == 0 &&
+				room == GameEntities.ROOM_POOL;
+	}
+	
+	private ActionResult examinePool(Game game, Player player) {
+		game.addMessage("A glimmering from the depths", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isExaminePoolFoundShield(int noun, int room, Game game) {
+		return (noun == GameEntities.ITEM_POOL || noun == GameEntities.ITEM_MISTY_POOL) &&
+				game.getItem(GameEntities.FLAG_SHEILD_REVEALED).getItemFlag() == 1 &&
+				game.getItem(GameEntities.FLAG_SHIELD).getItemFlag() == 0  &&
+				room == GameEntities.ROOM_POOL;
+	}
+	
+	private ActionResult examinePoolFoundShield(Game game, Player player) {
+		game.addMessage("Something here ...", true, false);
+		game.getItem(GameEntities.FLAG_SHIELD).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
 
 
 
-
-
-
-	//1580 IF H=3438 THEN R$="OK": F(22)=0
-	//1590 IF H=242 THEN R$="A FADED INSCRIPTION"
-	//1600 IF(H=1443ORH=1485)ANDF(33)=0THENR$="B HMJNNFSJOH GSPN UIF EFQUIT":GOSUB4260
 	//1610 IF (H=1443 OR H=1485) AND F(33)=1 THEN R$="SOMETHING HERE...": F(12)=0
 	//1620 IF H=2479 OR H=2444 THEN R$="THERE IS A HANDLE"
 	//1630 IF B=9 THEN R$="UIF MBCFM SFBET 'QPJTPO'":GOSUB 4260
