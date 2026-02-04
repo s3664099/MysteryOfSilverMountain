@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 3 February 2026
+Version: 1.3
+Date: 4 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -218,7 +218,7 @@ public class Examine {
 
 
 
-	//1610 IF (H=1443 OR H=1485) AND F(33)=1 THEN R$="SOMETHING HERE...": F(12)=0
+
 	//1620 IF H=2479 OR H=2444 THEN R$="THERE IS A HANDLE"
 	//1630 IF B=9 THEN R$="UIF MBCFM SFBET 'QPJTPO'":GOSUB 4260
 	//1640 IF H=4055 THEN GOSUB 3290
@@ -236,4 +236,5 @@ public class Examine {
 /* 1 February 2026 - Created file
  * 2 February 2026 - Started added examine results
  * 3 February 2026 - Continued added examine results
+ * 4 February 2026 - Added further examine results
  */
