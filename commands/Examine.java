@@ -74,6 +74,10 @@ public class Examine {
 				result = examinePool(game,player);
 			} else if (isExaminePoolFoundShield(command.getNounNumber(),player.getRoom(),game)) {
 				result = examinePoolFoundShield(game,player);
+			} else if (isExamineSluiceGates(command.getNounNumber(),player.getRoom())) {
+				result = examineSluiceGates(game,player);
+			} else if (isExaminePhial(command.getNounNumber(),game)) {
+				result = examinePhial(game,player);
 			}
 		}
 				
@@ -215,13 +219,33 @@ public class Examine {
 		game.getItem(GameEntities.FLAG_SHIELD).setItemFlag(0);
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isExamineSluiceGates(int noun, int room) {
+		return (noun == GameEntities.ITEM_GATE || noun == GameEntities.ITEM_SLUICE) &&
+				room == GameEntities.ROOM_SLUICE_GATES;
+	}
+	
+	private ActionResult examineSluiceGates(Game game, Player player) {
+		game.addMessage("There is a handle.", true, false);
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean isExaminePhial(int noun, Game game) {
+		return game.getItem(GameEntities.ITEM_PHIAL).isAtLocation(GameEntities.ROOM_CARRYING) &&
+				noun == GameEntities.ITEM_PHIAL;
+	}
+	
+	private ActionResult examinePhial(Game game, Player player) {
+		game.addMessage("The label reads 'Poison'.", true, false);
+		return new ActionResult(game,player,true);
+	}
 
 
 
 
-	//1620 IF H=2479 OR H=2444 THEN R$="THERE IS A HANDLE"
-	//1630 IF B=9 THEN R$="UIF MBCFM SFBET 'QPJTPO'":GOSUB 4260
 	//1640 IF H=4055 THEN GOSUB 3290
+		//3290 T=R: R=F(F(52)+57):GOSUB 3310: R=T
+		//3300 R$=X4$+RIGHT$(D$,LEN(D$)-2):RETURN
 	//1650 IF H=2969 AND F(48)=1 THEN R$="VERY UGLY!"
 	//1660 IF H=7158 OR H=7168 THEN R$="THERE ARE LOOSE BRICKS"
 	//1670 IF R=49 THEN R$="VERY INTERESTING!"
