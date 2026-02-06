@@ -2,11 +2,12 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 4 February 2026
+Version: 1.4
+Date: 6 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
+Also, can only read certain objects, others will fail
 */
 
 package commands;
@@ -78,7 +79,9 @@ public class Examine {
 				result = examineSluiceGates(game,player);
 			} else if (isExaminePhial(command.getNounNumber(),game)) {
 				result = examinePhial(game,player);
-			}
+			} else if (isExamineBooks(command.getNounNumber(),player.getRoom())) {
+				result = examineBooks(game,player);
+			} 
 		}
 				
 		return result;
@@ -240,12 +243,20 @@ public class Examine {
 		return new ActionResult(game,player,true);
 	}
 
-
-
-
-	//1640 IF H=4055 THEN GOSUB 3290
+	private boolean isExamineBooks(int noun, int room) {
+		return room == GameEntities.ROOM_LIBRARY && noun == GameEntities.ITEM_BOOKS;
+	}
+	
+	private ActionResult examineBooks(Game game, Player player) {
 		//3290 T=R: R=F(F(52)+57):GOSUB 3310: R=T
 		//3300 R$=X4$+RIGHT$(D$,LEN(D$)-2):RETURN
+		//3490 X4$="MAGIC WORDS LIE AT THE CROSSROADS, THE FOUNTAIN AND THE "
+		return new ActionResult(game,player,true);
+	}
+
+
+	
+
 	//1650 IF H=2969 AND F(48)=1 THEN R$="VERY UGLY!"
 	//1660 IF H=7158 OR H=7168 THEN R$="THERE ARE LOOSE BRICKS"
 	//1670 IF R=49 THEN R$="VERY INTERESTING!"
@@ -261,4 +272,5 @@ public class Examine {
  * 2 February 2026 - Started added examine results
  * 3 February 2026 - Continued added examine results
  * 4 February 2026 - Added further examine results
+ * 6 February 2026 - Added three more results
  */
