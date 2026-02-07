@@ -8,6 +8,7 @@ Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
 Also, can only read certain objects, others will fail
+Change flag 48 to flag grarg asleep
 */
 
 package commands;
@@ -47,6 +48,10 @@ public class Examine {
 		game.addMessage("You see what you might expect!", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
+		if(isInMosaicRoom(player.getRoom())) {
+			result = inMosaicRoom(game,player);
+		}
+		
 		if (command.getNounNumber()>0) {
 			game.addMessage("You see nothing special!", true, false);
 			
@@ -82,6 +87,12 @@ public class Examine {
 				result = examinePhial(game,player);
 			} else if (isExamineBooks(command.getNounNumber(),player.getRoom())) {
 				result = examineBooks(game,player);
+			} else if (isExamineGrarg(command.getNounNumber(),player.getRoom(),game)) {
+				result = examineGrarg(game,player);
+			} else if (isExamineWellBottom(command.getNounNumber(),player.getRoom())) {
+				result = examineWellBottom(game,player);
+			} else if (isExaminePinnacle(command.getNounNumber(),player.getRoom())) {
+				result = isInteresting(game,player);
 			} 
 		}
 		
@@ -257,13 +268,47 @@ public class Examine {
 		return new ActionResult(game,player,true);
 	}
 
-
+	private boolean isExamineGrarg(int noun, int room, Game game) {
+		return noun == GameEntities.ITEM_GRARG && room == GameEntities.ROOM_BANQUET_HALL &&
+				game.getItem(GameEntities.FLAG_FORTY_EIGHT).getItemFlag() == 1;
+	}
 	
+	private ActionResult examineGrarg(Game game, Player player) {
+		game.addMessage("Very ugly!", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isExamineWellBottom(int noun, int room) {
+		return (noun == GameEntities.ITEM_WALL || noun == GameEntities.ITEM_WELL_BOTTOM) && 
+				room == GameEntities.ROOM_WELL_BOTTOM;
+	}
+	
+	private ActionResult examineWellBottom(Game game, Player player) {
+		game.addMessage("There are loose bricks.", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isInMosaicRoom(int room) {
+		return room == GameEntities.ROOM_MOSAIC_HALL;
+	}
+	
+	private ActionResult inMosaicRoom(Game game, Player player) {
+		game.addMessage("Very interesting.", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isExaminePinnacle(int noun, int room) {
+		return noun == GameEntities.ITEM_PINNACLE && room == GameEntities.ROOM_PINNACLE;
+	}
+	
+	private ActionResult isInteresting(Game game, Player player) {
+		game.addMessage("Interesting!", true, false);
+		return new ActionResult(game,player,true);
+	}
 
-	//1650 IF H=2969 AND F(48)=1 THEN R$="VERY UGLY!"
-	//1660 IF H=7158 OR H=7168 THEN R$="THERE ARE LOOSE BRICKS"
-	//1670 IF R=49 THEN R$="VERY INTERESTING!"
-	//1680 IF B=52 OR B=82 OR B=81 THEN R$="INTERESTING!"
+
+
+	//1680 IF B=82 OR B=81 THEN R$="INTERESTING!" - special items (where are they)
 	//1690 IF H=6978 THEN R$="THERE IS A WOODEN DOOR"
 	//1700 IF H=6970 THEN R$="YOU FOUND SOMETHING": F(4)=0
 	//1710 IF H=2066 THEN R$="A LARGE CUPBOARD IN THE CORNER"
@@ -276,5 +321,5 @@ public class Examine {
  * 3 February 2026 - Continued added examine results
  * 4 February 2026 - Added further examine results
  * 6 February 2026 - Added three more results
- * 7 February 2026 - Completed examine books
+ * 7 February 2026 - Completed examine books & other responses
  */
