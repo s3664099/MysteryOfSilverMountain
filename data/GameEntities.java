@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 14 January 2026
+Version: 1.9
+Date: 7 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -195,28 +195,28 @@ public class GameEntities {
     public static final int ITEM_MOUNTAIN_HUT = 88;
     
     // === Flags ===
-    public static final int FLAG_ONE = 1;
-    public static final int FLAG_TWO = 2;
+    public static final int FLAG_COINS = 1;
+    public static final int FLAG_SHEET = 2;
     public static final int FLAG_THREE = 3;
     public static final int FLAG_FOUR = 4;
-    public static final int FLAG_FIVE = 5;
+    public static final int FLAG_APPLES = 5;
     public static final int FLAG_SIX = 6;
     public static final int FLAG_SEVEN = 7;
     public static final int FLAG_EIGHT = 8;
     public static final int FLAG_NINE = 9;
     public static final int FLAG_TEN = 10;
     public static final int FLAG_ELEVEN = 11;
-    public static final int FLAG_TWELVE = 12;
+    public static final int FLAG_SHIELD = 12;
     public static final int FLAG_PLANKS = 13;
     public static final int FLAG_FOURTEEN = 14;
     public static final int FLAG_FIFTEEN = 15;
-    public static final int FLAG_SIXTEEN = 16;
-    public static final int FLAG_SEVENTEEN = 17;
+    public static final int FLAG_JUG = 16;
+    public static final int FLAG_NET = 17;
     public static final int FLAG_EIGHTEEN = 18;
     public static final int FLAG_NINETEEN = 19;
     public static final int FLAG_TWENTY = 20;
     public static final int FLAG_TWENTY_ONE = 21;
-    public static final int FLAG_TWENTY_TWO = 22;
+    public static final int FLAG_SEEDS = 22;
     public static final int FLAG_TWENTY_THREE = 23;
     public static final int FLAG_TWENTY_FOUR = 24;
     public static final int FLAG_TWENTY_FIVE = 25;
@@ -227,7 +227,7 @@ public class GameEntities {
     public static final int FLAG_BOAT_POWER = 30;
     public static final int FLAG_BOAT_FLAG = 31;
     public static final int FLAG_OGBANS_BOAR = 32;
-    public static final int FLAG_THIRTY_THREE = 33;
+    public static final int FLAG_SHEILD_REVEALED = 33;
     public static final int FLAG_JUG_FULL = 34;
     public static final int FLAG_THIRTY_FIVE = 35;
     public static final int FLAG_THIRTY_SIX = 36;
@@ -246,7 +246,7 @@ public class GameEntities {
     public static final int FLAG_CARRYING_ITEMS = 49;
     public static final int FLAG_IS_DARK= 50;
     public static final int FLAG_FIFTY_ONE = 51;
-    public static final int FLAG_FIFTY_TWO = 52;
+    public static final int FLAG_WORD_LOCATION = 52;
     public static final int FLAG_FIFTY_THREE = 53;
     public static final int FLAG_FORCES = 54;
     public static final int FLAG_PLAYER_SPOTTED = 55;
@@ -398,4 +398,5 @@ public class GameEntities {
  * 12 January 2026 - Updated flag names
  * 13 January 2026 - Updated flag names and added destroyed location for items.
  * 14 January 2026 - Added further special items
+ * 7 February 2026 - Updated name of flag 52 to word location
  */

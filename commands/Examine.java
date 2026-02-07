@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 6 February 2026
+Version: 1.5
+Date: 7 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -14,6 +14,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.Constants;
 import data.GameEntities;
 import game.Game;
 import game.Player;
@@ -83,7 +84,7 @@ public class Examine {
 				result = examineBooks(game,player);
 			} 
 		}
-				
+		
 		return result;
 	}
 	
@@ -248,9 +249,11 @@ public class Examine {
 	}
 	
 	private ActionResult examineBooks(Game game, Player player) {
-		//3290 T=R: R=F(F(52)+57):GOSUB 3310: R=T
-		//3300 R$=X4$+RIGHT$(D$,LEN(D$)-2):RETURN
-		//3490 X4$="MAGIC WORDS LIE AT THE CROSSROADS, THE FOUNTAIN AND THE "
+		
+		String wordLocation = game.getRawRoomName(game.getItem(GameEntities.FLAG_WORD_LOCATION).getItemFlag()
+												+ Constants.RANDOM_WORD_CONSTANT);
+		wordLocation = wordLocation.substring(2,wordLocation.length()-4);
+		game.addMessage("Magic words lie at the crossroads, the fountain and the "+wordLocation, true, true);
 		return new ActionResult(game,player,true);
 	}
 
@@ -273,4 +276,5 @@ public class Examine {
  * 3 February 2026 - Continued added examine results
  * 4 February 2026 - Added further examine results
  * 6 February 2026 - Added three more results
+ * 7 February 2026 - Completed examine books
  */

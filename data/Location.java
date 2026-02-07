@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Location Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 29 December 2025
+Version: 1.4
+Date: 7 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -22,6 +22,7 @@ public class Location implements Serializable {
 	private static final int EXIT_START_INDEX = 4;
 	
 	private final String name;
+	private final String rawName;
 	private final boolean[] exits = new boolean[4];
 	private boolean visited = false;
 	private boolean viewed = false;
@@ -45,7 +46,9 @@ public class Location implements Serializable {
 		if (roomType == null||roomType.isEmpty()) {
 			throw new IllegalArgumentException("Room type cannot be null or empty");
 		}
-				
+		
+		this.rawName = name;
+		
 		//Parse the name
 		int prep_1 = Integer.parseInt(name.substring(PREPOSITION_ONE_INDEX,PREPOSITION_TWO_INDEX));
 		int prep_2 = Integer.parseInt(name.substring(PREPOSITION_TWO_INDEX,NAME_START_INDEX));
@@ -63,6 +66,10 @@ public class Location implements Serializable {
 	
 	public String getName() {
 		return this.name;
+	}
+	
+	public String getRawName() {
+		return this.rawName;
 	}
 	
 	public boolean[] getExits() {
@@ -106,4 +113,5 @@ public class Location implements Serializable {
  * 10 December 2025 - Added title
  * 26 December 2025 - Built location name
  * 29 December 2025 - Added exits and updated name
+ * 7 February 2025 - Added Raw Name field
  */

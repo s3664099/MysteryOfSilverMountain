@@ -3,8 +3,8 @@ Title: <Game Name> Game Initialiser
 Author: 
 Translator: David Sarkies
 Version: 1.0
-Date: 8 December 2025
-Source: 
+Date: 7 February 2026
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package game;
@@ -116,7 +116,7 @@ public final class GameInitialiser {
 			itemFlag = rand.nextInt(100,1000);
 		} else if (itemNumber == GameEntities.ITEM_GRAVESTONE) {
 			itemFlag = rand.nextInt(2,5);
-		} else if (itemNumber == GameEntities.ITEM_FOUNTAIN) {
+		} else if (itemNumber == GameEntities.FLAG_WORD_LOCATION) {
 			itemFlag = rand.nextInt(0,3);
 		}
 		
@@ -127,4 +127,5 @@ public final class GameInitialiser {
 /* 3 December 2025 - Created file.
  * 7 December 2025 - Removed game related code
  * 8 December 2025 - Increased version number
+ * 7 February 2026 - Updated flag fifty two to work location
  */

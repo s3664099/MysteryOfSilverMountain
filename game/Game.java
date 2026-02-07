@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 26 January 2026
+Version: 1.7
+Date: 7 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -133,6 +133,23 @@ public class Game implements Serializable {
 	    }
 		
 		return this.locationList[roomNumber].getName();
+	}
+	
+	/**
+	 * Returns the raw name of a room by number.
+	 * The raw name is the name without the prepositions
+	 *
+	 * @param roomNumber the room index
+	 * @return the room name
+	 * @throws IllegalArgumentException if the room number is invalid
+	 */
+	public String getRawRoomName(int roomNumber) {
+		
+	    if (roomNumber < 0 || roomNumber >= locationList.length) {
+	        throw new IllegalArgumentException("Invalid room number: " + roomNumber);
+	    }
+		
+		return this.locationList[roomNumber].getRawName();
 	}
 	
 	/**
@@ -472,4 +489,5 @@ public class Game implements Serializable {
  * 18 January 2026 - Added array to hold maze directions
  * 19 January 2026 - Added maze route generator
  * 26 January 2026 - Added function to count the number of items being carried
+ * 7 February 2026 - Added method to return the raw name
  */

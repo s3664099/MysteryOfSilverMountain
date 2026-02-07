@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 26 January 2026
+Version: 1.7
+Date: 7 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -27,6 +27,7 @@ public class Constants {
 	public static final int NUMBER_EXITS = 4;
 	public static final int FLAG_HIDDEN = 9;
 	public static final int INITIAL_SAVE_COUNT = 2;
+	public static final int RANDOM_WORD_CONSTANT = 57;
 	
 	//Panel Related constants
 	public static final int MESSAGE_LENGTH = 100;
@@ -74,4 +75,5 @@ public class Constants {
  * 1 January 2026 - Added title as a constant
  * 19 January 2026 - Added constants for the maze
  * 26 January 2026 - Added Max inventory space
+ * 7 February 2026 - Added Random Word constant
  */
