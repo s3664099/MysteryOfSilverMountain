@@ -2,8 +2,8 @@
 Title: <Game Name> Special Item Handler Class
 Author: 
 Translator: David Sarkies
-Version: 1.3
-Date: 14 January 2026
+Version: 1.4
+Date: 8 February 2026
 Source: 
 */
 
@@ -49,6 +49,7 @@ public class SpecialItemHandler implements Serializable {
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_RUBBLE," rubble blocking the exit");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_HOUND," a vicious looking hound");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_RATS," rats swarming the floor");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_STATUE,"  a defaced statue");
 	}
 	
     /**
@@ -92,6 +93,8 @@ public class SpecialItemHandler implements Serializable {
 			specialItemType = GameEntities.SPECIAL_ITEM_HOUND;
 		} else if (checkRatsPresent(roomNumber,itemList[GameEntities.FLAG_RATS].getItemFlag())) {
 			specialItemType = GameEntities.SPECIAL_ITEM_RATS;
+		} else if (checkAtStatue(roomNumber)) {
+			specialItemType = GameEntities.SPECIAL_ITEM_STATUE;
 		}
 		
 		String description = itemDescriptions.getOrDefault(specialItemType,"");
@@ -151,6 +154,10 @@ public class SpecialItemHandler implements Serializable {
 	private boolean checkRatsPresent(int roomNumber, int ratFlag) {
 		return roomNumber == GameEntities.ROOM_WINE_CELLAR && ratFlag == 0;
 	}
+	
+	private boolean checkAtStatue(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_CROSSROADS;
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -159,4 +166,5 @@ public class SpecialItemHandler implements Serializable {
  * 2 January 2026 - Added special items, and code to display them correctly.
  * 12 January 2026 - Added more special items
  * 14 January 2026 - Added special items
+ * 8 February 2026 - Added special item statue
  */

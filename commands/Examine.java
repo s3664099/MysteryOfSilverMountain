@@ -91,7 +91,9 @@ public class Examine {
 				result = examineGrarg(game,player);
 			} else if (isExamineWellBottom(command.getNounNumber(),player.getRoom())) {
 				result = examineWellBottom(game,player);
-			} else if (isExaminePinnacle(command.getNounNumber(),player.getRoom())) {
+			} else if (isExaminePinnacle(command.getNounNumber(),player.getRoom()) ||
+					isExamineFountain(command.getNounNumber(),player.getRoom()) ||
+					isExamineStatue(command.getNounNumber(),player.getRoom())) {
 				result = isInteresting(game,player);
 			} 
 		}
@@ -301,6 +303,14 @@ public class Examine {
 		return noun == GameEntities.ITEM_PINNACLE && room == GameEntities.ROOM_PINNACLE;
 	}
 	
+	private boolean isExamineFountain(int noun, int room) {
+		return noun == GameEntities.ITEM_FOUNTAIN && room == GameEntities.ROOM_FOUNTAIN;
+	}
+	
+	private boolean isExamineStatue(int noun, int room) {
+		return noun == GameEntities.ITEM_STATUE && room == GameEntities.ROOM_CROSSROADS;
+	}
+	
 	private ActionResult isInteresting(Game game, Player player) {
 		game.addMessage("Interesting!", true, false);
 		return new ActionResult(game,player,true);
@@ -308,7 +318,7 @@ public class Examine {
 
 
 
-	//1680 IF B=82 OR B=81 THEN R$="INTERESTING!" - special items (where are they)
+
 	//1690 IF H=6978 THEN R$="THERE IS A WOODEN DOOR"
 	//1700 IF H=6970 THEN R$="YOU FOUND SOMETHING": F(4)=0
 	//1710 IF H=2066 THEN R$="A LARGE CUPBOARD IN THE CORNER"

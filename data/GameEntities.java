@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.9
-Date: 7 February 2026
+Version: 1.10
+Date: 8 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -380,6 +380,7 @@ public class GameEntities {
 	public static final int SPECIAL_ITEM_RUBBLE = 10;
 	public static final int SPECIAL_ITEM_HOUND = 11;
 	public static final int SPECIAL_ITEM_RATS = 12;
+	public static final int SPECIAL_ITEM_STATUE = 13;
 
 }
 
@@ -399,4 +400,5 @@ public class GameEntities {
  * 13 January 2026 - Updated flag names and added destroyed location for items.
  * 14 January 2026 - Added further special items
  * 7 February 2026 - Updated name of flag 52 to word location
+ * 8 February 2026 - Added statue tag
  */
