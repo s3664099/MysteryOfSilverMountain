@@ -198,7 +198,7 @@ public class GameEntities {
     public static final int FLAG_COINS = 1;
     public static final int FLAG_SHEET = 2;
     public static final int FLAG_THREE = 3;
-    public static final int FLAG_FOUR = 4;
+    public static final int FLAG_HORSESHOE = 4;
     public static final int FLAG_APPLES = 5;
     public static final int FLAG_SIX = 6;
     public static final int FLAG_SEVEN = 7;

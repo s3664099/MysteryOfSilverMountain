@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 7 February 2026
+Version: 1.7
+Date: 9 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -95,6 +95,16 @@ public class Examine {
 					isExamineFountain(command.getNounNumber(),player.getRoom()) ||
 					isExamineStatue(command.getNounNumber(),player.getRoom())) {
 				result = isInteresting(game,player);
+			} else if (isExamineStables(command.getNounNumber(),player.getRoom())) {
+				result = examineStables(game,player);
+			} else if (isExamineDoor(command.getNounNumber(),player.getRoom())) {
+				result = examineDoor(game,player);
+			} else if (isExamineKitchen(command.getNounNumber(),player.getRoom())) {
+				result = examineKitchen(game,player);
+			} else if (isExamineStones(command.getNounNumber(),player.getRoom())) {
+				result = examineStones(game,player);
+			} else if (isExamineInscription(command.getNounNumber(),player.getRoom())) {
+				result = examineInscription(game,player);
 			} 
 		}
 		
@@ -316,14 +326,51 @@ public class Examine {
 		return new ActionResult(game,player,true);
 	}
 
+	private boolean isExamineStables(int noun, int room) {
+		return noun == GameEntities.ITEM_STABLES && room == GameEntities.ROOM_STABLE;
+	}
+	
+	private ActionResult examineStables(Game game, Player player) {
+		game.addMessage("There is a wooden door.", true, false);
+		return new ActionResult(game,player,true);
+	}
 
+	private boolean isExamineDoor(int noun, int room) {
+		return noun == GameEntities.ITEM_DOOR && room == GameEntities.ROOM_STABLE;
+	}
+	
+	private ActionResult examineDoor(Game game, Player player) {
+		game.addMessage("You found somethings.", true, false);
+		game.getItem(GameEntities.FLAG_HORSESHOE).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
 
+	private boolean isExamineKitchen(int noun, int room) {
+		return noun == GameEntities.ITEM_KITCHEN && room == GameEntities.ROOM_KITCHEN;
+	}
+	
+	private ActionResult examineKitchen(Game game, Player player) {
+		game.addMessage("You see a large cupboard in the corner.", true, false);
+		return new ActionResult(game,player,true);
+	}
 
-	//1690 IF H=6978 THEN R$="THERE IS A WOODEN DOOR"
-	//1700 IF H=6970 THEN R$="YOU FOUND SOMETHING": F(4)=0
-	//1710 IF H=2066 THEN R$="A LARGE CUPBOARD IN THE CORNER"
-	//1720 IF H=6865 OR H=6853 THEN R$="THERE ARE NINE STONES"
-	//1730 IF H=248 THEN R$="B GBEFE XPSE - 'N S I T'":GOSUB 4260
+	private boolean isExamineStones(int noun, int room) {
+		return noun == GameEntities.ITEM_STONES && room == GameEntities.ROOM_STONE_CIRCLE;
+	}
+	
+	private ActionResult examineStones(Game game, Player player) {
+		game.addMessage("There are nine stones.", true, false);
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean isExamineInscription(int noun, int room) {
+		return noun == GameEntities.ITEM_STONES && room == GameEntities.ROOM_STONE_CIRCLE;
+	}
+	
+	private ActionResult examineInscription(Game game, Player player) {
+		game.addMessage("A faded word - 'M R H S'.", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 1 February 2026 - Created file
@@ -332,4 +379,6 @@ public class Examine {
  * 4 February 2026 - Added further examine results
  * 6 February 2026 - Added three more results
  * 7 February 2026 - Completed examine books & other responses
+ * 8 February 2026 - Added interesting results
+ * 9 February 2026 - Completed examine responses
  */
