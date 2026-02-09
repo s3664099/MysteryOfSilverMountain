@@ -406,7 +406,7 @@ public class Move {
 	
 	private boolean doGrargsSeeYou(Game game, int currentRoom) {
 		return currentRoom == GameEntities.ROOM_BANQUET_HALL &&
-				game.getItem(GameEntities.FLAG_FORTY_EIGHT).getItemFlag()==0;
+				game.getItem(GameEntities.FLAG_GRARG_ASLEEP).getItemFlag()==0;
 	}
 	
 	private ActionResult grargsSpotYou(Game game, Player player) {
@@ -621,7 +621,7 @@ public class Move {
 	}
 	
 	private ActionResult leavingBanquetHall(Game game,Player player) {
-		game.getItem(GameEntities.FLAG_FORTY_EIGHT).setItemFlag(1);
+		game.getItem(GameEntities.FLAG_GRARG_ASLEEP).setItemFlag(1);
 		game.getItem(GameEntities.FLAG_TWENTY).setItemFlag(0);
 		return new ActionResult(game,player,false);
 	}

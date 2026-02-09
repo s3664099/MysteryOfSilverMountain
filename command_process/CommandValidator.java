@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 9 December 2025
+Version: 1.2
+Date: 9 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -12,6 +12,7 @@ package command_process;
 import java.util.logging.Logger;
 
 import data.Constants;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -49,7 +50,7 @@ public class CommandValidator {
 		} else if (checkMissingNoun(command)) {
 			logger.info("Validation Failed - Noun Missing");
 			validCommand = false;
-			game = handleMissingNounFails(game);
+			game = handleMissingNounFails(game,command);
 		} else if (checkNone(command)) {
 			logger.info("Validation Failed - Missing Noun Failed");
 			validCommand = false;
@@ -138,8 +139,13 @@ public class CommandValidator {
 	}
 	
     /** Adds a missing noun message. */
-	private Game handleMissingNounFails(Game game) {
-		game.addMessage("Most commands need two words", true, true);
+	private Game handleMissingNounFails(Game game, ParsedCommand command) {
+		
+		if (command.getVerbNumber() == GameEntities.CMD_EXAMINE) {
+			game.addMessage("You see what you might expect!", true, false);
+		} else {
+			game.addMessage("Most commands need two words", true, false);
+		}
 		return game;
 	}
 
@@ -161,4 +167,5 @@ public class CommandValidator {
  * 6 December 2025 - Removed game specific methods
  * 8 December 2025 - Increased version number
  * 9 December 2025 - Added Title
+ * 9 February 2026 - Added alternate response for examine verb only
  */

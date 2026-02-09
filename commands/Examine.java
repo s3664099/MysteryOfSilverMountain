@@ -7,8 +7,6 @@ Date: 9 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
-Also, can only read certain objects, others will fail
-Change flag 48 to flag grarg asleep
 */
 
 package commands;
@@ -45,16 +43,33 @@ public class Examine {
 	}
 	
 	public ActionResult executeExamine() {
-		game.addMessage("You see what you might expect!", true, false);
+		game.addMessage("You see nothing special!", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
 		if(isInMosaicRoom(player.getRoom())) {
 			result = inMosaicRoom(game,player);
 		}
 		
-		if (command.getNounNumber()>0) {
-			game.addMessage("You see nothing special!", true, false);
-			
+		if (command.getVerbNumber() == GameEntities.CMD_COUNT) {
+			if (isExamineStones(command.getNounNumber(),player.getRoom())) {
+				result = examineStones(game,player);
+			} else {
+				game.addMessage("You see only one!", true, false);
+				result = new ActionResult(game,player,true);
+			}
+		} else if (command.getVerbNumber() == GameEntities.CMD_READ) {
+			if (isReadInscription(command.getNounNumber(),player.getRoom())) {
+				result = readInscription(game,player);
+			} else if (isExamineBooks(command.getNounNumber(),player.getRoom())) {
+				result = examineBooks(game,player);
+			} else if (isExamineInscription(command.getNounNumber(),player.getRoom())) {
+				result = examineInscription(game,player);
+			} else {
+				game.addMessage("There is nothing written here!", true, false);
+				result = new ActionResult(game,player,true);
+			}
+		} else {
+						
 			if (isExamineHut(command.getNounNumber(),player.getRoom())) {
 				result = examineHut(game,player);
 			} else if (isExamineChest(command.getNounNumber(),player.getRoom())) {
@@ -92,8 +107,8 @@ public class Examine {
 			} else if (isExamineWellBottom(command.getNounNumber(),player.getRoom())) {
 				result = examineWellBottom(game,player);
 			} else if (isExaminePinnacle(command.getNounNumber(),player.getRoom()) ||
-					isExamineFountain(command.getNounNumber(),player.getRoom()) ||
-					isExamineStatue(command.getNounNumber(),player.getRoom())) {
+				isExamineFountain(command.getNounNumber(),player.getRoom()) ||
+				isExamineStatue(command.getNounNumber(),player.getRoom())) {
 				result = isInteresting(game,player);
 			} else if (isExamineStables(command.getNounNumber(),player.getRoom())) {
 				result = examineStables(game,player);
@@ -107,7 +122,6 @@ public class Examine {
 				result = examineInscription(game,player);
 			} 
 		}
-		
 		return result;
 	}
 	
@@ -282,7 +296,7 @@ public class Examine {
 
 	private boolean isExamineGrarg(int noun, int room, Game game) {
 		return noun == GameEntities.ITEM_GRARG && room == GameEntities.ROOM_BANQUET_HALL &&
-				game.getItem(GameEntities.FLAG_FORTY_EIGHT).getItemFlag() == 1;
+				game.getItem(GameEntities.FLAG_GRARG_ASLEEP).getItemFlag() == 1;
 	}
 	
 	private ActionResult examineGrarg(Game game, Player player) {
