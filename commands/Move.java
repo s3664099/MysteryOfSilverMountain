@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.13
-Date: 19 January 2026
+Version: 1.14
+Date: 10 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -109,6 +109,9 @@ public class Move {
 	
 	/**
 	 * Returns true if the command is executed in a room where south is instead down
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
 	 */
 	private boolean isSouthDown(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_SACKS ||
@@ -118,6 +121,9 @@ public class Move {
 	
 	/**
 	 * Returns true if the command is executed in a room where north is instead up
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
 	 */
 	private boolean isNorthUp(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_LOWER_MILL ||
@@ -333,6 +339,9 @@ public class Move {
 	
     /**
      * Checks if the command is not a valid direction.
+     * 
+	 * @param command the command the player has entered
+	 * @return boolean
      */
 	private boolean isNotDirection(ParsedCommand command) {
 		return command.getVerbNumber()>GameEntities.MOVE_NOT_DIRECTION;
@@ -341,6 +350,8 @@ public class Move {
     /**
      * Handles invalid directional commands.
      *
+     * @param game the current game state
+     * @param player the player making the move
      * @return an {@link ActionResult} indicating invalid input
      */
 	private ActionResult notDirection(Game game,Player player) {
@@ -350,6 +361,11 @@ public class Move {
 	
     /**
      * Checks if there is no exit in the given direction.
+	 *
+     * @param game the current game state
+	 * @param room the room the player is in
+	 * @param nounNumber the value of the noun entered
+	 * @return boolean
      */
 	private boolean isExitBlocked(Game game, int room, int nounNumber) {
 		return !game.checkExit(room,nounNumber-1);
@@ -358,6 +374,8 @@ public class Move {
     /**
      * Handles blocked exits (no exit in that direction).
      *
+     * @param game the current game state
+     * @param player the player making the move
      * @return an {@link ActionResult} indicating failure
      */
 	private ActionResult exitBlocked(Game game, Player player) {
@@ -367,6 +385,11 @@ public class Move {
 	
 	/**
 	 * Checks if the player is crossing the bridge
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @param direction the value of the direction entered
+	 * @return boolean
 	 */
 	private boolean isTrollBlockingBridge(Game game, int roomNumber, int direction) {
 
@@ -375,45 +398,104 @@ public class Move {
 				game.getItem(GameEntities.FLAG_TROLL).getItemFlag()==0);
 	}
 	
+    /**
+     * Handles the troll blocking the exit.
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} indicating failure
+     */
 	private ActionResult trollBlocking(Game game, Player player) {
 		game.addMessage("A troll stops you crossing!", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the troll is away
+	 * 
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isTrollAway(Game game) {
 		return game.getItem(GameEntities.FLAG_TROLL).getItemFlag()==1;
 	}
 	
+    /**
+     * Handles the troll being away.
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult trollAway(Game game, Player player) {
 		game.getItem(GameEntities.FLAG_TROLL).setItemFlag(0);
 		return new ActionResult(game,player,false);
 	}
-		
+	
+	/**
+	 * Checks if the Grargs are away
+	 * 
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean areGragsInvolved(Game game) {
 		return game.getItem(GameEntities.FLAG_FIFTY_ONE).getItemFlag() == 0 &&
 				game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 0;
 	}
 	
+	/**
+	 * Checks if the Grargs have got you
+	 * 
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean haveGrargsGotYou(Game game) {
 		return game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).getItemFlag()==1;
 	}
 	
+    /**
+     * Handles being captured by the grargs
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult grargsCaptureYou(Game game, Player player) {
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		game.addMessage("Grargs have got you!", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the Grargs have seen you
+	 * 
+     * @param game the current game state
+     * @param currentRoom the room the player is in
+	 * @return boolean
+	 */
 	private boolean doGrargsSeeYou(Game game, int currentRoom) {
 		return currentRoom == GameEntities.ROOM_BANQUET_HALL &&
 				game.getItem(GameEntities.FLAG_GRARG_ASLEEP).getItemFlag()==0;
 	}
 	
+    /**
+     * Handles being spotted by the grargs
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult grargsSpotYou(Game game, Player player) {
 		game.addMessage("Grargs will see you!", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the patrol is approaching
+	 * 
+     * @param currentRoom the room the player is in
+	 * @return boolean
+	 */
 	private boolean isPatrolApproaching(int currentRoom) {
 		return currentRoom == GameEntities.ROOM_CAMPFIRE ||
 				currentRoom == GameEntities.ROOM_PLOUGHED_FIELD ||
@@ -421,65 +503,155 @@ public class Move {
 				currentRoom == GameEntities.ROOM_GUARD_ROOM;
 	}
 	
+    /**
+     * Handles being spotted by the grargs
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult grargPatrolApproaching(Game game, Player player) {
 		game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).setItemFlag(1);
 		game.addMessage("A Grarg patrol approaches!", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the player is carrying the boat
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isCarryingBoat(Game game,int roomNumber,int command) {
 		return game.getItem(GameEntities.ITEM_BOAT).getItemLocation() == GameEntities.CARRYING &&
 				((roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_EAST) ||
 				 (roomNumber == GameEntities.ROOM_SHORE && command != GameEntities.CMD_SOUTH));		
 	}
 	
+    /**
+     * Handles carrying the boat
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult carryingBoat(Game game, Player player) {
 		game.addMessage("The boat is too heavy", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the player is not carrying the boat
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isNotCarryingBoat(Game game,int roomNumber,int command) {
 		return game.getItem(GameEntities.ITEM_BOAT).getItemLocation() != GameEntities.CARRYING &&
 				((roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST) ||
 				 (roomNumber == GameEntities.ROOM_SHORE && command == GameEntities.CMD_SOUTH));		
 	}
 	
+    /**
+     * Handles not carrying the boat
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult notCarryingBoat(Game game, Player player) {
 		game.addMessage("You cannot swim", true, true);
 		return new ActionResult(game,player,true);	
 	}
 	
+	/**
+	 * Checks if the boat has not power
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean hasBoatNoPower(Game game,int roomNumber,int command) {
 		return (roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST &&
 				game.getItem(GameEntities.ITEM_BOAT).getItemLocation() == GameEntities.CARRYING &&
 				game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() == 0);
 	}
 	
+    /**
+     * Handles when the boat has no power
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult boatHasNoPower(Game game,Player player) {
 		game.addMessage("No power!", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the boat is sinking
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isBoatSinking(Game game, int roomNumber,int command) {
 		return (roomNumber == GameEntities.ROOM_ROUGH_WATER && command == GameEntities.CMD_SOUTH
 				&& game.getItem(GameEntities.FLAG_BOAT_FLAG).getItemFlag()==0);
 	}
 	
+    /**
+     * Handles when the boat is sinking
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult boatIsSinking(Game game,Player player) {
 		game.addMessage("The boat is sinking", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the boar is blocking
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isBoarBlocking(Game game,int roomNumber,int command) {
 		return (roomNumber == GameEntities.ROOM_COUNTRYSIDE && command == GameEntities.CMD_NORTH
 				&& game.getItem(GameEntities.FLAG_OGBANS_BOAR).getItemFlag()==0);
 	}
 	
+    /**
+     * Handles when the boar is blocking
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult boarIsBlocking(Game game,Player player) {
 		game.addMessage("Ogban's boar blocks your path", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if rubble is blocking the path
+	 * 
+     * @param game the current game state
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isRubbleBlockingPath(Game game, int roomNumber, int command) {
 		
 		return (((roomNumber == GameEntities.ROOM_TOMB && command == GameEntities.CMD_EAST) ||
@@ -487,169 +659,405 @@ public class Move {
 				game.getItem(GameEntities.FLAG_RUBBLE_BLOCKING).getItemFlag() == 0);
 	}
 	
+    /**
+     * Handles when rubble is blocking the path
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult rubbleBlockingPath(Game game,Player player) {
 		game.addMessage("A pile of rubble blocks your path", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the ice is breaking
+	 * 
+     * @param game the current game state
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isIceBreaking(Game game, int roomNumber) {
 		return (game.getItem(GameEntities.ITEM_PLANKS).getItemLocation() != GameEntities.ROOM_POND &&
 				roomNumber == GameEntities.ROOM_POND);
 	}
 	
+    /**
+     * Handles when the ice is breaking
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult iceIsBreaking(Game game,Player player) {
 		game.addMessage("The ice is breaking!", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the player is entering the tunnel
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isEnteringTunnels(int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_TUNNELS && 
 				(command == GameEntities.CMD_EAST || command == GameEntities.CMD_WEST));
 	}
 	
+    /**
+     * Handles when the player enters the tunnel
+     *
+     * @param game the current game state
+     * @param player the player making the move
+	 * @param direction the value of the direction entered
+     * @return an {@link ActionResult}
+     */
 	private ActionResult enteringTunnels(Game game, Player player, int direction) {
 		game.addMessage("You are lost in the tunnels!", true, true);
 		player.setPlayerStateMaze(direction);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the passage is cheap
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isPassageSteep(int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_STALACTITES && command == GameEntities.CMD_WEST);
 	}
 	
+    /**
+     * Handles when the passage is steep
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult steepPassage(Game game,Player player) {
 		game.addMessage("The passage is too steep!", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if hound is blocking the path
+	 * 
+     * @param game the current game state
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isHoundBlocking(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_GLASS_GATES && command == GameEntities.CMD_EAST &&
 				game.getItem(GameEntities.FLAG_HOUND).getItemFlag() == 0);
 	}
 	
+    /**
+     * Handles when the hound is blocking the path
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult houndBlocking(Game game,Player player) {
 		game.addMessage("A huge hound bars your way.", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if it is dark
+	 * 
+     * @param game the current game state
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isItDark(Game game, int roomNumber) {
 		return ((roomNumber == GameEntities.ROOM_CASKS || roomNumber == GameEntities.ROOM_WINE_CELLAR) &&
 				game.getItem(GameEntities.FLAG_IS_DARK).getItemFlag() == 0);
 	}
 	
+    /**
+     * Handles when the hound is blocking the path
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult tooDark(Game game,Player player) {
 		game.addMessage("It is too dark.", true, true);
 		return new ActionResult(game,player,true);	
 	}
-		
+	
+	/**
+	 * Checks if forces are present
+	 * 
+     * @param game the current game state
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean areForcesPresent(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_MOSAIC_HALL && command == GameEntities.CMD_EAST &&
 				game.getItem(GameEntities.FLAG_FORCES).getItemFlag() == 0);
 	}
 	
+    /**
+     * Handles when the forces are present
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult forcesArePresent(Game game, Player player) {
 		game.addMessage("Mysterious forces hold you back.", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if Ogban is present
+	 * 
+     * @param game the current game state
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isOgbanPresent(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_MOSAIC_HALL && command == GameEntities.CMD_SOUTH &&
 				game.getItem(GameEntities.FLAG_OBGAN).getItemFlag() == 0);
 	}
 	
+    /**
+     * Handles when Ogban is present
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult ogbanIsPresent(Game game, Player player) {
 		game.addMessage("You met Ogban!!", true, true);
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if rats are present
+	 * 
+     * @param game the current game state
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean areRatsPresent(Game game, int roomNumber) {
 		return (roomNumber == GameEntities.ROOM_WINE_CELLAR &&
 				game.getItem(GameEntities.FLAG_RATS).getItemFlag()==0);
 	}
 	
+    /**
+     * Handles when rats are present
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult ratsArePresent(Game game,Player player) {
 		game.addMessage("Rats nibble your ankles.", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if player is caught in the webs
+	 * 
+     * @param game the current game state
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isCaughtInWebs(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_COBWEB && 
 				(command==GameEntities.CMD_NORTH || command == GameEntities.CMD_WEST) &&
 				game.getItem(GameEntities.FLAG_COBWEBS).getItemFlag()==0);
 	}
 	
+    /**
+     * Handles when player is caught in the webs
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult caughtInwebs(Game game,Player player) {
 		game.addMessage("You get caught in the webs!", true, true);
 		return new ActionResult(game,player,true);	
 	}
 	
+	/**
+	 * Checks if the door is closed
+	 * 
+     * @param game the current game state
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isDoorClosed(Game game, int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_WIZARD_LAIR && command == GameEntities.CMD_WEST &&
 				game.getItem(GameEntities.FLAG_DOOR).getItemFlag()==0);
 	}
 	
+    /**
+     * Handles when the door is closed
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult doorIsClosed(Game game,Player player) {
 		game.addMessage("The door does not open.", true, true);
 		return new ActionResult(game,player,true);	
 	}
 	
+	/**
+	 * Checks if the player is in the library
+	 * 
+     * @param game the current game state
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isInLibrary(Game game, int roomNumber) {
 		return (game.getItem(GameEntities.FLAG_FORTY_SEVEN).getItemFlag()==1 &&
 				roomNumber == GameEntities.ROOM_LIBRARY);
 	}
 	
+    /**
+     * Handles when the player is in the Library
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult inLibrary(Game game, Player player) {
 		game.getItem(GameEntities.FLAG_OBGAN).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the passage is steep
+	 * 
+     * @param game the current game state
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isSteep(Game game, int roomNumber, int command) {
 		boolean[] exits = game.getRoomExits(GameEntities.ROOM_CASKS);
 		return (roomNumber == GameEntities.ROOM_CASKS && command == GameEntities.CMD_WEST &&
 				!exits[0] && !exits[1] && exits[2] && exits[3]);
 	}
 	
+    /**
+     * Handles when the passage is steep
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult passageIsSteep(Game game, Player player) {
 		player.setRoom(GameEntities.ROOM_SHADY_HOLLOW);
 		game.addMessage("The passage was steep.", true, true);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the player is leaving the banquet hall
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isLeavingBanquetHall(int roomNumber, int command) {
 		return roomNumber == GameEntities.ROOM_BANQUET_HALL && command == GameEntities.CMD_SOUTH;
 	}
 	
+    /**
+     * Handles when the player is leaving the banquet hall
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult leavingBanquetHall(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_GRARG_ASLEEP).setItemFlag(1);
 		game.getItem(GameEntities.FLAG_TWENTY).setItemFlag(0);
 		return new ActionResult(game,player,false);
 	}
 
+	/**
+	 * Checks if the player is crossing the bridge
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isCrossingBridge(int roomNumber, int command) {
 		return (roomNumber == GameEntities.ROOM_BRIDGE_EAST && command == GameEntities.CMD_EAST) ||
 				(roomNumber == GameEntities.ROOM_BRIDGE_WEST && command == GameEntities.CMD_WEST);
 	}
 	
+	/**
+     * Handles when the player crossing the bridge
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult crossingBridge(Game game,Player player) {
 		game.addMessage("You crossed", true, true);
 		return new ActionResult(game,player,false);
 	}
 	
+	/**
+	 * Checks if the player is wearing the boots
+	 * 
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isWearingBoots(Game game) {
 		return game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 1;
 	}
 	
+	/**
+     * Handles increasing the wear status of the boots
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult increaseWearStatus(Game game,Player player) {
 		int flag = game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag();
 		game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).setItemFlag(flag+=1);
 		return new ActionResult(game,player,false);
 	}
 
+	/**
+	 * Checks if the boots have worn out
+	 * 
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean haveBootsWornOut(Game game) {
 		return game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag()>5;
 	}
 	
+	/**
+     * Handles when the boots have worn out
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
 	private ActionResult bootsWornOut(Game game, Player player) {
 		game.addMessage("Your boots have worn out", true, true);
 		game.getItem(GameEntities.FLAG_WEARING_BOOTS).setItemFlag(0);
@@ -680,4 +1088,5 @@ public class Move {
  * 17 January 2026 - Added functionality for going up and down
  * 18 January 2026 - Added functionality for moving through the maze
  * 19 January 2026 - Added movement through maze
+ * 10 February 2026 - Updated javadocs
  */
