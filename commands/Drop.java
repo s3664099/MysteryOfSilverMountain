@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Drop Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 31 January 2026
+Version: 1.4
+Date: 10 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -72,6 +72,10 @@ public class Drop {
 	/**
 	 * Returns true if the command is dropping the boat while the player is in a
 	 * deep water location
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
 	 */
 	private boolean haveDroppedBoatInLake(int nounNumber, int roomNumber) {
 		return nounNumber == GameEntities.ITEM_BOAT &&
@@ -94,6 +98,10 @@ public class Drop {
 	
 	/**
 	 * Returns true if the command is dropping the boat.
+	 *  	 
+	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
 	 */
 	private boolean haveDroppedBoat(Game game, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_BOAT && 
@@ -114,6 +122,10 @@ public class Drop {
 
 	/**
 	 * Returns true if the command is dropping the jug while full.
+	 * 
+	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
 	 */
 	private boolean haveDroppedJug(Game game, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_JUG &&
@@ -135,6 +147,10 @@ public class Drop {
 	
 	/**
 	 * Returns true if the command is dropping the sheet.
+	 * 
+	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
 	 */
 	private boolean haveDroppedSheet(Game game,int nounNumber) {
 		return game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() == 1 &&
@@ -155,6 +171,10 @@ public class Drop {
 	
 	/**
 	 * Returns true if the player is carrying the item
+	 * 
+	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
 	 */
 	private boolean isPlayerCarryingItem(Game game, int nounNumber) {
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
@@ -191,4 +211,5 @@ public class Drop {
  * 29 January 2026 - Added drop functionality
  * 30 January 2026 - Added post command responses
  * 31 January 2026 - Completed code and added Javadocs
+ * 10 February 2026 - Updated Javadocs
  */

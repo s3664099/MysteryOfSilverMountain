@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 28 January 2026
+Version: 1.7
+Date: 11 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -96,6 +96,10 @@ public class Take {
 	
 	/**
 	 * Returns true if the command is taking water in the lake
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
 	 */
 	private boolean isTakingWaterInLake(int roomNumber,int nounNumber) {
 		return (roomNumber == GameEntities.ROOM_ROUGH_WATER || roomNumber == GameEntities.ROOM_MIDDLE_LAKE) &&
@@ -117,6 +121,10 @@ public class Take {
 
 	/**
 	 * Returns true if the command is taking sacks
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
 	 */
 	private boolean isTakingSacks(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_SACKS && nounNumber == GameEntities.ITEM_SACK;
@@ -136,6 +144,11 @@ public class Take {
 	
 	/**
 	 * Returns true if the command is taking the horseshoe when it is nailed on
+	 * 
+     * @param game the current game state
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
 	 */
 	private boolean isHorseShoeNailedOn(int roomNumber, int nounNumber, Game game) {
 		return roomNumber == GameEntities.ROOM_STABLE && nounNumber == GameEntities.ITEM_HORSESHOE &&
@@ -156,6 +169,8 @@ public class Take {
 	
 	/**
 	 * Returns true if the player is carrying too much
+	 *
+	 * @return boolean
 	 */
 	private boolean isCarryingTooMuch() {
 		return game.countItemsCarrying()>Constants.INVENTORY_SPACE; 
@@ -175,6 +190,9 @@ public class Take {
 	
 	/**
 	 * Returns true if the item is not carryable
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
 	 */
 	private boolean isItemCarriable(int nounNumber) {
 		return nounNumber>=Constants.MAX_CARRIABLE_ITEMS; 
@@ -194,6 +212,9 @@ public class Take {
 	
 	/**
 	 * Returns true if the item is being carried
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
 	 */
 	private boolean isItemAlreadyCarried(int nounNumber) {
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
@@ -214,9 +235,13 @@ public class Take {
 	
 	/**
 	 * Returns true if the item is not in the room
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
 	 */
-	private boolean isItemNotPresent(int nounNumber,int playerLocation) {
-		return game.getItem(nounNumber).getItemLocation() != playerLocation;
+	private boolean isItemNotPresent(int nounNumber,int roomNumber) {
+		return game.getItem(nounNumber).getItemLocation() != roomNumber;
 	}
 	
     /**
@@ -233,6 +258,9 @@ public class Take {
 	
 	/**
 	 * Returns true if the item is not takeable at that time
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
 	 */
 	private boolean isItemNotTakeable(int nounNumber) {
 		return game.getItem(nounNumber).getItemFlag() ==1;
@@ -252,6 +280,10 @@ public class Take {
 	
 	/**
 	 * Returns true if the item is taken
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
 	 */
 	private boolean isItemTaken(Game game,int nounNumber,int roomNumber) {
 		return game.getItem(nounNumber).getItemLocation() == roomNumber &&
@@ -297,7 +329,8 @@ public class Take {
 	/**
 	 * Returns true if the items are apples
 	 * 
-	 * @param int the item number being taken
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
 	 */
 	private boolean isItemApples(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_APPLE;
@@ -306,7 +339,8 @@ public class Take {
 	/**
 	 * Returns true if the item is an apple
 	 * 
-	 * @param int the item number being taken
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
 	 */
 	private boolean isItemApple(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_APPLES;
@@ -315,7 +349,9 @@ public class Take {
 	/**
 	 * Returns true if the item is the boat
 	 * 
-	 * @param int the item number being taken
+     * @param game the current game state
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
 	 */
 	private boolean isItemBoat(Game game,int nounNumber) {
 		return game.getItem(GameEntities.FLAG_BOAT_POWER).getItemLocation() == 1 &&
@@ -325,7 +361,8 @@ public class Take {
 	/**
 	 * Returns true if the item is the sheet
 	 * 
-	 * @param int the item number being taken
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
 	 */
 	private boolean isItemSheet(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_SHEET;
@@ -333,6 +370,8 @@ public class Take {
 	
 	/**
 	 * Returns true if the player is carrying the special items
+	 * 
+	 * @return boolean
 	 */
 	private boolean haveSpecialItems() {
 		return game.getItem(GameEntities.ITEM_HORSESHOE).getItemLocation() == GameEntities.ROOM_CARRYING &&
@@ -348,4 +387,5 @@ public class Take {
  * 25 January 2026 - Added inventory limitation
  * 27 January 2026 - Added other limitations and the successful taking
  * 28 January 2026 - Completed the take
+ * 11 February 2026 - Updated JavaDocs
  */

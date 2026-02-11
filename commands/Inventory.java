@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Inventory Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 21 January 2026
+Version: 1.2
+Date: 10 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -31,6 +31,11 @@ public class Inventory {
 		this.player = player;
 	}
 		
+    /**
+     * Creates a string based on what the player is carrying
+     * 
+     * @return an {@link ActionResult} describing the outcome
+     */
 	public ActionResult getInventory() {
 		
 		String items = getItemDetails();
@@ -77,6 +82,12 @@ public class Inventory {
 		return items;
 	}
 	
+	/**
+	 * Returns true if the number of coins is 1
+	 * 
+	 * @param itemNumber the itemNumber
+	 * @return boolean
+	 */
 	private boolean countCoinNumber(int itemNumber) {
 		return (itemNumber == GameEntities.ITEM_COINS && 
 				game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag() == 1);
@@ -86,4 +97,5 @@ public class Inventory {
 /*
  * 20 January 2026 - Created File
  * 21 January 2026 - Added inventory command
+ * 10 February 2026 - Updated Javadocs
  */

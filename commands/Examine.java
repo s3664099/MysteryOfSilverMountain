@@ -489,6 +489,7 @@ public class Examine {
     /**
      * Executes a response to examining the phial
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -511,6 +512,7 @@ public class Examine {
     /**
      * Executes a response to examining the books
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -538,6 +540,7 @@ public class Examine {
     /**
      * Executes a response to examining the grarg
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -561,6 +564,7 @@ public class Examine {
     /**
      * Executes a response to examining the well bottom
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -583,6 +587,7 @@ public class Examine {
     /**
      * Executes a response to examining the mosaic hall
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -627,6 +632,7 @@ public class Examine {
     /**
      * Executes a response to when the response is interesting
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -649,6 +655,7 @@ public class Examine {
     /**
      * Executes a response to examining the stables
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -671,6 +678,7 @@ public class Examine {
     /**
      * Executes a response to examining the door
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -694,6 +702,7 @@ public class Examine {
     /**
      * Executes a response to examining the kitchen
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -716,6 +725,7 @@ public class Examine {
     /**
      * Executes a response to examining the stones
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
@@ -738,6 +748,7 @@ public class Examine {
     /**
      * Executes a response to examining the inscription on the gravestone
      *
+     * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
