@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Drop Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 10 February 2026
+Version: 1.5
+Date: 12 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -47,7 +47,7 @@ public class Drop {
      * @return an {@link ActionResult} describing validity and effects
      */
 	public ActionResult executeDrop() {
-		ActionResult result = new ActionResult(game,player,true);
+		ActionResult result = new ActionResult(game,player,false);
 		
 		if (isPlayerCarryingItem(game,command.getNounNumber())) {
 			result = dropItem(game,player,command.getNounNumber());
@@ -212,4 +212,5 @@ public class Drop {
  * 30 January 2026 - Added post command responses
  * 31 January 2026 - Completed code and added Javadocs
  * 10 February 2026 - Updated Javadocs
+ * 12 February 2026 - Changed initial action result to false.
  */
