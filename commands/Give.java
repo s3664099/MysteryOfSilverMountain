@@ -57,6 +57,10 @@ public class Give {
 			} else {
 				result = atBridge(game,player);
 			}
+		} else if (isGiveAppleAtTrack(player.getRoom(),command.getNounNumber(),game)) {
+			result = giveAppleAtTrack(game,player);
+		} else if (isGiveAppleAtGates(player.getRoom(),command.getNounNumber(),game)) {
+			result = giveAppleAtGates(game,player);
 		}
 		
 		return result;
@@ -136,15 +140,45 @@ public class Give {
 		return new ActionResult(game,player,true);
 	}
 
+	private boolean isGiveAppleAtTrack(int roomNumber, int nounNumber, Game game) {
+		return (nounNumber == GameEntities.ITEM_APPLE || nounNumber == GameEntities.ITEM_APPLES) &&
+				roomNumber == GameEntities.ROOM_TRACK;
+	}
+	
+	private boolean hasOneApple(Game game) {
+		return game.getItem(GameEntities.ITEM_APPLES).getItemLocation() == GameEntities.ROOM_DESTROYED;
+	}
+	
+	private boolean isGiveAppleAtGates(int roomNumber, int nounNumber, Game game) {
+		return (nounNumber == GameEntities.ITEM_APPLE || nounNumber == GameEntities.ITEM_APPLES) && 
+				roomNumber == GameEntities.ROOM_RUSTY_GATES;
+	}
+	
+	private ActionResult giveAppleAtTrack(Game game, Player player) {
+		game.addMessage("He leads you north.", true, false);
+		player.setRoom(GameEntities.ROOM_RUSTY_GATES);
+		if (hasOneApple(game)) {
+			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
+		}
+		return new ActionResult(game,player,true);
+	}
+	
+	private ActionResult giveAppleAtGates(Game game, Player player) {
+		game.addMessage("He leads you south.", true, false);
+		player.setRoom(GameEntities.ROOM_TRACK);
+		if (hasOneApple(game)) {
+			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
+		}
+		return new ActionResult(game,player,true);
+	}
+
 	
 
 
 
 
 
-	//1820 IF H=2228 AND C(5)=81 THEN R$=XB$+"NORTH": C(28)=81: R=12
-	//1830 IF (H=2228 AND C(5)=0) OR H=225 THEN R$=XB$+"NORTH": R=12
-	//1840 IF (H=1228 AND C(5)=0) OR H=125 THEN R$=XB$+"SOUTH": R=22
+
 	
 	//1850 IF R=7 OR R=33 THEN R$="HE EATS IT!": C(B)=81
 	
@@ -155,4 +189,5 @@ public class Give {
 /* 12 February 2026 - Created Class
  * 13 February 2026 - Added give brooch and started with troll
  * 14 February 2026 - Completed the giving items to the troll
+ * 					- Added give apple
  */
