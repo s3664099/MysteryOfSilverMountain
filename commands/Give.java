@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Give Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 13 February 2026
+Version: 1.2
+Date: 14 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 package commands;
@@ -47,8 +47,16 @@ public class Give {
 			result = giveBroach(game,player);
 		} else if (isInValley(player.getRoom())) {
 			result = inValley(game,player);
+		} else if (hasNoCoins(command.getNounNumber(),game)) {
+			result = noCoins(game,player);
 		} else if (isGiveCoinToTroll(player.getRoom(),game,command.getNounNumber())) {
 			result = giveCoinToTroll(game,player);
+		} else if (isAtBridge(player.getRoom())) {
+			if(isGiveCoins(command.getNounNumber(),game)) {
+				result = giveCoins(game,player);
+			} else {
+				result = atBridge(game,player);
+			}
 		}
 		
 		return result;
@@ -96,23 +104,55 @@ public class Give {
 		return new ActionResult(game,player,true);
 	}
 	
+	private boolean isAtBridge(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_BRIDGE_EAST || roomNumber == GameEntities.ROOM_BRIDGE_WEST;
+	}
+	
+	private ActionResult atBridge(Game game, Player player) {
+		game.addMessage("He does not want it.", true, false);
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean hasNoCoins(int nounNumber, Game game) {
+		return (game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag()==0) &&
+				nounNumber == GameEntities.ITEM_COIN;
+	}
+	
+	private ActionResult noCoins(Game game, Player player) {
+		game.addMessage("You have run out!", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isGiveCoins(int nounNumber, Game game) {
+		return (game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag()>0) &&
+				nounNumber == GameEntities.ITEM_COINS;
+	}
+
+	private ActionResult giveCoins(Game game, Player player) {
+		game.addMessage("He takes them all.", true, false);
+		game.getItem(GameEntities.ITEM_COIN).setItemLocation(GameEntities.ROOM_DESTROYED);
+		game.getItem(GameEntities.FLAG_TROLL).setItemFlag(1);
+		game.getItem(GameEntities.FLAG_COIN_NUMBERS).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
 
 	
 
 
-	//1770 IF R=75 OR R=76 THEN R$="HE DOES NOT WANT IT" - Give any to troll
-	//1780 IF B=62 AND F(44)=0 THEN R$="YOU HAVE RUN OUT!" - No coins
-	//1810 IF B=1 THEN R$="HE TAKES THEM ALL!": C(1)=81: F(64)=1: F(44)=0 - give coins
+
 
 
 	//1820 IF H=2228 AND C(5)=81 THEN R$=XB$+"NORTH": C(28)=81: R=12
 	//1830 IF (H=2228 AND C(5)=0) OR H=225 THEN R$=XB$+"NORTH": R=12
 	//1840 IF (H=1228 AND C(5)=0) OR H=125 THEN R$=XB$+"SOUTH": R=22
+	
 	//1850 IF R=7 OR R=33 THEN R$="HE EATS IT!": C(B)=81
+	
 	//1860 IF H=711 THEN F(46)=1: R$="HE IS DISTRACTED"
 	//1870 IF H=385 OR H=3824 THEN R$="THEY SCURRY AWAY": C(B)=81: F(65)=1
 }
 
 /* 12 February 2026 - Created Class
  * 13 February 2026 - Added give brooch and started with troll
+ * 14 February 2026 - Completed the giving items to the troll
  */
