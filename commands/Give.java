@@ -43,7 +43,9 @@ public class Give {
 		
 		ActionResult result = new ActionResult(game,player,false);
 		
-		if (isGiveBroach(player.getRoom(),game,command.getNounNumber())) {
+		if (isPlayerCarryingItem(game,command.getNounNumber())) {
+			result = playerDoesNotHaveItem(game,player);
+		} else if (isGiveBroach(player.getRoom(),game,command.getNounNumber())) {
 			result = giveBroach(game,player);
 		} else if (isInValley(player.getRoom())) {
 			result = inValley(game,player);
@@ -66,10 +68,33 @@ public class Give {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is carrying the item
+	 * 
+	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
+	private boolean isPlayerCarryingItem(Game game, int nounNumber) {
+		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+
+    /**
+     * Executes a response if the player does not have the item
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
+	private ActionResult playerDoesNotHaveItem(Game game, Player player) {
+		game.addMessage("You do not have that!", true, false);
+		return new ActionResult(game,player,true);
+	}
+		
 	private boolean isInValley(int room) {
 		return room == GameEntities.ROOM_VALLEY;
 	}
-	
+
 	private ActionResult inValley(Game game,Player player) {
 		game.addMessage("He gives it back!", true, false);
 		return new ActionResult(game,player,true);
@@ -190,4 +215,5 @@ public class Give {
  * 13 February 2026 - Added give brooch and started with troll
  * 14 February 2026 - Completed the giving items to the troll
  * 					- Added give apple
+ * 					- Added validation carrying item
  */
