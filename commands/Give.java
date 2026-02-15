@@ -26,7 +26,7 @@ public class Give {
 	private final ParsedCommand command;
 	
     /**
-     * Creates a {@code Drop} handler for moving items from the users inventory
+     * Creates a {@code Give} handler for giving an item to somebodu
      * to the current location
      * 
      * @param game   current game state
@@ -39,6 +39,12 @@ public class Give {
 		this.command = command;
 	}
 	
+    /**
+     * Validates whether a give is possible based on the parsed command,
+     * player state, and item locations.
+     *
+     * @return an {@link ActionResult} describing validity and effects
+     */
 	public ActionResult executeGive() {
 		
 		ActionResult result = new ActionResult(game,player,false);
@@ -96,21 +102,49 @@ public class Give {
 		game.addMessage("You do not have that!", true, false);
 		return new ActionResult(game,player,true);
 	}
-		
-	private boolean isInValley(int room) {
-		return room == GameEntities.ROOM_VALLEY;
+	
+	/**
+	 * Returns true if the player is in the valley
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
+	private boolean isInValley(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_VALLEY;
 	}
 
+    /**
+     * Executes a response if the player is giving something in the valley
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult inValley(Game game,Player player) {
 		game.addMessage("He gives it back!", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
-	private boolean isGiveBroach(int room, Game game, int nounNumber) {
-		return room == GameEntities.ROOM_VALLEY && nounNumber == GameEntities.ITEM_BROOCH &&
+	/**
+	 * Returns true if the command is giving the broach in the valley
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param game the current game state
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
+	private boolean isGiveBroach(int roomNumber, Game game, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_VALLEY && nounNumber == GameEntities.ITEM_BROOCH &&
 				game.getItem(GameEntities.ITEM_BROOCH).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response if the player is giving the broach in the valley
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult giveBroach(Game game, Player player) {
 		game.getItem(GameEntities.ITEM_BROOCH).setItemLocation(GameEntities.ROOM_DESTROYED);
 		game.addMessage("He takes it and says '"+game.getItems(GameEntities.FLAG_RING_NUMBER)+" "
@@ -118,16 +152,37 @@ public class Give {
 		return new ActionResult(game,player,true);
 	}
 	
-	private boolean isGiveCoinToTroll(int room,Game game,int nounNumber) {
-		return (room == GameEntities.ROOM_BRIDGE_EAST || room == GameEntities.ROOM_BRIDGE_WEST) &&
+	/**
+	 * Returns true if the command is giving a coin to the troll
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param game the current game state
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
+	private boolean isGiveCoinToTroll(int roomNumber ,Game game,int nounNumber) {
+		return (roomNumber  == GameEntities.ROOM_BRIDGE_EAST || roomNumber  == GameEntities.ROOM_BRIDGE_WEST) &&
 				game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag()>0 &&
 				game.getItem(GameEntities.ITEM_COIN).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+	/**
+	 * Returns true if the player has no coins
+	 * 
+ 	 * @param coinNumbers the number of coins in the player's possession
+	 * @return boolean
+	 */
 	private boolean anyCoinsLeft(int coinNumbers) {
 		return coinNumbers == 0;
 	}
 	
+    /**
+     * Executes a response if the player is giving a coin to the troll
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult giveCoinToTroll(Game game, Player player) {
 		game.addMessage("He takes it", true, false);
 		game.getItem(GameEntities.FLAG_TROLL).setItemFlag(1);
