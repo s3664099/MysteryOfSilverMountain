@@ -63,6 +63,12 @@ public class Give {
 			result = giveAppleAtTrack(game,player);
 		} else if (isGiveAppleAtGates(player.getRoom(),command.getNounNumber(),game)) {
 			result = giveAppleAtGates(game,player);
+		} else if (isGiveBone(player.getRoom(),command.getNounNumber())) {
+			result = giveBone(game,player);
+		} else if (isItEaten(player.getRoom())) {
+			result = itIsEaten(game,player,command.getNounNumber());
+		} else if (isGiveToRats(player.getRoom(),command.getNounNumber())) {
+			result = giveToRats(game,player,command.getNounNumber());
 		}
 		
 		return result;
@@ -197,18 +203,39 @@ public class Give {
 		return new ActionResult(game,player,true);
 	}
 
+	private boolean isItEaten(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_GLASS_GATES ||
+				roomNumber == GameEntities.ROOM_COUNTRYSIDE;
+	}
+
+	private ActionResult itIsEaten(Game game, Player player, int nounNumber) {
+		game.addMessage("He eats it!", true, false);
+		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_DESTROYED);
+		return new ActionResult(game,player,true);
+	}
 	
-
-
-
-
-
-
+	private boolean isGiveBone(int roomNumber,int nounNumber) {
+		return roomNumber == GameEntities.ROOM_GLASS_GATES && nounNumber == GameEntities.ITEM_BONE;
+	}
 	
-	//1850 IF R=7 OR R=33 THEN R$="HE EATS IT!": C(B)=81
+	private ActionResult giveBone(Game game, Player player) {
+		game.addMessage("He is distracted", true, false);
+		game.getItem(GameEntities.FLAG_HOUND).setItemFlag(1);
+		game.getItem(GameEntities.ITEM_BONE).setItemLocation(GameEntities.ROOM_DESTROYED);
+		return new ActionResult(game,player,true);
+	}
 	
-	//1860 IF H=711 THEN F(46)=1: R$="HE IS DISTRACTED"
-	//1870 IF H=385 OR H=3824 THEN R$="THEY SCURRY AWAY": C(B)=81: F(65)=1
+	private boolean isGiveToRats(int roomNumber,int nounNumber) {
+		return (nounNumber == GameEntities.ITEM_APPLES || nounNumber == GameEntities.ITEM_BREAD) &&
+				roomNumber == GameEntities.ROOM_WINE_CELLAR;
+	}
+	
+	private ActionResult giveToRats(Game game, Player player, int nounNumber) {
+		game.addMessage("They scurry away.", true, false);
+		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_DESTROYED);
+		game.getItem(GameEntities.FLAG_RATS).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 12 February 2026 - Created Class
@@ -216,4 +243,5 @@ public class Give {
  * 14 February 2026 - Completed the giving items to the troll
  * 					- Added give apple
  * 					- Added validation carrying item
+ * 15 February 2026 - Completed the give methods
  */
