@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 11 February 2026
+Version: 1.8
+Date: 16 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -50,29 +50,43 @@ public class Take {
 		
 		ActionResult result = new ActionResult(game,player,true);
 		
-		if (isTakingWater(player.getRoom(),command.getNounNumber())) {
-			result = takingWater(game,player);
-		} else if (isTakingWaterInLake(player.getRoom(),command.getNounNumber())) {
-			result = takingWaterInLake(game,player);
-		} else if (isTakingSacks(player.getRoom(),command.getNounNumber())) {
-			result = takingSacks(game,player);
-		} else if (isHorseShoeNailedOn(player.getRoom(),command.getNounNumber(),game)) {
-			result = horseShoeNailedOn(game,player);
-		} else if (isCarryingTooMuch()) {
-			result = carryingTooMuch(game,player);
-		} else if (isItemCarriable(command.getNounNumber())) {
-			result = itemNotCarriable(game,player);
-		} else if (isItemAlreadyCarried(command.getNounNumber())) {
-			result = itemAlreadyCarried(game,player);
-		} else if (isItemNotPresent(command.getNounNumber(),player.getRoom())) {
-			result = itemNotPresent(game,player);
-		} else if (isItemNotTakeable(command.getNounNumber())) {
-			result = itemNotTakeable(game,player,command.getSplitTwoCommand()[1]);
-		} else if (isItemTaken(game,command.getNounNumber(),player.getRoom())) {
-			result = itemTaken(game,player,command.getNounNumber());
-		}
-				
+		if (isPick(command)) {
+			if (isTakingWater(player.getRoom(),command.getNounNumber())) {
+				result = takingWater(game,player);
+			} else if (isTakingWaterInLake(player.getRoom(),command.getNounNumber())) {
+				result = takingWaterInLake(game,player);
+			} else if (isTakingSacks(player.getRoom(),command.getNounNumber())) {
+				result = takingSacks(game,player);
+			} else if (isHorseShoeNailedOn(player.getRoom(),command.getNounNumber(),game)) {
+				result = horseShoeNailedOn(game,player);
+			} else if (isCarryingTooMuch()) {
+				result = carryingTooMuch(game,player);
+			} else if (isItemCarriable(command.getNounNumber())) {
+				result = itemNotCarriable(game,player);
+			} else if (isItemAlreadyCarried(command.getNounNumber())) {
+				result = itemAlreadyCarried(game,player);
+			} else if (isItemNotPresent(command.getNounNumber(),player.getRoom())) {
+				result = itemNotPresent(game,player);
+			} else if (isItemNotTakeable(command.getNounNumber())) {
+				result = itemNotTakeable(game,player,command.getSplitTwoCommand()[1]);
+			} else if (isItemTaken(game,command.getNounNumber(),player.getRoom())) {
+				result = itemTaken(game,player,command.getNounNumber());
+			}
+		} else {
+			this.game.addMessage("You can't "+command.getCommand(), true, false);
+			result = new ActionResult(game,player,true);
+		}	
 		return result;
+	}
+	
+	/**
+	 * Returns true if the command is picking apples or reeds, or one of the other take commands
+	 */
+	private boolean isPick(ParsedCommand command) {
+		return (command.getVerbNumber() == GameEntities.CMD_PICK && 
+				(command.getNounNumber() == GameEntities.ITEM_APPLES ||
+				command.getNounNumber() == GameEntities.ITEM_REEDS)) ||
+				command.getVerbNumber() != GameEntities.CMD_PICK;
 	}
 	
 	/**
@@ -388,4 +402,5 @@ public class Take {
  * 27 January 2026 - Added other limitations and the successful taking
  * 28 January 2026 - Completed the take
  * 11 February 2026 - Updated JavaDocs
+ * 16 February 2026 - Added pick command
  */

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 31 January 2026
+Version: 1.8
+Date: 16 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -49,8 +49,7 @@ public class ParsedCommand {
     /**
      * Represents the specific type of command identified by the parser.
      */
-	private enum CommandType { NONE,TAKE,GIVE,DROP,EXAMINE,SAY,PICK,WEAR,TIE,CLIMB,USE,OPEN,LIGHT,
-								FILL,
+	private enum CommandType { NONE,TAKE,GIVE,DROP,EXAMINE,SAY,WEAR,TIE,CLIMB,USE,OPEN,LIGHT,FILL,
 								LOAD,SAVE,QUIT,RESTART};
 
 	private CommandState commandState = CommandState.NONE;
@@ -121,7 +120,8 @@ public class ParsedCommand {
 	private void setMultipleCommand(int verbNumber) {
 		
 		if (verbNumber == GameEntities.CMD_TAKE || verbNumber == GameEntities.CMD_GET ||
-			verbNumber == GameEntities.CMD_STEAL || verbNumber == GameEntities.CMD_GATHER) {
+			verbNumber == GameEntities.CMD_STEAL || verbNumber == GameEntities.CMD_GATHER ||
+			verbNumber == GameEntities.CMD_PICK) {
 			commandType = CommandType.TAKE;
 		} else if (verbNumber == GameEntities.CMD_DROP || verbNumber == GameEntities.CMD_LEAVE) {
 			commandType = CommandType.DROP;
@@ -132,8 +132,6 @@ public class ParsedCommand {
 			commandType = CommandType.GIVE;
 		} else if (verbNumber == GameEntities.CMD_SAY) {
 			commandType = CommandType.SAY;
-		} else if (verbNumber == GameEntities.CMD_PICK) {
-			commandType = CommandType.PICK;
 		}
 	}
 	
@@ -243,12 +241,7 @@ public class ParsedCommand {
 	public boolean checkExamine() {
 		return commandType == CommandType.EXAMINE;
 	}
-	
-    /** @return true if the command is a PICK command */
-	public boolean checkPick() {
-		return commandType == CommandType.PICK;
-	}
-	
+		
     /** @return true if the command is a LOAD command */
 	public boolean checkLoad() {
 		return commandType == CommandType.LOAD;
@@ -283,4 +276,5 @@ public class ParsedCommand {
  * 22 January 2026 - Added all take like commands
  * 28 January 2026 - Added all drop like commands
  * 31 January 2026 - Added Examine, Give, Say, Pick
+ * 16 February 2026 - Merged Pick with Take
  */
