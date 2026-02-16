@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Give Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 14 February 2026
+Version: 1.4
+Date: 16 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 package commands;
@@ -194,30 +194,71 @@ public class Give {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is at the bridge
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isAtBridge(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_BRIDGE_EAST || roomNumber == GameEntities.ROOM_BRIDGE_WEST;
 	}
 	
+    /**
+     * Executes a response if the player is giving something that are not coins to the troll
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult atBridge(Game game, Player player) {
 		game.addMessage("He does not want it.", true, false);
 		return new ActionResult(game,player,true);
 	}
 
+	/**
+	 * Returns true if the player has no coins
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean hasNoCoins(int nounNumber, Game game) {
 		return (game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag()==0) &&
 				nounNumber == GameEntities.ITEM_COIN;
 	}
 	
+    /**
+     * Executes a response if the player has no coins
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult noCoins(Game game, Player player) {
 		game.addMessage("You have run out!", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is giving all their coins
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isGiveCoins(int nounNumber, Game game) {
 		return (game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag()>0) &&
 				nounNumber == GameEntities.ITEM_COINS;
 	}
 
+    /**
+     * Executes a response if the player is giving all their coins
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult giveCoins(Game game, Player player) {
 		game.addMessage("He takes them all.", true, false);
 		game.getItem(GameEntities.ITEM_COIN).setItemLocation(GameEntities.ROOM_DESTROYED);
@@ -226,20 +267,49 @@ public class Give {
 		return new ActionResult(game,player,true);
 	}
 
+	/**
+	 * Returns true if the player is giving the apple at the track
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param game the current game state
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isGiveAppleAtTrack(int roomNumber, int nounNumber, Game game) {
 		return (nounNumber == GameEntities.ITEM_APPLE || nounNumber == GameEntities.ITEM_APPLES) &&
 				roomNumber == GameEntities.ROOM_TRACK;
 	}
 	
+	/**
+	 * Returns true if player only has one apple
+	 * 
+	 * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean hasOneApple(Game game) {
 		return game.getItem(GameEntities.ITEM_APPLES).getItemLocation() == GameEntities.ROOM_DESTROYED;
 	}
 	
+	/**
+	 * Returns true if the player is giving the apple at the gates
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param game the current game state
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isGiveAppleAtGates(int roomNumber, int nounNumber, Game game) {
 		return (nounNumber == GameEntities.ITEM_APPLE || nounNumber == GameEntities.ITEM_APPLES) && 
 				roomNumber == GameEntities.ROOM_RUSTY_GATES;
 	}
 	
+    /**
+     * Executes a response if the player is giving the apple at the track
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult giveAppleAtTrack(Game game, Player player) {
 		game.addMessage("He leads you north.", true, false);
 		player.setRoom(GameEntities.ROOM_RUSTY_GATES);
@@ -249,6 +319,13 @@ public class Give {
 		return new ActionResult(game,player,true);
 	}
 	
+    /**
+     * Executes a response if the player is giving the apple at the gates
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult giveAppleAtGates(Game game, Player player) {
 		game.addMessage("He leads you south.", true, false);
 		player.setRoom(GameEntities.ROOM_TRACK);
@@ -258,21 +335,48 @@ public class Give {
 		return new ActionResult(game,player,true);
 	}
 
+	/**
+	 * Returns true if the item given is eaten
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isItEaten(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_GLASS_GATES ||
 				roomNumber == GameEntities.ROOM_COUNTRYSIDE;
 	}
 
+    /**
+     * Executes a response if the item given is eaten
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult itIsEaten(Game game, Player player, int nounNumber) {
 		game.addMessage("He eats it!", true, false);
 		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_DESTROYED);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is giving the bone
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isGiveBone(int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_GLASS_GATES && nounNumber == GameEntities.ITEM_BONE;
 	}
 	
+    /**
+     * Executes a response if the player is giving a bone
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult giveBone(Game game, Player player) {
 		game.addMessage("He is distracted", true, false);
 		game.getItem(GameEntities.FLAG_HOUND).setItemFlag(1);
@@ -280,11 +384,25 @@ public class Give {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is giving something to the rats
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isGiveToRats(int roomNumber,int nounNumber) {
 		return (nounNumber == GameEntities.ITEM_APPLES || nounNumber == GameEntities.ITEM_BREAD) &&
 				roomNumber == GameEntities.ROOM_WINE_CELLAR;
 	}
 	
+    /**
+     * Executes a response if the player is something to the rats
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult giveToRats(Game game, Player player, int nounNumber) {
 		game.addMessage("They scurry away.", true, false);
 		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_DESTROYED);
@@ -299,4 +417,5 @@ public class Give {
  * 					- Added give apple
  * 					- Added validation carrying item
  * 15 February 2026 - Completed the give methods
+ * 16 February 2026 - Added Javadocs
  */
