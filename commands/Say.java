@@ -2,14 +2,16 @@
 Title: Mystery of Silver Mountain Say Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 17 February 2026
+Version: 1.1
+Date: 19 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package commands;
 
+import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -38,14 +40,49 @@ public class Say {
 		this.command = command;
 	}
 	
-	//1890 R$="YOU SAID IT"
-	//1900 IF B=84 THEN R$="YOU MUST SAY THEM ONE BY ONE!":RETURN
-	//1910 IF R<>47 OR B<71 OR B>75 OR C(27)<>0 THEN RETURN
-	//1920 IF B=71 AND F(60)=0 THEN R$=X7$: F(60)=1:RETURN
-	//1930 IF B=72 AND F(60)=1 AND F(61)=1 THEN F(62)=1:RETURN
-	//1940 IF B=(F(52)+73) AND F(60)=1 AND F(61)=1 THEN F(62)=1:RETURN
-	//1950 R$="THE WRONG SACRED WORD!": F(56)=1:RETURN
+	public ActionResult executeSay() {
+		game.addMessage("You said it.", true, false);
+		ActionResult result = new ActionResult(game,player,false);
+		
+		if (isSayMagicWords(command.getNounNumber())) {
+			result = sayMagicWords(game,player);
+		} else if (isSayingMagicWords(player.getRoom(),command.getNounNumber(),game)) {
+			
+			if (isSayingAwake(command.getNounNumber(),game)) {
+				result = sayingAwake(game,player);
+			} else if (isSayingGuide(command.getNounNumber(),game)) {
+				result = sayingGuide(game,player);
+			} else if (isSayingLastWord(command.getNounNumber(),game)) {
+				result = sayingLastWord(game,player);
+			} else {
+				result = sayingWrongWord(game,player);
+			}
+			//1920 IF B=71 AND F(60)=0 THEN R$=X7$: F(60)=1:RETURN
+			//1930 IF B=72 AND F(60)=1 AND F(61)=1 THEN F(62)=1:RETURN
+			//1940 IF B=(F(52)+73) AND F(60)=1 AND F(61)=1 THEN F(62)=1:RETURN
+			//1950 R$="THE WRONG SACRED WORD!": F(56)=1:RETURN
+		}
+		
+		return result;
+	}
+	
+	private boolean isSayMagicWords(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_MAGIC_WORDS;
+	}
+	
+	private ActionResult sayMagicWords(Game game,Player player)  {
+		game.addMessage("You must say them one by one!", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isSayingMagicWords(int roomNumber,int nounNumber, Game game) {
+		return roomNumber == GameEntities.ROOM_SILVER_CHAMBER &&
+				nounNumber > GameEntities.ITEM_DOOR &&
+				nounNumber < GameEntities.ITEM_CHEST &&
+				game.getItem(GameEntities.ITEM_STONE_DESTINY).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
 }
 
 /* 17 February 2026 - Created File
+ * 19 February 2026 - Started adding say responses
  */
