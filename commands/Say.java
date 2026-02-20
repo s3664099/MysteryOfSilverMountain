@@ -57,8 +57,7 @@ public class Say {
 			} else {
 				result = sayingWrongWord(game,player);
 			}
-			//1920 IF B=71 AND F(60)=0 THEN R$=X7$: F(60)=1:RETURN
-			//1930 IF B=72 AND F(60)=1 AND F(61)=1 THEN F(62)=1:RETURN
+
 			//1940 IF B=(F(52)+73) AND F(60)=1 AND F(61)=1 THEN F(62)=1:RETURN
 			//1950 R$="THE WRONG SACRED WORD!": F(56)=1:RETURN
 		}
@@ -80,6 +79,23 @@ public class Say {
 				nounNumber > GameEntities.ITEM_DOOR &&
 				nounNumber < GameEntities.ITEM_CHEST &&
 				game.getItem(GameEntities.ITEM_STONE_DESTINY).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+	
+	private boolean isSayingAwake(int nounNumber,Game game) {
+		return game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).getItemFlag() == 0 &&
+				nounNumber == GameEntities.ITEM_AWAKE;
+	}
+	
+	private ActionResult sayingAwake(Game game,Player player) {
+		game.addMessage("The mountains rumber!", true, false);
+		game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	//1930 IF B=72 AND F(60)=1 AND F(61)=0 THEN R$=X8$: F(61)=1:RETURN
+	private boolean isSayingGuide(int nounNumber, Game game) {
+		return game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).getItemFlag() == 1 &&
+				game.getItem(GameEntities.FLAG_SECOND_WORD_SPOKEN).getItemFlag() == 0 &&
+				nounNumber == GameEntities.ITEM_AWAKE;		
 	}
 }
 

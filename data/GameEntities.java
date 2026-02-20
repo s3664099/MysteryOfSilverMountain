@@ -254,8 +254,8 @@ public class GameEntities {
     public static final int FLAG_FIFTY_SEVEN = 57;
     public static final int FLAG_FIFTY_EIGHT = 58;
     public static final int FLAG_FIFTY_NINE = 59;
-    public static final int FLAG_SIXTY = 60;
-    public static final int FLAG_SIXTY_ONE = 61;
+    public static final int FLAG_FIRST_WORD_SPOKEN = 60;
+    public static final int FLAG_SECOND_WORD_SPOKEN = 61;
     public static final int FLAG_SIXTY_TWO = 62;
     public static final int FLAG_SIXTY_THREE = 63;
     public static final int FLAG_TROLL = 64;
