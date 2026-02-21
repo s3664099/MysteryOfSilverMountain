@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Say Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 19 February 2026
+Version: 1.3
+Date: 21 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.Constants;
 import data.GameEntities;
 import game.Game;
 import game.Player;
@@ -57,9 +58,6 @@ public class Say {
 			} else {
 				result = sayingWrongWord(game,player);
 			}
-
-			//1940 IF B=(F(52)+73) AND F(60)=1 AND F(61)=1 THEN F(62)=1:RETURN
-			//1950 R$="THE WRONG SACRED WORD!": F(56)=1:RETURN
 		}
 		
 		return result;
@@ -91,14 +89,41 @@ public class Say {
 		game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
-	//1930 IF B=72 AND F(60)=1 AND F(61)=0 THEN R$=X8$: F(61)=1:RETURN
+
 	private boolean isSayingGuide(int nounNumber, Game game) {
 		return game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).getItemFlag() == 1 &&
 				game.getItem(GameEntities.FLAG_SECOND_WORD_SPOKEN).getItemFlag() == 0 &&
 				nounNumber == GameEntities.ITEM_AWAKE;		
 	}
+	
+	private ActionResult sayingGuide(Game game,Player player) {
+		game.addMessage("Towers fall down!", true, false);
+		game.getItem(GameEntities.FLAG_SECOND_WORD_SPOKEN).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isSayingLastWord(int nounNumber, Game game) {
+		return game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).getItemFlag() ==1 &&
+				game.getItem(GameEntities.FLAG_SECOND_WORD_SPOKEN).getItemFlag() == 1 &&
+				nounNumber == game.getItem(GameEntities.FLAG_WORD_LOCATION).getItemFlag() + 
+				Constants.MAGIC_WORD_CONSTANT;
+	}
+	
+	private ActionResult sayingLastWord(Game game,Player player) {
+		game.getItem(GameEntities.FLAG_THIRD_WORD_SPOKEN).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+
+	private ActionResult sayingWrongWord(Game game,Player player) {
+		game.addMessage("The wrong sacred word!", true, false);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
 }
 
 /* 17 February 2026 - Created File
  * 19 February 2026 - Started adding say responses
+ * 20 February 2026 - Adding Magic words
+ * 21 February 2026 - Completed class
  */
