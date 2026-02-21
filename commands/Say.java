@@ -40,7 +40,11 @@ public class Say {
 		this.player = player;
 		this.command = command;
 	}
-	
+    /**
+     * Responds to what it is said, and determines whether it is game related or not
+     *
+     * @return an {@link ActionResult} describing effects
+     */
 	public ActionResult executeSay() {
 		game.addMessage("You said it.", true, false);
 		ActionResult result = new ActionResult(game,player,false);
@@ -63,15 +67,36 @@ public class Say {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is saying "magic words"
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isSayMagicWords(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_MAGIC_WORDS;
 	}
 	
+    /**
+     * Executes a response if the player says "magic words"
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult sayMagicWords(Game game,Player player)  {
 		game.addMessage("You must say them one by one!", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is saying one of the magic words, at the stone of destiny
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isSayingMagicWords(int roomNumber,int nounNumber, Game game) {
 		return roomNumber == GameEntities.ROOM_SILVER_CHAMBER &&
 				nounNumber > GameEntities.ITEM_DOOR &&
@@ -79,29 +104,64 @@ public class Say {
 				game.getItem(GameEntities.ITEM_STONE_DESTINY).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+	/**
+	 * Returns true if the player is saying "awake"
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isSayingAwake(int nounNumber,Game game) {
 		return game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).getItemFlag() == 0 &&
 				nounNumber == GameEntities.ITEM_AWAKE;
 	}
 	
+    /**
+     * Executes a response if the player says "awake"
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult sayingAwake(Game game,Player player) {
 		game.addMessage("The mountains rumber!", true, false);
 		game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 
+	/**
+	 * Returns true if the player is saying "guide" and "awake" has been said
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isSayingGuide(int nounNumber, Game game) {
 		return game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).getItemFlag() == 1 &&
 				game.getItem(GameEntities.FLAG_SECOND_WORD_SPOKEN).getItemFlag() == 0 &&
 				nounNumber == GameEntities.ITEM_AWAKE;		
 	}
 	
+    /**
+     * Executes a response if the player says "guide" after saying "awake"
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult sayingGuide(Game game,Player player) {
 		game.addMessage("Towers fall down!", true, false);
 		game.getItem(GameEntities.FLAG_SECOND_WORD_SPOKEN).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is saying the third word after the previous two
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isSayingLastWord(int nounNumber, Game game) {
 		return game.getItem(GameEntities.FLAG_FIRST_WORD_SPOKEN).getItemFlag() ==1 &&
 				game.getItem(GameEntities.FLAG_SECOND_WORD_SPOKEN).getItemFlag() == 1 &&
@@ -109,21 +169,35 @@ public class Say {
 				Constants.MAGIC_WORD_CONSTANT;
 	}
 	
+    /**
+     * Executes a response if the player says the third word after the previous two
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult sayingLastWord(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_THIRD_WORD_SPOKEN).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 
+    /**
+     * Executes a response if the player says the wrong word
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult sayingWrongWord(Game game,Player player) {
 		game.addMessage("The wrong sacred word!", true, false);
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
-	
 }
 
 /* 17 February 2026 - Created File
  * 19 February 2026 - Started adding say responses
  * 20 February 2026 - Adding Magic words
  * 21 February 2026 - Completed class
+ * 					- Added javadocs
  */
