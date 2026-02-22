@@ -245,7 +245,7 @@ public class GameEntities {
     public static final int FLAG_GRARG_ASLEEP = 48;
     public static final int FLAG_CARRYING_ITEMS = 49;
     public static final int FLAG_IS_DARK= 50;
-    public static final int FLAG_FIFTY_ONE = 51;
+    public static final int FLAG_WEARING_UNFORM = 51;
     public static final int FLAG_WORD_LOCATION = 52;
     public static final int FLAG_FIFTY_THREE = 53;
     public static final int FLAG_FORCES = 54;

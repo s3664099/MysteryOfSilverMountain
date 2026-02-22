@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -39,13 +40,43 @@ public class Wear {
 	}
 	
 	public ActionResult executeWear() {
+		game.addMessage("It's not possible.", true, false);
 		ActionResult result = new ActionResult(game,player,true);
+		
+		if (isWearBoots(game,command.getNounNumber())) {
+			result = wearBoots(game,player);
+		} else if (isWearUniform(game,command.getNounNumber())) {
+			result = wearUniform(game,player);
+		}
 		
 		return result;
 	}
 	
-	//1980 IF B=3 THEN F(29)=1: R$="ZPV BSF JOWJTCMF": F(55)=0:GOSUB 4260
-	//1990 IF B=20 THEN F(51)=1: R="ZPV BSF EJTHVJTFE": F(55)=0:GOSUB 4260
+	private boolean isWearBoots(Game game, int nounNumber) {
+		return game.getItem(GameEntities.ITEM_BOOTS).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 0 &&
+				nounNumber == GameEntities.ITEM_BOOTS;
+	}
+	
+	private ActionResult wearBoots(Game game,Player player) {
+		game.getItem(GameEntities.FLAG_WEARING_BOOTS).setItemFlag(1);
+		game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).setItemFlag(0);
+		game.addMessage("You are invisble", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isWearUniform(Game game, int nounNumber) {
+		return game.getItem(GameEntities.ITEM_UNIFORM).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				game.getItem(GameEntities.FLAG_WEARING_UNFORM).getItemFlag() == 0 &&
+				nounNumber == GameEntities.ITEM_UNIFORM;
+	}
+	
+	private ActionResult wearUniform(Game game,Player player) {
+		game.getItem(GameEntities.FLAG_WEARING_UNFORM).setItemFlag(1);
+		game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).setItemFlag(0);
+		game.addMessage("You are disquised", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /*
