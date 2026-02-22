@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.14
-Date: 10 February 2026
+Version: 1.15
+Date: 22 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -439,7 +439,7 @@ public class Move {
 	 * @return boolean
 	 */
 	private boolean areGragsInvolved(Game game) {
-		return game.getItem(GameEntities.FLAG_FIFTY_ONE).getItemFlag() == 0 &&
+		return game.getItem(GameEntities.FLAG_WEARING_UNFORM).getItemFlag() == 0 &&
 				game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 0;
 	}
 	
@@ -1089,4 +1089,5 @@ public class Move {
  * 18 January 2026 - Added functionality for moving through the maze
  * 19 January 2026 - Added movement through maze
  * 10 February 2026 - Updated javadocs
+ * 22 February 2026 - Changed Flag 51 name
  */

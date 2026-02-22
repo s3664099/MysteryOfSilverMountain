@@ -39,6 +39,11 @@ public class Wear {
 		this.command = command;
 	}
 	
+    /**
+     * Executes a validated wear command
+     *
+     * @return an {@link ActionResult} describing the outcome
+     */
 	public ActionResult executeWear() {
 		game.addMessage("It's not possible.", true, false);
 		ActionResult result = new ActionResult(game,player,true);
@@ -52,12 +57,26 @@ public class Wear {
 		return result;
 	}
 	
+	/**
+	 * Checks if the player putting on the boots
+	 * 
+	 * @param nounNumber the command the player has entered
+	 * @param game   current game state
+	 * @return boolean
+	 */
 	private boolean isWearBoots(Game game, int nounNumber) {
 		return game.getItem(GameEntities.ITEM_BOOTS).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 0 &&
 				nounNumber == GameEntities.ITEM_BOOTS;
 	}
 	
+    /**
+     * Handles wearing the boots.
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} the result
+     */
 	private ActionResult wearBoots(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_WEARING_BOOTS).setItemFlag(1);
 		game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).setItemFlag(0);
@@ -65,12 +84,26 @@ public class Wear {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Checks if the player putting on a uniform
+	 * 
+	 * @param nounNumber the command the player has entered
+	 * @param game   current game state
+	 * @return boolean
+	 */
 	private boolean isWearUniform(Game game, int nounNumber) {
 		return game.getItem(GameEntities.ITEM_UNIFORM).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				game.getItem(GameEntities.FLAG_WEARING_UNFORM).getItemFlag() == 0 &&
 				nounNumber == GameEntities.ITEM_UNIFORM;
 	}
 	
+    /**
+     * Handles wearing the uniform.
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} the result
+     */
 	private ActionResult wearUniform(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_WEARING_UNFORM).setItemFlag(1);
 		game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).setItemFlag(0);
