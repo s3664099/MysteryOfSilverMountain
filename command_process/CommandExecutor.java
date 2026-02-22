@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 16 February 2026
+Version: 1.10
+Date: 22 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -16,7 +16,9 @@ import commands.Examine;
 import commands.Give;
 import commands.Inventory;
 import commands.Take;
+import commands.Wear;
 import commands.Move;
+import commands.Say;
 import game.Game;
 import game.Player;
 import game.PostCommand;
@@ -72,6 +74,9 @@ public class CommandExecutor {
 			result = new Give(game,player,command).executeGive();
 		} else if (command.checkSay()) {
 			logger.info("Say");
+			result = new Say(game,player,command).executeSay();
+		} else if (command.checkWear()) {
+			result = new Wear(game,player,command).executeWear();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
@@ -104,4 +109,6 @@ public class CommandExecutor {
  * 1 February 2026 - Added call to examine class
  * 12 February 2026 - Added call to give class
  * 16 February 2026 - Removed pick
+ * 19 February 2026 - Added executeSay
+ * 22 February 2026 - Added wear command
  */
