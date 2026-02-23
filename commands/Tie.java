@@ -48,6 +48,9 @@ public class Tie {
 		ActionResult result = new ActionResult(game,player,false);
 		return result;
 	}
+	//2010 IF B=2 OR B=14 THEN R$="NOTHING TO TIE IT TO!"
+	//2020 IF H=7214 THEN R$="IT IS TIED": C(14)=72: F(53)=1
+	//2030 IF H=722 THEN R$="OK": F(40)=1: C(2)=72
 }
 
 /* 23 February 2026 - Created Tie Class
