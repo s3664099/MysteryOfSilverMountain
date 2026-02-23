@@ -2,7 +2,7 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.9
+Version: 1.10
 Date: 22 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
@@ -134,6 +134,8 @@ public class ParsedCommand {
 			commandType = CommandType.SAY;
 		} else if (verbNumber == GameEntities.CMD_WEAR) {
 			commandType = CommandType.WEAR;
+		} else if (verbNumber == GameEntities.CMD_TIE)  {
+			commandType = CommandType.TIE;
 		}
 	}
 	
@@ -244,6 +246,12 @@ public class ParsedCommand {
 		return commandType == CommandType.WEAR;
 	}
 	
+    /** @return true if the command is a TIE command */
+	public boolean checkTie() {
+		return commandType == CommandType.TIE;
+	}
+	
+	
     /** @return true if the command is a EXAMINE command */
 	public boolean checkExamine() {
 		return commandType == CommandType.EXAMINE;
@@ -285,4 +293,5 @@ public class ParsedCommand {
  * 31 January 2026 - Added Examine, Give, Say, Pick
  * 16 February 2026 - Merged Pick with Take
  * 22 February 2026 - Added wear command
+ * 23 February 2026 - Added Tie Command
  */

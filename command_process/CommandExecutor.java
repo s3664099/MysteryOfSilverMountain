@@ -16,6 +16,7 @@ import commands.Examine;
 import commands.Give;
 import commands.Inventory;
 import commands.Take;
+import commands.Tie;
 import commands.Wear;
 import commands.Move;
 import commands.Say;
@@ -76,7 +77,11 @@ public class CommandExecutor {
 			logger.info("Say");
 			result = new Say(game,player,command).executeSay();
 		} else if (command.checkWear()) {
+			logger.info("Wear");
 			result = new Wear(game,player,command).executeWear();
+		} else if (command.checkTie()) {
+			logger.info("Tie");
+			result = new Tie(game,player,command).executeTie();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
