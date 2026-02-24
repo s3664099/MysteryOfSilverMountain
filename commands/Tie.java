@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Tie Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 23 February 2026
+Version: 1.1
+Date: 24 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -51,6 +51,10 @@ public class Tie {
 		
 		if (isTyingSheetOrRope(command.getNounNumber(),player.getRoom(),game)) {
 			result = tyingSheetOrRope(game,player);
+		} else if (isTyingSheet(command.getNounNumber(),player.getRoom(),game)) {
+			result = tyingSheet(game,player);
+		} else if (isTyingRope(command.getNounNumber(),player.getRoom(),game)) {
+			result = tyingRope(game,player);
 		}
 		
 		return result;
@@ -69,9 +73,33 @@ public class Tie {
 		return new ActionResult(game,player,true);
 	}
 	
-	//2020 IF H=7214 THEN R$="IT IS TIED": C(14)=72: F(53)=1
-	//2030 IF H=722 THEN R$="OK": F(40)=1: C(2)=72
+	private boolean isTyingSheet(int nounNumber,int roomNumber,Game game) {
+		return (nounNumber == GameEntities.ITEM_SHEET && 
+				game.getItem(GameEntities.ITEM_SHEET).getItemLocation() == GameEntities.ROOM_CARRYING) &&
+				roomNumber != GameEntities.ROOM_WELL;
+	}
+	
+	private ActionResult tyingSheet(Game game,Player player) {
+		game.addMessage("It is tied!", true, false);
+		game.getItem(GameEntities.ITEM_SHEET).setItemLocation(GameEntities.ROOM_WELL);
+		game.getItem(GameEntities.FLAG_SHEET_TIED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isTyingRope(int nounNumber,int roomNumber,Game game) {
+		return (nounNumber == GameEntities.ITEM_ROPE && 
+				game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == GameEntities.ROOM_CARRYING) &&
+				roomNumber != GameEntities.ROOM_WELL;
+	}
+	
+	private ActionResult tyingRope(Game game,Player player) {
+		game.addMessage("It is tied!", true, false);
+		game.getItem(GameEntities.ITEM_ROPE).setItemLocation(GameEntities.ROOM_WELL);
+		game.getItem(GameEntities.FLAG_ROPE_TIED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 23 February 2026 - Created Tie Class
-*/
+ * 24 February 2026 - Completed Tie actions
+ */
