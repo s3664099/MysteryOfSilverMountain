@@ -60,6 +60,14 @@ public class Tie {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is tying the sheet or the rope but in the incorrect location
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isTyingSheetOrRope(int nounNumber,int roomNumber,Game game) {
 		return ((nounNumber == GameEntities.ITEM_SHEET && 
 				game.getItem(GameEntities.ITEM_SHEET).getItemLocation() == GameEntities.ROOM_CARRYING) ||
@@ -68,17 +76,39 @@ public class Tie {
 				roomNumber != GameEntities.ROOM_WELL;
 	}
 	
+    /**
+     * Executes a response if the player is tying the sheet or the rope but in the incorrect location
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult tyingSheetOrRope(Game game,Player player) {
 		game.addMessage("Nothing to tie it to!", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is tying the sheet in the correct location
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isTyingSheet(int nounNumber,int roomNumber,Game game) {
 		return (nounNumber == GameEntities.ITEM_SHEET && 
 				game.getItem(GameEntities.ITEM_SHEET).getItemLocation() == GameEntities.ROOM_CARRYING) &&
 				roomNumber != GameEntities.ROOM_WELL;
 	}
 	
+    /**
+     * Executes a response if the player is tying the sheet in the correct location
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult tyingSheet(Game game,Player player) {
 		game.addMessage("It is tied!", true, false);
 		game.getItem(GameEntities.ITEM_SHEET).setItemLocation(GameEntities.ROOM_WELL);
@@ -86,12 +116,27 @@ public class Tie {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is tying the rope in the correct location
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isTyingRope(int nounNumber,int roomNumber,Game game) {
 		return (nounNumber == GameEntities.ITEM_ROPE && 
 				game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == GameEntities.ROOM_CARRYING) &&
 				roomNumber != GameEntities.ROOM_WELL;
 	}
 	
+    /**
+     * Executes a response if the player is tying the rope in the correct location
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult tyingRope(Game game,Player player) {
 		game.addMessage("It is tied!", true, false);
 		game.getItem(GameEntities.ITEM_ROPE).setItemLocation(GameEntities.ROOM_WELL);
