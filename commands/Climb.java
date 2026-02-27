@@ -112,8 +112,20 @@ public class Climb {
 		player.setRoom(GameEntities.ROOM_WELL_BOTTOM);
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isClimbingSheet(Game game,int nounNumber,int roomNumber) {
+		return nounNumber == GameEntities.ITEM_SHEET && roomNumber == GameEntities.ROOM_WELL &&
+				game.getItem(GameEntities.FLAG_SHEET_TIED).getItemFlag() == 1;
+	}
+	
+	private ActionResult climbingSheet(Game game,Player player) {
+		game.addMessage("It is torn.", true, false);
+		game.getItem(GameEntities.ITEM_SHEET).setItemLocation(GameEntities.ROOM_DESTROYED);
+		game.getItem(GameEntities.FLAG_SHEET_TIED).setItemFlag(0);
+		player.setRoom(GameEntities.ROOM_WELL_BOTTOM);
+		return new ActionResult(game,player,true);
+	}
 
-	//2090 IF H=722 AND F(4O)=1 THEN R=71: R$="IT IS TORN": C(2)=81: F(40)=0
 	//2100 IF H=7114 AND F(53)=1 THEN C(14)=71: F(53)=0: R$="IT FALLS DOWN-BUMP!"	
 }
 
