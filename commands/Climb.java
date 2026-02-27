@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -47,10 +48,35 @@ public class Climb {
 		game.addMessage("You are unable to do that.", false, false);
 		ActionResult result = new ActionResult(game,player,false);
 		
+		if (isClimbVine(player.getRoom(),command.getNounNumber(),game)) {
+			result = climbVine(game,player);
+		} else if (isNotAttached(game,command.getNounNumber()) {
+			result = notAttached();
+		} else if (isAtTheTop(game,command.getNounNumber(),player.getRoom())) {
+			result = atTheTop(game,player);
+		} else if (isGoingDown(game,command.getNounNumber(),player.getRoom())) {
+			result = goingDown(game,player);
+		} else if (isClimbingSheet(game,command.getNounNumber(),player.getRoom())) {
+			result = climbingSheet(game,player);
+		} else if (isClimbingRope(game,command.getNounNumber(),player.getRoom())) {
+			result = climbingRope(game,player);
+		}
+		
 		return result;
 	}
 	
-	//2050 IF H=1547 AND F(38)=1 THEN R$="ALL RIGHT": R=16
+	private boolean isClimbVine(int roomNumber, int nounNumber, Game game) {
+		return roomNumber == GameEntities.ROOM_GARDEN && nounNumber == GameEntities.ITEM_VINE &&
+				game.getItem(GameEntities.FLAG_VINE_CLIMBABLE).getItemFlag()==1;
+	}
+	
+	private ActionResult climbVine(Game game, Player player) {
+		game.addMessage("All right", true, false);
+		player.setRoom(GameEntities.ROOM_INSCRIBED_CAVERN);
+		return new ActionResult(game,player,true);
+	}
+	
+
 	//2060 IF B=14 OR B=2 THEN R$="NOT ATTACHED TO ANYTHING!"
 	//2070 IF H=5414 AND C(14)=54 THEN R$="YOU ARE AT THE TOP"
 	//2080 IF H=7214 AND F(53)=1 THEN R$="GOING DOWN": R=71
