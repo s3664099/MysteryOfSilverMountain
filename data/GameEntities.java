@@ -232,7 +232,7 @@ public class GameEntities {
     public static final int FLAG_THIRTY_FIVE = 35;
     public static final int FLAG_THIRTY_SIX = 36;
     public static final int FLAG_THIRTY_SEVEN = 37;
-    public static final int FLAG_THIRTY_EIGHT = 38;
+    public static final int FLAG_VINE_CLIMBABLE = 38;
     public static final int FLAG_BOOT_WEAR_STATUS = 39;
     public static final int FLAG_SHEET_TIED = 40;
     public static final int FLAG_FORTY_ONE = 41;
