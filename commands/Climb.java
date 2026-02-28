@@ -65,17 +65,43 @@ public class Climb {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is climbing the vine in the garden
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isClimbVine(int roomNumber, int nounNumber, Game game) {
 		return roomNumber == GameEntities.ROOM_GARDEN && nounNumber == GameEntities.ITEM_VINE &&
 				game.getItem(GameEntities.FLAG_VINE_CLIMBABLE).getItemFlag()==1;
 	}
 	
+    /**
+     * Executes the climb vine action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult climbVine(Game game, Player player) {
 		game.addMessage("All right", true, false);
 		player.setRoom(GameEntities.ROOM_INSCRIBED_CAVERN);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true on the following conditions:
+	 * The noun is the rope and the player is either carrying the rope, or in the room as the rope
+	 * The noun is the sheet and the player is either carrying the sheet, or in the room as the sheet
+	 * And the room is not the pinnacle, the well, or the well bottom
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isNotAttached(Game game,int nounNumber,int roomNumber) {
 		return (nounNumber== GameEntities.ITEM_ROPE && 
 				(game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == GameEntities.ROOM_CARRYING ||
@@ -87,37 +113,89 @@ public class Climb {
 				roomNumber != GameEntities.ROOM_WELL_BOTTOM);
 	}
 	
+    /**
+     * Executes climbing the rope or the sheet in the incorrect location
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult notAttached(Game game,Player player) {
 		game.addMessage("Not attached to anything!", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player at the pinnacle
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isAtTheTop(Game game,int nounNumber,int roomNumber) {
 		return nounNumber == GameEntities.ITEM_ROPE && roomNumber == GameEntities.ROOM_PINNACLE &&
 				game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == GameEntities.ROOM_PINNACLE;
 	}
 	
+    /**
+     * Executes climbing the rope at the pinnacle
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult atTheTop(Game game,Player player) {
 		game.addMessage("You are at the top!", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player at the well, and the rope is tied
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isGoingDown(Game game,int nounNumber,int roomNumber) {
 		return nounNumber == GameEntities.ITEM_ROPE && roomNumber == GameEntities.ROOM_WELL &&
 				game.getItem(GameEntities.FLAG_ROPE_TIED).getItemFlag() == 1;
 	}
 	
+    /**
+     * Executes climbing the rope at the well
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult goingDown(Game game,Player player) {
 		game.addMessage("Going down.", true, false);
 		player.setRoom(GameEntities.ROOM_WELL_BOTTOM);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player at the well, and the sheet is tied
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isClimbingSheet(Game game,int nounNumber,int roomNumber) {
 		return nounNumber == GameEntities.ITEM_SHEET && roomNumber == GameEntities.ROOM_WELL &&
 				game.getItem(GameEntities.FLAG_SHEET_TIED).getItemFlag() == 1;
 	}
 	
+    /**
+     * Executes climbing the sheet at the well
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult climbingSheet(Game game,Player player) {
 		game.addMessage("It is torn.", true, false);
 		game.getItem(GameEntities.ITEM_SHEET).setItemLocation(GameEntities.ROOM_DESTROYED);
@@ -126,11 +204,26 @@ public class Climb {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player at the well bottom, and the rope is tied
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isClimbingRope(Game game,int nounNumber,int roomNumber) {
 		return nounNumber == GameEntities.ITEM_ROPE && roomNumber == GameEntities.ROOM_WELL_BOTTOM &&
 				game.getItem(GameEntities.FLAG_ROPE_TIED).getItemFlag() == 1;
 	}
 	
+    /**
+     * Executes climbing the rope at the well bottom
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult climbingRope(Game game,Player player) {
 		game.addMessage("It falls down - bump.", true, false);
 		game.getItem(GameEntities.ITEM_SHEET).setItemLocation(GameEntities.ROOM_WELL_BOTTOM);
