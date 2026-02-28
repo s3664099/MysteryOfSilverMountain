@@ -125,10 +125,21 @@ public class Climb {
 		player.setRoom(GameEntities.ROOM_WELL_BOTTOM);
 		return new ActionResult(game,player,true);
 	}
-
-	//2100 IF H=7114 AND F(53)=1 THEN C(14)=71: F(53)=0: R$="IT FALLS DOWN-BUMP!"	
+	
+	private boolean isClimbingRope(Game game,int nounNumber,int roomNumber) {
+		return nounNumber == GameEntities.ITEM_ROPE && roomNumber == GameEntities.ROOM_WELL_BOTTOM &&
+				game.getItem(GameEntities.FLAG_ROPE_TIED).getItemFlag() == 1;
+	}
+	
+	private ActionResult climbingRope(Game game,Player player) {
+		game.addMessage("It falls down - bump.", true, false);
+		game.getItem(GameEntities.ITEM_SHEET).setItemLocation(GameEntities.ROOM_WELL_BOTTOM);
+		game.getItem(GameEntities.FLAG_ROPE_TIED).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 25 February 2026 - Created file
  * 27 February 2026 - Added branches and started climb actions
+ * 28 February 2026 - Completed actions & added javadocs
  */
