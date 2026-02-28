@@ -18,6 +18,7 @@ import commands.Give;
 import commands.Inventory;
 import commands.Take;
 import commands.Tie;
+import commands.Use;
 import commands.Wear;
 import commands.Move;
 import commands.Say;
