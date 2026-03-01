@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Use Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 1 March 2026
+Version: 1.2
+Date: 2 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -54,6 +54,8 @@ public class Use {
 			result = new Give(game,player,command).executeGive();
 		} else if (isUseBucket(game,player.getRoom(),command.getNounNumber())) {
 			result = useBucket(game,player);
+		} else if (isUseJug(game,player.getRoom(),command.getNounNumber())) {
+			result = useJug(game,player);
 		}
 		
 		return result;
@@ -90,18 +92,28 @@ public class Use {
 		return new ActionResult(game,player,true);
 	}
 	
+	private boolean isUseJug(Game game,int roomNumber,int nounNumber) {
+		return roomNumber == GameEntities.ROOM_ROUGH_WATER &&
+				nounNumber == GameEntities.ITEM_JUG &&
+				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+
+	private ActionResult useJug(Game game,Player player) {
+		game.getItem(GameEntities.FLAG_BOAT_FLAG).setItemFlag(1);
+		game.addMessage("It is not big enough.", true, false);
+		return new ActionResult(game,player,true);
+	}
 
 
 
-	//2150 IF H=4115 THEN R$="IT IS NOT BIG ENOUGH!":RETURN
-	//2160 IF B=18 OR B=7 THEN GOSUB 2470
-	//2170 IF B=13 THEN GOSUB 2730
-	//2180 IF B=19 THEN GOSUB 3070
-	//2190 IF B=10 THEN GOSUB 2870
-	//2200 IF B=16 OR B=6 THEN GOSUB 2380
+	//2170 IF B=13 THEN GOSUB 2730 - Drop
+
+
+
 	
 }
 
 /* 28 February 2026 - Created file
  * 1 March 2026 - Started adding action responses
+ * 2 March 2026 - Added use jug and noted other commands use is used
  */
