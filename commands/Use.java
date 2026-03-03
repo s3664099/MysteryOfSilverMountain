@@ -40,7 +40,7 @@ public class Use {
 	}
 	
 	 /**
-     * Generate a response to a climb action
+     * Generate a response to a use action
      *
      * @return an {@link ActionResult} describing validity and effects
      */
@@ -63,18 +63,39 @@ public class Use {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is using a sheet
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isUseSheet(Game game, int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_EDGE_LAKE &&
 				nounNumber == GameEntities.ITEM_SHEET &&
 				game.getItem(GameEntities.ITEM_SHEET).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response if the player uses a sheet
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult useSheet(Game game,Player player) {
 		game.addMessage("OK", true, false);
 		game.getItem(GameEntities.FLAG_BOAT_POWER).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the action is a give action
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isGive(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_COINS || nounNumber == GameEntities.ITEM_COIN ||
 				nounNumber == GameEntities.ITEM_APPLES || nounNumber == GameEntities.ITEM_APPLE ||
@@ -82,30 +103,68 @@ public class Use {
 		
 	}
 	
+	/**
+	 * Returns true if the player is using a bucket
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isUseBucket(Game game,int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_ROUGH_WATER &&
 				nounNumber == GameEntities.ITEM_BUCKET &&
 				game.getItem(GameEntities.ITEM_BUCKET).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response if the player uses a bucket
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult useBucket(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_BOAT_FLAG).setItemFlag(1);
 		game.addMessage("You have kept afloat.", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is using a jug
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isUseJug(Game game,int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_ROUGH_WATER &&
 				nounNumber == GameEntities.ITEM_JUG &&
 				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 
+    /**
+     * Executes a response if the player uses a jug
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult useJug(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_BOAT_FLAG).setItemFlag(1);
 		game.addMessage("It is not big enough.", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is using a plank
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isUsePlanks(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_PLANKS;
 	}	
@@ -115,4 +174,5 @@ public class Use {
  * 1 March 2026 - Started adding action responses
  * 2 March 2026 - Added use jug and noted other commands use is used
  * 3 March 2026 - completed other commands
+ * 				- Added JavaDocs
  */
