@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Use Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 2 March 2026
+Version: 1.3
+Date: 3 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -56,6 +56,8 @@ public class Use {
 			result = useBucket(game,player);
 		} else if (isUseJug(game,player.getRoom(),command.getNounNumber())) {
 			result = useJug(game,player);
+		} else if (isUsePlanks(command.getNounNumber())) {
+			result = new Drop(game,player,command).executeDrop();
 		}
 		
 		return result;
@@ -103,17 +105,14 @@ public class Use {
 		game.addMessage("It is not big enough.", true, false);
 		return new ActionResult(game,player,true);
 	}
-
-
-
-	//2170 IF B=13 THEN GOSUB 2730 - Drop
-
-
-
 	
+	private boolean isUsePlanks(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_PLANKS;
+	}	
 }
 
 /* 28 February 2026 - Created file
  * 1 March 2026 - Started adding action responses
  * 2 March 2026 - Added use jug and noted other commands use is used
+ * 3 March 2026 - completed other commands
  */
