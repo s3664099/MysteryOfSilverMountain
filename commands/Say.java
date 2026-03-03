@@ -28,8 +28,7 @@ public class Say {
 	private final ParsedCommand command;
 	
     /**
-     * Creates a {@code Drop} handler for moving items from the users inventory
-     * to the current location
+     * Creates a {@code Drop} handler for executing a save acton
      * 
      * @param game   current game state
      * @param player   current player state

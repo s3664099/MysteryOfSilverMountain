@@ -21,6 +21,7 @@ import commands.Tie;
 import commands.Use;
 import commands.Wear;
 import commands.Move;
+import commands.Open;
 import commands.Say;
 import game.Game;
 import game.Player;

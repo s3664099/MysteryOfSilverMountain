@@ -26,7 +26,7 @@ public class Give {
 	private final ParsedCommand command;
 	
     /**
-     * Creates a {@code Give} handler for giving an item to somebodu
+     * Creates a {@code Give} handler for giving an item to somebody
      * to the current location
      * 
      * @param game   current game state
