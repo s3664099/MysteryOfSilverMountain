@@ -51,8 +51,12 @@ public class Open {
 		
 		if (isOpen(command.getNounNumber())) {
 			result = new Examine(game,player,command).executeExamine();
+		} else if (isOpenKitchenCupboard(player.getRoom(),command.getNounNumber())) {
+			result = openKitchenCupboard(game,player);
 		} else if (isOpenCupboard(player.getRoom(),command.getNounNumber())) {
 			result = openCupboard(game,player);
+		} else if (isOpenGates(player.getRoom(),command.getNounNumber())) {
+			result = openGates(game,player);
 		}
 		
 		return result;
@@ -62,19 +66,37 @@ public class Open {
 		return nounNumber == GameEntities.ITEM_CHEST || nounNumber == GameEntities.ITEM_SACK;
 	}
 	
-	private boolean isOpenCupboard(int roomNumber, int nounNumber) {
+	private boolean isOpenKitchenCupboard(int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_CUPBOARD && roomNumber == GameEntities.ROOM_KITCHEN;
 	}
 	
-	private ActionResult openCupboard(Game game,Player player) {
+	private ActionResult openKitchenCupboard(Game game,Player player) {
 		game.getItem(GameEntities.ITEM_PHIAL).setItemFlag(0);
 		game.addMessage("Ok", true, false);
 		return new ActionResult(game,player,true);
 	}
 
-	//2230 IF H=2030 THEN F(9)=0: R$="OK"
-	//2240 IF H=6030 THEN R$="OK":KET F(3)=0
-	//2250 IF H=2444 OR H=1870 THEN R$="YOU ARE NOT STRING ENOUGH"
+	private boolean isOpenCupboard(int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_CUPBOARD && roomNumber == GameEntities.ROOM_CUPBOARD;
+	}
+	
+	private ActionResult openCupboard(Game game,Player player) {
+		game.getItem(GameEntities.ITEM_BOOTS).setItemFlag(0);
+		game.addMessage("Ok", true, false);
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean isOpenGates(int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_GATE && roomNumber == GameEntities.ROOM_SLUICE_GATES ||
+				nounNumber == GameEntities.ITEM_DOOR && roomNumber == GameEntities.ROOM_CORRIDOR;
+	}
+	
+	private ActionResult openGates(Game game,Player player) {
+		game.addMessage("You are not strong enough.", true, false);
+		return new ActionResult(game,player,true);
+	}
+
+
 	//2260 IF H=3756 THEN R$="A PASSAGE!": E$(37)="EW"
 	//2270 IF H=5960 THEN GOSUB 3260
 	//2280 IF H=6970 THEN R$="IT FALLS OFF ITS HINGES"
