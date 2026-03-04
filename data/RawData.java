@@ -144,8 +144,8 @@ public class RawData {
 		"3matches",								// 26
 		"2stone of destiny",					// 27
 		"4apple",								// 28
-		"0cupboard",							// 29
-		"0bed",									// 30
+		"0bed",									// 29
+		"0cupboard",							// 30
 		"0bridge",								// 31
 		"0trees",								// 32
 		"0sail",								// 33

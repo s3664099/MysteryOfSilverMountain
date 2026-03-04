@@ -1,7 +1,17 @@
+/*
+Title: Mystery of Silver Mountain Open Class
+Author: Chris Oxlade & Judy Tatchell
+Translator: David Sarkies
+Version: 1.1
+Date: 4 March 2026
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
+*/
+
 package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -36,11 +46,32 @@ public class Open {
      * @return an {@link ActionResult} describing validity and effects
      */
 	public ActionResult executeOpen() {
+		game.addMessage("You cannot open that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
+		
+		if (isOpen(command.getNounNumber())) {
+			result = new Examine(game,player,command).executeExamine();
+		} else if (isOpenCupboard(player.getRoom(),command.getNounNumber())) {
+			result = openCupboard(game,player);
+		}
+		
 		return result;
 	}
 	
-	//2220 IF B=76 OR B=38 THEN GOSUB 1470
+	private boolean isOpen(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_CHEST || nounNumber == GameEntities.ITEM_SACK;
+	}
+	
+	private boolean isOpenCupboard(int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_CUPBOARD && roomNumber == GameEntities.ROOM_KITCHEN;
+	}
+	
+	private ActionResult openCupboard(Game game,Player player) {
+		game.getItem(GameEntities.ITEM_PHIAL).setItemFlag(0);
+		game.addMessage("Ok", true, false);
+		return new ActionResult(game,player,true);
+	}
+
 	//2230 IF H=2030 THEN F(9)=0: R$="OK"
 	//2240 IF H=6030 THEN R$="OK":KET F(3)=0
 	//2250 IF H=2444 OR H=1870 THEN R$="YOU ARE NOT STRING ENOUGH"
@@ -51,3 +82,7 @@ public class Open {
 	
 	
 }
+
+/* 3 March 2026 - Created File
+ * 4 March 2026 - Started added responses
+ */
