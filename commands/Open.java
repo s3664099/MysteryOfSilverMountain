@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Open Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 4 March 2026
+Version: 1.2
+Date: 6 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -109,7 +109,7 @@ public class Open {
 	}	
 
 
-	//2260 IF H=3756 THEN R$="A PASSAGE!": E$(37)="EW"
+
 	//2270 IF H=5960 THEN GOSUB 3260
 	//2280 IF H=6970 THEN R$="IT FALLS OFF ITS HINGES"
 	//2290 IF H=4870 THEN R$="IT IS LOCKED"
@@ -119,4 +119,5 @@ public class Open {
 
 /* 3 March 2026 - Created File
  * 4 March 2026 - Started added responses
+ * 6 March 2026 - Added open casks
  */
