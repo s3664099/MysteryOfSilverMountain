@@ -57,6 +57,8 @@ public class Open {
 			result = openCupboard(game,player);
 		} else if (isOpenGates(player.getRoom(),command.getNounNumber())) {
 			result = openGates(game,player);
+		} else if (isOpenCasks(player.getRoom(),command.getNounNumber())) {
+			result = openCasks(game,player);
 		}
 		
 		return result;
@@ -95,6 +97,16 @@ public class Open {
 		game.addMessage("You are not strong enough.", true, false);
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isOpenCasks(int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_CASKS && roomNumber == GameEntities.ROOM_CASKS;
+	}
+	
+	private ActionResult openCasks(Game game,Player player) {
+		game.addMessage("A passage!", true, false);
+		game.getRoom(GameEntities.ROOM_CASKS).openExit(GameEntities.WEST);
+		return new ActionResult(game,player,true);
+	}	
 
 
 	//2260 IF H=3756 THEN R$="A PASSAGE!": E$(37)="EW"
