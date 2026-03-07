@@ -70,54 +70,131 @@ public class Open {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is opening the chest or the sacks
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isOpen(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_CHEST || nounNumber == GameEntities.ITEM_SACK;
 	}
 	
+	/**
+	 * Returns true if the player is opening the kitchen cupboard
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isOpenKitchenCupboard(int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_CUPBOARD && roomNumber == GameEntities.ROOM_KITCHEN;
 	}
 	
+    /**
+     * Executes the open kitchen cupboard action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult openKitchenCupboard(Game game,Player player) {
 		game.getItem(GameEntities.ITEM_PHIAL).setItemFlag(0);
 		game.addMessage("Ok", true, false);
 		return new ActionResult(game,player,true);
 	}
 
+	/**
+	 * Returns true if the player is opening the cupboard
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isOpenCupboard(int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_CUPBOARD && roomNumber == GameEntities.ROOM_CUPBOARD;
 	}
 	
+    /**
+     * Executes the open cupboard action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult openCupboard(Game game,Player player) {
 		game.getItem(GameEntities.ITEM_BOOTS).setItemFlag(0);
 		game.addMessage("Ok", true, false);
 		return new ActionResult(game,player,true);
 	}
 
+	/**
+	 * Returns true if the player is opening the gates
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isOpenGates(int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_GATE && roomNumber == GameEntities.ROOM_SLUICE_GATES ||
 				nounNumber == GameEntities.ITEM_DOOR && roomNumber == GameEntities.ROOM_CORRIDOR;
 	}
 	
+    /**
+     * Executes the open gate action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult openGates(Game game,Player player) {
 		game.addMessage("You are not strong enough.", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is opening the casks
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isOpenCasks(int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_CASKS && roomNumber == GameEntities.ROOM_CASKS;
 	}
 	
+    /**
+     * Executes the open cask action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult openCasks(Game game,Player player) {
 		game.addMessage("A passage!", true, false);
 		game.getRoom(GameEntities.ROOM_CASKS).openExit(GameEntities.WEST);
 		return new ActionResult(game,player,true);
 	}	
 
+	/**
+	 * Returns true if the player is opening the safe in Ogban's Room
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isOpenSafe(int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_SAFE && roomNumber == GameEntities.ROOM_OGBAN_CHAMBER;
 	}
 	
+    /**
+     * Executes the open safe action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @param command the parsed command being executed
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult openSafe(Game game,Player player, ParsedCommand command) {
 		
 		if(command.getSplitFullCommand().length != 3) {
@@ -132,19 +209,47 @@ public class Open {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is opening the stable door
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isOpenStableDoor(int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_DOOR && roomNumber == GameEntities.ROOM_STABLE;
 	}
 	
+    /**
+     * Executes the open stable door action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult openStableDoor(Game game,Player player) {
 		game.addMessage("It falls off its hinges", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is opening the door in the wizard's lair
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isOpenWizardDoor(int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_DOOR && roomNumber == GameEntities.ROOM_WIZARD_LAIR;
 	}
 	
+    /**
+     * Executes the open door in the wizard's lair action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult openWizardDoor(Game game,Player player) {
 		game.addMessage("It is locked", true, false);
 		return new ActionResult(game,player,true);
@@ -156,4 +261,5 @@ public class Open {
  * 6 March 2026 - Added open casks
  * 7 March 2026 - Added open Ogban's Safe
  * 				- Completed Actions
+ * 				- Added Java Docs
  */
