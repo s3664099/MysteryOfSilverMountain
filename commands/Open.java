@@ -61,6 +61,10 @@ public class Open {
 			result = openCasks(game,player);
 		} else if (isOpenSafe(player.getRoom(),command.getNounNumber())) {
 			result = openSafe(game,player,command);
+		} else if (isOpenStableDoor(player.getRoom(),command.getNounNumber())) {
+			result = openStableDoor(game,player);
+		} else if (isOpenWizardDoor(player.getRoom(),command.getNounNumber())) {
+			result = openWizardDoor(game,player);
 		}
 		
 		return result;
@@ -128,20 +132,28 @@ public class Open {
 		return new ActionResult(game,player,true);
 	}
 	
-
-
-
-
-
-
-	//2280 IF H=6970 THEN R$="IT FALLS OFF ITS HINGES"
-	//2290 IF H=4870 THEN R$="IT IS LOCKED"
+	private boolean isOpenStableDoor(int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_DOOR && roomNumber == GameEntities.ROOM_STABLE;
+	}
 	
+	private ActionResult openStableDoor(Game game,Player player) {
+		game.addMessage("It falls off its hinges", true, false);
+		return new ActionResult(game,player,true);
+	}
 	
+	private boolean isOpenWizardDoor(int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_DOOR && roomNumber == GameEntities.ROOM_WIZARD_LAIR;
+	}
+	
+	private ActionResult openWizardDoor(Game game,Player player) {
+		game.addMessage("It is locked", true, false);
+		return new ActionResult(game,player,true);
+	}	
 }
 
 /* 3 March 2026 - Created File
  * 4 March 2026 - Started added responses
  * 6 March 2026 - Added open casks
  * 7 March 2026 - Added open Ogban's Safe
+ * 				- Completed Actions
  */
