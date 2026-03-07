@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Open Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 6 March 2026
+Version: 1.3
+Date: 7 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -59,6 +59,8 @@ public class Open {
 			result = openGates(game,player);
 		} else if (isOpenCasks(player.getRoom(),command.getNounNumber())) {
 			result = openCasks(game,player);
+		} else if (isOpenSafe(player.getRoom(),command.getNounNumber())) {
+			result = openSafe(game,player,command);
 		}
 		
 		return result;
@@ -108,9 +110,30 @@ public class Open {
 		return new ActionResult(game,player,true);
 	}	
 
+	private boolean isOpenSafe(int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_SAFE && roomNumber == GameEntities.ROOM_OGBAN_CHAMBER;
+	}
+	
+	private ActionResult openSafe(Game game,Player player, ParsedCommand command) {
+		
+		if(command.getSplitFullCommand().length != 3) {
+			game.addMessage("Enter the combination after the command", true, false);
+			game.addMessage("OPEN SAFE <COMBINATION>", false, false);
+		} else if (command.getSplitFullCommand()[2].equals(Integer.toString(game.getItem(GameEntities.FLAG_SAFE_CODE).getItemFlag()))) {
+			game.addMessage("It opens", true, false);
+			game.getItem(GameEntities.FLAG_SAFE_OPEN).setItemFlag(0);
+		} else {
+			game.addMessage("Wrong!", true, false);
+		}
+		return new ActionResult(game,player,true);
+	}
+	
 
 
-	//2270 IF H=5960 THEN GOSUB 3260
+
+
+
+
 	//2280 IF H=6970 THEN R$="IT FALLS OFF ITS HINGES"
 	//2290 IF H=4870 THEN R$="IT IS LOCKED"
 	
@@ -120,4 +143,5 @@ public class Open {
 /* 3 March 2026 - Created File
  * 4 March 2026 - Started added responses
  * 6 March 2026 - Added open casks
+ * 7 March 2026 - Added open Ogban's Safe
  */
