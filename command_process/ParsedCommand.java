@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.13
-Date: 3 March 2026
+Version: 1.14
+Date: 8 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -142,6 +142,8 @@ public class ParsedCommand {
 			commandType = CommandType.USE;
 		} else if (verbNumber == GameEntities.CMD_OPEN) {
 			commandType = CommandType.OPEN;
+		} else if (verbNumber == GameEntities.CMD_LIGHT) {
+			commandType = CommandType.LIGHT;
 		}
 	}
 	
@@ -274,7 +276,12 @@ public class ParsedCommand {
 	
     /** @return true if the command is a OPEN command */
 	public boolean checkOpen() {
-		return commandType == CommandType.USE;
+		return commandType == CommandType.OPEN;
+	}
+	
+    /** @return true if the command is a LIGHT command */
+	public boolean checkLight() {
+		return commandType == CommandType.LIGHT;
 	}
 		
     /** @return true if the command is a LOAD command */
@@ -317,4 +324,5 @@ public class ParsedCommand {
  * 25 February 2026 - Added Climb Command
  * 28 February 2026 - Added Use command
  * 3 March 2026 - Added Open Command
+ * 8 March 2026 - Added Light Command
  */
