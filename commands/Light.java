@@ -57,18 +57,56 @@ public class Light {
 			}
 		} else if (isLightLampWithMatches(game,command.getNounNumber())) {
 			result = lightLampWithMatches(game,player);
-		} else if (isLightLamp(game,command.getNounNumber(),player.getRoom())) {
-			result = lightLamp(game,player);
+		} else if (isLightWithoutMatches(game,command.getNounNumber(),player.getRoom())) {
+			result = lightWithoutMatches(game,player);
 		}	
 		return result;
 	}
 	
-
-	//2320 IF B=26 THEN R$="YOU LIT THEM"
-	//2330 IF H=3826 THEN R$="NOT BRIGHT ENOUGH"
-	//2340 IF (B=23 OR H=6970) AND C(26)<>0 THEN R$="OP NBUDIFT":GOSUB 4260
-	//2350 IF B=23 AND C(26)=0 THEN R$="A BRIGHT "+V$: F(50)=1
+	private boolean isLightMatches(Game game,int nounNumber) {
+		return game.getItem(GameEntities.ITEM_MATCHES).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				nounNumber == GameEntities.ITEM_MATCHES;
+	}
+	
+	private ActionResult lightMatches(Game game,Player player) {
+		game.addMessage("You lit them", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isInCellar(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_WINE_CELLAR;
+	}
+	
+	private ActionResult lightMatchesInCellar(Game game,Player player) {
+		game.addMessage("Not bright enough", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isLightLampWithMatches(Game game,int nounNumber) {
+		return game.getItem(GameEntities.ITEM_MATCHES).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				game.getItem(GameEntities.ITEM_LAMP).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				nounNumber == GameEntities.ITEM_LAMP;
+	}
+	
+	private ActionResult lightLampWithMatches(Game game,Player player) {
+		game.addMessage("A bright light.", true, false);
+		game.getItem(GameEntities.FLAG_IS_DARK).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}	
 	//2360 IF H=6970 AND C(26)=0 THEN F(43)=1: R$="IT HAS TURNED TO ASHES"
+	private boolean isLightWithoutMatches(Game game,int nounNumber,int roomNumber) {
+		return (game.getItem(GameEntities.ITEM_LAMP).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				nounNumber == GameEntities.ITEM_LAMP) ||
+				(player.getRoom()==GameEntities.ROOM_STABLE &&
+				nounNumber == GameEntities.ITEM_DOOR);
+	}
+	
+	private ActionResult lightWithoutMatches(Game game,Player player) {
+		game.addMessage("No matches.", true, false);
+		return new ActionResult(game,player,true);
+	}
+
+
 	//2310 IF B>G THEN R$="IT DOES NOT BURN"
 }
 
