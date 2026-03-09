@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.Constants;
 import data.GameEntities;
 import game.Game;
 import game.Player;
@@ -57,9 +58,14 @@ public class Light {
 			}
 		} else if (isLightLampWithMatches(game,command.getNounNumber())) {
 			result = lightLampWithMatches(game,player);
+		} else if (isLightStableDoor(game,command.getNounNumber(),player.getRoom())) {
+			result = lightStableDoor(game,player);
 		} else if (isLightWithoutMatches(game,command.getNounNumber(),player.getRoom())) {
 			result = lightWithoutMatches(game,player);
-		}	
+		} else if (isBurnSomething(command.getNounNumber())) {
+			result = burnSomething(game,player);
+		}
+		
 		return result;
 	}
 	
@@ -92,8 +98,20 @@ public class Light {
 		game.addMessage("A bright light.", true, false);
 		game.getItem(GameEntities.FLAG_IS_DARK).setItemFlag(1);
 		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isLightStableDoor(Game game,int nounNumber,int roomNumber) {
+		return game.getItem(GameEntities.ITEM_MATCHES).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				roomNumber == GameEntities.ROOM_STABLE &&
+				nounNumber == GameEntities.ITEM_LAMP;
+	}
+	
+	private ActionResult lightStableDoor(Game game,Player player) {
+		game.addMessage("It has turned to ashes.", true, false);
+		game.getItem(GameEntities.FLAG_HORSESHOE_NAILED_ON).setItemFlag(1);
+		return new ActionResult(game,player,true);
 	}	
-	//2360 IF H=6970 AND C(26)=0 THEN F(43)=1: R$="IT HAS TURNED TO ASHES"
+
 	private boolean isLightWithoutMatches(Game game,int nounNumber,int roomNumber) {
 		return (game.getItem(GameEntities.ITEM_LAMP).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				nounNumber == GameEntities.ITEM_LAMP) ||
@@ -105,9 +123,15 @@ public class Light {
 		game.addMessage("No matches.", true, false);
 		return new ActionResult(game,player,true);
 	}
-
-
-	//2310 IF B>G THEN R$="IT DOES NOT BURN"
+	
+	private boolean isBurnSomething(int nounNumber) {
+		return nounNumber > Constants.MAX_CARRIABLE_ITEMS;
+	}
+	
+	private ActionResult burnSomething(Game game,Player player) {
+		game.addMessage("It does not burn.", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 9 March 2026 - Created File
