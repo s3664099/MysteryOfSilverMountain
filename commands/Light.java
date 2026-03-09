@@ -48,16 +48,28 @@ public class Light {
 	public ActionResult executeLight() {
 		game.addMessage("You cannot light that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
-				
+		
+		if (isLightMatches(game,command.getNounNumber())) {
+			if (isInCellar(player.getRoom())) {
+				result = lightMatchesInCellar(game,player);
+			} else {
+				result = lightMatches(game,player);
+			}
+		} else if (isLightLampWithMatches(game,command.getNounNumber())) {
+			result = lightLampWithMatches(game,player);
+		} else if (isLightLamp(game,command.getNounNumber(),player.getRoom())) {
+			result = lightLamp(game,player);
+		}	
 		return result;
 	}
 	
-	//2310 IF B>G THEN R$="IT DOES NOT BURN"
-	//2320 IF B=21 THEN R$="YOU LIT THEM"
+
+	//2320 IF B=26 THEN R$="YOU LIT THEM"
 	//2330 IF H=3826 THEN R$="NOT BRIGHT ENOUGH"
 	//2340 IF (B=23 OR H=6970) AND C(26)<>0 THEN R$="OP NBUDIFT":GOSUB 4260
 	//2350 IF B=23 AND C(26)=0 THEN R$="A BRIGHT "+V$: F(50)=1
 	//2360 IF H=6970 AND C(26)=0 THEN F(43)=1: R$="IT HAS TURNED TO ASHES"
+	//2310 IF B>G THEN R$="IT DOES NOT BURN"
 }
 
 /* 9 March 2026 - Created File
