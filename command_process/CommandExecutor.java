@@ -16,6 +16,7 @@ import commands.Drop;
 import commands.Examine;
 import commands.Give;
 import commands.Inventory;
+import commands.Light;
 import commands.Take;
 import commands.Tie;
 import commands.Use;

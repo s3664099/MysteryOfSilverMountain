@@ -51,6 +51,13 @@ public class Light {
 				
 		return result;
 	}
+	
+	//2310 IF B>G THEN R$="IT DOES NOT BURN"
+	//2320 IF B=21 THEN R$="YOU LIT THEM"
+	//2330 IF H=3826 THEN R$="NOT BRIGHT ENOUGH"
+	//2340 IF (B=23 OR H=6970) AND C(26)<>0 THEN R$="OP NBUDIFT":GOSUB 4260
+	//2350 IF B=23 AND C(26)=0 THEN R$="A BRIGHT "+V$: F(50)=1
+	//2360 IF H=6970 AND C(26)=0 THEN F(43)=1: R$="IT HAS TURNED TO ASHES"
 }
 
 /* 9 March 2026 - Created File
