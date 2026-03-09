@@ -69,49 +69,113 @@ public class Light {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is lighting matches
+	 * 
+     * @param game the current game state
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isLightMatches(Game game,int nounNumber) {
 		return game.getItem(GameEntities.ITEM_MATCHES).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				nounNumber == GameEntities.ITEM_MATCHES;
 	}
 	
+    /**
+     * Executes the light match action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult lightMatches(Game game,Player player) {
 		game.addMessage("You lit them", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is lighting matches in the cellars
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isInCellar(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_WINE_CELLAR;
 	}
-	
+
+    /**
+     * Executes the light match in cellars action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult lightMatchesInCellar(Game game,Player player) {
 		game.addMessage("Not bright enough", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is lighting lamp with matches
+	 * 
+     * @param game the current game state
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isLightLampWithMatches(Game game,int nounNumber) {
 		return game.getItem(GameEntities.ITEM_MATCHES).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				game.getItem(GameEntities.ITEM_LAMP).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				nounNumber == GameEntities.ITEM_LAMP;
 	}
 	
+    /**
+     * Executes the lighting lamp with matches action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult lightLampWithMatches(Game game,Player player) {
 		game.addMessage("A bright light.", true, false);
 		game.getItem(GameEntities.FLAG_IS_DARK).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is lighting the stable door
+	 * 
+     * @param game the current game state
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isLightStableDoor(Game game,int nounNumber,int roomNumber) {
 		return game.getItem(GameEntities.ITEM_MATCHES).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				roomNumber == GameEntities.ROOM_STABLE &&
 				nounNumber == GameEntities.ITEM_LAMP;
 	}
 	
+    /**
+     * Executes the lighting stable door action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult lightStableDoor(Game game,Player player) {
 		game.addMessage("It has turned to ashes.", true, false);
 		game.getItem(GameEntities.FLAG_HORSESHOE_NAILED_ON).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}	
 
+	/**
+	 * Returns true if the player is lighting something without the matches
+	 * 
+     * @param game the current game state
+ 	 * @param nounNumber the value of the noun entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isLightWithoutMatches(Game game,int nounNumber,int roomNumber) {
 		return (game.getItem(GameEntities.ITEM_LAMP).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				nounNumber == GameEntities.ITEM_LAMP) ||
@@ -119,15 +183,35 @@ public class Light {
 				nounNumber == GameEntities.ITEM_DOOR);
 	}
 	
+    /**
+     * Executes the lighting something without the matches action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult lightWithoutMatches(Game game,Player player) {
 		game.addMessage("No matches.", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is burning something
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isBurnSomething(int nounNumber) {
 		return nounNumber > Constants.MAX_CARRIABLE_ITEMS;
 	}
 	
+    /**
+     * Executes the burn something action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult burnSomething(Game game,Player player) {
 		game.addMessage("It does not burn.", true, false);
 		return new ActionResult(game,player,true);
