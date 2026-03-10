@@ -98,7 +98,10 @@ public class CommandExecutor {
 		} else if (command.checkLight()) {
 			logger.info("Light");
 			result = new Light(game,player,command).executeLight();
-		}else if (command.checkSave()) {
+		} else if (command.checkFill()) {
+			logger.info("Fill");
+			result = new Fill(game,player,command).executeFill();
+		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
 		} else if (command.checkLoad()) {
