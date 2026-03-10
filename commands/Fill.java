@@ -50,6 +50,11 @@ public class Fill {
 				
 		return result;
 	}
+	
+	//2200 IF B=16 OR B=6 THEN GOSUB 2380 - Fill - Add to Use
+	//2380 IF (B=16 OR B=6) AND (R=41 OR R=51) THEN R$="YOU CAPSIZED!": F(56)=1
+	//2390 IF H=6516 AND C(16)=0 THEN R$="IT IS NOW FULL": F(34)=1
+	//2400 IF H=656 THEN R$="IT LEAKS OUT!"
 }
 
 /* 10 March 2026 - Created File
