@@ -27,7 +27,7 @@ public class Use {
 	private final ParsedCommand command;
 	
     /**
-     * Creates a {@code Tie} handler for executing a climb action
+     * Creates a {@code Use} handler for executing a use item action
      * 
      * @param game   current game state
      * @param player   current player state

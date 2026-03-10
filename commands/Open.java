@@ -27,7 +27,7 @@ public class Open {
 	private final ParsedCommand command;
 	
     /**
-     * Creates a {@code Give} handler for executing and open command
+     * Creates a {@code Open} handler for executing an open command
      * to the current location
      * 
      * @param game   current game state

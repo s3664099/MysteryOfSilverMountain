@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Tie Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 24 February 2026
+Version: 1.2
+Date: 25 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -147,4 +147,5 @@ public class Tie {
 
 /* 23 February 2026 - Created Tie Class
  * 24 February 2026 - Completed Tie actions
+ * 25 February 2026 - Added JavaDocs
  */

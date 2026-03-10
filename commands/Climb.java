@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Climb Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 27 February 2026
+Version: 1.2
+Date: 28 February 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -27,7 +27,7 @@ public class Climb {
 	private final ParsedCommand command;
 	
     /**
-     * Creates a {@code Tie} handler for executing a climb action
+     * Creates a {@code Climb} handler for executing a climb action
      * 
      * @param game   current game state
      * @param player   current player state

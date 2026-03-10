@@ -28,7 +28,7 @@ public class Say {
 	private final ParsedCommand command;
 	
     /**
-     * Creates a {@code Drop} handler for executing a save acton
+     * Creates a {@code Say} handler for executing a speak acton
      * 
      * @param game   current game state
      * @param player   current player state

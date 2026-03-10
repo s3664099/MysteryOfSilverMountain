@@ -28,7 +28,7 @@ public class Light {
 	private final ParsedCommand command;
 	
     /**
-     * Creates a {@code Give} handler for executing and open command
+     * Creates a {@code Light} handler for executing and light command
      * to the current location
      * 
      * @param game   current game state
