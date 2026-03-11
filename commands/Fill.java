@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -47,14 +48,54 @@ public class Fill {
 	public ActionResult executeFill() {
 		game.addMessage("You cannot Fill that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
+		
+		if (isFillBucketOrJugInLake(game,player.getRoom(),command.getNounNumber())) {
+			result = fillBucketOrJugInLake(game,player);
+		} else if (isFillJugInValley(game,player.getRoom(),command.getNounNumber())) {
+			result = fillJugInValley(game,player);
+		} else if (isFillBucketInValley(game,player.getRoom(),command.getNounNumber())) {
+			result = fillBucketInValley(game,player);
+		}
 				
 		return result;
 	}
 	
-	//2200 IF B=16 OR B=6 THEN GOSUB 2380 - Fill - Add to Use
-	//2380 IF (B=16 OR B=6) AND (R=41 OR R=51) THEN R$="YOU CAPSIZED!": F(56)=1
-	//2390 IF H=6516 AND C(16)=0 THEN R$="IT IS NOW FULL": F(34)=1
-	//2400 IF H=656 THEN R$="IT LEAKS OUT!"
+	private boolean isFillBucketOrJugInLake(Game game, int roomNumber, int nounNumber) {
+		return ((nounNumber == GameEntities.ITEM_JUG &&
+				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING) ||
+				(nounNumber == GameEntities.ITEM_BUCKET &&
+				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING)) &&
+				(roomNumber == GameEntities.ROOM_ROUGH_WATER || roomNumber == GameEntities.ROOM_MIDDLE_LAKE);
+	}
+	
+	private ActionResult fillBucketOrJugInLake(Game game,Player player) {
+		game.addMessage("You capsized!", true, false);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isFillJugInValley(Game game,int roomNumber,int nounNumber) {
+		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM &&
+				nounNumber == GameEntities.ITEM_JUG &&
+				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+	
+	private ActionResult fillJugInValley(Game game,Player player) {
+		game.addMessage("It is now fill", true, false);
+		game.getItem(GameEntities.FLAG_JUG_FULL).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+
+	private boolean isFillBucketInValley(Game game,int roomNumber,int nounNumber) {
+		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM &&
+				nounNumber == GameEntities.ITEM_BUCKET &&
+				game.getItem(GameEntities.ITEM_BUCKET).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+	
+	private ActionResult fillBucketInValley(Game game,Player player) {
+		game.addMessage("It leaks out!", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 10 March 2026 - Created File
