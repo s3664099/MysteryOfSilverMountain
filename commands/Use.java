@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Use Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 3 March 2026
+Version: 1.4
+Date: 11 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -58,6 +58,8 @@ public class Use {
 			result = useJug(game,player);
 		} else if (isUsePlanks(command.getNounNumber())) {
 			result = new Drop(game,player,command).executeDrop();
+		} else if (isUseBucketOrJug(game,command.getNounNumber())) {
+			result = new Fill(game,player,command).executeFill();
 		}
 		
 		return result;
@@ -161,12 +163,24 @@ public class Use {
 	 * Returns true if the player is using a plank
 	 * 
  	 * @param nounNumber the value of the noun entered
- 	 * @param roomNumber the room the player is in
-     * @param game the current game state
 	 * @return boolean
 	 */
 	private boolean isUsePlanks(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_PLANKS;
+	}
+	
+	/**
+	 * Returns true if the player is using the bucket or the jug
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
+	private boolean isUseBucketOrJug(Game game, int nounNumber) {
+		return (nounNumber == GameEntities.ITEM_JUG &&
+				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING) ||
+				(nounNumber == GameEntities.ITEM_BUCKET &&
+				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING);
 	}	
 }
 
@@ -175,4 +189,5 @@ public class Use {
  * 2 March 2026 - Added use jug and noted other commands use is used
  * 3 March 2026 - completed other commands
  * 				- Added JavaDocs
+ * 11 March 2026 - Added fill response for use
  */
