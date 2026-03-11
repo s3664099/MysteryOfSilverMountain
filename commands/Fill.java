@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Fill Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 10 March 2026
+Version: 1.1
+Date: 11 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -60,6 +60,14 @@ public class Fill {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player filling the jug or the bucket in the lake
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isFillBucketOrJugInLake(Game game, int roomNumber, int nounNumber) {
 		return ((nounNumber == GameEntities.ITEM_JUG &&
 				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING) ||
@@ -68,30 +76,67 @@ public class Fill {
 				(roomNumber == GameEntities.ROOM_ROUGH_WATER || roomNumber == GameEntities.ROOM_MIDDLE_LAKE);
 	}
 	
+    /**
+     * Executes a response if the player if filling the jug or the bucket in the lake
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult fillBucketOrJugInLake(Game game,Player player) {
 		game.addMessage("You capsized!", true, false);
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player filling the jug in the valley
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isFillJugInValley(Game game,int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM &&
 				nounNumber == GameEntities.ITEM_JUG &&
 				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response if the player if filling the jug in the valley
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult fillJugInValley(Game game,Player player) {
 		game.addMessage("It is now fill", true, false);
 		game.getItem(GameEntities.FLAG_JUG_FULL).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 
+	/**
+	 * Returns true if the player filling the bucket in the valley
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isFillBucketInValley(Game game,int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM &&
 				nounNumber == GameEntities.ITEM_BUCKET &&
 				game.getItem(GameEntities.ITEM_BUCKET).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response if the player if filling the bucket in the valley
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult fillBucketInValley(Game game,Player player) {
 		game.addMessage("It leaks out!", true, false);
 		return new ActionResult(game,player,true);
@@ -99,4 +144,5 @@ public class Fill {
 }
 
 /* 10 March 2026 - Created File
+ * 11 March 2026 - Completed responses
  */
