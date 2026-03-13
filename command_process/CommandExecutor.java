@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import commands.Climb;
 import commands.Drop;
 import commands.Examine;
+import commands.Fill;
 import commands.Give;
 import commands.Inventory;
 import commands.Light;
@@ -23,6 +24,7 @@ import commands.Use;
 import commands.Wear;
 import commands.Move;
 import commands.Open;
+import commands.Plant;
 import commands.Say;
 import game.Game;
 import game.Player;
@@ -101,6 +103,9 @@ public class CommandExecutor {
 		} else if (command.checkFill()) {
 			logger.info("Fill");
 			result = new Fill(game,player,command).executeFill();
+		} else if (command.checkPlant()) {
+			logger.info("Plant");
+			result = new Plant(game,player,command).executePlant();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();

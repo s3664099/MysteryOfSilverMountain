@@ -28,7 +28,6 @@ public class Fill {
 	
     /**
      * Creates a {@code FILL} handler for executing a fill command
-     * to the current location
      * 
      * @param game   current game state
      * @param player   current player state
