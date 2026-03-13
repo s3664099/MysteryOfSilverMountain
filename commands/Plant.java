@@ -50,6 +50,9 @@ public class Plant {
 				
 		return result;
 	}
+	
+	//2420 IF B<>22 OR R<>15 THEN R$="DOES NOT GROW!":RETURN
+	//2430 IF R$="OK":KET F(37)=1
 }
 /* 13 March 2026 - Created File
  */

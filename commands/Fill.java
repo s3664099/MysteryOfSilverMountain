@@ -110,7 +110,7 @@ public class Fill {
      * @return an {@link ActionResult} describing the outcome
      */
 	private ActionResult fillJugInValley(Game game,Player player) {
-		game.addMessage("It is now fill", true, false);
+		game.addMessage("It is now full", true, false);
 		game.getItem(GameEntities.FLAG_JUG_FULL).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
