@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.15
-Date: 10 March 2026
+Version: 1.16
+Date: 13 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -139,14 +139,16 @@ public class ParsedCommand {
 			commandType = CommandType.TIE;
 		} else if (verbNumber == GameEntities.CMD_CLIMB)  {
 			commandType = CommandType.CLIMB;
-		} else if (verbNumber == GameEntities.CMD_USE)  {
+		} else if (verbNumber == GameEntities.CMD_USE || verbNumber == GameEntities.CMD_WITH)  {
 			commandType = CommandType.USE;
 		} else if (verbNumber == GameEntities.CMD_OPEN) {
 			commandType = CommandType.OPEN;
 		} else if (verbNumber == GameEntities.CMD_LIGHT || verbNumber == GameEntities.CMD_BURN) {
 			commandType = CommandType.LIGHT;
-		}else if (verbNumber == GameEntities.CMD_FILL) {
+		} else if (verbNumber == GameEntities.CMD_FILL) {
 			commandType = CommandType.FILL;
+		} else if (verbNumber == GameEntities.CMD_PLANT) {
+			commandType = CommandType.PLANT;
 		}
 	}
 	
@@ -291,6 +293,11 @@ public class ParsedCommand {
 	public boolean checkFill() {
 		return commandType == CommandType.FILL;
 	}
+	
+    /** @return true if the command is a FILL command */
+	public boolean checkPlant() {
+		return commandType == CommandType.PLANT;
+	}
 		
     /** @return true if the command is a LOAD command */
 	public boolean checkLoad() {
@@ -334,4 +341,5 @@ public class ParsedCommand {
  * 3 March 2026 - Added Open Command
  * 8 March 2026 - Added Light Command
  * 10 March 2026 - Added Fill Command
+ * 13 March 2026 - Added Plant command and added more command types
  */
