@@ -1,0 +1,149 @@
+EL - Line Length
+NO - Number of Objects
+G - Number of carryable items
+NV - Number of Verbs
+LL - Start of Line
+
+C(G) - Item Locations
+E$(80) - Room Exits
+F(70) - Flags
+X$(6) - Propositions - Locations - Odd
+Y$(6) - Propositions - Items - Even
+G$(2) - 
+
+R - Current Room
+R$ - Message to Player
+
+V$ - Verb
+U$ - Truncated verb (three letters)
+T$ - Noun?
+
+VB - Verb Number
+B - Noun Number
+
+H - Code - Room Number & Noun Number (Concatinated as strings)
+
+3330 - Reads Through Locations
+3380 - Setup
+    3400 - Reads Through items
+    
+3630 - Data
+
+4450 - New Game
+4600 - Load Game
+
+
+
+
+
+
+
+		
+		
+		
+		"examine",				// 10			1470			EXAMINE
+		"read",					// 11			1470			EXAMINE
+		"give",					// 12			1750			GIVE
+		"say",					// 13			1890			SAY
+		
+		"wear",					// 15			1980			WEAR
+		"tie",					// 16			2010			TIE
+		"climb",				// 17			2050			CLIMB
+		"rig",					// 18			2870			RIG
+		"use",					// 19			2120			USE
+		"open",					// 20			2220			OPEN
+		"light",				// 21			2310			BURN
+		"fill",					// 22			2380			FILL
+		"plant",				// 23			2420			PLANT
+		"water",				// 24			2450			WATER
+		"swing",				// 25			2470			SWING
+		"empty",				// 26			2520			EMPTY
+		"enter",				// 27			2550			ENTER
+		"cross",				// 28			2580			CROSS
+		"remove",				// 29			2610			REMOVE
+		"feed",					// 30			2650			FEED
+		"turn",					// 31			2670			TURN
+		"dive",					// 32			2700			DIVE
+		"bail",					// 33			2720			BAIL
+		
+		"throw",				// 35			2830			THROW
+		"insert",				// 36			2800			INSERT
+		"blow",					// 37			2870			RIG
+		
+		"eat",					// 39			2920			EAT
+		"move",					// 40			2950			MOVE
+		"into",					// 41			2990			POISON
+		"ring",					// 42			3010			RING
+		"cut",					// 43			3050			CUT
+		"hold",					// 44			3070			SHOW
+		"burn",					// 45			2310			BURN
+		"poison",				// 46			2990			POISON
+		"show",					// 47			3070			SHOW
+		"unlock",				// 48			3130			UNLOCK
+		"with",					// 49			2120			USE
+		"drink",				// 50			3190			DRINK
+		"count",				// 51			1470			EXAMINE
+		"pay",					// 52			3100			PAY
+		"make",					// 53			2870			RIG	
+		"break",				// 54			3150			BREAK
+		
+		
+		"reflect"				// 57			3170			REFLECT
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static final int CMD_EXAMINE = 10;
+	public static final int CMD_READ = 11;
+	public static final int CMD_GIVE = 12;
+	public static final int CMD_SAY = 13;
+	
+	public static final int CMD_WEAR = 15;
+	public static final int CMD_TIE = 16;
+	public static final int CMD_CLIMB = 17;
+	public static final int CMD_RIG = 18;
+	public static final int CMD_USE = 19;
+	public static final int CMD_OPEN = 20;
+	public static final int CMD_LIGHT = 21;
+	public static final int CMD_FILL = 22;
+	public static final int CMD_PLANT = 23;
+	public static final int CMD_WATER = 24;
+	public static final int CMD_SWING = 25;
+	public static final int CMD_EMPTY = 26;
+    public static final int CMD_ENTER = 27;
+	public static final int CMD_CROSS = 28;
+	public static final int CMD_REMOVE = 29;
+	public static final int CMD_FEED = 30;
+	public static final int CMD_TURN = 31;
+	public static final int CMD_DIVE = 32;
+	public static final int CMD_BAIL = 33;
+	
+	public static final int CMD_THROW = 35;
+	public static final int CMD_INSERT = 36;
+	public static final int CMD_BLOW = 37;
+	
+	public static final int CMD_EAT = 39;
+	public static final int CMD_MOVE = 40;					
+	public static final int CMD_INTO = 41;
+	public static final int CMD_RING = 42;
+	public static final int CMD_CUT = 43;
+	public static final int CMD_HOLD = 44;
+	public static final int CMD_BURN = 45;
+	public static final int CMD_POISON = 46;
+	public static final int CMD_SHOW = 47;
+	public static final int CMD_UNLOCK = 48;
+	public static final int CMD_WITH = 49;
+	public static final int CMD_DRINK = 50;
+	public static final int CMD_COUNT = 51;
+	public static final int CMD_PAY = 52;
+	public static final int CMD_MAKE = 53;
+	public static final int CMD_BREAK = 54;
+	
+	
+	public static final int CMD_RELFECT = 57;

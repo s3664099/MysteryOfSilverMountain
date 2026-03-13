@@ -50,8 +50,9 @@ public class ParsedCommand {
      * Represents the specific type of command identified by the parser.
      */
 	private enum CommandType { NONE,TAKE,GIVE,DROP,EXAMINE,SAY,WEAR,TIE,CLIMB,USE,OPEN,LIGHT,FILL,
+								PLANT,WATER,SWING,EMPTY,ENTER,CROSS,REMOVE,FEED,TURN,DIVE,BAIL,
 								LOAD,SAVE,QUIT,RESTART};
-
+								
 	private CommandState commandState = CommandState.NONE;
 	private CommandType commandType = CommandType.NONE;
 	
@@ -142,7 +143,7 @@ public class ParsedCommand {
 			commandType = CommandType.USE;
 		} else if (verbNumber == GameEntities.CMD_OPEN) {
 			commandType = CommandType.OPEN;
-		} else if (verbNumber == GameEntities.CMD_LIGHT) {
+		} else if (verbNumber == GameEntities.CMD_LIGHT || verbNumber == GameEntities.CMD_BURN) {
 			commandType = CommandType.LIGHT;
 		}else if (verbNumber == GameEntities.CMD_FILL) {
 			commandType = CommandType.FILL;
