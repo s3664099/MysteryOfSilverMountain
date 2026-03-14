@@ -21,6 +21,7 @@ import commands.Light;
 import commands.Take;
 import commands.Tie;
 import commands.Use;
+import commands.Water;
 import commands.Wear;
 import commands.Move;
 import commands.Open;

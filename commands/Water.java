@@ -48,6 +48,9 @@ public class Water {
 						
 		return result;
 	}
+	
+	//2450 IF B=22 AND F(37)=1 AND F(34)=1 THEN R$=X2$: F(38)=1
+	//3470 X2$="A LARGE VINE GROWS IN SECONDS!"
 }
 
 /* 14 March 2026 - Created File
