@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.14
-Date: 9 March 2026
+Version: 1.16
+Date: 14 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -106,6 +106,9 @@ public class CommandExecutor {
 		} else if (command.checkPlant()) {
 			logger.info("Plant");
 			result = new Plant(game,player,command).executePlant();
+		} else if (command.checkWater()) {
+			logger.info("Water");
+			result = new Water(game,player,command).executeWater();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
@@ -144,4 +147,6 @@ public class CommandExecutor {
  * 28 February 2026 - Added use command
  * 3 March 2026 - Added Open command
  * 9 March 2026 - Added Light command
+ * 13 March 2026 - Added Plant Command
+ * 14 March 2026 - Added Water Command
  */
