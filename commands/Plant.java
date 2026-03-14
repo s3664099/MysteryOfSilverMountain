@@ -55,12 +55,27 @@ public class Plant {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is planting the seed in the garden
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isInGarden(Game game, int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_GARDEN &&
 				nounNumber == GameEntities.ITEM_SEEDS &&
 				game.getItem(GameEntities.ITEM_SEEDS).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response if the player is planting the seed in the garden
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult inGarden(Game game,Player player) {
 		game.addMessage("OK", true, false);
 		game.getItem(GameEntities.FLAG_SEED_PLANTED).setItemFlag(1);
@@ -68,6 +83,6 @@ public class Plant {
 	}
 }
 /* 13 March 2026 - Created File
- * 14 March 2026 - Added Action results
+ * 14 March 2026 - Added Action results. Added javadocs
  */
 
