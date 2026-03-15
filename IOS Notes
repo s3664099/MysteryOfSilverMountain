@@ -54,10 +54,10 @@ H - Code - Room Number & Noun Number (Concatinated as strings)
 		
 		
 		
-		"plant",				// 23			2420			PLANT
-		"water",				// 24			2450			WATER
-		"swing",				// 25			2470			SWING
-		"empty",				// 26			2520			EMPTY
+
+
+
+
 		"enter",				// 27			2550			ENTER
 		"cross",				// 28			2580			CROSS
 		"remove",				// 29			2610			REMOVE
