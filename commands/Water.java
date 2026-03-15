@@ -54,6 +54,14 @@ public class Water {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is watering the planted seed
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isWaterSeeds(Game game,int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_GARDEN &&
 				nounNumber == GameEntities.ITEM_SEEDS &&
@@ -62,6 +70,13 @@ public class Water {
 				game.getItem(GameEntities.FLAG_SEED_PLANTED).getItemFlag() == 1;
 	}
 	
+    /**
+     * Executes a response if the player is watering the planted seed
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult waterSeeds(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_VINE_CLIMBABLE).setItemFlag(1);
 		game.getItem(GameEntities.FLAG_JUG_FULL).setItemFlag(0);
@@ -71,5 +86,5 @@ public class Water {
 }
 
 /* 14 March 2026 - Created File
- * 15 March 2026 - Completed action responses
+ * 15 March 2026 - Completed action responses. Added java docs
  */
