@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Plant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 14 March 2026
+Version: 1.2
+Date: 15 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -79,10 +79,12 @@ public class Plant {
 	private ActionResult inGarden(Game game,Player player) {
 		game.addMessage("OK", true, false);
 		game.getItem(GameEntities.FLAG_SEED_PLANTED).setItemFlag(1);
+		game.getItem(GameEntities.ITEM_SEEDS).setItemLocation(GameEntities.ROOM_DESTROYED);
 		return new ActionResult(game,player,true);
 	}
 }
 /* 13 March 2026 - Created File
  * 14 March 2026 - Added Action results. Added javadocs
+ * 15 March 2026 - Removed seeds when planted
  */
 
