@@ -110,6 +110,12 @@ public class CommandExecutor {
 		} else if (command.checkWater()) {
 			logger.info("Water");
 			result = new Water(game,player,command).executeWater();
+		} else if (command.checkSwing()) {
+			logger.info("Swing");
+			result = new Swing(game,player,command).executeSwing();
+		} else if (command.checkEmpty()) {
+			logger.info("Empty");
+			result = new Empty(game,player,command).executeEmpty();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();

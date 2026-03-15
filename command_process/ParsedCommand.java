@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.17
-Date: 14 March 2026
+Version: 1.18
+Date: 15 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -151,6 +151,10 @@ public class ParsedCommand {
 			commandType = CommandType.PLANT;
 		} else if (verbNumber == GameEntities.CMD_WATER) {
 			commandType = CommandType.WATER;
+		} else if (verbNumber == GameEntities.CMD_SWING) {
+			commandType = CommandType.SWING;
+		} else if (verbNumber == GameEntities.CMD_EMPTY) {
+			commandType = CommandType.EMPTY;
 		}
 	}
 	
@@ -305,6 +309,16 @@ public class ParsedCommand {
 	public boolean checkWater() {
 		return commandType == CommandType.WATER;
 	}
+	
+    /** @return true if the command is a SWING command */
+	public boolean checkSwing() {
+		return commandType == CommandType.SWING;
+	}
+	
+    /** @return true if the command is a EMPTY command */
+	public boolean checkEmpty() {
+		return commandType == CommandType.EMPTY;
+	}
 		
     /** @return true if the command is a LOAD command */
 	public boolean checkLoad() {
@@ -350,4 +364,5 @@ public class ParsedCommand {
  * 10 March 2026 - Added Fill Command
  * 13 March 2026 - Added Plant command and added more command types
  * 14 March 2026 - Added water command
+ * 15 March 2026 - Added Swing & Empty Commands
  */
