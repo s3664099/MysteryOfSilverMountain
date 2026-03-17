@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Use Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 11 March 2026
+Version: 1.5
+Date: 17 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -60,7 +60,8 @@ public class Use {
 			result = new Drop(game,player,command).executeDrop();
 		} else if (isUseBucketOrJug(game,command.getNounNumber())) {
 			result = new Fill(game,player,command).executeFill();
-		}
+		} else if (isUseAxeOrSword(command.getNounNumber())) {
+			result = new Swing(game,player,command).executeSwing();		}
 		
 		return result;
 	}
@@ -181,7 +182,18 @@ public class Use {
 				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING) ||
 				(nounNumber == GameEntities.ITEM_BUCKET &&
 				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING);
-	}	
+	}
+
+	/**
+	 * Returns true if the player is using the swprd or the axe
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
+	private boolean isUseAxeOrSword(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_AXE || nounNumber == GameEntities.ITEM_SWORD;
+	}
 }
 
 /* 28 February 2026 - Created file
@@ -190,4 +202,5 @@ public class Use {
  * 3 March 2026 - completed other commands
  * 				- Added JavaDocs
  * 11 March 2026 - Added fill response for use
+ * 17 March 2026 - Added swing functions
  */
