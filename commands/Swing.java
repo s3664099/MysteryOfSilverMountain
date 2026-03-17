@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -45,15 +46,44 @@ public class Swing {
      */
 	public ActionResult executeSwing() {
 		game.addMessage("You cannot Swing that", true, false);
-		ActionResult result = new ActionResult(game,player,true);		
+		ActionResult result = new ActionResult(game,player,true);
+		
+		if (isSwingSwordInCobweb(game,player.getRoom(),command.getNounNumber())) {
+			result = swingSwordInCobweb(game,player);
+		} else if (isSwingSwordOrAxe(game, command.getNounNumber())) {
+			result = swingSwordOrAxe(game,player);
+		}
+		
 		return result;
 	}
-	//- 	//2160 IF B=18 OR B=7 THEN GOSUB 2470 - Swing - Add to Use
-	//2470 IF B=7 OR B=18 THEN R$="THWACK!"
-	//2480 IF H=5818 THEN R$="YOU CLEARED THE WEBS": F(66)=1
+	
+	private boolean isSwingSwordInCobweb(Game game,int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_SWORD && roomNumber == GameEntities.ROOM_COBWEB &&
+				game.getItem(GameEntities.ITEM_SWORD).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+
+	private ActionResult swingSwordInCobweb(Game game, Player player) {
+		game.addMessage("You cleared the webs", true, false);
+		game.getItem(GameEntities.FLAG_COBWEBS).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
 	//2490 IF H=187 THEN R$="THE DOOR BROKE!": E$(18)="NS": E$(28)="NS"
 	//2500 IF H=717 THEN R$="YOU BROKE THROUGH": E$(71)="N"
+	
+	private boolean isSwingSwordOrAxe(Game game, int nounNumber) {
+		return (nounNumber == GameEntities.ITEM_AXE &&
+				game.getItem(GameEntities.ITEM_AXE).getItemLocation() == GameEntities.ROOM_CARRYING) ||
+				(nounNumber == GameEntities.ITEM_SWORD &&
+				game.getItem(GameEntities.ITEM_SWORD).getItemLocation() == GameEntities.ROOM_CARRYING);
+	}
+	
+	private ActionResult swingSwordOrAxe(Game game,Player player) {
+		game.addMessage("Thwack!", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 15 March 2026 - Created files
+ * 17 March 2026 - Started added responses to actions
  */
