@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Swing Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 15 March 2026
+Version: 1.2
+Date: 18 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -50,6 +50,10 @@ public class Swing {
 		
 		if (isSwingSwordInCobweb(game,player.getRoom(),command.getNounNumber())) {
 			result = swingSwordInCobweb(game,player);
+		} else if (isSwingAxeInCorridor(game, player.getRoom(),command.getNounNumber())) {
+			result = swingAxeInCorridor(game,player);
+		} else if (isSwingAxeInWellBottom(game, player.getRoom(), command.getNounNumber())) {
+			result = swingAxeInWellBottom(game,player);
 		} else if (isSwingSwordOrAxe(game, command.getNounNumber())) {
 			result = swingSwordOrAxe(game,player);
 		}
@@ -68,8 +72,28 @@ public class Swing {
 		return new ActionResult(game,player,true);
 	}
 	
-	//2490 IF H=187 THEN R$="THE DOOR BROKE!": E$(18)="NS": E$(28)="NS"
-	//2500 IF H=717 THEN R$="YOU BROKE THROUGH": E$(71)="N"
+	private boolean isSwingAxeInCorridor(Game game,int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_AXE && roomNumber == GameEntities.ROOM_CORRIDOR &&
+				game.getItem(GameEntities.ITEM_AXE).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+
+	private ActionResult swingAxeInCorridor(Game game, Player player) {
+		game.addMessage("The door broke", true, false);
+		game.getRoom(GameEntities.ROOM_CORRIDOR).openExit(GameEntities.SOUTH);
+		game.getRoom(GameEntities.ROOM_DUNGEONS).openExit(GameEntities.NORTH);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isSwingAxeInWellBottom(Game game,int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_AXE && roomNumber == GameEntities.ROOM_WELL_BOTTOM &&
+				game.getItem(GameEntities.ITEM_AXE).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+
+	private ActionResult swingAxeInWellBottom(Game game, Player player) {
+		game.addMessage("You broke through", true, false);
+		game.getRoom(GameEntities.ROOM_WELL_BOTTOM).openExit(GameEntities.NORTH);
+		return new ActionResult(game,player,true);
+	}
 	
 	private boolean isSwingSwordOrAxe(Game game, int nounNumber) {
 		return (nounNumber == GameEntities.ITEM_AXE &&
@@ -86,4 +110,5 @@ public class Swing {
 
 /* 15 March 2026 - Created files
  * 17 March 2026 - Started added responses to actions
+ * 18 March 2026 - Completed adding response to actions
  */
