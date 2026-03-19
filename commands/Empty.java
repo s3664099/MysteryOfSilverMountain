@@ -48,25 +48,46 @@ public class Empty {
 		game.addMessage("You cannot Empty that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
-		if isWater(command.getNounNumber()) {
+		if (isWater(command.getNounNumber())) {
 			result = new Water(game,player,command).executeWater();
-		} else if isEmptyPhial(game,player.getRoom(),command.getNounNumber()) {
+		} else if (isEmptyPhial(game,player.getRoom(),command.getNounNumber())) {
 			result = emptyPhial(game,player);
 		}
 		
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is emptying the seeds or the jug
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isWater(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_SEEDS ||
 				nounNumber == GameEntities.ITEM_JUG;
 	}
 	
+	/**
+	 * Returns true if the player is emptying the phial in the mosaic hall
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isEmptyPhial(Game game, int roomNumber, int nounNumber) {
 		return game.getItem(GameEntities.ITEM_PHIAL).getItemLocation() == GameEntities.CARRYING &&
 				roomNumber == GameEntities.ROOM_MOSAIC_HALL && nounNumber == GameEntities.ITEM_PHIAL;
 	}
 	
+    /**
+     * Executes a response if the player is emptying the phial in the mosaic hall
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult emptyPhial(Game game,Player player) {
 		game.addMessage("Where?", true, false);
 		return new ActionResult(game,player,true);
@@ -74,5 +95,5 @@ public class Empty {
 }
 /* 15 March 2026 - Created class
  * 19 March 2026 - Added the responses
+ * 				 - Added JavaDocs
  */
-*/
