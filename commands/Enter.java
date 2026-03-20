@@ -50,4 +50,7 @@ public class Enter {
 				
 		return result;
 	}
+	
+	//2550 IF H=4337 THEN VB=2:GOSUB 800:RETURN
+	//2560 IF R=36 THEN R$="YOU FOUND SOMETHING": F(13)=0
 }

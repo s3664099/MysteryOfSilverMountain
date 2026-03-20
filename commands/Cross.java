@@ -50,4 +50,7 @@ public class Cross {
 				
 		return result;
 	}
+	
+	//2580 IF R=76 THEN VB=4:GOSUB 800:RETURN
+	//2590 IF R=75 THEN VB=2:GOSUB 800
 }
