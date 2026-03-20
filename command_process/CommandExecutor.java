@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.17
-Date: 15 March 2026
+Version: 1.18
+Date: 20 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -12,8 +12,10 @@ package command_process;
 import java.util.logging.Logger;
 
 import commands.Climb;
+import commands.Cross;
 import commands.Drop;
 import commands.Empty;
+import commands.Enter;
 import commands.Examine;
 import commands.Fill;
 import commands.Give;
@@ -165,4 +167,5 @@ public class CommandExecutor {
  * 13 March 2026 - Added Plant Command
  * 14 March 2026 - Added Water Command
  * 15 March 2026 - Added Swing & empty
+ * 20 March 2026 - Added enter & cross
  */
