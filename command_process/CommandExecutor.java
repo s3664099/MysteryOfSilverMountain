@@ -118,6 +118,12 @@ public class CommandExecutor {
 		} else if (command.checkEmpty()) {
 			logger.info("Empty");
 			result = new Empty(game,player,command).executeEmpty();
+		} else if (command.checkEnter()) {
+			logger.info("Enter");
+			result = new Enter(game,player,command).executeEnter();
+		} else if (command.checkCross()) {
+			logger.info("Cross");
+			result = new Cross(game,player,command).executeCross();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
