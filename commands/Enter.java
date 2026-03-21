@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Enter Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 20 March 2026
+Version: 1.1
+Date: 21 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -57,25 +57,57 @@ public class Enter {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is entering the windmill
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isEnterWindmill(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_OUTSIDE_WINDMILL &&
 				nounNumber == GameEntities.ITEM_WINDMILL;
 	}
 	
+    /**
+     * Executes a response if the player is entering the windmill
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult enterWindmill(Game game, Player player) {
 		game.addMessage("Ok",true,true);
 		player.setRoom(player.getRoom()+1);
 		return new ActionResult(game,player, true);
 	}
 	
+	/**
+	 * Returns true if the player is entering the hut
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isEnterHut(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_HUT &&
 				nounNumber == GameEntities.ITEM_HUT;
 	}
 	
+    /**
+     * Executes a response if the player is entering the hut
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult enterHut(Game game, Player player) {
 		game.addMessage("You found something!",true,true);
 		game.getItem(GameEntities.FLAG_PLANKS).setItemFlag(0);
 		return new ActionResult(game,player, true);
 	}
 }
+
+/* 20 March 2026 - Created File
+ * 21 March 2026 - Added responses & javadocs
+ */
