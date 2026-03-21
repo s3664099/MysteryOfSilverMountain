@@ -47,10 +47,27 @@ public class Cross {
 	public ActionResult executeCross() {
 		game.addMessage("You cannot Cross that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
-				
+		
+		if (isCrossBridge(player.getRoom(),command.getNounNumber())) {
+			result = crossBridge(game,player);
+		}
+		
 		return result;
 	}
 	
-	//2580 IF R=76 THEN VB=4:GOSUB 800:RETURN
-	//2590 IF R=75 THEN VB=2:GOSUB 800
+	public boolean isCrossBridge(int roomNumber,int nounNumber) {
+		return nounNumber == GameEntities.ITEM_BRIDGE &&
+				(roomNumber == GameEntities.ROOM_BRIDGE_EAST ||
+				roomNumber == GameEntities.ROOM_BRIDGE_WEST);
+	}
+	
+	public ActionResult crossBridge(Game game, Player player) {
+		game.addMessage("Ok", true, false);
+		if (player.getRoom()==GameEntities.ROOM_BRIDGE_EAST) {
+			player.setRoom(GameEntities.ROOM_BRIDGE_WEST);
+		} else if (player.getRoom()==GameEntities.ROOM_BRIDGE_WEST) {
+			player.setRoom(GameEntities.ROOM_BRIDGE_EAST);
+		}
+		return new ActionResult(game,player,true);
+	}
 }
