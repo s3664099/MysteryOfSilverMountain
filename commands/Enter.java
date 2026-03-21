@@ -47,10 +47,35 @@ public class Enter {
 	public ActionResult executeEnter() {
 		game.addMessage("You cannot Enter that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
-				
+		
+		if (isEnterWindmill(player.getRoom(),command.getNounNumber())) {
+			result = enterWindmill(game,player);
+		} else if (isEnterHut(player.getRoom(),command.getNounNumber())) {
+			result = enterHut(game,player);
+		}
+		
 		return result;
 	}
 	
-	//2550 IF H=4337 THEN VB=2:GOSUB 800:RETURN
-	//2560 IF R=36 THEN R$="YOU FOUND SOMETHING": F(13)=0
+	private boolean isEnterWindmill(int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_OUTSIDE_WINDMILL &&
+				nounNumber == GameEntities.ITEM_WINDMILL;
+	}
+	
+	private ActionResult enterWindmill(Game game, Player player) {
+		game.addMessage("Ok",true,true);
+		player.setRoom(player.getRoom()+1);
+		return new ActionResult(game,player, true);
+	}
+	
+	private boolean isEnterHut(int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_HUT &&
+				nounNumber == GameEntities.ITEM_HUT;
+	}
+	
+	private ActionResult enterHut(Game game, Player player) {
+		game.addMessage("You found something!",true,true);
+		game.getItem(GameEntities.FLAG_PLANKS).setItemFlag(0);
+		return new ActionResult(game,player, true);
+	}
 }
