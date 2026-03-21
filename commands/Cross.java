@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Cross Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 20 March 2026
+Version: 1.1
+Date: 21 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -55,12 +55,26 @@ public class Cross {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is crossing the bridge
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	public boolean isCrossBridge(int roomNumber,int nounNumber) {
 		return nounNumber == GameEntities.ITEM_BRIDGE &&
 				(roomNumber == GameEntities.ROOM_BRIDGE_EAST ||
 				roomNumber == GameEntities.ROOM_BRIDGE_WEST);
 	}
 	
+    /**
+     * Executes a response if the player is crossing the bridge
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	public ActionResult crossBridge(Game game, Player player) {
 		game.addMessage("Ok", true, false);
 		if (player.getRoom()==GameEntities.ROOM_BRIDGE_EAST) {
@@ -71,3 +85,6 @@ public class Cross {
 		return new ActionResult(game,player,true);
 	}
 }
+/* 20 March 2026 - Created File
+ * 21 March 2026 - Added responses and JavaDocs
+ */
