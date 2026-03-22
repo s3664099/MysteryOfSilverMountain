@@ -50,6 +50,9 @@ public class Remove {
 				
 		return result;
 	}
+	//2610 IF (B=3 AND F(29)=1) THEN R$="TAKEN OFF": F(29)=0
+	//2620 IF (B=20 AND F(51)=1) THEN R$="OK": F(51)=0
+	//2630 IF B=36 OR B=50 THEN GOSUB 2950
 }
 
 /* 22 March 2026 - Created Class
