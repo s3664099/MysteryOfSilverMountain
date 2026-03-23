@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.18
-Date: 14 March 2026
+Version: 1.19
+Date: 23 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -409,4 +409,5 @@ public class GameEntities {
  * 24 February 2026 - Renamed flag 40 & 53
  * 7 March 2026 - Changed flag name for Ogban's safe
  * 14 March 2026 - Changed flag 37 name
+ * 23 March 2026 - Fixed spelling error for uniform
  */
