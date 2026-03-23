@@ -3,8 +3,10 @@ Title: Mystery of Silver Mountain Remove Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
 Version: 1.1
-Date: 11 March 2026
+Date: 23 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
+
+- Add to drop - if wearing uniform/boots and drop them, then reset flag
 */
 
 package commands;
@@ -47,13 +49,40 @@ public class Remove {
 	public ActionResult executeRemove() {
 		game.addMessage("You cannot remove that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
-				
+		
+		if (isBoots(game,command.getNounNumber())) {
+			result = boots(game,player);
+		} else if (isUniform(game,command.getNounNumber())) {
+			result = uniform(game,player);
+		}
 		return result;
 	}
-	//2610 IF (B=3 AND F(29)=1) THEN R$="TAKEN OFF": F(29)=0
-	//2620 IF (B=20 AND F(51)=1) THEN R$="OK": F(51)=0
-	//2630 IF B=36 OR B=50 THEN GOSUB 2950
+	
+	private boolean isBoots(Game game, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_BOOTS &&
+				game.getItem(GameEntities.ITEM_BOOTS).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag() == 1;
+	}
+	
+	private ActionResult boots(Game game,Player player) {
+		game.addMessage("Taken off", true, false);
+		game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isUniform(Game game, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_UNIFORM &&
+				game.getItem(GameEntities.ITEM_UNIFORM).getItemLocation() == GameEntities.ROOM_CARRYING &&
+				game.getItem(GameEntities.FLAG_WEARING_UNIFORM).getItemFlag() == 1;
+	}
+	
+	private ActionResult uniform(Game game,Player player) {
+		game.addMessage("Ok", true, false);
+		game.getItem(GameEntities.FLAG_WEARING_UNIFORM).setItemFlag(0);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 22 March 2026 - Created Class
+ * 23 March 2026 - Added responses & JavaDocs
  */

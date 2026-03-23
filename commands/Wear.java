@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Wear Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 22 February 2026
+Version: 1.1
+Date: 23 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -93,7 +93,7 @@ public class Wear {
 	 */
 	private boolean isWearUniform(Game game, int nounNumber) {
 		return game.getItem(GameEntities.ITEM_UNIFORM).getItemLocation() == GameEntities.ROOM_CARRYING &&
-				game.getItem(GameEntities.FLAG_WEARING_UNFORM).getItemFlag() == 0 &&
+				game.getItem(GameEntities.FLAG_WEARING_UNIFORM).getItemFlag() == 0 &&
 				nounNumber == GameEntities.ITEM_UNIFORM;
 	}
 	
@@ -105,7 +105,7 @@ public class Wear {
      * @return an {@link ActionResult} the result
      */
 	private ActionResult wearUniform(Game game,Player player) {
-		game.getItem(GameEntities.FLAG_WEARING_UNFORM).setItemFlag(1);
+		game.getItem(GameEntities.FLAG_WEARING_UNIFORM).setItemFlag(1);
 		game.getItem(GameEntities.FLAG_PLAYER_SPOTTED).setItemFlag(0);
 		game.addMessage("You are disquised", true, false);
 		return new ActionResult(game,player,true);
@@ -114,4 +114,5 @@ public class Wear {
 
 /*
  * 22 February 2026 - Created File
+ * 23 March 2026 - Fixed spelling error with wearing uniform
  */
