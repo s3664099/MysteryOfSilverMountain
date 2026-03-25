@@ -48,9 +48,25 @@ public class Feed {
 		game.addMessage("You cannot feed that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
+		if (isFeedResponse(player.getRoom(),command.getNounNumber())) {
+			result = feedResponse(game,player);
+		}
 		return result;
 	}
-	//2650 IF H=3859 OR H=3339 OR H=1241 OR H=2241 OR H=751 THEN R$="WITH WHAT?"
+	
+
+	private boolean isFeedResponse(int roomNumber,int nounNumber) {
+		return (roomNumber == GameEntities.ROOM_WINE_CELLAR && nounNumber == GameEntities.ITEM_RAT) ||
+				(roomNumber == GameEntities.ROOM_COUNTRYSIDE && nounNumber == GameEntities.ITEM_BOAR) ||
+				(roomNumber == GameEntities.ROOM_RUSTY_GATES && nounNumber == GameEntities.ITEM_PONY) ||
+				(roomNumber == GameEntities.ROOM_TRACK && nounNumber == GameEntities.ITEM_PONY) ||
+				(roomNumber == GameEntities.ROOM_GLASS_GATES && nounNumber == GameEntities.ITEM_HOUND);
+	}
+	
+	private ActionResult feedResponse(Game game,Player player) {
+		game.addMessage("With what?", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 22 March 2026 - Created File
