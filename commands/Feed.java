@@ -54,7 +54,13 @@ public class Feed {
 		return result;
 	}
 	
-
+	/**
+	 * Returns true if there is a response for the feed action
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isFeedResponse(int roomNumber,int nounNumber) {
 		return (roomNumber == GameEntities.ROOM_WINE_CELLAR && nounNumber == GameEntities.ITEM_RAT) ||
 				(roomNumber == GameEntities.ROOM_COUNTRYSIDE && nounNumber == GameEntities.ITEM_BOAR) ||
@@ -63,6 +69,13 @@ public class Feed {
 				(roomNumber == GameEntities.ROOM_GLASS_GATES && nounNumber == GameEntities.ITEM_HOUND);
 	}
 	
+    /**
+     * Executes a response for the feed action
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult feedResponse(Game game,Player player) {
 		game.addMessage("With what?", true, false);
 		return new ActionResult(game,player,true);
@@ -70,4 +83,5 @@ public class Feed {
 }
 
 /* 22 March 2026 - Created File
+ * 25 March 2026 - Added responses and javadocs
  */
