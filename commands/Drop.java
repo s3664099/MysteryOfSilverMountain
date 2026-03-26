@@ -173,21 +173,49 @@ public class Drop {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the command is dropping worn boots.
+	 * 
+	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean haveDroppedBoots(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_BOOTS &&
 				game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag() == 1;
 	}
 	
+    /**
+     * Removes the worn flag is dropping worn boots
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult droppedBoots(Game game, Player player) {
 		game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).setItemFlag(0);
 		return new ActionResult(game,player, true);
 	}
 	
+	/**
+	 * Returns true if the command is dropping a worn uniform.
+	 * 
+	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean haveDroppedUniform(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_UNIFORM &&
 				game.getItem(GameEntities.FLAG_WEARING_UNIFORM).getItemFlag() == 1;
 	}
 	
+    /**
+     * removes the worn flag if dropping the worn uniform
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult droppedUniform(Game game, Player player) {
 		game.getItem(GameEntities.FLAG_WEARING_UNIFORM).setItemFlag(0);
 		return new ActionResult(game,player, true);
