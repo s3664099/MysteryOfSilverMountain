@@ -60,6 +60,10 @@ public class Drop {
 				result = droppedJug(result.getGame(),result.getPlayer());
 			} else if (haveDroppedSheet(game,command.getNounNumber())) {
 				result = droppedSheet(result.getGame(),result.getPlayer());
+			} else if (haveDroppedBoots(command.getNounNumber())) {
+				result = droppedBoots(result.getGame(),result.getPlayer());
+			} else if (haveDroppedUniform(command.getNounNumber())) {
+				result = droppedUniform(result.getGame(),result.getPlayer());
 			}
 			
 		} else {
@@ -167,6 +171,26 @@ public class Drop {
 	private ActionResult droppedSheet(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_BOAT_POWER).setItemFlag(0);
 		return new ActionResult(game,player,true);
+	}
+	
+	private boolean haveDroppedBoots(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_BOOTS &&
+				game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag() == 1;
+	}
+	
+	private ActionResult droppedBoots(Game game, Player player) {
+		game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).setItemFlag(0);
+		return new ActionResult(game,player, true);
+	}
+	
+	private boolean haveDroppedUniform(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_UNIFORM &&
+				game.getItem(GameEntities.FLAG_WEARING_UNIFORM).getItemFlag() == 1;
+	}
+	
+	private ActionResult droppedUniform(Game game, Player player) {
+		game.getItem(GameEntities.FLAG_WEARING_UNIFORM).setItemFlag(0);
+		return new ActionResult(game,player, true);
 	}
 	
 	/**
