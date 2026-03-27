@@ -51,6 +51,8 @@ public class Turn {
 	
 		return result;
 	}
+	//2670 IF H=2340 THEN R$="IT GOES ROUND"
+	//2680 IF H=2445 THEN R$="UIF HBUFT PQFO, UIF QPPM FNQUJFT": F(33)=1:GOSUB 2460
 }
 
 /* 27 March 2026 - Created file

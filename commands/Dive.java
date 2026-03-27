@@ -51,6 +51,7 @@ public class Dive {
 	
 		return result;
 	}
+	//2700 IF R=14 OR R=51 THEN R$="YOU HAVE DROWNED": F(56)=1
 }
 
 /* 27 March 2026 - Created file
