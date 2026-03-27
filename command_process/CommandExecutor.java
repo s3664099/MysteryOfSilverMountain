@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.19
-Date: 22 March 2026
+Version: 1.20
+Date: 27 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import commands.Climb;
 import commands.Cross;
+import commands.Dive;
 import commands.Drop;
 import commands.Empty;
 import commands.Enter;
@@ -24,6 +25,7 @@ import commands.Inventory;
 import commands.Light;
 import commands.Take;
 import commands.Tie;
+import commands.Turn;
 import commands.Use;
 import commands.Water;
 import commands.Wear;
@@ -183,4 +185,5 @@ public class CommandExecutor {
  * 15 March 2026 - Added Swing & empty
  * 20 March 2026 - Added enter & cross
  * 22 March 2026 - Added remove & feed
+ * 27 March 2026 - Added turn & dive
  */
