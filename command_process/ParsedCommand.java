@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.20
-Date: 22 March 2026
+Version: 1.21
+Date: 27 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -163,6 +163,10 @@ public class ParsedCommand {
 			commandType = CommandType.ENTER;
 		} else if (verbNumber == GameEntities.CMD_FEED) {
 			commandType = CommandType.CROSS;
+		} else if (verbNumber == GameEntities.CMD_TURN) {
+			commandType = CommandType.TURN;
+		} else if (verbNumber == GameEntities.CMD_DIVE) {
+			commandType = CommandType.DIVE;
 		}
 	}
 	
@@ -347,6 +351,16 @@ public class ParsedCommand {
 	public boolean checkFeed() {
 		return commandType == CommandType.FEED;
 	}
+	
+    /** @return true if the command is a ENTER command */
+	public boolean checkTurn() {
+		return commandType == CommandType.TURN;
+	}
+	
+    /** @return true if the command is a CROSS command */
+	public boolean checkDive() {
+		return commandType == CommandType.DIVE;
+	}
 		
     /** @return true if the command is a LOAD command */
 	public boolean checkLoad() {
@@ -395,4 +409,5 @@ public class ParsedCommand {
  * 15 March 2026 - Added Swing & Empty Commands
  * 20 March 2026 - Added enter & cross commands
  * 22 March 2026 - Added Remove & Feed
+ * 27 March 2026 - Added Turn & Dive
  */

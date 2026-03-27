@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Drop Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 12 February 2026
+Version: 1.6
+Date: 26 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -265,4 +265,5 @@ public class Drop {
  * 31 January 2026 - Completed code and added Javadocs
  * 10 February 2026 - Updated Javadocs
  * 12 February 2026 - Changed initial action result to false.
+ * 26 March 2026 - Added autoremove from dropping worn item
  */

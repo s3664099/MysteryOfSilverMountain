@@ -134,6 +134,12 @@ public class CommandExecutor {
 		} else if (command.checkFeed()) {
 			logger.info("Feed");
 			result = new Feed(game,player,command).executeFeed();
+		} else if (command.checkTurn()) {
+			logger.info("Turn");
+			result = new Turn(game,player,command).executeTurn();
+		} else if (command.checkDive()) {
+			logger.info("Dive");
+			result = new Dive(game,player,command).executeDive();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
