@@ -141,7 +141,7 @@ public class CommandExecutor {
 			result = new Turn(game,player,command).executeTurn();
 		} else if (command.checkDive()) {
 			logger.info("Dive");
-			result = new Dive(game,player,command).executeDive();
+			result = new Dive(game,player).executeDive();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();

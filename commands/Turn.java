@@ -57,21 +57,49 @@ public class Turn {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is turning the waterwheel
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isTurnWaterWheel(int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_WATERWHEEL &&
 				nounNumber == GameEntities.ITEM_WHEEL;
 	}
 	
+    /**
+     * Executes a response if the player is turning the water wheel
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult turnWaterWheel(Game game,Player player) {
 		game.addMessage("It goes round.", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is turning the handle
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isTurnHandle(int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_SLUICE_GATES &&
 				nounNumber == GameEntities.ITEM_HANDLE;
 	}
 	
+    /**
+     * Executes a response if the player turning the handle
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult turnHandle(Game game,Player player) {
 		game.addMessage("The gates open, the room empties.", true, false);
 		game.getItem(GameEntities.FLAG_SHEILD_REVEALED).setItemFlag(1);
