@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Turn Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 27 March 2026
+Version: 1.1
+Date: 28 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -48,12 +48,37 @@ public class Turn {
 		game.addMessage("You are unable to do that.", false, false);
 		ActionResult result = new ActionResult(game,player,false);
 		
-	
+		if (isTurnWaterWheel(player.getRoom(),command.getNounNumber())) {
+			result = turnWaterWheel(game,player);
+		} else if (isTurnHandle(player.getRoom(),command.getNounNumber())) {
+			result = turnHandle(game,player);
+		}
+
 		return result;
 	}
-	//2670 IF H=2340 THEN R$="IT GOES ROUND"
-	//2680 IF H=2445 THEN R$="UIF HBUFT PQFO, UIF QPPM FNQUJFT": F(33)=1:GOSUB 2460
+	
+	private boolean isTurnWaterWheel(int roomNumber,int nounNumber) {
+		return roomNumber == GameEntities.ROOM_WATERWHEEL &&
+				nounNumber == GameEntities.ITEM_WHEEL;
+	}
+	
+	private ActionResult turnWaterWheel(Game game,Player player) {
+		game.addMessage("It goes round.", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isTurnHandle(int roomNumber,int nounNumber) {
+		return roomNumber == GameEntities.ROOM_SLUICE_GATES &&
+				nounNumber == GameEntities.ITEM_HANDLE;
+	}
+	
+	private ActionResult turnHandle(Game game,Player player) {
+		game.addMessage("The gates open, the room empties.", true, false);
+		game.getItem(GameEntities.FLAG_SHEILD_REVEALED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 27 March 2026 - Created file
+ * 28 March 2026 - Added action responses
  */

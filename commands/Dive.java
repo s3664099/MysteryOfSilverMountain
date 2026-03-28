@@ -48,10 +48,23 @@ public class Dive {
 		game.addMessage("You are unable to do that.", false, false);
 		ActionResult result = new ActionResult(game,player,false);
 		
+		if (hasDrowned(player.getRoom())) {
+			result = drowned(game,player);
+		}
 	
 		return result;
 	}
-	//2700 IF R=14 OR R=51 THEN R$="YOU HAVE DROWNED": F(56)=1
+	
+	private boolean hasDrowned(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_POOL &&
+				roomNumber == GameEntities.ROOM_MIDDLE_LAKE;
+	}
+	
+	private ActionResult drowned(Game game,Player player) {
+		game.addMessage("You have drowned.", true, false);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 27 March 2026 - Created file
