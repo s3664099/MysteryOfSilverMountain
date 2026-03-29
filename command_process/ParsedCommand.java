@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.22
-Date: 28 March 2026
+Version: 1.23
+Date: 29 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -54,8 +54,10 @@ public class ParsedCommand {
      */
 	private enum CommandType { NONE,TAKE,GIVE,DROP,EXAMINE,SAY,WEAR,TIE,CLIMB,USE,OPEN,LIGHT,FILL,
 								PLANT,WATER,SWING,EMPTY,ENTER,CROSS,REMOVE,FEED,TURN,DIVE,BAIL,
+								THROW,INSERT,RIG,EAT,MOVE,RING,CUT,SHOW,BURN,POISON,UNLOCK,DRINK,
 								LOAD,SAVE,QUIT,RESTART};
-								
+	//RIG, POISON, SHOW - Multi command names
+							
 	private CommandState commandState = CommandState.NONE;
 	private CommandType commandType = CommandType.NONE;
 	
@@ -171,7 +173,9 @@ public class ParsedCommand {
 			commandType = CommandType.CROSS;
 		} else if (verbNumber == GameEntities.CMD_TURN) {
 			commandType = CommandType.TURN;
-		} 
+		} else if (verbNumber == GameEntities.CMD_THROW) {
+			commandType = CommandType.THROW;
+		}
 	}
 	
     // --------------------
@@ -346,24 +350,29 @@ public class ParsedCommand {
 		return commandType == CommandType.CROSS;
 	}
 	
-    /** @return true if the command is a ENTER command */
+    /** @return true if the command is a REMOVE command */
 	public boolean checkRemove() {
 		return commandType == CommandType.REMOVE;
 	}
 	
-    /** @return true if the command is a CROSS command */
+    /** @return true if the command is a FEED command */
 	public boolean checkFeed() {
 		return commandType == CommandType.FEED;
 	}
 	
-    /** @return true if the command is a ENTER command */
+    /** @return true if the command is a TURN command */
 	public boolean checkTurn() {
 		return commandType == CommandType.TURN;
 	}
 	
-    /** @return true if the command is a CROSS command */
+    /** @return true if the command is a DIVE command */
 	public boolean checkDive() {
 		return commandType == CommandType.DIVE;
+	}
+	
+    /** @return true if the command is a THROW command */
+	public boolean checkThrow() {
+		return commandType == CommandType.THROW;
 	}
 		
     /** @return true if the command is a LOAD command */
@@ -415,4 +424,5 @@ public class ParsedCommand {
  * 22 March 2026 - Added Remove & Feed
  * 27 March 2026 - Added Turn & Dive
  * 28 March 2026 - Added single command for dive
+ * 29 March 2026 - Added next lot of commands
  */
