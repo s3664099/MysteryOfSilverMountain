@@ -52,7 +52,7 @@ public class Cross {
 		
 		if (isCrossBridge(player.getRoom(),command.getNounNumber())) {
 			if(isTrollBlocking(game)) {
-				
+				result = trollBlocking(game,player);
 			} else {
 				result = crossBridge(game,player);
 			}
