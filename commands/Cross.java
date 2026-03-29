@@ -2,9 +2,11 @@
 Title: Mystery of Silver Mountain Cross Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 21 March 2026
+Version: 1.2
+Date: 29 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
+
+TODO: Add check to see if the troll will let you cross
 */
 
 package commands;
@@ -49,7 +51,11 @@ public class Cross {
 		ActionResult result = new ActionResult(game,player,true);
 		
 		if (isCrossBridge(player.getRoom(),command.getNounNumber())) {
-			result = crossBridge(game,player);
+			if(isTrollBlocking(game)) {
+				
+			} else {
+				result = crossBridge(game,player);
+			}
 		}
 		
 		return result;
@@ -62,10 +68,20 @@ public class Cross {
  	 * @param roomNumber the room the player is in
 	 * @return boolean
 	 */
-	public boolean isCrossBridge(int roomNumber,int nounNumber) {
+	private boolean isCrossBridge(int roomNumber,int nounNumber) {
 		return nounNumber == GameEntities.ITEM_BRIDGE &&
 				(roomNumber == GameEntities.ROOM_BRIDGE_EAST ||
 				roomNumber == GameEntities.ROOM_BRIDGE_WEST);
+	}
+	
+	/**
+	 * Checks if the troll is blocking the player
+	 * 
+     * @param game the current game state
+	 * @return boolean
+	 */
+	private boolean isTrollBlocking(Game game) {
+		return game.getItem(GameEntities.FLAG_TROLL).getItemFlag()==0;
 	}
 	
     /**
@@ -82,9 +98,23 @@ public class Cross {
 		} else if (player.getRoom()==GameEntities.ROOM_BRIDGE_WEST) {
 			player.setRoom(GameEntities.ROOM_BRIDGE_EAST);
 		}
+		game.getItem(GameEntities.FLAG_TROLL).setItemFlag(0);	
+		return new ActionResult(game,player,true);
+	}
+	
+    /**
+     * Handles the troll blocking the exit.
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} indicating failure
+     */
+	private ActionResult trollBlocking(Game game, Player player) {
+		game.addMessage("A troll stops you crossing!", true, true);
 		return new ActionResult(game,player,true);
 	}
 }
 /* 20 March 2026 - Created File
  * 21 March 2026 - Added responses and JavaDocs
+ * 29 March 2026 - Added check for troll blocking
  */
