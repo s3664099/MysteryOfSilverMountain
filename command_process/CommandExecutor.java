@@ -146,7 +146,7 @@ public class CommandExecutor {
 			result = new Dive(game,player).executeDive();
 		} else if (command.checkBail()) {
 			logger.info("Throw");
-			result = new Bail(game,player,command).executeBail();
+			result = new Bail(game,player).executeBail();
 		} else if (command.checkThrow()) {
 			logger.info("Bail");
 			result = new Throw(game,player,command).executeThrow();

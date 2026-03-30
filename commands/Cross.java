@@ -5,8 +5,6 @@ Translator: David Sarkies
 Version: 1.2
 Date: 29 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
-
-TODO: Add check to see if the troll will let you cross
 */
 
 package commands;

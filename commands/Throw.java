@@ -52,6 +52,10 @@ public class Throw {
 				
 		return result;
 	}
+	//2830 IF B=0 OR B>G THEN RETURN
+	//2840 R$="DID NOT GO FAR!": C(B)=R
+	//2850 IF H=3317 THEN R$="ZPV DBVHIU UIF CPBS": F(32)=1:GOSUB 4260
+	//
 }
 
 /* 30 March 2026 - Created File
