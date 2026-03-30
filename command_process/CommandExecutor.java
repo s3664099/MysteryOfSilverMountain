@@ -142,6 +142,12 @@ public class CommandExecutor {
 		} else if (command.checkDive()) {
 			logger.info("Dive");
 			result = new Dive(game,player).executeDive();
+		} else if (command.checkBail()) {
+			logger.info("Throw");
+			result = new Bail(game,player).executeBail();
+		} else if (command.checkThrow()) {
+			logger.info("Bail");
+			result = new Throw(game,player).executeThrow();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
