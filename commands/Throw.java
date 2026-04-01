@@ -49,10 +49,13 @@ public class Throw {
 		game.addMessage("You cannot throw that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
-		
 		if (isCarriableItem(command.getNounNumber())) {
 			if (isCarryingItem(game,command.getNounNumber())) {
 				result = itemThrown(game,player,command.getNounNumber());
+				
+				if (isThrowingNet(player.getRoom(),command.getNounNumber())){
+					result = throwingNet(game,player);
+				}
 			}
 			
 		}
@@ -73,7 +76,16 @@ public class Throw {
 		game.getItem(nounNumber).setItemLocation(player.getRoom());
 		return new ActionResult(game,player,true);
 	}
-	//2850 IF H=3317 THEN R$="ZPV DBVHIU UIF CPBS": F(32)=1:GOSUB 4260
+	
+	private boolean isThrowingNet(int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_COUNTRYSIDE && nounNumber == GameEntities.ITEM_NET;
+	}
+	
+	private ActionResult throwingNet(Game game,Player player) {
+		game.addMessage("You caught the boar", true, false);
+		game.getItem(GameEntities.FLAG_OGBANS_BOAR).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 30 March 2026 - Created File
