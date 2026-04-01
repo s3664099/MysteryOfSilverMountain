@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.20
-Date: 27 March 2026
+Version: 1.21
+Date: 1 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -145,10 +145,10 @@ public class CommandExecutor {
 			logger.info("Dive");
 			result = new Dive(game,player).executeDive();
 		} else if (command.checkBail()) {
-			logger.info("Throw");
+			logger.info("Bail");
 			result = new Bail(game,player).executeBail();
 		} else if (command.checkThrow()) {
-			logger.info("Bail");
+			logger.info("Throw");
 			result = new Throw(game,player,command).executeThrow();
 		} else if (command.checkSave()) {
 			logger.info("Save");
@@ -194,4 +194,5 @@ public class CommandExecutor {
  * 20 March 2026 - Added enter & cross
  * 22 March 2026 - Added remove & feed
  * 27 March 2026 - Added turn & dive
+ * 1 April 2026 - Switch log comments for bail
  */
