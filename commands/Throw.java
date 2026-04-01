@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Throw Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 1 April 2026
+Version: 1.2
+Date: 2 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -57,30 +57,62 @@ public class Throw {
 					result = throwingNet(game,player);
 				}
 			}
-			
-		}
-				
+		}	
 		return result;
 	}
 	
+	/**
+	 * Returns true if the item is carriable
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isCarriableItem(int nounNumber) {
 		return nounNumber>0 && nounNumber<=Constants.MAX_CARRIABLE_ITEMS;
 	}
 	
+	/**
+	 * Returns true if the item is being carried
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isCarryingItem(Game game, int nounNumber) {
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response for a thrown item
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult itemThrown(Game game, Player player, int nounNumber) {
 		game.addMessage("Did no go far!", true, false);
 		game.getItem(nounNumber).setItemLocation(player.getRoom());
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if throwing the net in the countryside
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isThrowingNet(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_COUNTRYSIDE && nounNumber == GameEntities.ITEM_NET;
 	}
 	
+    /**
+     * Executes a response for throwing the net
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult throwingNet(Game game,Player player) {
 		game.addMessage("You caught the boar", true, false);
 		game.getItem(GameEntities.FLAG_OGBANS_BOAR).setItemFlag(1);
@@ -90,4 +122,5 @@ public class Throw {
 
 /* 30 March 2026 - Created File
  * 1 April 2026 - Added basic responses
+ * 2 April 2026 - Added JavaDocs
  */
