@@ -5,6 +5,8 @@ Translator: David Sarkies
 Version: 1.21
 Date: 1 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
+
+Insert & Rig - 2800 & 2870
 */
 
 package command_process;

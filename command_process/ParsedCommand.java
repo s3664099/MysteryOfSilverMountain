@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.24
-Date: 30 March 2026
+Version: 1.25
+Date: 8 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -56,7 +56,7 @@ public class ParsedCommand {
 								PLANT,WATER,SWING,EMPTY,ENTER,CROSS,REMOVE,FEED,TURN,DIVE,BAIL,
 								THROW,INSERT,RIG,EAT,MOVE,RING,CUT,SHOW,BURN,POISON,UNLOCK,DRINK,
 								LOAD,SAVE,QUIT,RESTART};
-	//RIG, POISON, SHOW - Multi command names
+	//POISON, SHOW - Multi command names
 							
 	private CommandState commandState = CommandState.NONE;
 	private CommandType commandType = CommandType.NONE;
@@ -137,6 +137,13 @@ public class ParsedCommand {
 		} else if (verbNumber == GameEntities.CMD_EXAMINE || verbNumber == GameEntities.CMD_READ ||
 					verbNumber == GameEntities.CMD_COUNT) {
 			commandType = CommandType.EXAMINE;
+		} else if (verbNumber == GameEntities.CMD_LIGHT || verbNumber == GameEntities.CMD_BURN) {
+			commandType = CommandType.LIGHT;
+		} else if (verbNumber == GameEntities.CMD_USE || verbNumber == GameEntities.CMD_WITH)  {
+			commandType = CommandType.USE;
+		} else if (verbNumber == GameEntities.CMD_RIG || verbNumber == GameEntities.CMD_MAKE ||
+					verbNumber == GameEntities.CMD_BLOW)  {
+			commandType = CommandType.RIG;
 		} else if (verbNumber == GameEntities.CMD_GIVE) {
 			commandType = CommandType.GIVE;
 		} else if (verbNumber == GameEntities.CMD_SAY) {
@@ -147,12 +154,8 @@ public class ParsedCommand {
 			commandType = CommandType.TIE;
 		} else if (verbNumber == GameEntities.CMD_CLIMB)  {
 			commandType = CommandType.CLIMB;
-		} else if (verbNumber == GameEntities.CMD_USE || verbNumber == GameEntities.CMD_WITH)  {
-			commandType = CommandType.USE;
 		} else if (verbNumber == GameEntities.CMD_OPEN) {
 			commandType = CommandType.OPEN;
-		} else if (verbNumber == GameEntities.CMD_LIGHT || verbNumber == GameEntities.CMD_BURN) {
-			commandType = CommandType.LIGHT;
 		} else if (verbNumber == GameEntities.CMD_FILL) {
 			commandType = CommandType.FILL;
 		} else if (verbNumber == GameEntities.CMD_PLANT) {
@@ -177,6 +180,8 @@ public class ParsedCommand {
 			commandType = CommandType.THROW;
 		} else if (verbNumber == GameEntities.CMD_BAIL) {
 			commandType = CommandType.BAIL;
+		} else if (verbNumber == GameEntities.CMD_INSERT) {
+			commandType = CommandType.INSERT;
 		}
 	}
 	
@@ -381,6 +386,16 @@ public class ParsedCommand {
 	public boolean checkBail() {
 		return commandType == CommandType.BAIL;
 	}
+	
+    /** @return true if the command is a INSERT command */
+	public boolean checkInsert() {
+		return commandType == CommandType.INSERT;
+	}
+	
+    /** @return true if the command is a BAIL command */
+	public boolean checkRig() {
+		return commandType == CommandType.RIG;
+	}
 		
     /** @return true if the command is a LOAD command */
 	public boolean checkLoad() {
@@ -433,4 +448,5 @@ public class ParsedCommand {
  * 28 March 2026 - Added single command for dive
  * 29 March 2026 - Added next lot of commands
  * 30 March 2026 - Added Throw & Bail
+ * 8 April 2026 - Added Insert & Rig
  */
