@@ -51,6 +51,9 @@ public class Insert {
 		
 		return result;
 	}
+	
+	//2800 IF B=62 AND F(44)=0 THEN R$="YOU DO NOT HAVE ANY"
+	//2810 IF H=5762 AND C(1)=0 AND F(44)>0 THEN GOSUB 3230
 }
 
 /* 9 April 2026 - Created file
