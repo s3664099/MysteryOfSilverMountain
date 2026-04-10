@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Insert Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 7 April 2026
+Version: 1.1
+Date: 10 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -49,12 +49,26 @@ public class Insert {
 		game.addMessage("You cannot Insert that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
+		if (isInsertCoinsNone(game,command.getNounNumber())) {
+			result = insertCoinsNone(game,player);
+		}
+		
 		return result;
 	}
 	
-	//2800 IF B=62 AND F(44)=0 THEN R$="YOU DO NOT HAVE ANY"
+	private boolean isInsertCoinsNone(Game game, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_COINS &&
+				game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag() == 0;
+	}
+	
+	private ActionResult insertCoinsNone(Game game, Player player) {
+		game.addMessage("You do not have any", false, false);
+		return new ActionResult(game,player,true);
+	}
+	
 	//2810 IF H=5762 AND C(1)=0 AND F(44)>0 THEN GOSUB 3230
 }
 
 /* 9 April 2026 - Created file
+ * 10 April 2026 - Added insert coins when you have none
  */
