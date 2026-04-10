@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Use Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 17 March 2026
+Version: 1.6
+Date: 10 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -61,7 +61,10 @@ public class Use {
 		} else if (isUseBucketOrJug(game,command.getNounNumber())) {
 			result = new Fill(game,player,command).executeFill();
 		} else if (isUseAxeOrSword(command.getNounNumber())) {
-			result = new Swing(game,player,command).executeSwing();		}
+			result = new Swing(game,player,command).executeSwing();		
+		} else if (isUseReeds(command.getNounNumber())) {
+			result = new Rig(game,player,command).executeRig();
+		}
 		
 		return result;
 	}
@@ -185,7 +188,7 @@ public class Use {
 	}
 
 	/**
-	 * Returns true if the player is using the swprd or the axe
+	 * Returns true if the player is using the sword or the axe
 	 * 
  	 * @param nounNumber the value of the noun entered
      * @param game the current game state
@@ -193,6 +196,17 @@ public class Use {
 	 */
 	private boolean isUseAxeOrSword(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_AXE || nounNumber == GameEntities.ITEM_SWORD;
+	}
+	
+	/**
+	 * Returns true if the player is using the reed
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
+	private boolean isUseReeds(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_REEDS;
 	}
 }
 
@@ -203,4 +217,5 @@ public class Use {
  * 				- Added JavaDocs
  * 11 March 2026 - Added fill response for use
  * 17 March 2026 - Added swing functions
+ * 10 April 2026 - Added rig functions
  */
