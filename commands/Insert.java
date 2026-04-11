@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Insert Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 10 April 2026
+Version: 1.2
+Date: 11 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -51,8 +51,9 @@ public class Insert {
 		
 		if (isInsertCoinsNone(game,command.getNounNumber())) {
 			result = insertCoinsNone(game,player);
+		} else if (isInsertCoinInTurret(game,player.getRoom(),command.getNounNumber())) {
+			result = insertCoinInTurrent(game,player);
 		}
-		
 		return result;
 	}
 	
@@ -66,9 +67,28 @@ public class Insert {
 		return new ActionResult(game,player,true);
 	}
 	
-	//2810 IF H=5762 AND C(1)=0 AND F(44)>0 THEN GOSUB 3230
+	private boolean isInsertCoinInTurret(Game game,int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_TURRET && nounNumber == GameEntities.ITEM_COIN &&
+				game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag()>0 &&
+				game.getItem(GameEntities.ITEM_COINS).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+	
+	private ActionResult insertCoinInTurrent(Game game, Player player) {
+		int numberOfCoins = game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag();
+		game.getItem(GameEntities.FLAG_COIN_NUMBERS).setItemFlag(numberOfCoins--);
+		game.addMessage(String.format("A number appears - %s",game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag()), false, false);
+		if (!noCoinsLeft(numberOfCoins)) {
+			game.getItem(GameEntities.ITEM_COINS).setItemLocation(GameEntities.ROOM_DESTROYED);
+		}
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean noCoinsLeft(int numberOfCoins) {
+		return GameEntities.FLAG_COIN_NUMBERS>0;
+	}
 }
 
 /* 9 April 2026 - Created file
  * 10 April 2026 - Added insert coins when you have none
+ * 11 April 2026 - Added insert coins in turret
  */
