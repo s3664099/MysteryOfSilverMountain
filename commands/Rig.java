@@ -58,27 +58,54 @@ public class Rig {
 			}
 		} else if (isRigSail(player.getRoom(),command.getNounNumber())) {
 			result = rigSail(game,player);
-		} else if (isMusic(command.getNounNumber())) {
+		} else if (isRigMusic(command.getNounNumber())) {
 			result = rigMusic(game,player);
 		}
 		
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player using the reeds
+	 * 
+	 * @param game the current game state
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isUseReeds(Game game, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_REEDS &&
 			game.getItem(GameEntities.ITEM_REEDS).getItemLocation() == GameEntities.ROOM_CARRYING;	
 	}
 	
+    /**
+     * Executes using the reeds
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult useReeds(Game game, Player player) {
 		game.addMessage("A nice tune.", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is at the fallen oak
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isAtFallenOak(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_FALLEN_OAK;
 	}
 	
+    /**
+     * Executes using the reeds at the fallen oak
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult atFallenOak(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_GHOST_FREE).setItemFlag(1);
 		game.addMessage("The ghost of the goblin guardian is free!", true, false);
@@ -87,21 +114,48 @@ public class Rig {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player attempting to rig the sail
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isRigSail(int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_EDGE_LAKE &&
 				nounNumber == GameEntities.ITEM_SAIL;
 	}
 	
+    /**
+     * Executes rigging the sail
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult rigSail(Game game,Player player) {
 		game.addMessage("What with?", true, false);
 		
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player attempting to play music
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isRigMusic(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_MUSIC;
 	}
 	
+    /**
+     * Executes rigging the music
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult rigMusic(Game game,Player player) {
 		game.addMessage("How, o musical one?", true, false);
 		return new ActionResult(game,player,true);
