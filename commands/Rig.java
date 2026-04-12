@@ -49,14 +49,41 @@ public class Rig {
 		game.addMessage("You cannot rig that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
+		if (isUseReeds(game,command.getNounNumber())) {
+			
+			if (isAtFallenOak(player.getRoom())) {
+				result = atFallenOak(game,player);
+			} else {
+				result = useReeds(game,player);
+			}
+		}
+		
 		return result;
 	}
-		//2190 IF B=10 THEN GOSUB 2870 - Rig - Add to Use
-	//2870 IF B=10 THEN R$="B OJDF UVOF":GOSUB 4260
-	//2880 IF H=5233 THEN R$="WHAT WITH?"
-	//2890 IF B=83 THEN R$="HOW, O MUSICAL ONE?"
-	//2900 IF H=5610 THEN F(35)=1: R$=X1$+" IS FREE!": E$(56)="NS"
 	
+	private boolean isUseReeds(Game game, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_REEDS &&
+			game.getItem(GameEntities.ITEM_REEDS).getItemLocation() == GameEntities.ROOM_CARRYING;	
+	}
+	
+	private ActionResult useReeds(Game game, Player player) {
+		game.addMessage("A nice tune.", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isAtFallenOak(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_FALLEN_OAK;
+	}
+	
+	private ActionResult atFallenOak(Game game,Player player) {
+		game.getItem(GameEntities.FLAG_GHOST_FREE).setItemFlag(1);
+		game.addMessage("The ghost of the goblin guardian is free!", true, false);
+		game.getRoom(GameEntities.ROOM_FALLEN_OAK).openExit(GameEntities.NORTH);
+		
+		return new ActionResult(game,player,true);
+	}
+	//2880 IF H=5233 THEN R$="WHAT WITH?"
+	//2890 IF B=83 THEN R$="HOW, O MUSICAL ONE?"	
 }
 
 /* 9 April 2026 - Created File
