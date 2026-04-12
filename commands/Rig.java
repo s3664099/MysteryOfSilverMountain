@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Rig Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 2 April 2026
+Version: 1.3
+Date: 12 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -56,6 +56,10 @@ public class Rig {
 			} else {
 				result = useReeds(game,player);
 			}
+		} else if (isRigSail(player.getRoom(),command.getNounNumber())) {
+			result = rigSail(game,player);
+		} else if (isMusic(command.getNounNumber())) {
+			result = rigMusic(game,player);
 		}
 		
 		return result;
@@ -82,9 +86,28 @@ public class Rig {
 		
 		return new ActionResult(game,player,true);
 	}
-	//2880 IF H=5233 THEN R$="WHAT WITH?"
-	//2890 IF B=83 THEN R$="HOW, O MUSICAL ONE?"	
+	
+	private boolean isRigSail(int roomNumber,int nounNumber) {
+		return roomNumber == GameEntities.ROOM_EDGE_LAKE &&
+				nounNumber == GameEntities.ITEM_SAIL;
+	}
+	
+	private ActionResult rigSail(Game game,Player player) {
+		game.addMessage("What with?", true, false);
+		
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isRigMusic(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_MUSIC;
+	}
+	
+	private ActionResult rigMusic(Game game,Player player) {
+		game.addMessage("How, o musical one?", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 9 April 2026 - Created File
+ * 12 April 2026 - Added Responses & Javadocs
  */
