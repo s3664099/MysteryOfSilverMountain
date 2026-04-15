@@ -49,6 +49,11 @@ public class Shift {
 				
 		return result;
 	}
+	
+	  //2630 IF B=36 OR B=50 THEN GOSUB 2950 - Add to remove
+	//2950 IF R=4 AND B=50 THEN F(45)=1: R$="YOU REVEALED A STEEP PASSAGE"
+	//2960 IF R=3 AND B=50 THEN R$="YOU CANNOT MOVE RUBBLE FROM HERE"
+	//2970 IF H=7136 THEN R$="THEY ARE WEDGED IN!"
 }
 
 /* 15 April 2026 - Created File

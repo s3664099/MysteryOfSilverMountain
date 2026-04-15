@@ -49,6 +49,9 @@ public class Eat {
 				
 		return result;
 	}
+	
+	//2920 IF B=0 OR B>G THEN RETURN
+	//2930 IF B=5 OR B=24 THEN R$="YUM YUM!": C(B)=81
 }
 
 /* 15 April 2026 - Created File
