@@ -18,6 +18,7 @@ import commands.Climb;
 import commands.Cross;
 import commands.Dive;
 import commands.Drop;
+import commands.Eat;
 import commands.Empty;
 import commands.Enter;
 import commands.Examine;
@@ -40,6 +41,7 @@ import commands.Plant;
 import commands.Remove;
 import commands.Rig;
 import commands.Say;
+import commands.Shift;
 import commands.Swing;
 import game.Game;
 import game.Player;
@@ -160,6 +162,12 @@ public class CommandExecutor {
 		} else if (command.checkRig()) {
 			logger.info("Rig");
 			result = new Rig(game,player,command).executeRig();
+		} else if (command.checkEat()) {
+			logger.info("Eat");
+			result = new Eat(game,player,command).executeEat();
+		} else if (command.checkMove()) {
+			logger.info("Move");
+			result = new Shift(game,player,command).executeMove();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();

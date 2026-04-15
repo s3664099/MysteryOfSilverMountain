@@ -10,6 +10,7 @@ Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 package commands;
 
 import command_process.ActionResult;
+import command_process.ParsedCommand;
 import game.Game;
 import game.Player;
 
@@ -21,16 +22,20 @@ public class Shift {
     /** The active player instance. */
 	private final Player player;
 	
+    /** The current command instance. */
+	private final ParsedCommand command;
+	
     /**
-     * Creates a {@code MOVE} handler for executing a move command
+     * Creates a {@code NOVE} handler for executing a shift(move) action
      * 
      * @param game   current game state
      * @param player   current player state
      * @param command   current command
      */
-	public Shift(Game game, Player player) {
+	public Shift(Game game, Player player, ParsedCommand command) {
 		this.game = game;
 		this.player = player;
+		this.command = command;
 	}
 	
     /**
