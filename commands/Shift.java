@@ -52,12 +52,12 @@ public class Shift {
 			result = moveRubbleFromStalactites(game,player);
 		} else if (isMoveRubbleFromTomb(player.getRoom(),command.getNounNumber())) {
 			result = moveRubbleFromTomb(game,player);
+		} else if (isMoveBricksInWell(player.getRoom(),command.getNounNumber())) {
+			result = moveBricksInWell(game,player);
 		}
 		
 		return result;
 	}
-
-	//2970 IF H=7136 THEN R$="THEY ARE WEDGED IN!"
 	
 	private boolean isMoveRubbleFromStalactites(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_STALACTITES &&
@@ -79,7 +79,18 @@ public class Shift {
 		game.addMessage("You cannot move the rubble from here", true, false);
 		return new ActionResult(game,player,true);
 	}
+	
+	private boolean isMoveBricksInWell(int roomNumber,int nounNumber) {
+		return roomNumber == GameEntities.ROOM_WELL_BOTTOM &&
+				nounNumber == GameEntities.ITEM_BRICKS;
+	}
+	
+	private ActionResult moveBricksInWell(Game game, Player player) {
+		game.addMessage("They are wedged in!", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 15 April 2026 - Created File
+ * 17 April 2026 - Added responses
  */
