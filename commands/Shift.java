@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -46,14 +47,38 @@ public class Shift {
 	public ActionResult executeMove() {
 		game.addMessage("How?", true, false);
 		ActionResult result = new ActionResult(game,player,true);
-				
+		
+		if (isMoveRubbleFromStalactites(player.getRoom(),command.getNounNumber())) {
+			result = moveRubbleFromStalactites(game,player);
+		} else if (isMoveRubbleFromTomb(player.getRoom(),command.getNounNumber())) {
+			result = moveRubbleFromTomb(game,player);
+		}
+		
 		return result;
 	}
-	
 
-	//2950 IF R=4 AND B=50 THEN F(45)=1: R$="YOU REVEALED A STEEP PASSAGE"
-	//2960 IF R=3 AND B=50 THEN R$="YOU CANNOT MOVE RUBBLE FROM HERE"
 	//2970 IF H=7136 THEN R$="THEY ARE WEDGED IN!"
+	
+	private boolean isMoveRubbleFromStalactites(int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_STALACTITES &&
+				nounNumber == GameEntities.ITEM_RUBBLE;
+	}
+	
+	private ActionResult moveRubbleFromStalactites(Game game, Player player) {
+		game.addMessage("You revealed a secret passage", true, false);
+		game.getItem(GameEntities.FLAG_RUBBLE_BLOCKING).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isMoveRubbleFromTomb(int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_TOMB &&
+				nounNumber == GameEntities.ITEM_RUBBLE;		
+	}
+	
+	private ActionResult moveRubbleFromTomb(Game game, Player player) {
+		game.addMessage("You cannot move the rubble from here", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 15 April 2026 - Created File
