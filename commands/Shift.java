@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 30 March 2026
+Version: 1.1
+Date: 17 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -59,32 +59,74 @@ public class Shift {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is moving the rubble in the stalactite room
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isMoveRubbleFromStalactites(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_STALACTITES &&
 				nounNumber == GameEntities.ITEM_RUBBLE;
 	}
 	
+    /**
+     * Executes a response if the player is moving the rubble in the stalactite room
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult moveRubbleFromStalactites(Game game, Player player) {
 		game.addMessage("You revealed a secret passage", true, false);
 		game.getItem(GameEntities.FLAG_RUBBLE_BLOCKING).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is moving the rubble in the tomb
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isMoveRubbleFromTomb(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_TOMB &&
 				nounNumber == GameEntities.ITEM_RUBBLE;		
 	}
 	
+    /**
+     * Executes a response if the player is moving the rubble in the tomb
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult moveRubbleFromTomb(Game game, Player player) {
 		game.addMessage("You cannot move the rubble from here", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is moving the bricks in well
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isMoveBricksInWell(int roomNumber,int nounNumber) {
 		return roomNumber == GameEntities.ROOM_WELL_BOTTOM &&
 				nounNumber == GameEntities.ITEM_BRICKS;
 	}
 	
+    /**
+     * Executes a response if the player is moving the bricks in well
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult moveBricksInWell(Game game, Player player) {
 		game.addMessage("They are wedged in!", true, false);
 		return new ActionResult(game,player,true);
@@ -93,4 +135,5 @@ public class Shift {
 
 /* 15 April 2026 - Created File
  * 17 April 2026 - Added responses
+ * 				 - Added JavaDocs
  */
