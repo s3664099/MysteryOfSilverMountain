@@ -2,11 +2,9 @@
 Title: Mystery of Silver Mountain Remove Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 23 March 2026
+Version: 1.2
+Date: 17 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
-
-TODO - Add to drop - if wearing uniform/boots and drop them, then reset flag
 */
 
 package commands;
@@ -54,6 +52,8 @@ public class Remove {
 			result = boots(game,player);
 		} else if (isUniform(game,command.getNounNumber())) {
 			result = uniform(game,player);
+		} else if (isRemoveBricksOrRubble(command.getNounNumber())) {
+			result = new Shift(game,player,command).executeMove();
 		}
 		return result;
 	}
@@ -109,8 +109,20 @@ public class Remove {
 		game.getItem(GameEntities.FLAG_WEARING_UNIFORM).setItemFlag(0);
 		return new ActionResult(game,player,true);
 	}
+	
+	/**
+	 * Returns true if the player is removing bricks or rubble
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
+	private boolean isRemoveBricksOrRubble(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_BRICKS ||
+				nounNumber == GameEntities.ITEM_RUBBLE;
+	}
 }
 
 /* 22 March 2026 - Created Class
  * 23 March 2026 - Added responses & JavaDocs
+ * 17 April 2026 - Added remove bricks or rubble
  */
