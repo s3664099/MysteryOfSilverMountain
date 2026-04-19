@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Eat Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 15 April 2026
+Version: 1.1
+Date: 19 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -46,13 +47,26 @@ public class Eat {
 	public ActionResult executeEat() {
 		game.addMessage("You can't eat that!", true, false);
 		ActionResult result = new ActionResult(game,player,true);
+		
+		if (isEatApplesOrBread(game,command.getNounNumber()) {
+			result = eatApplesOrBread(game,player,command.getNounNumber());
+		}
 				
 		return result;
 	}
 	
-	//2920 IF B=0 OR B>G THEN RETURN
-	//2930 IF B=5 OR B=24 THEN R$="YUM YUM!": C(B)=81
+	private boolean isEatApplesOrBread(Game game,int commandNumber) {
+		return (commandNumber == GameEntities.ITEM_BREAD && game.getItem(GameEntities.ITEM_BREAD).getItemLocation() == GameEntities.ROOM_CARRYING) ||
+			(commandNumber == GameEntities.ITEM_APPLES && game.getItem(GameEntities.ITEM_APPLES).getItemLocation()==GameEntities.ROOM_CARRYING);
+	}
+	
+	private ActionResult eatApplesOrBread(Game game, Player player,int nounNumber) {
+		game.addMessage("Yum Yum!", true, false);
+		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_DESTROYED);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 15 April 2026 - Created File
+ * 19 April 2026 - Added responses
  */
