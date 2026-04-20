@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.26
-Date: 15 April 2026
+Version: 1.27
+Date: 20 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -186,6 +186,10 @@ public class ParsedCommand {
 			commandType = CommandType.EAT;
 		} else if (verbNumber == GameEntities.CMD_MOVE) {
 			commandType = CommandType.MOVE;
+		} else if (verbNumber == GameEntities.CMD_RING) {
+			commandType = CommandType.RING;
+		} else if (verbNumber == GameEntities.CMD_CUT) {
+			commandType = CommandType.CUT;
 		}
 	}
 	
@@ -411,6 +415,16 @@ public class ParsedCommand {
 		return commandType == CommandType.MOVE;
 	}
 	
+    /** @return true if the command is a EAT command */
+	public boolean checkRing() {
+		return commandType == CommandType.RING;
+	}
+	
+    /** @return true if the command is a MOVE command */
+	public boolean checkCut() {
+		return commandType == CommandType.CUT;
+	}
+	
     /** @return true if the command is a LOAD command */
 	public boolean checkLoad() {
 		return commandType == CommandType.LOAD;
@@ -464,4 +478,5 @@ public class ParsedCommand {
  * 30 March 2026 - Added Throw & Bail
  * 8 April 2026 - Added Insert & Rig
  * 15 April 2026 - Added Eat & Move
+ * 20 April 2026 - Added Ring & Cut
  */
