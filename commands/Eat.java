@@ -48,18 +48,33 @@ public class Eat {
 		game.addMessage("You can't eat that!", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
-		if (isEatApplesOrBread(game,command.getNounNumber()) {
+		if (isEatApplesOrBread(game,command.getNounNumber())) {
 			result = eatApplesOrBread(game,player,command.getNounNumber());
 		}
 				
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is eating apples or bread
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean isEatApplesOrBread(Game game,int commandNumber) {
 		return (commandNumber == GameEntities.ITEM_BREAD && game.getItem(GameEntities.ITEM_BREAD).getItemLocation() == GameEntities.ROOM_CARRYING) ||
 			(commandNumber == GameEntities.ITEM_APPLES && game.getItem(GameEntities.ITEM_APPLES).getItemLocation()==GameEntities.ROOM_CARRYING);
 	}
 	
+    /**
+     * Executes the eat action if the player is eating apples or bread
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult eatApplesOrBread(Game game, Player player,int nounNumber) {
 		game.addMessage("Yum Yum!", true, false);
 		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_DESTROYED);
@@ -69,4 +84,5 @@ public class Eat {
 
 /* 15 April 2026 - Created File
  * 19 April 2026 - Added responses
+ * 20 April 2026 - Added Javadocs
  */
