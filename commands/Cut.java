@@ -54,6 +54,13 @@ public class Cut {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is cutting the web
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isCutWebs(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_COBWEB &&
 				nounNumber == GameEntities.ITEM_COBWEBS;
