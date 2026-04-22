@@ -49,7 +49,11 @@ public class Ring {
 		ActionResult result = new ActionResult(game,player,true);
 		
 		if (isRingBell(player.getRoom(),command.getNounNumber())) {
-			
+			//Check if more than two words
+				//Otherwise response with 'How Many Times'
+			//Check if third is an integer
+				//Otherwise enter please enter a number
+			//Checks if matches flag
 		}
 		
 		return result;
@@ -60,7 +64,6 @@ public class Ring {
 				nounNumber == GameEntities.ITEM_BELL;
 	}
 	
-	//3020 PRINT:PRINT"HOW MANY TIMES?":INPUTMR:IFMR=0THENPRINT"A NUMBER":GOTO3020
 	//3030 IF MR=F(42) THEN R$="A ROCK DOOR OPENS": E$(27)="EW":RETURN
 	//3040 R$="ZPV IBWF NJTUSFBUFE UIF CFMM!": F(56)=1:GOSUB 4260:RETURN
 }
