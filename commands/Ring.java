@@ -11,6 +11,7 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
+import data.GameEntities;
 import game.Game;
 import game.Player;
 
@@ -46,11 +47,19 @@ public class Ring {
 	public ActionResult executeRing() {
 		game.addMessage("How?", true, false);
 		ActionResult result = new ActionResult(game,player,true);
-				
+		
+		if (isRingBell(player.getRoom(),command.getNounNumber())) {
+			
+		}
+		
 		return result;
 	}
 	
-	//3010 IF R<>27 OR B<>63 THEN RETURN
+	private boolean isRingBell(int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_BELL &&
+				nounNumber == GameEntities.ITEM_BELL;
+	}
+	
 	//3020 PRINT:PRINT"HOW MANY TIMES?":INPUTMR:IFMR=0THENPRINT"A NUMBER":GOTO3020
 	//3030 IF MR=F(42) THEN R$="A ROCK DOOR OPENS": E$(27)="EW":RETURN
 	//3040 R$="ZPV IBWF NJTUSFBUFE UIF CFMM!": F(56)=1:GOSUB 4260:RETURN
