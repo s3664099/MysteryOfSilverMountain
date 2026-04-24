@@ -52,7 +52,7 @@ public class Ring {
 			
 			if (isTwoWords(command)) {
 				result = twoWords(game,player);
-			} else if (isInteger(command.getSplitFullCommand()[2])) {
+			} else if (isInteger(command.getSplitFullCommand()[2].trim())) {
 				
 			}
 
@@ -76,6 +76,17 @@ public class Ring {
 	private ActionResult twoWords(Game game, Player player) {
 		game.addMessage("How many times?", false, false);
 		return new ActionResult(game,player, true);
+	}
+	
+	private boolean isInteger(String command) {
+
+		boolean integer = true;
+		try {
+	        Integer.parseInt(command);
+	    } catch (NumberFormatException e) {
+	    	 integer = false;
+	    }
+		return integer;
 	}
 	
 	//3030 IF MR=F(42) THEN R$="A ROCK DOOR OPENS": E$(27)="EW":RETURN
