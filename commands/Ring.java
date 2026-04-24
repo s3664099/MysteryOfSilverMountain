@@ -49,8 +49,13 @@ public class Ring {
 		ActionResult result = new ActionResult(game,player,true);
 		
 		if (isRingBell(player.getRoom(),command.getNounNumber())) {
-			//Check if more than two words
-				//Otherwise response with 'How Many Times'
+			
+			if (isTwoWords(command)) {
+				result = twoWords(game,player);
+			} else if (isInteger(command.getSplitFullCommand()[2])) {
+				
+			}
+
 			//Check if third is an integer
 				//Otherwise enter please enter a number
 			//Checks if matches flag
@@ -62,6 +67,15 @@ public class Ring {
 	private boolean isRingBell(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_BELL &&
 				nounNumber == GameEntities.ITEM_BELL;
+	}
+	
+	private boolean isTwoWords(ParsedCommand command) {
+		return command.getSplitFullCommand().length<3;
+	}
+	
+	private ActionResult twoWords(Game game, Player player) {
+		game.addMessage("How many times?", false, false);
+		return new ActionResult(game,player, true);
 	}
 	
 	//3030 IF MR=F(42) THEN R$="A ROCK DOOR OPENS": E$(27)="EW":RETURN
