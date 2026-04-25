@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Ring Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 20 April 2026
+Version: 1.2
+Date: 25 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -52,13 +52,11 @@ public class Ring {
 			
 			if (isTwoWords(command)) {
 				result = twoWords(game,player);
-			} else if (isInteger(command.getSplitFullCommand()[2].trim())) {
-				
+			} else if (!isInteger(command.getSplitFullCommand()[2].trim())) {
+				result = enterNumber(game,player);
+			} else if (isCorrectNumber(game,Integer.parseInt(command.getSplitFullCommand()[2].trim()))) {
+				result = correctNumber(game,player);
 			}
-
-			//Check if third is an integer
-				//Otherwise enter please enter a number
-			//Checks if matches flag
 		}
 		
 		return result;
@@ -89,9 +87,26 @@ public class Ring {
 		return integer;
 	}
 	
-	//3030 IF MR=F(42) THEN R$="A ROCK DOOR OPENS": E$(27)="EW":RETURN
+	private ActionResult enterNumber(Game game,Player player) {
+		game.addMessage("Please use a number, such as 1", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isCorrectNumber(Game game, int numberEntered) {
+		return numberEntered == game.getItem(GameEntities.FLAG_RING_NUMBER).getItemFlag();
+	}
+	
+	private ActionResult correctNumber(Game game, Player player) {
+		game.addMessage("A rock door opens", true, false);
+		game.getRoom(GameEntities.ROOM_BELL).openExit(GameEntities.EAST);
+		return new ActionResult(game,player,true);
+	}
+	
+
 	//3040 R$="ZPV IBWF NJTUSFBUFE UIF CFMM!": F(56)=1:GOSUB 4260:RETURN
 }
 
 /* 30 April 2026 - Created File
+ * 24 April 2026 - Added check for integer
+ * 25 April 2026 - Added ring bell
  */
