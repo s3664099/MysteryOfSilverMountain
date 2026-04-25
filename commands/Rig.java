@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Rig Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 12 April 2026
+Version: 1.4
+Date: 25 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -11,7 +11,6 @@ package commands;
 
 import command_process.ActionResult;
 import command_process.ParsedCommand;
-import data.Constants;
 import data.GameEntities;
 import game.Game;
 import game.Player;
@@ -164,4 +163,5 @@ public class Rig {
 
 /* 9 April 2026 - Created File
  * 12 April 2026 - Added Responses & Javadocs
+ * 25 April 2026 - Removed unused include
  */

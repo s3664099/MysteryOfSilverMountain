@@ -56,6 +56,8 @@ public class Ring {
 				result = enterNumber(game,player);
 			} else if (isCorrectNumber(game,Integer.parseInt(command.getSplitFullCommand()[2].trim()))) {
 				result = correctNumber(game,player);
+			} else {
+				result = incorrectNumber(game,player);
 			}
 		}
 		
@@ -102,8 +104,11 @@ public class Ring {
 		return new ActionResult(game,player,true);
 	}
 	
-
-	//3040 R$="ZPV IBWF NJTUSFBUFE UIF CFMM!": F(56)=1:GOSUB 4260:RETURN
+	private ActionResult incorrectNumber(Game game, Player player) {
+		game.addMessage("You have mistreated the bell", true, false);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 30 April 2026 - Created File
