@@ -12,7 +12,6 @@ package command_process;
 import java.util.logging.Logger;
 
 import commands.Bail;
-import commands.Burn;
 import commands.Climb;
 import commands.Cross;
 import commands.Cut;
@@ -179,9 +178,6 @@ public class CommandExecutor {
 		} else if (command.checkShow()) {
 			logger.info("Show");
 			result = new Show(game,player,command).executeShow();
-		} else if (command.checkBurn()) {
-			logger.info("Burn");
-			result = new Burn(game,player,command).executeBurn();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();

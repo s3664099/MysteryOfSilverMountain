@@ -50,6 +50,10 @@ public class Show {
 		
 		return result;
 	}
+	
+		//2180 IF B=19 THEN GOSUB 3070 - Hold - Add to use
+	//3070 IF (H=4864 OR H-4819) AND C(19)=0 THEN R$=X6$: F*63)=1:GOSUB 4260
+	//3080 IF B=27 THEN GOSUB 1290
 }
 
 /* 27 April 2026 - Created File

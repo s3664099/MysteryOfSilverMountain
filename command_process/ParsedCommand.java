@@ -192,9 +192,7 @@ public class ParsedCommand {
 			commandType = CommandType.RING;
 		} else if (verbNumber == GameEntities.CMD_CUT) {
 			commandType = CommandType.CUT;
-		} else if (verbNumber == GameEntities.CMD_BURN) {
-			commandType = CommandType.BURN;
-		}
+		} 
 	}
 	
     // --------------------
@@ -432,11 +430,6 @@ public class ParsedCommand {
     /** @return true if the command is a SHOW command */
 	public boolean checkShow() {
 		return commandType == CommandType.SHOW;
-	}
-	
-    /** @return true if the command is a BURN command */
-	public boolean checkBurn() {
-		return commandType == CommandType.BURN;
 	}
 	
     /** @return true if the command is a LOAD command */
