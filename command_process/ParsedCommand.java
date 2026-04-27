@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.27
-Date: 20 April 2026
+Version: 1.28
+Date: 27 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -56,7 +56,7 @@ public class ParsedCommand {
 								PLANT,WATER,SWING,EMPTY,ENTER,CROSS,REMOVE,FEED,TURN,DIVE,BAIL,
 								THROW,INSERT,RIG,EAT,MOVE,RING,CUT,SHOW,BURN,POISON,UNLOCK,DRINK,
 								LOAD,SAVE,QUIT,RESTART};
-	//POISON, SHOW - Multi command names
+	//POISON - Multi command names
 							
 	private CommandState commandState = CommandState.NONE;
 	private CommandType commandType = CommandType.NONE;
@@ -144,6 +144,8 @@ public class ParsedCommand {
 		} else if (verbNumber == GameEntities.CMD_RIG || verbNumber == GameEntities.CMD_MAKE ||
 					verbNumber == GameEntities.CMD_BLOW)  {
 			commandType = CommandType.RIG;
+		} else if (verbNumber == GameEntities.CMD_SHOW || verbNumber == GameEntities.CMD_HOLD) {
+			commandType = CommandType.SHOW;
 		} else if (verbNumber == GameEntities.CMD_GIVE) {
 			commandType = CommandType.GIVE;
 		} else if (verbNumber == GameEntities.CMD_SAY) {
@@ -190,6 +192,8 @@ public class ParsedCommand {
 			commandType = CommandType.RING;
 		} else if (verbNumber == GameEntities.CMD_CUT) {
 			commandType = CommandType.CUT;
+		} else if (verbNumber == GameEntities.CMD_BURN) {
+			commandType = CommandType.BURN;
 		}
 	}
 	
@@ -425,6 +429,16 @@ public class ParsedCommand {
 		return commandType == CommandType.CUT;
 	}
 	
+    /** @return true if the command is a SHOW command */
+	public boolean checkShow() {
+		return commandType == CommandType.SHOW;
+	}
+	
+    /** @return true if the command is a BURN command */
+	public boolean checkBurn() {
+		return commandType == CommandType.BURN;
+	}
+	
     /** @return true if the command is a LOAD command */
 	public boolean checkLoad() {
 		return commandType == CommandType.LOAD;
@@ -479,4 +493,5 @@ public class ParsedCommand {
  * 8 April 2026 - Added Insert & Rig
  * 15 April 2026 - Added Eat & Move
  * 20 April 2026 - Added Ring & Cut
+ * 27 April 2026 - Added Show & Burn
  */

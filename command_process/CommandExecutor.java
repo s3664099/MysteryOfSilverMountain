@@ -176,6 +176,12 @@ public class CommandExecutor {
 		} else if (command.checkCut()) {
 			logger.info("Cut");
 			result = new Cut(game,player,command).executeCut();
+		} else if (command.checkShow()) {
+			logger.info("Show");
+			result = new Show(game,player,command).executeShow();
+		} else if (command.checkBurn()) {
+			logger.info("Burn");
+			result = new Burn(game,player,command).executeBurn();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
