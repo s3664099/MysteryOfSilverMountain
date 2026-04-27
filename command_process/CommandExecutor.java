@@ -2,11 +2,9 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.23
-Date: 20 April 2026
+Version: 1.24
+Date: 27 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
-
-Insert & Rig - 2800 & 2870
 */
 
 package command_process;
@@ -14,6 +12,7 @@ package command_process;
 import java.util.logging.Logger;
 
 import commands.Bail;
+import commands.Burn;
 import commands.Climb;
 import commands.Cross;
 import commands.Cut;
@@ -44,6 +43,7 @@ import commands.Rig;
 import commands.Ring;
 import commands.Say;
 import commands.Shift;
+import commands.Show;
 import commands.Swing;
 import game.Game;
 import game.Player;
@@ -229,4 +229,5 @@ public class CommandExecutor {
  * 1 April 2026 - Switch log comments for bail
  * 9 April 2026 - Added insert & rig
  * 20 April 2026 - Added ring & Cut
+ * 27 April 2026 - Added Show & Burn
  */

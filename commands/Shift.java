@@ -27,7 +27,7 @@ public class Shift {
 	private final ParsedCommand command;
 	
     /**
-     * Creates a {@code NOVE} handler for executing a shift(move) action
+     * Creates a {@code MOVE} handler for executing a shift(move) action
      * 
      * @param game   current game state
      * @param player   current player state
