@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Show Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 27 April 2026
+Version: 1.1
+Date: 29 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -48,13 +48,30 @@ public class Show {
 		game.addMessage("Ok, done.", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
+		if (isShowPlateInLair(player.getRoom(),command.getNounNumber(),game)) {
+			result = showPlateInLair(game,player);
+		}
+		
 		return result;
 	}
 	
-		//2180 IF B=19 THEN GOSUB 3070 - Hold - Add to use
-	//3070 IF (H=4864 OR H-4819) AND C(19)=0 THEN R$=X6$: F*63)=1:GOSUB 4260
+	private boolean isShowPlateInLair(int roomNumber, int nounNumber, Game game) {
+		return roomNumber == GameEntities.ROOM_WIZARD_LAIR &&
+				(nounNumber == GameEntities.ITEM_PLATE || nounNumber == GameEntities.ITEM_SILVER_PLATE) &&
+				game.getItem(GameEntities.ITEM_PLATE).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+	
+	private ActionResult showPlateInLair(Game game, Player player) {
+		game.getItem(GameEntities.FLAG_WIZARD_DEAD).setItemFlag(1);
+		game.addMessage("You reflected the wizard's glare! he is dead. ", true, false);
+	
+	
+		return new ActionResult(game,player,true);
+	}
+
 	//3080 IF B=27 THEN GOSUB 1290
 }
 
 /* 27 April 2026 - Created File
+ * 29 April 2026 - Added response to show plate
  */

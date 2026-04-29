@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Use Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 10 April 2026
+Version: 1.7
+Date: 29 April 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -64,6 +64,8 @@ public class Use {
 			result = new Swing(game,player,command).executeSwing();		
 		} else if (isUseReeds(command.getNounNumber())) {
 			result = new Rig(game,player,command).executeRig();
+		} else if (isUsePlate(game,command.getNounNumber())) {
+			result = new Show(game,player,command).executeShow();
 		}
 		
 		return result;
@@ -208,6 +210,18 @@ public class Use {
 	private boolean isUseReeds(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_REEDS;
 	}
+	
+	/**
+	 * Returns true if the player is using the plate
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
+	private boolean isUsePlate(Game game, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_PLATE &&
+				game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
 }
 
 /* 28 February 2026 - Created file
@@ -218,4 +232,5 @@ public class Use {
  * 11 March 2026 - Added fill response for use
  * 17 March 2026 - Added swing functions
  * 10 April 2026 - Added rig functions
+ * 29 April 2026 - Added use plate
  */
