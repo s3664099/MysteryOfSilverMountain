@@ -50,19 +50,33 @@ public class Show {
 		
 		if (isShowPlateInLair(player.getRoom(),command.getNounNumber(),game)) {
 			result = showPlateInLair(game,player);
-		} else if (isHoldStone(command.getNounNumber()) {
+		} else if (isHoldStone(command.getNounNumber())) {
 			result = new Take(game,player,command).executeTake();
 		}
 		
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is showing the plate in the wizard's lair
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isShowPlateInLair(int roomNumber, int nounNumber, Game game) {
 		return roomNumber == GameEntities.ROOM_WIZARD_LAIR &&
 				(nounNumber == GameEntities.ITEM_PLATE || nounNumber == GameEntities.ITEM_SILVER_PLATE) &&
 				game.getItem(GameEntities.ITEM_PLATE).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response if the player is showing the plate in the wizard's lair
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult showPlateInLair(Game game, Player player) {
 		game.getItem(GameEntities.FLAG_WIZARD_DEAD).setItemFlag(1);
 		game.addMessage("You reflected the wizard's glare! he is dead. ", true, false);
@@ -71,6 +85,10 @@ public class Show {
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is holding the Stone of Destiny
+	 * @return boolean
+	 */
 	private boolean isHoldStone(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_STONE_DESTINY;
 	}
@@ -79,4 +97,5 @@ public class Show {
 /* 27 April 2026 - Created File
  * 29 April 2026 - Added response to show plate
  * 30 April 2026 - Added hold stone
+ * 				 - Added JavaDocs
  */
