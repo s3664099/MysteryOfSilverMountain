@@ -16,6 +16,7 @@ import commands.Climb;
 import commands.Cross;
 import commands.Cut;
 import commands.Dive;
+import commands.Drink;
 import commands.Drop;
 import commands.Eat;
 import commands.Empty;
@@ -31,12 +32,14 @@ import commands.Take;
 import commands.Throw;
 import commands.Tie;
 import commands.Turn;
+import commands.Unlock;
 import commands.Use;
 import commands.Water;
 import commands.Wear;
 import commands.Move;
 import commands.Open;
 import commands.Plant;
+import commands.Poison;
 import commands.Remove;
 import commands.Rig;
 import commands.Ring;
@@ -180,13 +183,13 @@ public class CommandExecutor {
 			result = new Show(game,player,command).executeShow();
 		} else if (command.checkUnlock()) {
 			logger.info("Unlock");
-			result = new Ring(game,player,command).executeRing();
-		} else if (command.checkCut()) {
-			logger.info("Cut");
-			result = new Cut(game,player,command).executeCut();
-		} else if (command.checkShow()) {
-			logger.info("Show");
-			result = new Show(game,player,command).executeShow();
+			result = new Unlock(game,player,command).executeUnlock();
+		} else if (command.checkDrink()) {
+			logger.info("Drink");
+			result = new Drink(game,player,command).executeDrink();
+		} else if (command.checkPoison()) {
+			logger.info("Poison");
+			result = new Poison(game,player,command).executePoison();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
