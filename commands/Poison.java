@@ -46,6 +46,7 @@ public class Poison {
 	
 		return result;
 	}
+	//2990 IF (B=67 OR B=68) AND C(9)=0 AND R=49 THEN R$="OK": F(47)=1
 }
 
 /* 1 May 2026 - Created File

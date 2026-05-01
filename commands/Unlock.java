@@ -46,6 +46,7 @@ public class Unlock {
 	
 		return result;
 	}
+	//3130 IF H=4870 AND C(21)=0 THEN R$="THE KEY TURNS!": F(70)=1
 }
 
 /* 1 May 2026 - Created File
