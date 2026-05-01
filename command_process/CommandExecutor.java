@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.24
-Date: 27 April 2026
+Version: 1.25
+Date: 1 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -178,6 +178,15 @@ public class CommandExecutor {
 		} else if (command.checkShow()) {
 			logger.info("Show");
 			result = new Show(game,player,command).executeShow();
+		} else if (command.checkUnlock()) {
+			logger.info("Unlock");
+			result = new Ring(game,player,command).executeRing();
+		} else if (command.checkCut()) {
+			logger.info("Cut");
+			result = new Cut(game,player,command).executeCut();
+		} else if (command.checkShow()) {
+			logger.info("Show");
+			result = new Show(game,player,command).executeShow();
 		} else if (command.checkSave()) {
 			logger.info("Save");
 			result = new Persistence(game,player,command).save();
@@ -226,4 +235,5 @@ public class CommandExecutor {
  * 9 April 2026 - Added insert & rig
  * 20 April 2026 - Added ring & Cut
  * 27 April 2026 - Added Show & Burn
+ * 1 May 2026 - Added remaining verbs
  */

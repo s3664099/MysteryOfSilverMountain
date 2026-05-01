@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.28
-Date: 27 April 2026
+Version: 1.29
+Date: 1 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -146,6 +146,8 @@ public class ParsedCommand {
 			commandType = CommandType.RIG;
 		} else if (verbNumber == GameEntities.CMD_SHOW || verbNumber == GameEntities.CMD_HOLD) {
 			commandType = CommandType.SHOW;
+		} else if (verbNumber == GameEntities.CMD_INTO || verbNumber == GameEntities.CMD_POISON) {
+			commandType = CommandType.POISON;
 		} else if (verbNumber == GameEntities.CMD_GIVE) {
 			commandType = CommandType.GIVE;
 		} else if (verbNumber == GameEntities.CMD_SAY) {
@@ -192,6 +194,10 @@ public class ParsedCommand {
 			commandType = CommandType.RING;
 		} else if (verbNumber == GameEntities.CMD_CUT) {
 			commandType = CommandType.CUT;
+		} else if (verbNumber == GameEntities.CMD_DRINK) {
+			commandType = CommandType.DRINK;
+		} else if (verbNumber == GameEntities.CMD_UNLOCK) {
+			commandType = CommandType.UNLOCK;
 		} 
 	}
 	
@@ -432,6 +438,21 @@ public class ParsedCommand {
 		return commandType == CommandType.SHOW;
 	}
 	
+    /** @return true if the command is a EAT command */
+	public boolean checkUnlock() {
+		return commandType == CommandType.UNLOCK;
+	}
+	
+    /** @return true if the command is a MOVE command */
+	public boolean checkDrink() {
+		return commandType == CommandType.DRINK;
+	}
+	
+    /** @return true if the command is a SHOW command */
+	public boolean checkPoison() {
+		return commandType == CommandType.POISON;
+	}
+	
     /** @return true if the command is a LOAD command */
 	public boolean checkLoad() {
 		return commandType == CommandType.LOAD;
@@ -487,4 +508,5 @@ public class ParsedCommand {
  * 15 April 2026 - Added Eat & Move
  * 20 April 2026 - Added Ring & Cut
  * 27 April 2026 - Added Show & Burn
+ * 1 May 2026 - Added remaining commands
  */
