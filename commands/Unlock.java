@@ -55,11 +55,25 @@ public class Unlock {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is unlocking the door in the wizard's lair
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isUnlockWizardDoor(Game game, int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_DOOR && roomNumber == GameEntities.ROOM_WIZARD_LAIR &&
 				game.getItem(GameEntities.ITEM_KEY).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * Executes a response if the player is unlocking the door in the wizard's lair
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult unlockWizardDoor(Game game, Player player) {
 		game.addMessage("The key turns!", true, false);
 		game.getItem(GameEntities.FLAG_DOOR).setItemFlag(1);
