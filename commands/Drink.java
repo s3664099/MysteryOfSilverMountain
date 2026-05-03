@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Drink Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 1 May 2026
+Version: 1.1
+Date: 3 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -41,13 +41,13 @@ public class Drink {
      * @return an {@link ActionResult} describing validity and effects
      */
 	public ActionResult executeDrink() {
-		game.addMessage("You are unable to do that.", false, false);
+		game.addMessage("Are you thirsty?.", false, false);
 		ActionResult result = new ActionResult(game,player,false);
 	
 		return result;
 	}
-	//3190 R$="ARE YOU THIRSTY?"
 }
 
 /* 1 May 2026 - Created File
+ * 3 May 2026 - Added response
  */
