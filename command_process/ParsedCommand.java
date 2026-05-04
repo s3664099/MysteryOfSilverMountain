@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.29
-Date: 1 May 2026
+Version: 1.30
+Date: 4 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -55,7 +55,7 @@ public class ParsedCommand {
 	private enum CommandType { NONE,TAKE,GIVE,DROP,EXAMINE,SAY,WEAR,TIE,CLIMB,USE,OPEN,LIGHT,FILL,
 								PLANT,WATER,SWING,EMPTY,ENTER,CROSS,REMOVE,FEED,TURN,DIVE,BAIL,
 								THROW,INSERT,RIG,EAT,MOVE,RING,CUT,SHOW,BURN,POISON,UNLOCK,DRINK,
-								LOAD,SAVE,QUIT,RESTART};
+								PAY,BREAK,REFLECT,LOAD,SAVE,QUIT,RESTART};
 	//POISON - Multi command names
 							
 	private CommandState commandState = CommandState.NONE;
@@ -198,6 +198,12 @@ public class ParsedCommand {
 			commandType = CommandType.DRINK;
 		} else if (verbNumber == GameEntities.CMD_UNLOCK) {
 			commandType = CommandType.UNLOCK;
+		} else if (verbNumber == GameEntities.CMD_PAY) {
+			commandType = CommandType.PAY;
+		} else if (verbNumber == GameEntities.CMD_BREAK) {
+			commandType = CommandType.BREAK;
+		} else if (verbNumber == GameEntities.CMD_REFLECT) {
+			commandType = CommandType.REFLECT;
 		} 
 	}
 	
@@ -449,6 +455,21 @@ public class ParsedCommand {
 	}
 	
     /** @return true if the command is a SHOW command */
+	public boolean checkPay() {
+		return commandType == CommandType.PAY;
+	}
+	
+    /** @return true if the command is a SHOW command */
+	public boolean checkBreak() {
+		return commandType == CommandType.BREAK;
+	}
+	
+    /** @return true if the command is a SHOW command */
+	public boolean checkReflect() {
+		return commandType == CommandType.REFLECT;
+	}
+	
+    /** @return true if the command is a SHOW command */
 	public boolean checkPoison() {
 		return commandType == CommandType.POISON;
 	}
@@ -509,4 +530,5 @@ public class ParsedCommand {
  * 20 April 2026 - Added Ring & Cut
  * 27 April 2026 - Added Show & Burn
  * 1 May 2026 - Added remaining commands
+ * 4 May 2026 - Added Pay, Break & Reflect
  */

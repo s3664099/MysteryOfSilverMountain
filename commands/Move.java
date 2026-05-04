@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.16
-Date: 23 March 2026
+Version: 1.17
+Date: 4 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -386,7 +386,7 @@ public class Move {
 	/**
 	 * Checks if the player is crossing the bridge
 	 * 
-	 * @param command the command the player has entered
+     * @param game the current game state
 	 * @param roomNumber the room the player is in
 	 * @param direction the value of the direction entered
 	 * @return boolean
@@ -927,7 +927,7 @@ public class Move {
 	 * @return boolean
 	 */
 	private boolean isInLibrary(Game game, int roomNumber) {
-		return (game.getItem(GameEntities.FLAG_FORTY_SEVEN).getItemFlag()==1 &&
+		return (game.getItem(GameEntities.FLAG_WINE_POISONED).getItemFlag()==1 &&
 				roomNumber == GameEntities.ROOM_LIBRARY);
 	}
 	
@@ -1091,4 +1091,5 @@ public class Move {
  * 10 February 2026 - Updated javadocs
  * 22 February 2026 - Changed Flag 51 name
  * 23 March 2026 - Fixed spelling error with uniform
+ * 4 May 2026 - Changed flag name
  */

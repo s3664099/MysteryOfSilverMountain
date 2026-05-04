@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.20
-Date: 29 April 2026
+Version: 1.22
+Date: 4 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -241,7 +241,7 @@ public class GameEntities {
     public static final int FLAG_COIN_NUMBERS = 44;
     public static final int FLAG_RUBBLE_BLOCKING = 45;
     public static final int FLAG_HOUND = 46;
-    public static final int FLAG_FORTY_SEVEN = 47;
+    public static final int FLAG_WINE_POISONED = 47;
     public static final int FLAG_GRARG_ASLEEP = 48;
     public static final int FLAG_CARRYING_ITEMS = 49;
     public static final int FLAG_IS_DARK= 50;
@@ -345,7 +345,7 @@ public class GameEntities {
 	public static final int CMD_BREAK = 54;
 	public static final int CMD_STEAL = 55;
 	public static final int CMD_GATHER = 56;
-	public static final int CMD_RELFECT = 57;
+	public static final int CMD_REFLECT = 57;
 	
 	public static final int CMD_VALID_NORTH = 1;
 	public static final int CMD_VALID_SOUTH = 2;
@@ -411,4 +411,6 @@ public class GameEntities {
  * 14 March 2026 - Changed flag 37 name
  * 23 March 2026 - Fixed spelling error for uniform
  * 29 April 2026 - Updated flag name
+ * 3 May 2026 - Changed flag name
+ * 4 May 2026 - Fixed spelling error for reflect
  */
