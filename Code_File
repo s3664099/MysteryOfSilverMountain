@@ -323,9 +323,9 @@
 3150 IF H=1870 THEN R$="HOW?"
 3160 RETURN
 
-*** Reflect
-3170 IF R=48 THEN R$="HOW?"
-3180 RETURN
+
+
+
 
 
 

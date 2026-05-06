@@ -48,7 +48,20 @@ public class Reflect {
 		game.addMessage("Nothing happens.", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
+		if (isInWizardLair(player.getRoom())) {
+			result = inWizardLair(game,player);
+		}
+		
 		return result;
+	}
+	
+	private boolean isInWizardLair(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_WIZARD_LAIR;
+	}
+	
+	private ActionResult inWizardLair(Game game, Player player) {
+		game.addMessage("How?", true, false);
+		return new ActionResult(game,player,true);
 	}
 }
 
