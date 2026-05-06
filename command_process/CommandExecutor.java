@@ -40,6 +40,7 @@ import commands.Move;
 import commands.Open;
 import commands.Plant;
 import commands.Poison;
+import commands.Reflect;
 import commands.Remove;
 import commands.Rig;
 import commands.Ring;
@@ -187,6 +188,9 @@ public class CommandExecutor {
 		} else if (command.checkDrink()) {
 			logger.info("Drink");
 			result = new Drink(game,player,command).executeDrink();
+		} else if (command.checkReflect()) {
+			logger.info("Reflect");
+			result = new Reflect(game,player,command).executeReflect();
 		} else if (command.checkPoison()) {
 			logger.info("Poison");
 			result = new Poison(game,player,command).executePoison();
