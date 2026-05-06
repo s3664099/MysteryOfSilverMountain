@@ -55,10 +55,23 @@ public class Reflect {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is in the wizard's lair
+	 * 
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isInWizardLair(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_WIZARD_LAIR;
 	}
 	
+    /**
+     * Executes a response if the player is in the wizard's lair
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult inWizardLair(Game game, Player player) {
 		game.addMessage("How?", true, false);
 		return new ActionResult(game,player,true);
