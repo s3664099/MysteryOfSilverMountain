@@ -55,11 +55,25 @@ public class Break {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is attempting to break the door in the corridor
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isBreakDoor(int roomNumber, int nounNumber) {
 		return roomNumber == GameEntities.ROOM_CORRIDOR &&
 				nounNumber == GameEntities.ITEM_DOOR;
 	}
 	
+    /**
+     * Executes a response if the player is attempting to break the door in the corridor
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult breakDoor(Game game, Player player) {
 		game.addMessage("How?", true, false);
 		return new ActionResult(game,player,true);
