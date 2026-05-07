@@ -47,8 +47,22 @@ public class Break {
 	public ActionResult executeBreak() {
 		game.addMessage("You are not strong enough.", true, false);
 		ActionResult result = new ActionResult(game,player,true);
-				
+			
+			if (isBreakDoor(player.getRoom(),command.getNounNumber())) {
+				result = breakDoor(game,player);
+			}
+		
 		return result;
+	}
+	
+	private boolean isBreakDoor(int roomNumber, int nounNumber) {
+		return roomNumber == GameEntities.ROOM_CORRIDOR &&
+				nounNumber == GameEntities.ITEM_DOOR;
+	}
+	
+	private ActionResult breakDoor(Game game, Player player) {
+		game.addMessage("How?", true, false);
+		return new ActionResult(game,player,true);
 	}
 }
 
