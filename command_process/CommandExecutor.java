@@ -39,6 +39,7 @@ import commands.Water;
 import commands.Wear;
 import commands.Move;
 import commands.Open;
+import commands.Pay;
 import commands.Plant;
 import commands.Poison;
 import commands.Reflect;
@@ -189,6 +190,9 @@ public class CommandExecutor {
 		} else if (command.checkDrink()) {
 			logger.info("Drink");
 			result = new Drink(game,player,command).executeDrink();
+		} else if (command.checkPay()) {
+			logger.info("Pay");
+			result = new Pay(game,player,command).executePay();
 		} else if (command.checkBreak()) {
 			logger.info("Break");
 			result = new Break(game,player,command).executeBreak();
