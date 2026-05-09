@@ -45,14 +45,33 @@ public class Pay {
      * @return an {@link ActionResult} describing validity and effects
      */
 	public ActionResult executePay() {
-		game.addMessage("You cannot Cross that", true, false);
+		game.addMessage("The payment is not accepted.", true, false);
 		ActionResult result = new ActionResult(game,player,true);
+		
+		if (isPayTroll(player.getRoom(),command.getNounNumber())) {
+			result = payTroll(game,player);
+		} else if (isPayCoins(command.getNounNumber())) {
+			result = new Give(game,player,command).executeGive();
+		}
 		
 		return result;
 	}
 	
-	//3100 IF H=7549 OR H=7649 THEN R$="WHAT WITH?"
-	//3110 IF B=1 OR B=62 THEN GOSUB 1750
+	private boolean isPayTroll(int roomNumber, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_TROLL && 
+				(roomNumber == GameEntities.ROOM_BRIDGE_EAST ||
+				 roomNumber == GameEntities.ROOM_BRIDGE_WEST);
+	}
+	
+	private ActionResult payTroll(Game game, Player player) {
+		game.addMessage("What with?", false, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	private boolean isPayCoins(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_COIN ||
+				nounNumber == GameEntities.ITEM_COINS;
+	}
 }
 
 /* 9 May 2026 - Created File
