@@ -57,17 +57,37 @@ public class Pay {
 		return result;
 	}
 	
+	/**
+	 * Returns true if the player is paying the troll
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isPayTroll(int roomNumber, int nounNumber) {
 		return nounNumber == GameEntities.ITEM_TROLL && 
 				(roomNumber == GameEntities.ROOM_BRIDGE_EAST ||
 				 roomNumber == GameEntities.ROOM_BRIDGE_WEST);
 	}
 	
+    /**
+     * Executes a response if the player is paying the troll
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult payTroll(Game game, Player player) {
 		game.addMessage("What with?", false, false);
 		return new ActionResult(game,player,true);
 	}
 	
+	/**
+	 * Returns true if the player is paying coins
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
 	private boolean isPayCoins(int nounNumber) {
 		return nounNumber == GameEntities.ITEM_COIN ||
 				nounNumber == GameEntities.ITEM_COINS;
