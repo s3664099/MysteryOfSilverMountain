@@ -50,6 +50,9 @@ public class Pay {
 		
 		return result;
 	}
+	
+	//3100 IF H=7549 OR H=7649 THEN R$="WHAT WITH?"
+	//3110 IF B=1 OR B=62 THEN GOSUB 1750
 }
 
 /* 9 May 2026 - Created File
