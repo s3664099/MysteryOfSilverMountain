@@ -40,8 +40,7 @@ public class Constants {
 	public static final int LINE_LENGTH = 90;
 	
 	//Constants for the Game Class
-	//public static final int START_LOCATION = GameEntities.ROOM_CROSSROADS;
-	public static final int START_LOCATION = 72;
+	public static final int START_LOCATION = GameEntities.ROOM_CROSSROADS;
 	public static final int INVENTORY_SPACE = 13;
 	
 	//Constants for the player starting values

@@ -32,7 +32,7 @@
 
 
 
-350 IF V$="PLAY" THEN V$="BLO"
+
 
 
 380 NEXT I:F(36)=0
