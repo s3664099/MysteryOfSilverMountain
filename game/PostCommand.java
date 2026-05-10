@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Post Command Functions
-Author: 
+Title: Mystery of Silver Mountain Post Command Functions
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 16 January 2026
-Source: 
+Version: 1.4
+Date: 10 May 2026
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package game;
@@ -69,10 +69,21 @@ public class PostCommand {
 		return false;
 	}
 	
+	/**
+	 * Returns true if the game failed flag has been set
+	 * 
+	 * @return boolean
+	 */
 	private boolean isLoseGame() {
-		return false;
+		return game.getItem(GameEntities.FLAG_PLAYER_FAILED).getItemFlag() != 0;
 	}
 	
+	/**
+	 * Returns true if the player is in a room where the dark flag has been set
+	 * 
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isItDark(Game game, int roomNumber) {
 		return ((roomNumber == GameEntities.ROOM_CASKS || roomNumber == GameEntities.ROOM_WINE_CELLAR) &&
 				game.getItem(GameEntities.FLAG_IS_DARK).getItemFlag() == 0);
@@ -105,4 +116,5 @@ public class PostCommand {
  * 7 December 2025 - Cleared game related code
  * 8 December 2025 - Increased Version Number
  * 16 January 2026 - Added condition for being dark
+ * 10 May 2026 - Added check to see if game failed
  */
