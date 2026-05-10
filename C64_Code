@@ -45,7 +45,7 @@
 
 --- Verb
 340 IF LEN(V$)<3 THEN V$=V$+"O":GOTO 340 - fill letters up to 3 if less
-350 IF V$="PLAY" THEN V$="BLO" - changes play to blow
+350 IF V$="PLAY" THEN V$="BLO" - changes play to blow 
 360 U$=LEFT$(V$,3) - gets the first three letters
 370 FOR I=1 TO NV:IF MID$(B$,I*3-2,3)=U$ THEN VB=I:I=NV - finds the verb
 380 NEXT I:F(36)=0
@@ -55,7 +55,7 @@
 400 FOR I=1 TO NO:READ O$:IF I<G THEN GOSUB 3350
 410 IF T$=O$ THEN B=I:I=NO
 420 NEXT I
-430 IF B=0 AND F(36)=0 AND T$>"" THEN T$=T$+"S":F(36)=1:GOTO 390
+430 IF B=0 AND F(36)=0 AND T$>"" THEN T$=T$+"S":F(36)=1:GOTO 390 - changes coin to coins
 
 --- Validates command
 440 IF VB=0 THEN VB=NV+1
