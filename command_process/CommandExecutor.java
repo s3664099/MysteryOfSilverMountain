@@ -198,7 +198,7 @@ public class CommandExecutor {
 			result = new Break(game,player,command).executeBreak();
 		} else if (command.checkReflect()) {
 			logger.info("Reflect");
-			result = new Reflect(game,player,command).executeReflect();
+			result = new Reflect(game,player).executeReflect();
 		} else if (command.checkPoison()) {
 			logger.info("Poison");
 			result = new Poison(game,player,command).executePoison();

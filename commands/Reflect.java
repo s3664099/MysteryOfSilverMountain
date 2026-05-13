@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Reflect Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 6 May 2026
+Version: 1.1
+Date: 13 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -22,10 +22,7 @@ public class Reflect {
 	
     /** The active player instance. */
 	private final Player player;
-	
-    /** The current command instance. */
-	private final ParsedCommand command;
-	
+		
     /**
      * Creates a {@code REFLECT} handler for executing a reflect command
      * 
@@ -33,10 +30,9 @@ public class Reflect {
      * @param player   current player state
      * @param command   current command
      */
-	public Reflect(Game game, Player player, ParsedCommand command) {
+	public Reflect(Game game, Player player) {
 		this.game = game;
 		this.player = player;
-		this.command = command;
 	}
 	
     /**
@@ -79,4 +75,5 @@ public class Reflect {
 }
 
 /* 6 May 2026 - Created File
+ * 13 May 2026 - Removed unused variables
  */
