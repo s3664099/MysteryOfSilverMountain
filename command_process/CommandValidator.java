@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 9 February 2026
+Version: 1.3
+Date: 14 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -25,6 +25,11 @@ import game.Player;
  */
 public class CommandValidator {
 
+	
+	//Validate Carrying item
+	
+	//500 IFVB<NVANDC(B)<>0THENR$="YOU DO NOT HAVE THE "+T$:GOTO30
+	
 	private static final Logger logger = Logger.getLogger(Game.class.getName());
 	
     /**
@@ -59,6 +64,10 @@ public class CommandValidator {
 			logger.info("Validation Failed - Is Noun Missing True");
 			validCommand = false;
 			game = handleCheckNounFails(game);
+		}
+		
+		if (validCommand && requiresItem(command.getVerbNumber())) {
+			
 		}
 		
 		ActionResult result = new ActionResult(game,player,validCommand);
@@ -123,6 +132,15 @@ public class CommandValidator {
 	private boolean checkResultNull(ActionResult result) {
 		return result.getPlayer()==null && !result.isValid();
 	}
+	
+    /**
+     * @return true if the result is a verb that doesn't require the item being carried.
+     */
+	private boolean requiresItem(int verbNumber) {
+		return verbNumber == GameEntities.CMD_GET || verbNumber == GameEntities.CMD_TAKE ||
+				verbNumber == GameEntities.CMD_PICK || verbNumber == GameEntities.CMD_CLIMB ||
+				verbNumber == GameEntities.CMD_HOLD || verbNumber > GameEntities.CMD_BREAK;
+	}
 					
     // ===== Error handling =====
 
@@ -168,4 +186,5 @@ public class CommandValidator {
  * 8 December 2025 - Increased version number
  * 9 December 2025 - Added Title
  * 9 February 2026 - Added alternate response for examine verb only
+ * 14 May 2026 - Added check for verb requiring carried item
  */
