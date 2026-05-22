@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 14 May 2026
+Version: 1.4
+Date: 22 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -24,11 +24,6 @@ import game.Player;
  * Special handling is included for game-specific entities such as trapdoors.</p>
  */
 public class CommandValidator {
-
-	
-	//Validate Carrying item
-	
-	//500 IFVB<NVANDC(B)<>0THENR$="YOU DO NOT HAVE THE "+T$:GOTO30
 	
 	private static final Logger logger = Logger.getLogger(Game.class.getName());
 	
@@ -67,7 +62,10 @@ public class CommandValidator {
 		}
 		
 		if (validCommand && requiresItem(command.getVerbNumber())) {
-			
+			if (!hasItem(game,command.getNounNumber())) {
+				game = handleNotCarryingItem(game,command);
+				validCommand = false;
+			}
 		}
 		
 		ActionResult result = new ActionResult(game,player,validCommand);
@@ -134,12 +132,25 @@ public class CommandValidator {
 	}
 	
     /**
-     * @return true if the result is a verb that doesn't require the item being carried.
+     * @return true if the result if a verb that doesn't require the item being carried.
      */
 	private boolean requiresItem(int verbNumber) {
 		return verbNumber == GameEntities.CMD_GET || verbNumber == GameEntities.CMD_TAKE ||
 				verbNumber == GameEntities.CMD_PICK || verbNumber == GameEntities.CMD_CLIMB ||
 				verbNumber == GameEntities.CMD_HOLD || verbNumber > GameEntities.CMD_BREAK;
+	}
+	
+    /**
+     * @return true if the result if the player is carrying the item.
+     */
+	private boolean hasItem(Game game,int nounNumber) {
+		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+	
+	/* Adds response when item isn't being carried */
+	private Game handleNotCarryingItem(Game game,ParsedCommand command) {
+		game.addMessage("You do not have the "+command.getSplitTwoCommand()[1], true, true);
+		return game;
 	}
 					
     // ===== Error handling =====
@@ -187,4 +198,5 @@ public class CommandValidator {
  * 9 December 2025 - Added Title
  * 9 February 2026 - Added alternate response for examine verb only
  * 14 May 2026 - Added check for verb requiring carried item
+ * 22 May 2026 - Added validation for carrying item if needed
  */
