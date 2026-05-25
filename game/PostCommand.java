@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Post Command Functions
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 10 May 2026
+Version: 1.5
+Date: 25 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -27,6 +27,7 @@ public class PostCommand {
 	
 	private Game game;
 	private Player player;
+	private ActionResult result;
 
     /**
      * Constructs a {@code PostCommand} handler from an {@link ActionResult}.
@@ -34,15 +35,10 @@ public class PostCommand {
      * @param result the result of the previous player action containing game and player states
      */
 	public PostCommand(ActionResult result) {
-		
-		if (isItDark(result.getGame(),result.getPlayer().getRoom())) {
-			result = itIsDark(result.getGame(),result.getPlayer());
-		} else {
-			result = itIsNotDark(result.getGame(),result.getPlayer());
-		}
-		
-		game = result.getGame();
-		player = result.getPlayer();
+				
+		this.game = result.getGame();
+		this.player = result.getPlayer();
+		this.result = result;
 	}
 	
     /**
@@ -56,12 +52,23 @@ public class PostCommand {
      */	
 	public ActionResult postUpdates() {
 		
-		if (isWinGame()) {winGame();}
+		if (isItDark(game,player.getRoom())) {
+			result = itIsDark(result.getGame(),result.getPlayer());
+		} else {
+			result = itIsNotDark(result.getGame(),result.getPlayer());
+		} 
 		
-		if (isLoseGame()) {loseGame();}
+		if (isWinGame()) {
+			winGame();
+		} else if (isLoseGame()) {
+			loseGame();
+		}
 		
-		return new ActionResult(game,player,true);
+		return result;
 	}
+	
+	//510 IF R=56 AND F(35)=0 AND VB<>37 AND VB<>53 THEN R$=X1$+" HAS GOT YOU!":GOTO 30
+	//3460 X1$="THE GHOST OF THE GOBLIN GUARDIAN"
 
     // ================== Condition Checks ================== //
 	
@@ -117,4 +124,5 @@ public class PostCommand {
  * 8 December 2025 - Increased Version Number
  * 16 January 2026 - Added condition for being dark
  * 10 May 2026 - Added check to see if game failed
+ * 25 May 2026 - Updated code to follow rules from CommandExecutor
  */
