@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.26
-Date: 7 May 2026
+Version: 1.27
+Date: 25 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -37,6 +37,7 @@ import commands.Unlock;
 import commands.Use;
 import commands.Water;
 import commands.Wear;
+import data.GameEntities;
 import commands.Move;
 import commands.Open;
 import commands.Pay;
@@ -85,7 +86,9 @@ public class CommandExecutor {
 		
 		ActionResult result = new ActionResult(game,player,false);
 
-		if (command.checkMoveState()) {
+		if (isCaughtByGhostGoblin(game,player.getRoom(),command.getVerbNumber())) {
+			result = caughtByGhostGoblin(game,player);
+		} else if (command.checkMoveState()) {
 			logger.info("Moving");
 			result = new Move().executeMove(game,player,command);
 		} else if (command.checkInventory()) {
@@ -219,6 +222,17 @@ public class CommandExecutor {
 		PostCommand updates = new PostCommand(result);
 		return updates.postUpdates();
 	}
+	
+	private boolean isCaughtByGhostGoblin(Game game, int roomNumber, int verbNumber) {
+		return roomNumber == GameEntities.ROOM_FALLEN_OAK &&
+				game.getItem(GameEntities.FLAG_GHOST_FREE).getItemFlag() == 0 &&
+				verbNumber != GameEntities.CMD_BLOW && verbNumber != GameEntities.CMD_MAKE;
+	}
+	
+	private ActionResult caughtByGhostGoblin(Game game,Player player) {
+		game.addMessage("The ghost of the goblin guardian has got you!", true, false);
+		return new ActionResult(game,player, true);
+	}
 }
 
 /* 3 December 2025 - Increased version number
@@ -252,4 +266,5 @@ public class CommandExecutor {
  * 27 April 2026 - Added Show & Burn
  * 1 May 2026 - Added remaining verbs
  * 7 May 2026 - Added Break (and others previously)
+ * 25 May 2026 - Added check for caught by ghost goblin
  */
