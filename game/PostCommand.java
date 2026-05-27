@@ -101,11 +101,19 @@ public class PostCommand {
     // ================== Actions ================== //
 		
 	private void winGame() {
-
+		//740 PRINT "HOOOOORRRRRRAAAAAYYYYYY!"
+		//750 PRINT
+		//760 PRINT "YOU HAVE SUCCEEDED IN YOUR"
+		//770 PRINT "QUEST AND BROUGHT PEACE TO"
+		//780 PRINT "THE LAND"
+		//790 STOP
 	}
 	
 	private void loseGame() {
-
+		//690 GOSUB 4400:PRINT R$
+		//700 PRINT "YOU HAVE FAILED IN YOUR QUEST!"
+		//710 PRINT:PRINT "BUT YOU ARE GRANTED ANOTHER TRY"
+		//720 GOSUB 3360:RUN
 	}
 	
 	private ActionResult itIsDark(Game game,Player player) {
