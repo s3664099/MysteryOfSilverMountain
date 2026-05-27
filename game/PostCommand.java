@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Post Command Functions
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 25 May 2026
+Version: 1.6
+Date: 27 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -67,13 +67,15 @@ public class PostCommand {
 		return result;
 	}
 	
-	//510 IF R=56 AND F(35)=0 AND VB<>37 AND VB<>53 THEN R$=X1$+" HAS GOT YOU!":GOTO 30
-	//3460 X1$="THE GHOST OF THE GOBLIN GUARDIAN"
-
     // ================== Condition Checks ================== //
 	
+	/**
+	 * Returns true if the third word spoken flag has been set
+	 * 
+	 * @return boolean
+	 */
 	private boolean isWinGame() {
-		return false;
+		return game.getItem(GameEntities.FLAG_THIRD_WORD_SPOKEN).getItemFlag() == 1;
 	}
 	
 	/**
@@ -125,4 +127,5 @@ public class PostCommand {
  * 16 January 2026 - Added condition for being dark
  * 10 May 2026 - Added check to see if game failed
  * 25 May 2026 - Updated code to follow rules from CommandExecutor
+ * 27 May 2026 - Added win game condition check
  */
