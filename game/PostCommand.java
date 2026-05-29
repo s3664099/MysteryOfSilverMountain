@@ -57,7 +57,9 @@ public class PostCommand {
 		} else {
 			result = itIsNotDark(result.getGame(),result.getPlayer());
 		} 
-		
+		//660 IF R=41 THEN F(67)=F(67)+1:IF F(67)=10 THEN F(56)=1:R$="YOU SANK!"
+		//670 IF R=56 AND F(35)=0 AND C(10)<>0 THEN R$=X1$+" GETS YOU!":F(56)=1
+		//3460 X1$="THE GHOST OF THE GOBLIN GUARDIAN"
 		if (isWinGame()) {
 			winGame();
 		} else if (isLoseGame()) {
