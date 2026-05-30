@@ -108,15 +108,35 @@ public class PostCommand {
 				game.getItem(GameEntities.FLAG_IS_DARK).getItemFlag() == 0);
 	}
 	
+	/**
+	 * Returns true if the boat has sunk
+	 * 
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean hasSank(Game game, int roomNumber) {
 		return roomNumber == GameEntities.ROOM_ROUGH_WATER && 
 				game.getItem(GameEntities.FLAG_BOAT_WORN).getItemFlag() == 10;
 	}
 	
+	/**
+	 * Returns true if the player is in the rough water room
+	 * 
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isInRoughWater(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_ROUGH_WATER;
 	}
 	
+	/**
+	 * Returns true if the ghost goblin has caught the player
+	 * 
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
 	private boolean hasGoblinGhostCaughtYou(Game game, int roomNumber) {
 		return roomNumber == GameEntities.ROOM_FALLEN_OAK &&
 				game.getItem(GameEntities.FLAG_GHOST_FREE).getItemFlag() == 0 &&
@@ -141,11 +161,25 @@ public class PostCommand {
 		//720 GOSUB 3360:RUN
 	}
 	
+    /**
+     * Updates the state if the room is dark
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult itIsDark(Game game,Player player) {
 		player.setPlayerStateDark();
 		return new ActionResult(game,player,false);
 	}
 	
+    /**
+     * Updates the state if the room is not dark
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult itIsNotDark(Game game,Player player) {
 		if (player.isPlayerStateDark()) {
 			player.setPlayerStateNormal();
@@ -153,18 +187,39 @@ public class PostCommand {
 		return new ActionResult(game,player,false);
 	}
 	
+    /**
+     * Updates the state if the player's boat has sunk
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult sank(Game game, Player player) {
 		game.addMessage("You sank!", true, false);
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 	
+    /**
+     * Updates the state of the boat if the player is in rough water
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult inRoughWater(Game game,Player player) {
 		int boat_hp = game.getItem(GameEntities.FLAG_BOAT_WORN).getItemFlag();
 		game.getItem(GameEntities.FLAG_BOAT_WORN).setItemFlag(boat_hp++);
 		return new ActionResult(game,player,true);
 	}
 	
+    /**
+     * Updates the state if the ghost goblin has caught the player
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult goblinGhostCaughtYou(Game game, Player player) {
 		game.addMessage("The ghost of the Goblin Guardian gets you!", true, false);
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
