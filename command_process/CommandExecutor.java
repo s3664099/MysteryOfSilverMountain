@@ -225,17 +225,40 @@ public class CommandExecutor {
 		return updates.postUpdates();
 	}
 	
+	/**
+	 * Returns true if the player is caught by the ghost goblin
+	 * 
+     * @param game the current game state
+ 	 * @param verbNumber the value of the verb entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isCaughtByGhostGoblin(Game game, int roomNumber, int verbNumber) {
 		return roomNumber == GameEntities.ROOM_FALLEN_OAK &&
 				game.getItem(GameEntities.FLAG_GHOST_FREE).getItemFlag() == 0 &&
 				verbNumber != GameEntities.CMD_BLOW && verbNumber != GameEntities.CMD_MAKE;
 	}
 	
+    /**
+     * Updates the state if caught by the ghost goblin
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult caughtByGhostGoblin(Game game,Player player) {
 		game.addMessage("The ghost of the goblin guardian has got you!", true, false);
 		return new ActionResult(game,player, true);
 	}
 	
+	/**
+	 * Returns true if the player is caught by the wizard
+	 * 
+     * @param game the current game state
+ 	 * @param verbumber the value of the verb entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
 	private boolean isCaughtByWizard(Game game, int roomNumber, int verbNumber) {
 		return roomNumber == GameEntities.ROOM_WIZARD_LAIR &&
 				game.getItem(GameEntities.FLAG_WIZARD_DEAD).getItemFlag() == 0 &&
@@ -244,6 +267,13 @@ public class CommandExecutor {
 				verbNumber != GameEntities.CMD_WITH;
 	}
 	
+    /**
+     * Updates the state if caught by the wizard
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
 	private ActionResult caughtByWizard(Game game,Player player) {
 		game.addMessage("The wizard has you in his glare!", true, false);
 		return new ActionResult(game,player, true);
