@@ -60,12 +60,14 @@ public class PostCommand {
 		
 		if (hasSank(game,player.getRoom())) {
 			result = sank(result.getGame(),result.getPlayer());
-		} else (isInRoughWaterplayer.getRoom)) {
+		} else if (isInRoughWater(player.getRoom())) {
 			result = inRoughWater(result.getGame(),result.getPlayer());
 		}
 		
-		//670 IF R=56 AND F(35)=0 AND C(10)<>0 THEN R$=X1$+" GETS YOU!":F(56)=1
-		//3460 X1$="THE GHOST OF THE GOBLIN GUARDIAN"
+		if (hasGoblinGhostCaughtYou(game,player.getRoom())) {
+			result = goblinGhostCaughtYou(result.getGame(),result.getPlayer());
+		}
+
 		if (isWinGame()) {
 			winGame();
 		} else if (isLoseGame()) {
@@ -111,8 +113,14 @@ public class PostCommand {
 				game.getItem(GameEntities.FLAG_BOAT_WORN).getItemFlag() == 10;
 	}
 	
-	private boolean isInRoughWaterplayer(int roomNumber) {
+	private boolean isInRoughWater(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_ROUGH_WATER;
+	}
+	
+	private boolean hasGoblinGhostCaughtYou(Game game, int roomNumber) {
+		return roomNumber == GameEntities.ROOM_FALLEN_OAK &&
+				game.getItem(GameEntities.FLAG_GHOST_FREE).getItemFlag() == 0 &&
+				game.getItem(GameEntities.ITEM_REEDS).getItemLocation() != 0;
 	}
 	
     // ================== Actions ================== //
@@ -146,7 +154,7 @@ public class PostCommand {
 	}
 	
 	private ActionResult sank(Game game, Player player) {
-		game.addMessage("You sank!", false, false);
+		game.addMessage("You sank!", true, false);
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
@@ -154,6 +162,12 @@ public class PostCommand {
 	private ActionResult inRoughWater(Game game,Player player) {
 		int boat_hp = game.getItem(GameEntities.FLAG_BOAT_WORN).getItemFlag();
 		game.getItem(GameEntities.FLAG_BOAT_WORN).setItemFlag(boat_hp++);
+		return new ActionResult(game,player,true);
+	}
+	
+	private ActionResult goblinGhostCaughtYou(Game game, Player player) {
+		game.addMessage("The ghost of the Goblin Guardian gets you!", true, false);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
 }
