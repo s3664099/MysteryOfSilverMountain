@@ -57,7 +57,13 @@ public class PostCommand {
 		} else {
 			result = itIsNotDark(result.getGame(),result.getPlayer());
 		} 
-		//660 IF R=41 THEN F(67)=F(67)+1:IF F(67)=10 THEN F(56)=1:R$="YOU SANK!"
+		
+		if (hasSank(game,player.getRoom())) {
+			result = sank(result.getGame(),result.getPlayer());
+		} else (isInRoughWaterplayer.getRoom)) {
+			result = inRoughWater(result.getGame(),result.getPlayer());
+		}
+		
 		//670 IF R=56 AND F(35)=0 AND C(10)<>0 THEN R$=X1$+" GETS YOU!":F(56)=1
 		//3460 X1$="THE GHOST OF THE GOBLIN GUARDIAN"
 		if (isWinGame()) {
@@ -100,6 +106,15 @@ public class PostCommand {
 				game.getItem(GameEntities.FLAG_IS_DARK).getItemFlag() == 0);
 	}
 	
+	private boolean hasSank(Game game, int roomNumber) {
+		return roomNumber == GameEntities.ROOM_ROUGH_WATER && 
+				game.getItem(GameEntities.FLAG_BOAT_WORN).getItemFlag() == 10;
+	}
+	
+	private boolean isInRoughWaterplayer(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_ROUGH_WATER;
+	}
+	
     // ================== Actions ================== //
 		
 	private void winGame() {
@@ -128,6 +143,18 @@ public class PostCommand {
 			player.setPlayerStateNormal();
 		}
 		return new ActionResult(game,player,false);
+	}
+	
+	private ActionResult sank(Game game, Player player) {
+		game.addMessage("You sank!", false, false);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
+	private ActionResult inRoughWater(Game game,Player player) {
+		int boat_hp = game.getItem(GameEntities.FLAG_BOAT_WORN).getItemFlag();
+		game.getItem(GameEntities.FLAG_BOAT_WORN).setItemFlag(boat_hp++);
+		return new ActionResult(game,player,true);
 	}
 }
 

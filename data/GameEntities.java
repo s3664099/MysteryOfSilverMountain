@@ -261,7 +261,7 @@ public class GameEntities {
     public static final int FLAG_TROLL = 64;
     public static final int FLAG_RATS = 65;
     public static final int FLAG_COBWEBS = 66;
-    public static final int FLAG_SIXTY_SEVEN = 67;
+    public static final int FLAG_BOAT_WORN = 67;
     public static final int FLAG_OBGAN = 68;
     public static final int FLAG_SIXTY_NINE = 69;
     public static final int FLAG_DOOR = 70;
