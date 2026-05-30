@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.27
-Date: 25 May 2026
+Version: 1.28
+Date: 30 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -85,9 +85,11 @@ public class CommandExecutor {
 	public ActionResult executeCommand(Game game,Player player,ParsedCommand command) {
 		
 		ActionResult result = new ActionResult(game,player,false);
-
+		
 		if (isCaughtByGhostGoblin(game,player.getRoom(),command.getVerbNumber())) {
 			result = caughtByGhostGoblin(game,player);
+		} else if (isCaughtByWizard(game,player.getRoom(),command.getVerbNumber())) {
+			result = caughtByWizard(game,player);
 		} else if (command.checkMoveState()) {
 			logger.info("Moving");
 			result = new Move().executeMove(game,player,command);
@@ -233,6 +235,19 @@ public class CommandExecutor {
 		game.addMessage("The ghost of the goblin guardian has got you!", true, false);
 		return new ActionResult(game,player, true);
 	}
+	
+	private boolean isCaughtByWizard(Game game, int roomNumber, int verbNumber) {
+		return roomNumber == GameEntities.ROOM_WIZARD_LAIR &&
+				game.getItem(GameEntities.FLAG_WIZARD_DEAD).getItemFlag() == 0 &&
+				verbNumber != GameEntities.CMD_SHOW && verbNumber != GameEntities.CMD_HOLD &&
+				verbNumber != GameEntities.CMD_REFLECT && verbNumber != GameEntities.CMD_USE &&
+				verbNumber != GameEntities.CMD_WITH;
+	}
+	
+	private ActionResult caughtByWizard(Game game,Player player) {
+		game.addMessage("The wizard has you in his glare!", true, false);
+		return new ActionResult(game,player, true);
+	}
 }
 
 /* 3 December 2025 - Increased version number
@@ -267,4 +282,5 @@ public class CommandExecutor {
  * 1 May 2026 - Added remaining verbs
  * 7 May 2026 - Added Break (and others previously)
  * 25 May 2026 - Added check for caught by ghost goblin
+ * 30 May 2026 - Added wizard glare blocker
  */

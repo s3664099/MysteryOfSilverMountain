@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Post Command Functions
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 27 May 2026
+Version: 1.7
+Date: 30 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -234,4 +234,5 @@ public class PostCommand {
  * 10 May 2026 - Added check to see if game failed
  * 25 May 2026 - Updated code to follow rules from CommandExecutor
  * 27 May 2026 - Added win game condition check
+ * 30 May 2026 - Added ghost goblin response
  */
