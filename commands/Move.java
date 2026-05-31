@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.17
-Date: 4 May 2026
+Version: 1.1
+Date: 31 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -38,7 +38,11 @@ public class Move {
 		
 		int verbNumber = command.getVerbNumber();
 		int nounNumber = GameEntities.NOUN_NIL;
-		
+
+		 
+	    //public static final int FLAG_TWENTY_SIX = 26;
+	    //public static final int FLAG_TWENTY_SEVEN = 27;
+	    //public static final int FLAG_TWENTY_EIGHT = 28;
 		return new ParsedCommand(verbNumber,nounNumber,command.getSplitTwoCommand(),command.getCommand());
 	}
 	
@@ -990,7 +994,7 @@ public class Move {
      */
 	private ActionResult leavingBanquetHall(Game game,Player player) {
 		game.getItem(GameEntities.FLAG_GRARG_ASLEEP).setItemFlag(1);
-		game.getItem(GameEntities.FLAG_TWENTY).setItemFlag(0);
+		game.getItem(GameEntities.FLAG_IN_HALL).setItemFlag(0);
 		return new ActionResult(game,player,false);
 	}
 
@@ -1092,4 +1096,5 @@ public class Move {
  * 22 February 2026 - Changed Flag 51 name
  * 23 March 2026 - Fixed spelling error with uniform
  * 4 May 2026 - Changed flag name
+ * 31 May 2026 - Changed name for flag 20
  */

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.23
-Date: 30 May 2026
+Version: 1.24
+Date: 31 May 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -197,32 +197,16 @@ public class GameEntities {
     // === Flags ===
     public static final int FLAG_COINS = 1;
     public static final int FLAG_SHEET = 2;
-    public static final int FLAG_THREE = 3;
     public static final int FLAG_HORSESHOE = 4;
     public static final int FLAG_APPLES = 5;
-    public static final int FLAG_SIX = 6;
-    public static final int FLAG_SEVEN = 7;
-    public static final int FLAG_EIGHT = 8;
-    public static final int FLAG_NINE = 9;
-    public static final int FLAG_TEN = 10;
-    public static final int FLAG_ELEVEN = 11;
     public static final int FLAG_SHIELD = 12;
     public static final int FLAG_PLANKS = 13;
-    public static final int FLAG_FOURTEEN = 14;
-    public static final int FLAG_FIFTEEN = 15;
     public static final int FLAG_JUG = 16;
     public static final int FLAG_NET = 17;
-    public static final int FLAG_EIGHTEEN = 18;
-    public static final int FLAG_NINETEEN = 19;
-    public static final int FLAG_TWENTY = 20;
+    public static final int FLAG_IN_HALL = 20;
     public static final int FLAG_SAFE_OPEN = 21;
     public static final int FLAG_SEEDS = 22;
-    public static final int FLAG_TWENTY_THREE = 23;
     public static final int FLAG_BREAD = 24;
-    public static final int FLAG_TWENTY_FIVE = 25;
-    public static final int FLAG_TWENTY_SIX = 26;
-    public static final int FLAG_TWENTY_SEVEN = 27;
-    public static final int FLAG_TWENTY_EIGHT = 28;
     public static final int FLAG_WEARING_BOOTS = 29;
     public static final int FLAG_BOAT_POWER = 30;
     public static final int FLAG_BOAT_FLAG = 31;
@@ -230,7 +214,6 @@ public class GameEntities {
     public static final int FLAG_SHEILD_REVEALED = 33;
     public static final int FLAG_JUG_FULL = 34;
     public static final int FLAG_GHOST_FREE = 35;
-    public static final int FLAG_THIRTY_SIX = 36;
     public static final int FLAG_SEED_PLANTED = 37;
     public static final int FLAG_VINE_CLIMBABLE = 38;
     public static final int FLAG_BOOT_WEAR_STATUS = 39;
@@ -251,9 +234,6 @@ public class GameEntities {
     public static final int FLAG_FORCES = 54;
     public static final int FLAG_PLAYER_SPOTTED = 55;
     public static final int FLAG_PLAYER_FAILED = 56;
-    public static final int FLAG_FIFTY_SEVEN = 57;
-    public static final int FLAG_FIFTY_EIGHT = 58;
-    public static final int FLAG_FIFTY_NINE = 59;
     public static final int FLAG_FIRST_WORD_SPOKEN = 60;
     public static final int FLAG_SECOND_WORD_SPOKEN = 61;
     public static final int FLAG_THIRD_WORD_SPOKEN = 62;
@@ -263,26 +243,7 @@ public class GameEntities {
     public static final int FLAG_COBWEBS = 66;
     public static final int FLAG_BOAT_WORN = 67;
     public static final int FLAG_OBGAN = 68;
-    public static final int FLAG_SIXTY_NINE = 69;
     public static final int FLAG_DOOR = 70;
-    public static final int FLAG_SEVENTY_ONE = 71;
-    public static final int FLAG_SEVENTY_TWO = 72;
-    public static final int FLAG_SEVENTY_THREE = 73;
-    public static final int FLAG_SEVENTY_FOUR = 74;
-    public static final int FLAG_SEVENTY_FIVE = 75;
-    public static final int FLAG_SEVENTY_SIX = 76;
-    public static final int FLAG_SEVENTY_SEVEN = 77;
-    public static final int FLAG_SEVENTY_EIGHT = 78;
-    public static final int FLAG_SEVENTY_NINE = 79;
-    public static final int FLAG_EIGHTY = 80;
-    public static final int FLAG_EIGHTY_ONE = 81;
-    public static final int FLAG_EIGHTY_TWO = 82;
-    public static final int FLAG_EIGHTY_THREE = 83;
-    public static final int FLAG_EIGHTY_FOUR = 84;
-    public static final int FLAG_EIGHTY_FIVE = 85;
-    public static final int FLAG_EIGHTY_SIX = 86;
-    public static final int FLAG_EIGHTY_SEVEN = 87;
-    public static final int FLAG_EIGHTY_EIGHT = 88;
     
 	// === Commands ===
 	public static final int MOVE_BOTTOM = 0;
@@ -414,4 +375,5 @@ public class GameEntities {
  * 3 May 2026 - Changed flag name
  * 4 May 2026 - Fixed spelling error for reflect
  * 30 May 2026 - Updated flag name
+ * 31 May 2026-  Removed unused flags
  */
