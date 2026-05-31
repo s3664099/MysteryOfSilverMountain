@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Game State
-Author: 
+Title: Mystery of Silver Game State
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
-Source:
+Version: 1.1
+Date: 31 May 2025
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package ui;
@@ -31,7 +31,6 @@ public class GameState implements GameStateProvider {
 	
 	//Game progression
 	private final int currentRoom;
-	private final int finalScore;
 	private final boolean initialGameState;
 	private final boolean saveGameState;
 	private final boolean endGameState;
@@ -67,7 +66,6 @@ public class GameState implements GameStateProvider {
 		
 		//Game progression
 		this.currentRoom = stateProvider.getCurrentRoom();
-		this.finalScore = stateProvider.getFinalScore();
 		this.initialGameState = stateProvider.isInitialGameState();
 		this.saveGameState = stateProvider.isSavedGameState();
 		this.endGameState = stateProvider.isEndGameState();
@@ -120,11 +118,6 @@ public class GameState implements GameStateProvider {
 	@Override
 	public int getCurrentRoom() {
 		return this.currentRoom;
-	}
-	
-	@Override
-	public int getFinalScore() {
-		return this.finalScore;
 	}
 	
 	@Override
@@ -194,7 +187,7 @@ public class GameState implements GameStateProvider {
 	
 	@Override
 	public String toString() {
-		return String.format("GameStat[room=%d, score=%d",currentRoom,finalScore);
+		return String.format("GameStat[room=%d, score=%d",currentRoom);
 	}
 	
 	//For equality checks
@@ -209,7 +202,6 @@ public class GameState implements GameStateProvider {
 		} else {
 			GameState that = (GameState) o;
 			isEqual = (currentRoom == that.currentRoom) &&
-					(finalScore == that.finalScore) &&
 					Objects.equals(room, that.room);
 		}
 		
@@ -218,7 +210,7 @@ public class GameState implements GameStateProvider {
 	
 	@Override
 	public int hashCode() {
-	    return Objects.hash(currentRoom, finalScore, room);
+	    return Objects.hash(currentRoom, room);
 	}
 	
 	@Override

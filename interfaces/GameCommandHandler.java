@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Write Operation Interface
-Author: 
+Title: Mystery of Silver Write Operation Interface
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
 Version: 1.0
 Date: 8 December 2025
-Source: 
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package interfaces;
