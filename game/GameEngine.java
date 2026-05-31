@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Game Engine
-Author: 
+Title: Mystery of Silver Mountain Game Engine
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 18 January 2026
-Source: 
+Version: 1.4
+Date: 31 May 2026
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package game;
@@ -287,19 +287,7 @@ public class GameEngine implements GameCommandHandler,GameStateProvider {
 	public boolean isNormalState() {
 		return player.isPlayerStateNormal();
 	}
-	
-    /**
-     * Calculates the player's final score based on stats.
-     *
-     * @return the final score
-     */
-	public int getFinalScore() {
-		boolean timeBonus = (int) player.getStat("timeRemaining")<640;
-		double timeScore = (int) player.getStat("timeRemaining")/7.0;
-		double applyTimeBonus = timeBonus ? -timeScore:0;
-		return 0;
-	}
-	
+		
 	//=== Room Queries ===//
 	
 	@Override
@@ -345,4 +333,5 @@ public class GameEngine implements GameCommandHandler,GameStateProvider {
 31 December 2025 - Removed wisdom/strength from score
 14 January 2026 - Added check to display if room is dark
 18 January 2026 - Added check to display if the player is lost in the maze
+31 May 2026 - Removed score method
 */
