@@ -1,6 +1,20 @@
-- Remove Unused Flags
-- Remove Unused code
-- Check & Update the win/lose responses
+
+
+
 
 - Create test cases
 - Determine win/lose
+
+
+- Test Load/Save
+
+
+Bail - Just Response
+Break - Response
+	- Break Door
+Climb - Climb Vine
+	- Climb Rope
+	- Climb Sheet
+Cross - Cross Bridge
+	- Cross Bridge when troll blocking
+Cut - Cut Web (Executes Swing)
