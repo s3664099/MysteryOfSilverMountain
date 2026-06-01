@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Post Command Functions
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 30 May 2026
+Version: 1.8
+Date: 1 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -68,7 +68,7 @@ public class PostCommand {
 			result = goblinGhostCaughtYou(result.getGame(),result.getPlayer());
 		}
 
-		if (isWinGame()) {
+		if (!isWinGame()) {
 			winGame();
 		} else if (isLoseGame()) {
 			loseGame();
@@ -146,19 +146,17 @@ public class PostCommand {
     // ================== Actions ================== //
 		
 	private void winGame() {
-		//740 PRINT "HOOOOORRRRRRAAAAAYYYYYY!"
-		//750 PRINT
-		//760 PRINT "YOU HAVE SUCCEEDED IN YOUR"
-		//770 PRINT "QUEST AND BROUGHT PEACE TO"
-		//780 PRINT "THE LAND"
-		//790 STOP
+		game.addMessage("Hooooorrrraaaaayyyy!!!!", false, true);
+		game.addMessage("", false, true);
+		game.addMessage("You have succeeded in your quest", false, true);
+		game.addMessage("and brought peace to the land", false, true);
+		game.setEndGameState();
 	}
 	
 	private void loseGame() {
-		//690 GOSUB 4400:PRINT R$
-		//700 PRINT "YOU HAVE FAILED IN YOUR QUEST!"
-		//710 PRINT:PRINT "BUT YOU ARE GRANTED ANOTHER TRY"
-		//720 GOSUB 3360:RUN
+		game.addMessage("You have failed in your quest!", false, true);
+		game.addMessage("But you are granted another try", false, true);
+		game.setEndGameState();
 	}
 	
     /**
@@ -235,4 +233,5 @@ public class PostCommand {
  * 25 May 2026 - Updated code to follow rules from CommandExecutor
  * 27 May 2026 - Added win game condition check
  * 30 May 2026 - Added ghost goblin response
+ * 1 June 2026 - Win and lose game messages work
  */
