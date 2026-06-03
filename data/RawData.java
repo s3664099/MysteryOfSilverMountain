@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.12
-Date: 7 January 2026
+Version: 1.13
+Date: 3 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -295,8 +295,8 @@ public class RawData {
 				"matches",								// 26
 				"stone of destiny",						// 27
 				"apple",								// 28
-				"cupboard",								// 29
-				"bed",									// 30
+				"bed",									// 29
+				"cupboard",								// 30
 				"bridge",								// 31
 				"trees",								// 32
 				"sail",									// 33
@@ -467,4 +467,5 @@ public class RawData {
  * 					- Fixed problem with not enough flags/locations
  * 1 January 2026 - Notated commands
  * 7 January 2026 - Fixed exits in room 30
+ * 3 June 2026 - Switched cupboard & bed
  */

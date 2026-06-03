@@ -70,6 +70,7 @@ public class CommandValidator {
 		
 		ActionResult result = new ActionResult(game,player,validCommand);
 		logger.info("Command Valid: "+validCommand);
+		logger.info("Verb Number "+command.getVerbNumber()+" Noun Number "+command.getNounNumber());
 		
 		if (checkResultNull(result)) {
 			result = new ActionResult(result.getGame(),player,result.isValid());
