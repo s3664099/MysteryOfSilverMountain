@@ -6,7 +6,9 @@
 - Determine win/lose
 
 
-- Test Load/Save
+- Test Load/Save - not working
+- take not working
+- remove stat bar
 
 
 Bail - Just Response
@@ -18,3 +20,72 @@ Climb - Climb Vine
 Cross - Cross Bridge
 	- Cross Bridge when troll blocking
 Cut - Cut Web (Executes Swing)
+Give - broach
+	 - coins to troll
+	 - apple
+	 - bone
+Fill - jug in lake
+     - bucket in valley
+Feed - Rat, Boar, Pony, Hound
+Examine
+	- count stones
+	- read books, inscription
+	- Examine Mosaic
+	- hut
+	- chest
+	- mountain hut
+	- attic
+	- uniform
+	- inscription
+	- trees
+	- kiln
+	- ketch
+	- sacks
+	- gravestone
+	- pool
+	- sluice
+	- phial
+	- books
+	- grarg
+	- well bottom
+	- pinnacle
+	- stables
+	- door
+	- kitchen
+	- stones
+	- inscription
+Enter - windmill
+	  - hut
+Empty - Water
+	  - phial
+Eat - apples, bread
+Drop - boat in lake
+	 - jug
+	 - sheets
+	 - boot
+	 - uniform
+Drink
+Dive - drowned
+Insert - coins
+	   - coins in turret
+Inventory
+Light - lamp
+	  - stable door
+	  - matches
+	  - matches in cellar
+	  
+Move - south/down - north/up
+	 - Block - in maze
+	 		 - Grargs
+	 		 - boat
+	 		 - rubble
+	 		 - ice
+	 		 - entering tunnel
+	 		 - oassage steep
+	 		 - hound blocking
+	 		 - dark
+	 		 - forces present
+	 		 - Ogbhan present
+	 		 - rats present
+	 		 - caught in web
+	 		 - door close
