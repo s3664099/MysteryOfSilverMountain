@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 10 February 2026
+Version: 1.9
+Date: 3 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -683,7 +683,7 @@ public class Examine {
      * @return an {@link ActionResult} describing the outcome
      */
 	private ActionResult examineDoor(Game game, Player player) {
-		game.addMessage("You found somethings.", true, false);
+		game.addMessage("You found something.", true, false);
 		game.getItem(GameEntities.FLAG_HORSESHOE).setItemFlag(0);
 		return new ActionResult(game,player,true);
 	}
@@ -767,4 +767,5 @@ public class Examine {
  * 8 February 2026 - Added interesting results
  * 9 February 2026 - Completed examine responses
  * 10 February 2026 - Added javadocs
+ * 3 June 2026 - Fixed typo
  */

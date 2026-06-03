@@ -193,7 +193,7 @@ public class RawData {
 		"0help",								// 75
 		"0chest",								// 76
 		"0water",								// 77
-		"0stables",								// 78
+		"0stable",								// 78
 		"0sluice gates",						// 79
 		"0pot",									// 80
 		"0statue",								// 81
@@ -344,7 +344,7 @@ public class RawData {
 				"help",									// 75
 				"chest",								// 76
 				"water",								// 77
-				"stables",								// 78
+				"stable",								// 78
 				"sluice gates",							// 79
 				"pot",									// 80
 				"statue",								// 81
@@ -468,4 +468,5 @@ public class RawData {
  * 1 January 2026 - Notated commands
  * 7 January 2026 - Fixed exits in room 30
  * 3 June 2026 - Switched cupboard & bed
+ * 			   - Removed 's' from stables
  */

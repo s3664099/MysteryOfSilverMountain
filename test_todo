@@ -28,13 +28,13 @@ Fill - jug in lake
      - bucket in valley
 Feed - Rat, Boar, Pony, Hound
 Examine
-	- count stones
+
 	- read books, inscription
 	- Examine Mosaic
 	- hut
 	- chest
 	- mountain hut
-	- attic
+
 	- uniform
 	- inscription
 	- trees
@@ -52,7 +52,7 @@ Examine
 	- stables
 	- door
 	- kitchen
-	- stones
+
 	- inscription
 Enter - windmill
 	  - hut
@@ -68,7 +68,7 @@ Drink
 Dive - drowned
 Insert - coins
 	   - coins in turret
-Inventory
+
 Light - lamp
 	  - stable door
 	  - matches
@@ -89,3 +89,7 @@ Move - south/down - north/up
 	 		 - rats present
 	 		 - caught in web
 	 		 - door close
+
+	 		 
+	 		 
+Examine Cupboard in the attic to get the sheet
