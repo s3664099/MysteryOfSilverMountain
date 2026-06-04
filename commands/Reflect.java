@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Reflect Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 13 May 2026
+Version: 1.2
+Date: 3 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -75,4 +75,5 @@ public class Reflect {
 
 /* 6 May 2026 - Created File
  * 13 May 2026 - Removed unused variables
+ * 4 June 2026 - Removed unused variables
  */

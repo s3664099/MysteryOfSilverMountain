@@ -2,13 +2,14 @@
 
 
 
-- Create test cases
+
 - Determine win/lose
 
 
 - Test Load/Save - not working
-- take not working
+
 - remove stat bar
+- Add bed/cupboard to attic
 
 
 Bail - Just Response
@@ -95,7 +96,14 @@ Open - Cupboard (kitchen Cupboard)
 	 - Safe
 	 - Stable Door
 	 - Wizard Door
-
+Pay - Troll
+	- Coins
+Plant - In Garden
+Poison - Wine
+Reflect - In Wizards Lair
+Remove - Boots
+	   - Uniform
+	   - Bricks/Rubble
 Rig - Seeds
 	- Sail
 	- Music
@@ -130,7 +138,16 @@ Take - Taking Water (in lake)
 	- Boat
 	- Sheet
 	- Pick?
-
+Unlock - Wizard Door
+Use - Sheet
+	- Bucket
+	- Jug
+	- Plank
+	- Axe/Sword
+	- Reeds
+	- Plate
+Water - Seeds
+Wear - Boots
+	 - Uniform
 	 		 
 	 		 
-Examine Cupboard in the attic to get the sheet
