@@ -89,6 +89,47 @@ Move - south/down - north/up
 	 		 - rats present
 	 		 - caught in web
 	 		 - door close
+Open - Cupboard (kitchen Cupboard)
+	 - Gates
+	 - Casks
+	 - Safe
+	 - Stable Door
+	 - Wizard Door
+
+Rig - Seeds
+	- Sail
+	- Music
+Ring - Bell
+Say - Magic Words
+	- Awake
+	- Guide
+	- Last Word
+	- Wrong Word
+Shift - Rubble (from stalactites)
+	  - Rubble (from tomb)
+	  - Bricks (in well)
+Show - Plate (in lair)
+	 - Stone
+Swing - Sword (in cobweb)
+	  - Axe (in corridor)
+	  - Axe (in well bottom)
+	  - Sword or Axe
+Turn - Handle
+	 - Water Wheel
+Tie - Sheet
+	- Rope
+Throw - Net
+	  - Item
+Take - Taking Water (in lake)
+	- Horse shoe (nailed on)
+	- Carrying too much
+	- Item not carriable
+	- Item already carried
+	- Item not present
+	- Apple
+	- Boat
+	- Sheet
+	- Pick?
 
 	 		 
 	 		 
