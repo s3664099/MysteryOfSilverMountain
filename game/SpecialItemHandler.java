@@ -2,8 +2,8 @@
 Title: <Game Name> Special Item Handler Class
 Author: 
 Translator: David Sarkies
-Version: 1.4
-Date: 8 February 2026
+Version: 1.5
+Date: 5 June 2026
 Source: 
 */
 
@@ -174,4 +174,5 @@ public class SpecialItemHandler implements Serializable {
  * 12 January 2026 - Added more special items
  * 14 January 2026 - Added special items
  * 8 February 2026 - Added special item statue
+ * 5 June 2026 - Added item description for attic
  */
