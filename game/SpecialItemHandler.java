@@ -50,6 +50,7 @@ public class SpecialItemHandler implements Serializable {
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_HOUND," a vicious looking hound");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_RATS," rats swarming the floor");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_STATUE,"  a defaced statue");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_ATTIC,"  a bed under the window, and a cupboard on the north wall");
 	}
 	
     /**
@@ -95,6 +96,8 @@ public class SpecialItemHandler implements Serializable {
 			specialItemType = GameEntities.SPECIAL_ITEM_RATS;
 		} else if (checkAtStatue(roomNumber)) {
 			specialItemType = GameEntities.SPECIAL_ITEM_STATUE;
+		} else if (checkInAttic(roomNumber)) {
+			specialItemType = GameEntities.SPECIAL_ITEM_ATTIC;
 		}
 		
 		String description = itemDescriptions.getOrDefault(specialItemType,"");
@@ -157,6 +160,10 @@ public class SpecialItemHandler implements Serializable {
 	
 	private boolean checkAtStatue(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_CROSSROADS;
+	}
+	
+	private boolean checkInAttic(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_ATTIC;
 	}
 }
 

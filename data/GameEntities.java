@@ -342,6 +342,7 @@ public class GameEntities {
 	public static final int SPECIAL_ITEM_HOUND = 11;
 	public static final int SPECIAL_ITEM_RATS = 12;
 	public static final int SPECIAL_ITEM_STATUE = 13;
+	public static final int SPECIAL_ITEM_ATTIC = 14;
 
 }
 

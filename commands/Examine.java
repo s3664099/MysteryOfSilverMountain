@@ -81,8 +81,8 @@ public class Examine {
 				result = examineChest(game,player);
 			} else if (isExamineMountainHut(command.getNounNumber(),player.getRoom())) {
 				result = examineMountainHut(game,player);
-			} else if (isExamineAttic(command.getNounNumber(),player.getRoom())) {
-				result = examineAttic(game,player);
+			} else if (isExamineBed(command.getNounNumber(),player.getRoom())) {
+				result = examineBed(game,player);
 			} else if (isExamineUniform(command.getNounNumber(),game)) {
 				result = examineUniform(game,player);
 			} else if (isReadInscription(command.getNounNumber(),player.getRoom())) {
@@ -211,8 +211,8 @@ public class Examine {
 	 * @param room the room the player is in
 	 * @return boolean
 	 */
-	private boolean isExamineAttic(int noun, int room) {
-		return (room == GameEntities.ROOM_ATTIC && noun == GameEntities.ITEM_CUPBOARD);
+	private boolean isExamineBed(int noun, int room) {
+		return (room == GameEntities.ROOM_ATTIC && noun == GameEntities.ITEM_BED);
 	}
 	
     /**
@@ -222,7 +222,7 @@ public class Examine {
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
-	private ActionResult examineAttic(Game game, Player player) {
+	private ActionResult examineBed(Game game, Player player) {
 		game.addMessage("Ok", true, false);
 		game.getItem(GameEntities.FLAG_SHEET).setItemFlag(0);
 		return new ActionResult(game,player,true);
