@@ -7,28 +7,41 @@
 
 
 - Test Load/Save - not working
+- Looks like multi-word nouns not working
+
+- Check that coins haven't been revealed
+- Pay troll not working
+- Bail not working (and maybe only in certain place and with certain noun)
 
 - remove stat bar
 - Add bed/cupboard to attic
 
+- Add tests for incorrect responses on commands (up to open)
 
-Bail - Just Response
-Break - Response
+
+
+Break - Standard Response 
 	- Break Door
-Climb - Climb Vine
+Climb - Standard Response
+	- Climb Vine
 	- Climb Rope
 	- Climb Sheet
-Cross - Cross Bridge
+Cross - Standard Response 
+	- Cross Bridge
 	- Cross Bridge when troll blocking
-Cut - Cut Web (Executes Swing)
-Give - broach
+Cut - Standard Response
+	- Cut Web (Executes Swing)
+Give - does not have item
+	 - Item does not exist
+	 - broach
 	 - coins to troll
 	 - apple
 	 - bone
-Fill - jug in lake
+Fill - Standard response
+	 - jug in lake
      - bucket in valley
 Feed - Rat, Boar, Pony, Hound
-Examine
+Examine - Standard Response
 
 	- read books, inscription
 	- Examine Mosaic
@@ -55,27 +68,36 @@ Examine
 	- kitchen
 
 	- inscription
-Enter - windmill
+Enter - Standard Response
+	  - windmill
 	  - hut
-Empty - Water
+Empty - Standard Response
+      - Water
 	  - phial
-Eat - apples, bread
-Drop - boat in lake
+Eat  - Standard Response
+     - apples, bread
+Drop - Not Carrying Item
+     - Item does not exist
+     - boat in lake
 	 - jug
 	 - sheets
 	 - boot
 	 - uniform
 Drink
-Dive - drowned
-Insert - coins
+Dive - Standard Response
+	 - drowned
+Insert - Standard Response
+       - coins
 	   - coins in turret
 
-Light - lamp
+Light - Standard Response
+      - lamp
 	  - stable door
 	  - matches
 	  - matches in cellar
 	  
-Move - south/down - north/up
+Move - Exit does not exist
+     - south/down - north/up
 	 - Block - in maze
 	 		 - Grargs
 	 		 - boat
