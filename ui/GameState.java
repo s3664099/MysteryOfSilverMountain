@@ -2,8 +2,8 @@
 Title: Mystery of Silver Game State
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 31 May 2025
+Version: 1.2
+Date: 6 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -26,8 +26,6 @@ public class GameState implements GameStateProvider {
 	private final String items;
 	private final String exits;
 	private final String specialExits;
-	private final String time;
-	private final String status;
 	
 	//Game progression
 	private final int currentRoom;
@@ -61,8 +59,6 @@ public class GameState implements GameStateProvider {
 		this.items = stateProvider.getItems();
 		this.exits = stateProvider.getExits();
 		this.specialExits = stateProvider.getSpecialExits();
-		this.time = stateProvider.getTime();
-		this.status = stateProvider.getStatus();
 		
 		//Game progression
 		this.currentRoom = stateProvider.getCurrentRoom();
@@ -104,17 +100,7 @@ public class GameState implements GameStateProvider {
 	public String getSpecialExits() {
 		return this.specialExits;
 	}
-	
-	@Override
-	public String getTime() {
-		return this.time;
-	}
-
-	@Override
-	public String getStatus() {
-		return this.status;
-	}
-	
+		
 	@Override
 	public int getCurrentRoom() {
 		return this.currentRoom;
@@ -237,4 +223,5 @@ public class GameState implements GameStateProvider {
 /* 3 December 2025 - Created file
  * 8 December 2025 - Removed Game related code
  * 				   - Increased version
+ * 6 June 2026 - Removed references to stats
  */

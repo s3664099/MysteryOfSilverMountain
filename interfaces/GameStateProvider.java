@@ -2,8 +2,8 @@
 Title: Mystery of Silver Read Operation Interface
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 31 May 2026
+Version: 1.2
+Date: 6 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -30,14 +30,8 @@ public interface GameStateProvider {
      */
 	String getExits();
 	
-    /** @return Current in-game time representation */
-	String getTime();
-	
     /** @return Special exit descriptions beyond standard directions */
 	String getSpecialExits();
-	
-	 /** @return Current player status (health, inventory count, etc.) */
-	String getStatus();
 	
     /** @return Array of saved game names for display */
 	String[] getDisplayedSavedGames();
@@ -114,4 +108,5 @@ public interface GameStateProvider {
  * 8 December 2025 - Removed game related code
  * 				   - Increased version
  * 31 May 2026 - Removed score method
+ * 6 June 2026 - Removed references to states & time
  */

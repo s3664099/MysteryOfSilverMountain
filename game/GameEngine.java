@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Engine
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 31 May 2026
+Version: 1.5
+Date: 6 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -77,7 +77,6 @@ public class GameEngine implements GameCommandHandler,GameStateProvider {
 	private void applyResult(ActionResult result) {
 		this.player = result.getPlayer();
 		this.game = result.getGame();
-		this.player.turnUpdateStats();
 	}
 
     /**
@@ -112,16 +111,6 @@ public class GameEngine implements GameCommandHandler,GameStateProvider {
      */	
 	public void addMessage(String message, boolean clear, boolean isLong) {
 		game.addMessage(message,clear,isLong);
-	}
-
-    /** @return the player's remaining time as a string */
-	public String getTime() {
-		return player.toStringTimeRemaining();
-	}
-
-    /** @return the player's status as a string */
-	public String getStatus() {
-		return player.toStringStatus();
 	}
 
     /**
@@ -334,4 +323,5 @@ public class GameEngine implements GameCommandHandler,GameStateProvider {
 14 January 2026 - Added check to display if room is dark
 18 January 2026 - Added check to display if the player is lost in the maze
 31 May 2026 - Removed score method
+6 June 2026 - Removed references to stats & time
 */

@@ -2,8 +2,8 @@
 Title: <Game Name> Persistence Commands
 Author: 
 Translator: David Sarkies
-Version: 1.0
-Date: 8 December 2025
+Version: 1.1
+Date: 6 June 2025
 Source: 
 */
 
@@ -109,7 +109,6 @@ public class Persistence {
 	public ActionResult quit() {
 		game.addMessage("You relinquish your quest",true,true);
 		game.getItem(Constants.NUMBER_OF_NOUNS).setItemFlag(-1);
-		player.setStat("timeRemaining",1);
 		game.setEndGameState();
 		return new ActionResult(game,player,true);
 	}
@@ -123,7 +122,6 @@ public class Persistence {
 	public ActionResult restart() {
 		game.addMessage("You relinquish your quest",true,true);
 		game.getItem(Constants.NUMBER_OF_NOUNS).setItemFlag(-1);
-		player.setStat("timeRemaining",1);
 		game.setRestartGameState();
 		return new ActionResult(game,player,true);
 	}
@@ -307,4 +305,5 @@ public class Persistence {
 
 /* 3 December 2025 - Created File
  * 8 December 2025 - Increased version
+ * 6 June 2026 - Removed references to time remaining
  */
