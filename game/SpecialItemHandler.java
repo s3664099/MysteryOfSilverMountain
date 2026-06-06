@@ -2,8 +2,8 @@
 Title: <Game Name> Special Item Handler Class
 Author: 
 Translator: David Sarkies
-Version: 1.5
-Date: 5 June 2026
+Version: 1.6
+Date: 6 June 2026
 Source: 
 */
 
@@ -49,8 +49,9 @@ public class SpecialItemHandler implements Serializable {
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_RUBBLE," rubble blocking the exit");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_HOUND," a vicious looking hound");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_RATS," rats swarming the floor");
-		itemDescriptions.put(GameEntities.SPECIAL_ITEM_STATUE,"  a defaced statue");
-		itemDescriptions.put(GameEntities.SPECIAL_ITEM_ATTIC,"  a bed under the window, and a cupboard on the north wall");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_STATUE," a defaced statue");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_ATTIC," a bed under the window, and a cupboard on the north wall");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_WHITE_COTTAGE," a chest sitting against a wall, and a pot simmering on the fire");
 	}
 	
     /**
@@ -98,6 +99,8 @@ public class SpecialItemHandler implements Serializable {
 			specialItemType = GameEntities.SPECIAL_ITEM_STATUE;
 		} else if (checkInAttic(roomNumber)) {
 			specialItemType = GameEntities.SPECIAL_ITEM_ATTIC;
+		} else if (checkInCottage(roomNumber)) {
+			specialItemType = GameEntities.SPECIAL_ITEM_WHITE_COTTAGE;
 		}
 		
 		String description = itemDescriptions.getOrDefault(specialItemType,"");
@@ -165,6 +168,10 @@ public class SpecialItemHandler implements Serializable {
 	private boolean checkInAttic(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_ATTIC;
 	}
+	
+	private boolean checkInCottage(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_WHITE_COTTAGE;
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -175,4 +182,5 @@ public class SpecialItemHandler implements Serializable {
  * 14 January 2026 - Added special items
  * 8 February 2026 - Added special item statue
  * 5 June 2026 - Added item description for attic
+ * 6 June 2026 - Added item description for white cottage
  */

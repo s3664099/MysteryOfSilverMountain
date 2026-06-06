@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.10
-Date: 5 June 2026
+Version: 1.11
+Date: 6 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -188,7 +188,7 @@ public class Examine {
 	 * @return boolean
 	 */
 	private boolean isExamineMountainHut(int noun, int room) {
-		return (room == GameEntities.ROOM_WHITE_COTTAGE && noun == GameEntities.ITEM_MOUNTAIN_HUT);
+		return (room == GameEntities.ROOM_WHITE_COTTAGE && noun == GameEntities.ITEM_POT);
 	}
 	
     /**
@@ -768,5 +768,6 @@ public class Examine {
  * 9 February 2026 - Completed examine responses
  * 10 February 2026 - Added javadocs
  * 3 June 2026 - Fixed typo
- * 5 JUne 2026 - Change cupboard to bed for revealing sheet
+ * 5 June 2026 - Change cupboard to bed for revealing sheet
+ * 6 June 2026 - Fixed examine in cottage
  */
