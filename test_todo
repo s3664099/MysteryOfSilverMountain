@@ -8,15 +8,16 @@
 
 - Test Load/Save - not working
 - Looks like multi-word nouns not working
+- No quit
 
 - Check that coins haven't been revealed
 - Pay troll not working
 - Bail not working (and maybe only in certain place and with certain noun)
 
-- remove stat bar
+
 - Add bed/cupboard to attic
 
-- Add tests for incorrect responses on commands (up to open)
+
 
 
 
@@ -112,45 +113,52 @@ Move - Exit does not exist
 	 		 - rats present
 	 		 - caught in web
 	 		 - door close
-Open - Cupboard (kitchen Cupboard)
+Open - Standard Response
+	 - Cupboard (kitchen Cupboard)
 	 - Gates
 	 - Casks
 	 - Safe
 	 - Stable Door
 	 - Wizard Door
-Pay - Troll
+Pay - Standard Response
+	- Troll
 	- Coins
-Plant - In Garden
-Poison - Wine
-Reflect - In Wizards Lair
-Remove - Boots
+Plant - Standard Response
+	  - In Garden
+Poison - Standard Response
+	   - Wine
+Reflect - Standard Response
+		- In Wizards Lair
+Remove - Standard Response
+	   - Boots
 	   - Uniform
 	   - Bricks/Rubble
-Rig - Seeds
+Rig - Standard Response
+	- Seeds
 	- Sail
 	- Music
-Ring - Bell
-Say - Magic Words
+Ring - Standard Response
+	 - Bell
+Say - Standard Response
+	- Magic Words
 	- Awake
 	- Guide
 	- Last Word
 	- Wrong Word
-Shift - Rubble (from stalactites)
+Shift - Standard Response
+	  - Rubble (from stalactites)
 	  - Rubble (from tomb)
 	  - Bricks (in well)
-Show - Plate (in lair)
+Show - Standard Response
+	 - Plate (in lair)
 	 - Stone
-Swing - Sword (in cobweb)
+Swing - Standard Response
+	  - Sword (in cobweb)
 	  - Axe (in corridor)
 	  - Axe (in well bottom)
 	  - Sword or Axe
-Turn - Handle
-	 - Water Wheel
-Tie - Sheet
-	- Rope
-Throw - Net
-	  - Item
-Take - Taking Water (in lake)
+Take- Standard Response 
+	- Taking Water (in lake)
 	- Horse shoe (nailed on)
 	- Carrying too much
 	- Item not carriable
@@ -160,16 +168,29 @@ Take - Taking Water (in lake)
 	- Boat
 	- Sheet
 	- Pick?
-Unlock - Wizard Door
-Use - Sheet
+Throw - Standard Response
+	  - Net
+	  - Item
+Tie - Standard response
+	- Sheet
+	- Rope
+Turn - Standard Response
+	 - Handle
+	 - Water Wheel
+Unlock - Standard Response
+	   - Wizard Door
+Use - Standard Response
+	- Sheet
 	- Bucket
 	- Jug
 	- Plank
 	- Axe/Sword
 	- Reeds
 	- Plate
-Water - Seeds
-Wear - Boots
+Water - Standard Response
+	  - Seeds
+Wear - Standard Response
+	 - Boots
 	 - Uniform
 	 		 
 	 		 
