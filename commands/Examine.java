@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.11
-Date: 6 June 2026
+Version: 1.12
+Date: 7 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -58,6 +58,8 @@ public class Examine {
 		if (command.getVerbNumber() == GameEntities.CMD_COUNT) {
 			if (isExamineStones(command.getNounNumber(),player.getRoom())) {
 				result = examineStones(game,player);
+			} else if (isCountCoins(command.getNounNumber(),game)) {
+				result = countCoins(game,player);
 			} else {
 				game.addMessage("You see only one!", true, false);
 				result = new ActionResult(game,player,true);
@@ -125,7 +127,9 @@ public class Examine {
 				result = examineStones(game,player);
 			} else if (isExamineInscription(command.getNounNumber(),player.getRoom())) {
 				result = examineInscription(game,player);
-			} 
+			} else if (isCountCoins(command.getNounNumber(),game)) {
+				result = countCoins(game,player);
+			}
 		}
 		return result;
 	}
@@ -756,6 +760,31 @@ public class Examine {
 		game.addMessage("A faded word - 'M R H S'.", true, false);
 		return new ActionResult(game,player,true);
 	}
+	
+	/**
+	 * Returns true if the command is examining/counting the coins
+	 * 
+	 * @param noun the value of the noun entered
+	 * @param room the room the player is in
+	 * @return boolean
+	 */
+	private boolean isCountCoins(int noun, Game game) {
+		return (noun == GameEntities.ITEM_COIN || noun == GameEntities.ITEM_COINS) &&
+				(game.getItem(GameEntities.ITEM_COIN).getItemLocation() == GameEntities.ROOM_CARRYING ||
+				game.getItem(GameEntities.ITEM_COINS).getItemLocation() == GameEntities.ROOM_CARRYING);
+	}
+	
+    /**
+     * Executes a response to counting the coins
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
+	private ActionResult countCoins(Game game, Player player) {
+		game.addMessage("You have: "+game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag(), true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 1 February 2026 - Created file
@@ -770,4 +799,5 @@ public class Examine {
  * 3 June 2026 - Fixed typo
  * 5 June 2026 - Change cupboard to bed for revealing sheet
  * 6 June 2026 - Fixed examine in cottage
+ * 7 June 2026 - Added counting coins
  */
