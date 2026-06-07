@@ -17,7 +17,11 @@
 
 - Add bed/cupboard to attic
 
-
+Four types of Command - Single
+					  - Double - Carrying Item
+					  - Double - Item in room
+					  - Double - Non-Carriable Item
+Add new command states for them and shift the checks to validation
 
 
 
