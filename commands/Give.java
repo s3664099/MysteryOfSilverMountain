@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Give Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 16 February 2026
+Version: 1.5
+Date: 7 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 package commands;
@@ -163,7 +163,8 @@ public class Give {
 	private boolean isGiveCoinToTroll(int roomNumber ,Game game,int nounNumber) {
 		return (roomNumber  == GameEntities.ROOM_BRIDGE_EAST || roomNumber  == GameEntities.ROOM_BRIDGE_WEST) &&
 				game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag()>0 &&
-				game.getItem(GameEntities.ITEM_COIN).getItemLocation() == GameEntities.ROOM_CARRYING;
+				(game.getItem(GameEntities.ITEM_COIN).getItemLocation() == GameEntities.ROOM_CARRYING ||
+				game.getItem(GameEntities.ITEM_COINS).getItemLocation() == GameEntities.ROOM_CARRYING);
 	}
 	
 	/**
@@ -261,7 +262,7 @@ public class Give {
      */
 	private ActionResult giveCoins(Game game, Player player) {
 		game.addMessage("He takes them all.", true, false);
-		game.getItem(GameEntities.ITEM_COIN).setItemLocation(GameEntities.ROOM_DESTROYED);
+		game.getItem(GameEntities.ITEM_COINS).setItemLocation(GameEntities.ROOM_DESTROYED);
 		game.getItem(GameEntities.FLAG_TROLL).setItemFlag(1);
 		game.getItem(GameEntities.FLAG_COIN_NUMBERS).setItemFlag(0);
 		return new ActionResult(game,player,true);
@@ -418,4 +419,5 @@ public class Give {
  * 					- Added validation carrying item
  * 15 February 2026 - Completed the give methods
  * 16 February 2026 - Added Javadocs
+ * 7 June 2026 - Fixed pay troll
  */

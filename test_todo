@@ -10,8 +10,8 @@
 - Looks like multi-word nouns not working
 - No quit
 
-- Check that coins haven't been revealed
-- Pay troll not working
+-
+- Pay troll not working - Need to interchange coin/coins
 - Bail not working (and maybe only in certain place and with certain noun)
 
 
@@ -21,7 +21,9 @@ Four types of Command - Single
 					  - Double - Carrying Item
 					  - Double - Item in room
 					  - Double - Non-Carriable Item
+					  - Coins
 Add new command states for them and shift the checks to validation
+Change some of the standard responses
 
 
 
@@ -79,8 +81,8 @@ Enter - Standard Response
 Empty - Standard Response
       - Water
 	  - phial
-Eat  - Standard Response
-     - apples, bread
+Eat  - 
+     - apples
 Drop - Not Carrying Item
      - Item does not exist
      - boat in lake
