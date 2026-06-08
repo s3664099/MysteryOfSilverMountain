@@ -40,7 +40,7 @@ public class Drink {
      * @return an {@link ActionResult} describing validity and effects
      */
 	public ActionResult executeDrink() {
-		game.addMessage("Are you thirsty?.", false, false);
+		game.addMessage("Are you thirsty?", false, false);
 		ActionResult result = new ActionResult(game,player,false);
 	
 		return result;

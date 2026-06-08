@@ -46,7 +46,13 @@ public class ParsedCommand {
 		SINGLE_COMMAND, 
 		
 		/** Command requiring an additional noun (e.g. TAKE SWORD). */
-		MULTIPLE_COMMAND 
+		MULTIPLE_COMMAND,
+		
+		/** Command requiring an additional noun with the object in the room. */
+		MULTIPLE_COMMAND_OBJECT_PRESENT,
+		
+		/** Command requiring an additional noun with the object being carried. */
+		MULTIPLE_COMMAND_OBJECT_CARRYING
 	};
 	
     /**
@@ -80,7 +86,7 @@ public class ParsedCommand {
 		
 		setState(verbNumber);
 	}
-	
+		
     /**
      * Updates the command state based on a new verb number.
      *
@@ -115,6 +121,14 @@ public class ParsedCommand {
 			commandState = CommandState.MULTIPLE_COMMAND;
 			setMultipleCommand(verbNumber);
 		}
+	}
+	
+	private boolean requiresObjectPresent(int verbNumber) {
+		return verbNumber == GameEntities.CMD_TAKE;
+	}
+	
+	private boolean requiresObjectCarrying(int verbNumber) {
+		return verbNumber == GameEntities.CMD_DROP;
 	}
 		
     /**
