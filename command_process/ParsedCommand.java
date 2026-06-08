@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.30
-Date: 4 May 2026
+Version: 1.31
+Date: 8 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -117,18 +117,40 @@ public class ParsedCommand {
 		} else if (verbNumber == GameEntities.CMD_DIVE) {
 			commandType = CommandType.DIVE;
 			commandState = CommandState.SINGLE_COMMAND;
+		} else if (requiresObjectPresent(verbNumber)) {
+			commandState = CommandState.MULTIPLE_COMMAND_OBJECT_PRESENT;
+		} else if (requiresObjectCarrying(verbNumber)) {
+			commandState = CommandState.MULTIPLE_COMMAND_OBJECT_CARRYING;
 		} else {
 			commandState = CommandState.MULTIPLE_COMMAND;
 			setMultipleCommand(verbNumber);
 		}
 	}
 	
+	/**
+	 * Checks if the command requires the item to be in the room
+	 * 
+	 * @param nounNumber the command the player has entered
+	 * @return boolean
+	 */
 	private boolean requiresObjectPresent(int verbNumber) {
 		return verbNumber == GameEntities.CMD_TAKE;
 	}
 	
+	/**
+	 * Checks if the command requires the item to be carried
+	 * 
+	 * @param nounNumber the command the player has entered
+	 * @return boolean
+	 */
 	private boolean requiresObjectCarrying(int verbNumber) {
-		return verbNumber == GameEntities.CMD_DROP;
+		return verbNumber == GameEntities.CMD_DROP || verbNumber == GameEntities.CMD_EAT ||
+				verbNumber == GameEntities.CMD_EMPTY || verbNumber == GameEntities.CMD_FILL ||
+				verbNumber == GameEntities.CMD_GIVE || verbNumber == GameEntities.CMD_PLANT ||
+				verbNumber == GameEntities.CMD_REMOVE || verbNumber == GameEntities.CMD_SHOW ||
+				verbNumber == GameEntities.CMD_SWING || verbNumber == GameEntities.CMD_THROW ||
+				verbNumber == GameEntities.CMD_TIE || verbNumber == GameEntities.CMD_USE ||
+				verbNumber == GameEntities.CMD_WEAR;
 	}
 		
     /**
@@ -285,6 +307,22 @@ public class ParsedCommand {
      */
 	public boolean checkMultipleCommandState() {
 		return commandState == CommandState.MULTIPLE_COMMAND;
+	}
+	
+    /**
+     * @return true if this command is a multi-command (noun required) and the object needs to 
+     * be present
+     */
+	public boolean checkMultiplePresentCommandState() {
+		return commandState == CommandState.MULTIPLE_COMMAND_OBJECT_PRESENT;
+	}
+	
+    /**
+     * @return true if this command is a multi-command (noun required) and the player needs to
+     * be carrying the item
+     */
+	public boolean checkMultipleCarryCommandState() {
+		return commandState == CommandState.MULTIPLE_COMMAND_OBJECT_CARRYING;
 	}
 	
     /**
@@ -545,4 +583,5 @@ public class ParsedCommand {
  * 27 April 2026 - Added Show & Burn
  * 1 May 2026 - Added remaining commands
  * 4 May 2026 - Added Pay, Break & Reflect
+ * 8 JUne 2026 - Added state for item present and item carrying
  */
