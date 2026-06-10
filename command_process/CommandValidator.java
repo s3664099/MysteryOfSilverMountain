@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 3 June 2026
+Version: 1.6
+Date: 10 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -61,9 +61,16 @@ public class CommandValidator {
 			game = handleCheckNounFails(game);
 		}
 		
-		if (validCommand && command.checkMultipleCommandState() && !requiresItem(command.getVerbNumber())) {
+		if (validCommand && command.checkMultipleCarryCommandState()) {
 			if (!hasItem(game,command.getNounNumber()) && !isCarriableItem(command.getNounNumber())) {
 				game = handleNotCarryingItem(game,command);
+				validCommand = false;
+			}
+		}
+		
+		if (validCommand && command.checkMultiplePresentCommandState()) {
+			if (!itemPresent(game,player,command.getNounNumber()) && !isCarriableItem(command.getNounNumber())) {
+				game = handleItemNotPresent(game,command);
 				validCommand = false;
 			}
 		}
@@ -131,16 +138,7 @@ public class CommandValidator {
 	private boolean checkResultNull(ActionResult result) {
 		return result.getPlayer()==null && !result.isValid();
 	}
-	
-    /**
-     * @return true if the result if a verb that doesn't require the item being carried.
-     */
-	private boolean requiresItem(int verbNumber) {
-		return verbNumber == GameEntities.CMD_GET || verbNumber == GameEntities.CMD_TAKE ||
-				verbNumber == GameEntities.CMD_PICK || verbNumber == GameEntities.CMD_CLIMB ||
-				verbNumber == GameEntities.CMD_HOLD || verbNumber > GameEntities.CMD_BREAK;
-	}
-	
+		
     /**
      * @return true if the result if item is not a carriable item.
      */
@@ -155,11 +153,26 @@ public class CommandValidator {
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
+    /**
+     * @return true if the result if the item is in the same room as the player.
+     */
+	private boolean itemPresent(Game game,Player player,int nounNumber) {
+		return game.getItem(nounNumber).getItemLocation() == player.getRoom();
+	}
+	
 	/** 
 	 * Adds response when item isn't being carried 
 	 */
 	private Game handleNotCarryingItem(Game game,ParsedCommand command) {
 		game.addMessage("You do not have the "+command.getSplitTwoCommand()[1], true, true);
+		return game;
+	}
+	
+	/** 
+	 * Adds response when item isn't in the same room
+	 */
+	private Game handleItemNotPresent(Game game,ParsedCommand command) {
+		game.addMessage("The "+command.getSplitTwoCommand()[1]+" is not here", true, true);
 		return game;
 	}
 					
@@ -210,4 +223,5 @@ public class CommandValidator {
  * 14 May 2026 - Added check for verb requiring carried item
  * 22 May 2026 - Added validation for carrying item if needed
  * 3 June 2026 - Added check to exclude carriable items
+ * 10 June 2026 - Added checks for items in room/carrying
  */

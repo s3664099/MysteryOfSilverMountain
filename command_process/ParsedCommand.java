@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.31
-Date: 8 June 2026
+Version: 1.32
+Date: 10 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -306,7 +306,9 @@ public class ParsedCommand {
      * @return true if this command is a multi-command (noun required)
      */
 	public boolean checkMultipleCommandState() {
-		return commandState == CommandState.MULTIPLE_COMMAND;
+		return commandState == CommandState.MULTIPLE_COMMAND ||
+				commandState == CommandState.MULTIPLE_COMMAND_OBJECT_CARRYING ||
+				commandState == CommandState.MULTIPLE_COMMAND_OBJECT_PRESENT;
 	}
 	
     /**
@@ -583,5 +585,6 @@ public class ParsedCommand {
  * 27 April 2026 - Added Show & Burn
  * 1 May 2026 - Added remaining commands
  * 4 May 2026 - Added Pay, Break & Reflect
- * 8 JUne 2026 - Added state for item present and item carrying
+ * 8 June 2026 - Added state for item present and item carrying
+ * 10 JUne 2026 - Added check for three types of multiple commands
  */
