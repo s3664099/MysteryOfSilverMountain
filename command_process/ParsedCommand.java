@@ -119,8 +119,10 @@ public class ParsedCommand {
 			commandState = CommandState.SINGLE_COMMAND;
 		} else if (requiresObjectPresent(verbNumber)) {
 			commandState = CommandState.MULTIPLE_COMMAND_OBJECT_PRESENT;
+			setMultipleCommand(verbNumber);
 		} else if (requiresObjectCarrying(verbNumber)) {
 			commandState = CommandState.MULTIPLE_COMMAND_OBJECT_CARRYING;
+			setMultipleCommand(verbNumber);
 		} else {
 			commandState = CommandState.MULTIPLE_COMMAND;
 			setMultipleCommand(verbNumber);
@@ -134,7 +136,9 @@ public class ParsedCommand {
 	 * @return boolean
 	 */
 	private boolean requiresObjectPresent(int verbNumber) {
-		return verbNumber == GameEntities.CMD_TAKE;
+		return verbNumber == GameEntities.CMD_TAKE || verbNumber == GameEntities.CMD_GET ||
+				verbNumber == GameEntities.CMD_STEAL || verbNumber == GameEntities.CMD_GATHER ||
+				verbNumber == GameEntities.CMD_PICK;
 	}
 	
 	/**
@@ -150,7 +154,8 @@ public class ParsedCommand {
 				verbNumber == GameEntities.CMD_REMOVE || verbNumber == GameEntities.CMD_SHOW ||
 				verbNumber == GameEntities.CMD_SWING || verbNumber == GameEntities.CMD_THROW ||
 				verbNumber == GameEntities.CMD_TIE || verbNumber == GameEntities.CMD_USE ||
-				verbNumber == GameEntities.CMD_WEAR;
+				verbNumber == GameEntities.CMD_WEAR || verbNumber == GameEntities.CMD_LEAVE || 
+				verbNumber == GameEntities.CMD_WITH || verbNumber == GameEntities.CMD_HOLD;
 	}
 		
     /**

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Drop Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 26 March 2026
+Version: 1.7
+Date: 10 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -48,28 +48,22 @@ public class Drop {
      */
 	public ActionResult executeDrop() {
 		ActionResult result = new ActionResult(game,player,false);
-		
-		if (isPlayerCarryingItem(game,command.getNounNumber())) {
-			result = dropItem(game,player,command.getNounNumber());
+		result = dropItem(game,player,command.getNounNumber());
 			
-			if (haveDroppedBoatInLake(command.getNounNumber(),player.getRoom())) {
-				result = droppedBoatInLake(result.getGame(),result.getPlayer());
-			} else if (haveDroppedBoat(game,command.getNounNumber())) {
-				result = droppedBoat(result.getGame(),result.getPlayer());
-			} else if (haveDroppedJug(game,command.getNounNumber())) {
-				result = droppedJug(result.getGame(),result.getPlayer());
-			} else if (haveDroppedSheet(game,command.getNounNumber())) {
-				result = droppedSheet(result.getGame(),result.getPlayer());
-			} else if (haveDroppedBoots(command.getNounNumber())) {
-				result = droppedBoots(result.getGame(),result.getPlayer());
-			} else if (haveDroppedUniform(command.getNounNumber())) {
-				result = droppedUniform(result.getGame(),result.getPlayer());
-			}
-			
-		} else {
-			result = playerDoesNotHaveItem(game,player);
+		if (haveDroppedBoatInLake(command.getNounNumber(),player.getRoom())) {
+			result = droppedBoatInLake(result.getGame(),result.getPlayer());
+		} else if (haveDroppedBoat(game,command.getNounNumber())) {
+			result = droppedBoat(result.getGame(),result.getPlayer());
+		} else if (haveDroppedJug(game,command.getNounNumber())) {
+			result = droppedJug(result.getGame(),result.getPlayer());
+		} else if (haveDroppedSheet(game,command.getNounNumber())) {
+			result = droppedSheet(result.getGame(),result.getPlayer());
+		} else if (haveDroppedBoots(command.getNounNumber())) {
+			result = droppedBoots(result.getGame(),result.getPlayer());
+		} else if (haveDroppedUniform(command.getNounNumber())) {
+			result = droppedUniform(result.getGame(),result.getPlayer());
 		}
-		
+			
 		return result;
 	}
 	
@@ -266,4 +260,5 @@ public class Drop {
  * 10 February 2026 - Updated Javadocs
  * 12 February 2026 - Changed initial action result to false.
  * 26 March 2026 - Added autoremove from dropping worn item
+ * 10 June 2026 - Removed check carrying item
  */
