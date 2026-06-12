@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Drop Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 10 June 2026
+Version: 1.8
+Date: 12 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -214,30 +214,7 @@ public class Drop {
 		game.getItem(GameEntities.FLAG_WEARING_UNIFORM).setItemFlag(0);
 		return new ActionResult(game,player, true);
 	}
-	
-	/**
-	 * Returns true if the player is carrying the item
-	 * 
-	 * @param nounNumber the value of the noun entered
-     * @param game the current game state
-	 * @return boolean
-	 */
-	private boolean isPlayerCarryingItem(Game game, int nounNumber) {
-		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
-	}
-
-    /**
-     * Executes a response if the player does not have the item
-     *
-     * @param game the current game state
-     * @param player the player making the move
-     * @return an {@link ActionResult} describing the outcome
-     */
-	private ActionResult playerDoesNotHaveItem(Game game, Player player) {
-		game.addMessage("You do not have that!", true, false);
-		return new ActionResult(game,player,true);
-	}
-	
+		
     /**
      * Executes a response if the player successfully dropped the item
      *
@@ -261,4 +238,5 @@ public class Drop {
  * 12 February 2026 - Changed initial action result to false.
  * 26 March 2026 - Added autoremove from dropping worn item
  * 10 June 2026 - Removed check carrying item
+ * 12 June 2026-  Removed functions for checking item carried
  */
