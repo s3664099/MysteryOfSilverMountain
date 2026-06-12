@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Empty Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 19 March 2026
+Version: 1.2
+Date: 12 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -48,7 +48,7 @@ public class Empty {
 		game.addMessage("You cannot Empty that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
-		if (isWater(command.getNounNumber())) {
+		if (isWater(game, command.getNounNumber(), command.getVerbNumber())) {
 			result = new Water(game,player,command).executeWater();
 		} else if (isEmptyPhial(game,player.getRoom(),command.getNounNumber())) {
 			result = emptyPhial(game,player);
@@ -63,9 +63,11 @@ public class Empty {
  	 * @param nounNumber the value of the noun entered
 	 * @return boolean
 	 */
-	private boolean isWater(int nounNumber) {
-		return nounNumber == GameEntities.ITEM_SEEDS ||
-				nounNumber == GameEntities.ITEM_JUG;
+	private boolean isWater(Game game, int nounNumber, int verbNumber) {
+		return (nounNumber == GameEntities.ITEM_SEEDS && verbNumber == GameEntities.CMD_WATER) ||
+				(nounNumber == GameEntities.ITEM_JUG && 
+				 game.getItem(GameEntities.FLAG_JUG_FULL).getItemFlag() == 1 &&
+				 game.getItem(GameEntities.FLAG_SEED_PLANTED).getItemFlag() == 1);
 	}
 	
 	/**
@@ -77,8 +79,7 @@ public class Empty {
 	 * @return boolean
 	 */
 	private boolean isEmptyPhial(Game game, int roomNumber, int nounNumber) {
-		return game.getItem(GameEntities.ITEM_PHIAL).getItemLocation() == GameEntities.CARRYING &&
-				roomNumber == GameEntities.ROOM_MOSAIC_HALL && nounNumber == GameEntities.ITEM_PHIAL;
+		return roomNumber == GameEntities.ROOM_MOSAIC_HALL && nounNumber == GameEntities.ITEM_PHIAL;
 	}
 	
     /**
@@ -96,4 +97,5 @@ public class Empty {
 /* 15 March 2026 - Created class
  * 19 March 2026 - Added the responses
  * 				 - Added JavaDocs
+ * 12 June 2026 - Removed checks for carrying item, and updated checks for the water section
  */

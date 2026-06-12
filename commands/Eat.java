@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Eat Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 19 April 2026
+Version: 1.3
+Date: 12 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -64,8 +64,7 @@ public class Eat {
 	 * @return boolean
 	 */
 	private boolean isEatApplesOrBread(Game game,int commandNumber) {
-		return (commandNumber == GameEntities.ITEM_BREAD && game.getItem(GameEntities.ITEM_BREAD).getItemLocation() == GameEntities.ROOM_CARRYING) ||
-			(commandNumber == GameEntities.ITEM_APPLES && game.getItem(GameEntities.ITEM_APPLES).getItemLocation()==GameEntities.ROOM_CARRYING);
+		return commandNumber == GameEntities.ITEM_BREAD || commandNumber == GameEntities.ITEM_APPLES;
 	}
 	
     /**
@@ -85,4 +84,5 @@ public class Eat {
 /* 15 April 2026 - Created File
  * 19 April 2026 - Added responses
  * 20 April 2026 - Added Javadocs
+ * 12 June 2026 - Removed checks for carrying item.
  */
