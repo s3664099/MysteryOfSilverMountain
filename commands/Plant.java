@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Plant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 15 March 2026
+Version: 1.3
+Date: 13 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -64,9 +64,7 @@ public class Plant {
 	 * @return boolean
 	 */
 	private boolean isInGarden(Game game, int roomNumber, int nounNumber) {
-		return roomNumber == GameEntities.ROOM_GARDEN &&
-				nounNumber == GameEntities.ITEM_SEEDS &&
-				game.getItem(GameEntities.ITEM_SEEDS).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return roomNumber == GameEntities.ROOM_GARDEN && nounNumber == GameEntities.ITEM_SEEDS;
 	}
 	
     /**
@@ -86,5 +84,6 @@ public class Plant {
 /* 13 March 2026 - Created File
  * 14 March 2026 - Added Action results. Added javadocs
  * 15 March 2026 - Removed seeds when planted
+ * 13 June 2026 - Removed item carrying check
  */
 

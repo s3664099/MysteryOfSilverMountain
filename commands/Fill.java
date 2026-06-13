@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Fill Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 11 March 2026
+Version: 1.2
+Date: 12 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -55,7 +55,7 @@ public class Fill {
 		} else if (isFillBucketInValley(game,player.getRoom(),command.getNounNumber())) {
 			result = fillBucketInValley(game,player);
 		}
-				
+		
 		return result;
 	}
 	
@@ -68,15 +68,12 @@ public class Fill {
 	 * @return boolean
 	 */
 	private boolean isFillBucketOrJugInLake(Game game, int roomNumber, int nounNumber) {
-		return ((nounNumber == GameEntities.ITEM_JUG &&
-				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING) ||
-				(nounNumber == GameEntities.ITEM_BUCKET &&
-				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING)) &&
+		return (nounNumber == GameEntities.ITEM_JUG || nounNumber == GameEntities.ITEM_BUCKET) &&
 				(roomNumber == GameEntities.ROOM_ROUGH_WATER || roomNumber == GameEntities.ROOM_MIDDLE_LAKE);
 	}
 	
     /**
-     * Executes a response if the player if filling the jug or the bucket in the lake
+     * Executes a response if the player is filling the jug or the bucket in the lake
      *
      * @param game the current game state
      * @param player the player making the move
@@ -97,9 +94,7 @@ public class Fill {
 	 * @return boolean
 	 */
 	private boolean isFillJugInValley(Game game,int roomNumber,int nounNumber) {
-		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM &&
-				nounNumber == GameEntities.ITEM_JUG &&
-				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM && nounNumber == GameEntities.ITEM_JUG;
 	}
 	
     /**
@@ -124,9 +119,7 @@ public class Fill {
 	 * @return boolean
 	 */
 	private boolean isFillBucketInValley(Game game,int roomNumber,int nounNumber) {
-		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM &&
-				nounNumber == GameEntities.ITEM_BUCKET &&
-				game.getItem(GameEntities.ITEM_BUCKET).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM && nounNumber == GameEntities.ITEM_BUCKET;
 	}
 	
     /**
@@ -144,4 +137,5 @@ public class Fill {
 
 /* 10 March 2026 - Created File
  * 11 March 2026 - Completed responses
+ * 13 June 2026 - Removed checks for carrying item
  */

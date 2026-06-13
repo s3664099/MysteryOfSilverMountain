@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Give Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 7 June 2026
+Version: 1.6
+Date: 13 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 package commands;
@@ -49,9 +49,7 @@ public class Give {
 		
 		ActionResult result = new ActionResult(game,player,false);
 		
-		if (isPlayerCarryingItem(game,command.getNounNumber())) {
-			result = playerDoesNotHaveItem(game,player);
-		} else if (isGiveBroach(player.getRoom(),game,command.getNounNumber())) {
+		if (isGiveBroach(player.getRoom(),game,command.getNounNumber())) {
 			result = giveBroach(game,player);
 		} else if (isInValley(player.getRoom())) {
 			result = inValley(game,player);
@@ -79,30 +77,7 @@ public class Give {
 		
 		return result;
 	}
-	
-	/**
-	 * Returns true if the player is carrying the item
-	 * 
-	 * @param nounNumber the value of the noun entered
-     * @param game the current game state
-	 * @return boolean
-	 */
-	private boolean isPlayerCarryingItem(Game game, int nounNumber) {
-		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
-	}
-
-    /**
-     * Executes a response if the player does not have the item
-     *
-     * @param game the current game state
-     * @param player the player making the move
-     * @return an {@link ActionResult} describing the outcome
-     */
-	private ActionResult playerDoesNotHaveItem(Game game, Player player) {
-		game.addMessage("You do not have that!", true, false);
-		return new ActionResult(game,player,true);
-	}
-	
+		
 	/**
 	 * Returns true if the player is in the valley
 	 * 
@@ -420,4 +395,5 @@ public class Give {
  * 15 February 2026 - Completed the give methods
  * 16 February 2026 - Added Javadocs
  * 7 June 2026 - Fixed pay troll
+ * 13 June 2026 - Removed carrying check
  */
