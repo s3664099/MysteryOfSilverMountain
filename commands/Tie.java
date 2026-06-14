@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Tie Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 25 February 2026
+Version: 1.3
+Date: 14 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -69,10 +69,7 @@ public class Tie {
 	 * @return boolean
 	 */
 	private boolean isTyingSheetOrRope(int nounNumber,int roomNumber,Game game) {
-		return ((nounNumber == GameEntities.ITEM_SHEET && 
-				game.getItem(GameEntities.ITEM_SHEET).getItemLocation() == GameEntities.ROOM_CARRYING) ||
-				(nounNumber == GameEntities.ITEM_ROPE && 
-				game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == GameEntities.ROOM_CARRYING)) &&
+		return (nounNumber == GameEntities.ITEM_SHEET || nounNumber == GameEntities.ITEM_ROPE) &&
 				roomNumber != GameEntities.ROOM_WELL;
 	}
 	
@@ -97,9 +94,7 @@ public class Tie {
 	 * @return boolean
 	 */
 	private boolean isTyingSheet(int nounNumber,int roomNumber,Game game) {
-		return (nounNumber == GameEntities.ITEM_SHEET && 
-				game.getItem(GameEntities.ITEM_SHEET).getItemLocation() == GameEntities.ROOM_CARRYING) &&
-				roomNumber != GameEntities.ROOM_WELL;
+		return nounNumber == GameEntities.ITEM_SHEET && roomNumber != GameEntities.ROOM_WELL;
 	}
 	
     /**
@@ -125,9 +120,7 @@ public class Tie {
 	 * @return boolean
 	 */
 	private boolean isTyingRope(int nounNumber,int roomNumber,Game game) {
-		return (nounNumber == GameEntities.ITEM_ROPE && 
-				game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == GameEntities.ROOM_CARRYING) &&
-				roomNumber != GameEntities.ROOM_WELL;
+		return nounNumber == GameEntities.ITEM_ROPE && roomNumber != GameEntities.ROOM_WELL;
 	}
 	
     /**
@@ -148,4 +141,5 @@ public class Tie {
 /* 23 February 2026 - Created Tie Class
  * 24 February 2026 - Completed Tie actions
  * 25 February 2026 - Added JavaDocs
+ * 14 June 2026 - Removed carrying checks
  */

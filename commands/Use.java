@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Use Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 29 April 2026
+Version: 1.8
+Date: 14 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -80,9 +80,7 @@ public class Use {
 	 * @return boolean
 	 */
 	private boolean isUseSheet(Game game, int roomNumber, int nounNumber) {
-		return roomNumber == GameEntities.ROOM_EDGE_LAKE &&
-				nounNumber == GameEntities.ITEM_SHEET &&
-				game.getItem(GameEntities.ITEM_SHEET).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return roomNumber == GameEntities.ROOM_EDGE_LAKE && nounNumber == GameEntities.ITEM_SHEET;
 	}
 	
     /**
@@ -120,9 +118,7 @@ public class Use {
 	 * @return boolean
 	 */
 	private boolean isUseBucket(Game game,int roomNumber,int nounNumber) {
-		return roomNumber == GameEntities.ROOM_ROUGH_WATER &&
-				nounNumber == GameEntities.ITEM_BUCKET &&
-				game.getItem(GameEntities.ITEM_BUCKET).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return roomNumber == GameEntities.ROOM_ROUGH_WATER && nounNumber == GameEntities.ITEM_BUCKET;
 	}
 	
     /**
@@ -147,9 +143,7 @@ public class Use {
 	 * @return boolean
 	 */
 	private boolean isUseJug(Game game,int roomNumber,int nounNumber) {
-		return roomNumber == GameEntities.ROOM_ROUGH_WATER &&
-				nounNumber == GameEntities.ITEM_JUG &&
-				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return roomNumber == GameEntities.ROOM_ROUGH_WATER && nounNumber == GameEntities.ITEM_JUG;
 	}
 
     /**
@@ -183,10 +177,7 @@ public class Use {
 	 * @return boolean
 	 */
 	private boolean isUseBucketOrJug(Game game, int nounNumber) {
-		return (nounNumber == GameEntities.ITEM_JUG &&
-				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING) ||
-				(nounNumber == GameEntities.ITEM_BUCKET &&
-				game.getItem(GameEntities.ITEM_JUG).getItemLocation() == GameEntities.ROOM_CARRYING);
+		return nounNumber == GameEntities.ITEM_JUG || nounNumber == GameEntities.ITEM_BUCKET;
 	}
 
 	/**
@@ -219,8 +210,7 @@ public class Use {
 	 * @return boolean
 	 */
 	private boolean isUsePlate(Game game, int nounNumber) {
-		return nounNumber == GameEntities.ITEM_PLATE &&
-				game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return nounNumber == GameEntities.ITEM_PLATE;
 	}
 }
 
@@ -233,4 +223,5 @@ public class Use {
  * 17 March 2026 - Added swing functions
  * 10 April 2026 - Added rig functions
  * 29 April 2026 - Added use plate
+ * 14 June 2026 - Removed carrying checks
  */

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Wear Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 23 March 2026
+Version: 1.2
+Date: 14 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -65,8 +65,7 @@ public class Wear {
 	 * @return boolean
 	 */
 	private boolean isWearBoots(Game game, int nounNumber) {
-		return game.getItem(GameEntities.ITEM_BOOTS).getItemLocation() == GameEntities.ROOM_CARRYING &&
-				game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 0 &&
+		return game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 0 &&
 				nounNumber == GameEntities.ITEM_BOOTS;
 	}
 	
@@ -92,8 +91,7 @@ public class Wear {
 	 * @return boolean
 	 */
 	private boolean isWearUniform(Game game, int nounNumber) {
-		return game.getItem(GameEntities.ITEM_UNIFORM).getItemLocation() == GameEntities.ROOM_CARRYING &&
-				game.getItem(GameEntities.FLAG_WEARING_UNIFORM).getItemFlag() == 0 &&
+		return game.getItem(GameEntities.FLAG_WEARING_UNIFORM).getItemFlag() == 0 &&
 				nounNumber == GameEntities.ITEM_UNIFORM;
 	}
 	
@@ -115,4 +113,5 @@ public class Wear {
 /*
  * 22 February 2026 - Created File
  * 23 March 2026 - Fixed spelling error with wearing uniform
+ * 14 June 2026 - Removed carrying checks
  */
