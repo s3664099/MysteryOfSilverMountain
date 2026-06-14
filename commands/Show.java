@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Show Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 30 April 2026
+Version: 1.3
+Date: 14 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -66,8 +66,7 @@ public class Show {
 	 */
 	private boolean isShowPlateInLair(int roomNumber, int nounNumber, Game game) {
 		return roomNumber == GameEntities.ROOM_WIZARD_LAIR &&
-				(nounNumber == GameEntities.ITEM_PLATE || nounNumber == GameEntities.ITEM_SILVER_PLATE) &&
-				game.getItem(GameEntities.ITEM_PLATE).getItemLocation() == GameEntities.ROOM_CARRYING;
+				(nounNumber == GameEntities.ITEM_PLATE || nounNumber == GameEntities.ITEM_SILVER_PLATE);
 	}
 	
     /**
@@ -98,4 +97,5 @@ public class Show {
  * 29 April 2026 - Added response to show plate
  * 30 April 2026 - Added hold stone
  * 				 - Added JavaDocs
+ * 14 June 2026 - Removed carrying check
  */

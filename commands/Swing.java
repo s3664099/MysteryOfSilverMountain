@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Swing Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 18 March 2026
+Version: 1.3
+Date: 14 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -70,8 +70,7 @@ public class Swing {
 	 * @return boolean
 	 */
 	private boolean isSwingSwordInCobweb(Game game,int roomNumber, int nounNumber) {
-		return nounNumber == GameEntities.ITEM_SWORD && roomNumber == GameEntities.ROOM_COBWEB &&
-				game.getItem(GameEntities.ITEM_SWORD).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return nounNumber == GameEntities.ITEM_SWORD && roomNumber == GameEntities.ROOM_COBWEB;
 	}
 
     /**
@@ -96,8 +95,7 @@ public class Swing {
 	 * @return boolean
 	 */
 	private boolean isSwingAxeInCorridor(Game game,int roomNumber, int nounNumber) {
-		return nounNumber == GameEntities.ITEM_AXE && roomNumber == GameEntities.ROOM_CORRIDOR &&
-				game.getItem(GameEntities.ITEM_AXE).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return nounNumber == GameEntities.ITEM_AXE && roomNumber == GameEntities.ROOM_CORRIDOR;
 	}
 
     /**
@@ -123,8 +121,7 @@ public class Swing {
 	 * @return boolean
 	 */
 	private boolean isSwingAxeInWellBottom(Game game,int roomNumber, int nounNumber) {
-		return nounNumber == GameEntities.ITEM_AXE && roomNumber == GameEntities.ROOM_WELL_BOTTOM &&
-				game.getItem(GameEntities.ITEM_AXE).getItemLocation() == GameEntities.ROOM_CARRYING;
+		return nounNumber == GameEntities.ITEM_AXE && roomNumber == GameEntities.ROOM_WELL_BOTTOM;
 	}
 
     /**
@@ -148,10 +145,7 @@ public class Swing {
 	 * @return boolean
 	 */
 	private boolean isSwingSwordOrAxe(Game game, int nounNumber) {
-		return (nounNumber == GameEntities.ITEM_AXE &&
-				game.getItem(GameEntities.ITEM_AXE).getItemLocation() == GameEntities.ROOM_CARRYING) ||
-				(nounNumber == GameEntities.ITEM_SWORD &&
-				game.getItem(GameEntities.ITEM_SWORD).getItemLocation() == GameEntities.ROOM_CARRYING);
+		return nounNumber == GameEntities.ITEM_AXE || nounNumber == GameEntities.ITEM_SWORD;
 	}
 	
     /**
@@ -171,4 +165,5 @@ public class Swing {
  * 17 March 2026 - Started added responses to actions
  * 18 March 2026 - Completed adding response to actions
  * 				 - Added javadocs
+ * 14 June 2026 - Removed carrying check
  */
