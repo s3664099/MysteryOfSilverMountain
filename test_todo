@@ -15,14 +15,15 @@
 - Bail not working (and maybe only in certain place and with certain noun)
 
 
-- Add bed/cupboard to attic
+looks like coin count not decreasing
 
-Four types of Command - Single
-					  - Double - Carrying Item
-					  - Double - Item in room
-					  - Double - Non-Carriable Item
-					  - Coins
-Add new command states for them and shift the checks to validation
+
+
+
+
+
+					  					  
+
 Change some of the standard responses
 
 
