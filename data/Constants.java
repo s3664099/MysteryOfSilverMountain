@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 21 February 2026
+Version: 1.9
+Date: 15 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -22,7 +22,7 @@ public class Constants {
 	//Game related constants
 	public static final int NUMBER_OF_ROOMS = 80;
 	public static final int NUMBER_OF_ITEMS = 88;
-	public static final int NUMBER_OF_VERBS = 57;
+	public static final int NUMBER_OF_VERBS = 60;
 	public static final int NUMBER_OF_NOUNS = 88;
 	public static final int NUMBER_EXITS = 4;
 	public static final int FLAG_HIDDEN = 9;
@@ -77,4 +77,5 @@ public class Constants {
  * 26 January 2026 - Added Max inventory space
  * 7 February 2026 - Added Random Word constant
  * 21 February 2026 - Added constant for magic word
+ * 15 June 2026-  Added load, save & quit commands
  */
