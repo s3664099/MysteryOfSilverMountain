@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.12
-Date: 7 June 2026
+Version: 1.13
+Date: 15 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -61,7 +61,7 @@ public class Examine {
 			} else if (isCountCoins(command.getNounNumber(),game)) {
 				result = countCoins(game,player);
 			} else {
-				game.addMessage("You see only one!", true, false);
+				game.addMessage("You cannot count that!", true, false);
 				result = new ActionResult(game,player,true);
 			}
 		} else if (command.getVerbNumber() == GameEntities.CMD_READ) {
@@ -770,8 +770,7 @@ public class Examine {
 	 */
 	private boolean isCountCoins(int noun, Game game) {
 		return (noun == GameEntities.ITEM_COIN || noun == GameEntities.ITEM_COINS) &&
-				(game.getItem(GameEntities.ITEM_COIN).getItemLocation() == GameEntities.ROOM_CARRYING ||
-				game.getItem(GameEntities.ITEM_COINS).getItemLocation() == GameEntities.ROOM_CARRYING);
+				(game.getItem(GameEntities.ITEM_COINS).getItemLocation() == GameEntities.ROOM_CARRYING);
 	}
 	
     /**
@@ -800,4 +799,5 @@ public class Examine {
  * 5 June 2026 - Change cupboard to bed for revealing sheet
  * 6 June 2026 - Fixed examine in cottage
  * 7 June 2026 - Added counting coins
+ * 15 June 2026 - Fixed flawed count response
  */
