@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.32
-Date: 10 June 2026
+Version: 1.33
+Date: 15 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -112,11 +112,9 @@ public class ParsedCommand {
 		
 		if (verbNumber>GameEntities.MOVE_BOTTOM && verbNumber<GameEntities.MOVE_TOP) {
 			commandState = CommandState.MOVE;
-		} else if (verbNumber == GameEntities.CMD_INVENTORY) {
-			commandState = CommandState.INVENTORY;
-		} else if (verbNumber == GameEntities.CMD_DIVE) {
-			commandType = CommandType.DIVE;
+		} else if (isSingleCommand(verbNumber)) {
 			commandState = CommandState.SINGLE_COMMAND;
+			setSingleCommand(verbNumber);
 		} else if (requiresObjectPresent(verbNumber)) {
 			commandState = CommandState.MULTIPLE_COMMAND_OBJECT_PRESENT;
 			setMultipleCommand(verbNumber);
@@ -130,9 +128,21 @@ public class ParsedCommand {
 	}
 	
 	/**
+	 * Checks if the command Doesn't require a target
+	 * 
+	 * @param verbNumber the command the player has entered
+	 * @return boolean
+	 */
+	private boolean isSingleCommand(int verbNumber) {
+		return verbNumber == GameEntities.CMD_INVENTORY || verbNumber == GameEntities.CMD_DIVE ||
+				verbNumber == GameEntities.CMD_LOAD || verbNumber == GameEntities.CMD_SAVE ||
+				verbNumber == GameEntities.CMD_QUIT;
+	}
+	
+	/**
 	 * Checks if the command requires the item to be in the room
 	 * 
-	 * @param nounNumber the command the player has entered
+	 * @param verbNumber the command the player has entered
 	 * @return boolean
 	 */
 	private boolean requiresObjectPresent(int verbNumber) {
@@ -156,6 +166,30 @@ public class ParsedCommand {
 				verbNumber == GameEntities.CMD_TIE || verbNumber == GameEntities.CMD_USE ||
 				verbNumber == GameEntities.CMD_WEAR || verbNumber == GameEntities.CMD_LEAVE || 
 				verbNumber == GameEntities.CMD_WITH || verbNumber == GameEntities.CMD_HOLD;
+	}
+	
+    /**
+     * Assigns the {@link CommandType} for commands that don't involve a target object or entity.  
+     * Examples include INVENTORY, LOAD, SAVE, QUIT.  
+     * <p>
+     * This method is called when {@link #setState(int)} identifies the command as a 
+     * {@link CommandState#SINGLE_COMMAND}.
+     *
+     * @param verbNumber the numeric identifier of the verb to classify as a multiple command
+     */
+	private void setSingleCommand(int verbNumber) {
+		if (verbNumber == GameEntities.CMD_INVENTORY) {
+			commandState = CommandState.INVENTORY;
+		} else if (verbNumber == GameEntities.CMD_DIVE) {
+			commandType = CommandType.DIVE;
+		} else if (verbNumber == GameEntities.CMD_LOAD) {
+			commandType = CommandType.LOAD;
+		} else if (verbNumber == GameEntities.CMD_SAVE) {
+			commandType = CommandType.SAVE;
+		} else if (verbNumber == GameEntities.CMD_QUIT) {
+			commandType = CommandType.QUIT;
+		}
+		
 	}
 		
     /**
@@ -245,6 +279,12 @@ public class ParsedCommand {
 			commandType = CommandType.BREAK;
 		} else if (verbNumber == GameEntities.CMD_REFLECT) {
 			commandType = CommandType.REFLECT;
+		} else if (verbNumber == GameEntities.CMD_LOAD) {
+			commandType = CommandType.LOAD;
+		} else if (verbNumber == GameEntities.CMD_SAVE) {
+			commandType = CommandType.SAVE;
+		} else if (verbNumber == GameEntities.CMD_QUIT) {
+			commandType = CommandType.QUIT;
 		} 
 	}
 	
@@ -591,5 +631,6 @@ public class ParsedCommand {
  * 1 May 2026 - Added remaining commands
  * 4 May 2026 - Added Pay, Break & Reflect
  * 8 June 2026 - Added state for item present and item carrying
- * 10 JUne 2026 - Added check for three types of multiple commands
+ * 10 June 2026 - Added check for three types of multiple commands
+ * 15 June 2026 - Added load, save & quit
  */
