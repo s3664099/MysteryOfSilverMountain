@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 10 June 2026
+Version: 1.7
+Date: 17 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -64,6 +64,7 @@ public class CommandValidator {
 		if (validCommand && command.checkMultipleCarryCommandState()) {
 			if (!hasItem(game,command.getNounNumber()) && !isCarriableItem(command.getNounNumber())) {
 				game = handleNotCarryingItem(game,command);
+				logger.info("Validation Failed - Not Carrying Item");
 				validCommand = false;
 			}
 		}
@@ -71,6 +72,7 @@ public class CommandValidator {
 		if (validCommand && command.checkMultiplePresentCommandState()) {
 			if (!itemPresent(game,player,command.getNounNumber()) && !isCarriableItem(command.getNounNumber())) {
 				game = handleItemNotPresent(game,command);
+				logger.info("Validation Failed - Item not present");
 				validCommand = false;
 			}
 		}
@@ -82,7 +84,7 @@ public class CommandValidator {
 		if (checkResultNull(result)) {
 			result = new ActionResult(result.getGame(),player,result.isValid());
 		}
-		
+				
 		return result;
 	}
 			
@@ -93,7 +95,7 @@ public class CommandValidator {
      */
 	private boolean checkVerbOrNounInvalid(ParsedCommand command) {
 		return (command.getVerbNumber()>Constants.NUMBER_OF_VERBS ||
-				command.getNounNumber() == Constants.NUMBER_OF_NOUNS);
+				(!command.checkSave() && command.getNounNumber() == Constants.NUMBER_OF_NOUNS));
 	}
 	
     /**
@@ -224,4 +226,5 @@ public class CommandValidator {
  * 22 May 2026 - Added validation for carrying item if needed
  * 3 June 2026 - Added check to exclude carriable items
  * 10 June 2026 - Added checks for items in room/carrying
+ * 17 June 2026 - Added check to allow saving game through valid noun check
  */

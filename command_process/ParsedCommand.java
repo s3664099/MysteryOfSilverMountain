@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.33
-Date: 15 June 2026
+Version: 1.34
+Date: 17 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -633,4 +633,5 @@ public class ParsedCommand {
  * 8 June 2026 - Added state for item present and item carrying
  * 10 June 2026 - Added check for three types of multiple commands
  * 15 June 2026 - Added load, save & quit
+ * 17 JUne 2026 - Created a single command check
  */
