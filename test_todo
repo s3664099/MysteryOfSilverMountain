@@ -9,7 +9,7 @@
 
 - Looks like multi-word nouns not working
 
-
+- Can't pick apple
 
 
 
@@ -35,9 +35,9 @@ Climb - Standard Response
 	- Climb Vine
 	- Climb Rope
 	- Climb Sheet
-Cross - Standard Response 
-	- Cross Bridge
-	- Cross Bridge when troll blocking
+
+
+
 Cut - Standard Response
 	- Cut Web (Executes Swing)
 Give - does not have item
@@ -105,11 +105,11 @@ Light - Standard Response
 	  - matches
 	  - matches in cellar
 	  
-Move - Exit does not exist
+Move 
      - south/down - north/up
 	 - Block - in maze
 	 		 - Grargs
-	 		 - boat
+	 		 
 	 		 - rubble
 	 		 - ice
 	 		 - entering tunnel
@@ -129,7 +129,7 @@ Open - Standard Response
 	 - Stable Door
 	 - Wizard Door
 Pay - Standard Response
-	- Troll
+	e
 	- Coins
 Plant - Standard Response
 	  - In Garden
@@ -193,7 +193,7 @@ Use - Standard Response
 	- Jug
 	- Plank
 	- Axe/Sword
-	- Reeds
+
 	- Plate
 Water - Standard Response
 	  - Seeds

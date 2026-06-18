@@ -95,7 +95,8 @@ public class CommandValidator {
      */
 	private boolean checkVerbOrNounInvalid(ParsedCommand command) {
 		return (command.getVerbNumber()>Constants.NUMBER_OF_VERBS ||
-				(!command.checkSave() && command.getNounNumber() == Constants.NUMBER_OF_NOUNS));
+				(!command.checkSave() && !command.checkLoad() &&
+				command.getNounNumber() == Constants.NUMBER_OF_NOUNS));
 	}
 	
     /**
