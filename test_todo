@@ -6,16 +6,17 @@
 - Determine win/lose
 
 
-- Test Load/Save - not working
-- Looks like multi-word nouns not working
-- No quit
 
--
-- Pay troll not working - Need to interchange coin/coins
+- Looks like multi-word nouns not working
+
+
+
+
+
 - Bail not working (and maybe only in certain place and with certain noun)
 
 
-looks like coin count not decreasing
+
 
 
 

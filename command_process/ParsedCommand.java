@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.34
-Date: 17 June 2026
+Version: 1.35
+Date: 18 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -136,7 +136,7 @@ public class ParsedCommand {
 	private boolean isSingleCommand(int verbNumber) {
 		return verbNumber == GameEntities.CMD_INVENTORY || verbNumber == GameEntities.CMD_DIVE ||
 				verbNumber == GameEntities.CMD_LOAD || verbNumber == GameEntities.CMD_SAVE ||
-				verbNumber == GameEntities.CMD_QUIT;
+				verbNumber == GameEntities.CMD_QUIT || verbNumber == GameEntities.CMD_RESTART;
 	}
 	
 	/**
@@ -188,6 +188,8 @@ public class ParsedCommand {
 			commandType = CommandType.SAVE;
 		} else if (verbNumber == GameEntities.CMD_QUIT) {
 			commandType = CommandType.QUIT;
+		} else if (verbNumber == GameEntities.CMD_RESTART) {
+			commandType = CommandType.RESTART;
 		}
 		
 	}
@@ -633,5 +635,6 @@ public class ParsedCommand {
  * 8 June 2026 - Added state for item present and item carrying
  * 10 June 2026 - Added check for three types of multiple commands
  * 15 June 2026 - Added load, save & quit
- * 17 JUne 2026 - Created a single command check
+ * 17 June 2026 - Created a single command check
+ * 18 June 2026 - Added restart
  */

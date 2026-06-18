@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.26
-Date: 6 JUne 2026
+Version: 1.28
+Date: 18 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -307,6 +307,10 @@ public class GameEntities {
 	public static final int CMD_STEAL = 55;
 	public static final int CMD_GATHER = 56;
 	public static final int CMD_REFLECT = 57;
+	public static final int CMD_LOAD = 58;
+	public static final int CMD_SAVE = 59;
+	public static final int CMD_QUIT = 60;
+	public static final int CMD_RESTART = 61;
 	
 	public static final int CMD_VALID_NORTH = 1;
 	public static final int CMD_VALID_SOUTH = 2;
@@ -380,4 +384,6 @@ public class GameEntities {
  * 31 May 2026-  Removed unused flags
  * 5 June 2026 - Added special item description for attic
  * 6 June 2026 - Added special item description for white cottage
+ * 15 June 2026 - Added load, save & quit commands
+ * 18 June 2026 - Added restart
  */

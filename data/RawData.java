@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.13
-Date: 3 June 2026
+Version: 1.15
+Date: 18 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -263,7 +263,11 @@ public class RawData {
 		"break",				// 54			3150			BREAK
 		"steal",				// 55			1290			TAKE
 		"gather",				// 56 			1290			TAKE
-		"reflect"				// 57			3170			REFLECT
+		"reflect",				// 57			3170			REFLECT
+		"load",					// 58			N/A				LOAD
+		"save",					// 59			N/A				SAVE
+		"quit",					// 60			N/A				QUIT
+		"restart"				// 61			N/A				RESTART
 	};
 	
 	private static final String[] NOUNS = {
@@ -469,4 +473,6 @@ public class RawData {
  * 7 January 2026 - Fixed exits in room 30
  * 3 June 2026 - Switched cupboard & bed
  * 			   - Removed 's' from stables
+ * 15 June 2026 - Added load,save & quit commands
+ * 18 June 2026 - Added restart
  */
