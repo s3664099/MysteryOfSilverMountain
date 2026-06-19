@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.15
-Date: 18 June 2026
+Version: 1.16
+Date: 19 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -140,7 +140,7 @@ public class RawData {
 		"3seeds",								// 22
 		"1lamp",								// 23
 		"3bread",								// 24
-		"1brooch",								// 25
+		"1broach",								// 25
 		"3matches",								// 26
 		"2stone of destiny",					// 27
 		"4apple",								// 28
@@ -295,7 +295,7 @@ public class RawData {
 				"seeds",								// 22
 				"lamp",									// 23
 				"bread",								// 24
-				"brooch",								// 25
+				"broach",								// 25
 				"matches",								// 26
 				"stone of destiny",						// 27
 				"apple",								// 28
@@ -475,4 +475,5 @@ public class RawData {
  * 			   - Removed 's' from stables
  * 15 June 2026 - Added load,save & quit commands
  * 18 June 2026 - Added restart
+ * 19 June 2026 - Fixed mispelling of broach
  */

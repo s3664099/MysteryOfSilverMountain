@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Give Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 15 June 2026
+Version: 1.8
+Date: 19 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 package commands;
@@ -48,6 +48,7 @@ public class Give {
 	public ActionResult executeGive() {
 		
 		ActionResult result = new ActionResult(game,player,false);
+		game.addMessage("That is not possible at this time", true, false);
 		
 		if (isGiveBroach(player.getRoom(),game,command.getNounNumber())) {
 			result = giveBroach(game,player);
@@ -139,7 +140,8 @@ public class Give {
 		return (roomNumber  == GameEntities.ROOM_BRIDGE_EAST || roomNumber  == GameEntities.ROOM_BRIDGE_WEST) &&
 				game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag()>0 &&
 				(game.getItem(GameEntities.ITEM_COIN).getItemLocation() == GameEntities.ROOM_CARRYING ||
-				game.getItem(GameEntities.ITEM_COINS).getItemLocation() == GameEntities.ROOM_CARRYING);
+				game.getItem(GameEntities.ITEM_COINS).getItemLocation() == GameEntities.ROOM_CARRYING)
+				&& nounNumber == GameEntities.ITEM_COIN;
 	}
 	
 	/**
@@ -399,4 +401,5 @@ public class Give {
  * 7 June 2026 - Fixed pay troll
  * 13 June 2026 - Removed carrying check
  * 15 June 2026 - Fixed coins not decreasing
+ * 19 June 2026 - Fixed giving all coins and added failed message
  */

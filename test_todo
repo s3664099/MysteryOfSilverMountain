@@ -16,7 +16,8 @@
 - Bail not working (and maybe only in certain place and with certain noun)
 
 
-
+- Check the Grarg Patrol - Do they always appear?
+- Add clue to giving broach to Hermit
 
 
 
@@ -29,7 +30,7 @@ Change some of the standard responses
 
 
 
-Break - Standard Response 
+Break 
 	- Break Door
 Climb - Standard Response
 	- Climb Vine
@@ -40,10 +41,10 @@ Climb - Standard Response
 
 Cut - Standard Response
 	- Cut Web (Executes Swing)
-Give - does not have item
-	 - Item does not exist
+Give 
+
 	 - broach
-	 - coins to troll
+
 	 - apple
 	 - bone
 Fill - Standard response
