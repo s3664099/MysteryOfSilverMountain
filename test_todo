@@ -9,7 +9,8 @@
 
 - Looks like multi-word nouns not working
 
-- Can't pick apple
+- Can't pick apple - We have to go back to the original code to see how the apples are handled
+					 currently over verb maximum.
 
 
 
