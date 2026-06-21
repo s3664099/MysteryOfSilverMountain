@@ -14,15 +14,18 @@
 					1410 IF B=28 THEN C(5)=81
 					1420 IF B=5 THEN C(28)=0
 
-//1310 IF B=38 THEN R$="TOO HEAVY!":RETURN
 
-//1390 IF C(B)=0 THEN R$="YOU ALREADY HAVE IT"
+
+
 
 
 - Bail not working (and maybe only in certain place and with certain noun)
+- Should remove sheet if drop boat so have to use it again
+- Sheet should be dropped at edge of lake
+- Can't remove boots
 
 
-- Check the Grarg Patrol - Do they always appear?
+
 - Add clue to giving broach to Hermit
 
 
@@ -173,9 +176,10 @@ Swing - Standard Response
 	  - Axe (in well bottom)
 	  - Sword or Axe
 Take- Standard Response 
-	- Taking Water (in lake)
+	- Taking Water
 	- Horse shoe (nailed on)
 	- Carrying too much
+
 
 
 
