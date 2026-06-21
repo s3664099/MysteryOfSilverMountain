@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Use Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 14 June 2026
+Version: 1.9
+Date: 21 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -154,7 +154,6 @@ public class Use {
      * @return an {@link ActionResult} describing the outcome
      */
 	private ActionResult useJug(Game game,Player player) {
-		game.getItem(GameEntities.FLAG_BOAT_FLAG).setItemFlag(1);
 		game.addMessage("It is not big enough.", true, false);
 		return new ActionResult(game,player,true);
 	}
@@ -224,4 +223,5 @@ public class Use {
  * 10 April 2026 - Added rig functions
  * 29 April 2026 - Added use plate
  * 14 June 2026 - Removed carrying checks
+ * 21 June 2026 - Removed boat flag switch for use jug
  */

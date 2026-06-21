@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 17 June 2026
+Version: 1.8
+Date: 21 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -234,4 +234,5 @@ public class CommandValidator {
  * 3 June 2026 - Added check to exclude carriable items
  * 10 June 2026 - Added checks for items in room/carrying
  * 17 June 2026 - Added check to allow saving game through valid noun check
+ * 21 June 2026 - Added take validations
  */

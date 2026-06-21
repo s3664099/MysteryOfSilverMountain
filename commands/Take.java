@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 16 February 2026
+Version: 1.9
+Date: 21 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -356,4 +356,5 @@ public class Take {
  * 28 January 2026 - Completed the take
  * 11 February 2026 - Updated JavaDocs
  * 16 February 2026 - Added pick command
+ * 21 June 2026 - Removed unusued methods
  */
