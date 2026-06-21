@@ -63,10 +63,6 @@ public class Take {
 				result = carryingTooMuch(game,player);
 			} else if (isItemCarriable(command.getNounNumber())) {
 				result = itemNotCarriable(game,player);
-			} else if (isItemAlreadyCarried(command.getNounNumber())) {
-				result = itemAlreadyCarried(game,player);
-			} else if (isItemNotPresent(command.getNounNumber(),player.getRoom())) {
-				result = itemNotPresent(game,player);
 			} else if (isItemNotTakeable(command.getNounNumber())) {
 				result = itemNotTakeable(game,player,command.getSplitTwoCommand()[1]);
 			} else if (isItemTaken(game,command.getNounNumber(),player.getRoom())) {
@@ -83,8 +79,10 @@ public class Take {
 	 * Returns true if the command is picking apples or reeds, or one of the other take commands
 	 */
 	private boolean isPick(ParsedCommand command) {
+		System.out.println(command.getNounNumber());
 		return (command.getVerbNumber() == GameEntities.CMD_PICK && 
 				(command.getNounNumber() == GameEntities.ITEM_APPLES ||
+				command.getNounNumber() == GameEntities.ITEM_APPLE ||
 				command.getNounNumber() == GameEntities.ITEM_REEDS)) ||
 				command.getVerbNumber() != GameEntities.CMD_PICK;
 	}
@@ -203,7 +201,7 @@ public class Take {
 	}
 	
 	/**
-	 * Returns true if the item is not carryable
+	 * Returns true if the item is not carriable
 	 * 
  	 * @param nounNumber the value of the noun entered
 	 * @return boolean
@@ -223,53 +221,7 @@ public class Take {
 		game.addMessage("It is not possible to take that.", true, true);
 		return new ActionResult(game,player,true);
 	}
-	
-	/**
-	 * Returns true if the item is being carried
-	 * 
-	 * @param roomNumber the room the player is in
-	 * @return boolean
-	 */
-	private boolean isItemAlreadyCarried(int nounNumber) {
-		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
-	}
-	
-    /**
-     * Executes a response is the item is being carried
-     *
-     * @param game the current game state
-     * @param player the player making the move
-     * @return an {@link ActionResult} describing the outcome
-     */
-	private ActionResult itemAlreadyCarried(Game game, Player player) {
-		game.addMessage("You already have it",true,true);
-		return new ActionResult(game,player,true);
-	}
-	
-	
-	/**
-	 * Returns true if the item is not in the room
-	 * 
- 	 * @param nounNumber the value of the noun entered
-	 * @param roomNumber the room the player is in
-	 * @return boolean
-	 */
-	private boolean isItemNotPresent(int nounNumber,int roomNumber) {
-		return game.getItem(nounNumber).getItemLocation() != roomNumber;
-	}
-	
-    /**
-     * Executes a response is the item is not in the room
-     *
-     * @param game the current game state
-     * @param player the player making the move
-     * @return an {@link ActionResult} describing the outcome
-     */
-	private ActionResult itemNotPresent(Game game, Player player) {
-		game.addMessage("It is not here!",true,true);
-		return new ActionResult(game,player,true);
-	}
-	
+				
 	/**
 	 * Returns true if the item is not takeable at that time
 	 * 
@@ -300,6 +252,7 @@ public class Take {
 	 * @return boolean
 	 */
 	private boolean isItemTaken(Game game,int nounNumber,int roomNumber) {
+		System.out.println(nounNumber);
 		return game.getItem(nounNumber).getItemLocation() == roomNumber &&
 				game.getItem(nounNumber).getItemFlag() == 0;
 	}

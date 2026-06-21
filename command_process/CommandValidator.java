@@ -175,7 +175,13 @@ public class CommandValidator {
 	 * Adds response when item isn't in the same room
 	 */
 	private Game handleItemNotPresent(Game game,ParsedCommand command) {
-		game.addMessage("The "+command.getSplitTwoCommand()[1]+" is not here", true, true);
+		
+		if (hasItem(game, command.getNounNumber())) {
+			game.addMessage("You already have it",true,true);
+		} else {
+			game.addMessage("It is not here!",true,true);
+		}
+		
 		return game;
 	}
 					

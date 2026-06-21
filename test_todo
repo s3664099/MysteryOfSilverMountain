@@ -11,7 +11,12 @@
 
 - Can't pick apple - We have to go back to the original code to see how the apples are handled
 					 currently over verb maximum.
+					1410 IF B=28 THEN C(5)=81
+					1420 IF B=5 THEN C(28)=0
 
+//1310 IF B=38 THEN R$="TOO HEAVY!":RETURN
+
+//1390 IF C(B)=0 THEN R$="YOU ALREADY HAVE IT"
 
 
 - Bail not working (and maybe only in certain place and with certain noun)
@@ -171,9 +176,9 @@ Take- Standard Response
 	- Taking Water (in lake)
 	- Horse shoe (nailed on)
 	- Carrying too much
-	- Item not carriable
-	- Item already carried
-	- Item not present
+
+
+
 	- Apple
 	- Boat
 	- Sheet
