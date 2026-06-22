@@ -19,7 +19,7 @@
 
 
 
-- Bail not working (and maybe only in certain place and with certain noun)
+
 - Should remove sheet if drop boat so have to use it again
 - Sheet should be dropped at edge of lake
 - Can't remove boots
@@ -131,16 +131,16 @@ Move
 	 		 - rats present
 	 		 - caught in web
 	 		 - door close
-Open - Standard Response
-	 - Cupboard (kitchen Cupboard)
+Open - 
+	 - (kitchen Cupboard)
 	 - Gates
 	 - Casks
 	 - Safe
-	 - Stable Door
+	 - 
 	 - Wizard Door
-Pay - Standard Response
-	e
-	- Coins
+
+	
+
 Plant - Standard Response
 	  - In Garden
 Poison - Standard Response
@@ -208,8 +208,31 @@ Use - Standard Response
 	- Plate
 Water - Standard Response
 	  - Seeds
-Wear - Standard Response
+Wear 
 	 - Boots
 	 - Uniform
-	 		 
+
+Solution
+East x3
+Get Bread
+Examine Pot
+get coins
+u
+examine bed
+get sheet
+n
+open cupboard
+return to start
+w
+pay coin
+w
+w
+wear boots
+w
+w
+get bucket
+e
+n
+
+
 	 		 

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Wear Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 14 June 2026
+Version: 1.3
+Date: 22 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -45,7 +45,7 @@ public class Wear {
      * @return an {@link ActionResult} describing the outcome
      */
 	public ActionResult executeWear() {
-		game.addMessage("It's not possible.", true, false);
+		game.addMessage("You can't wear that.", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
 		if (isWearBoots(game,command.getNounNumber())) {
@@ -114,4 +114,5 @@ public class Wear {
  * 22 February 2026 - Created File
  * 23 March 2026 - Fixed spelling error with wearing uniform
  * 14 June 2026 - Removed carrying checks
+ * 22 June 2026 - Changed auto response
  */
