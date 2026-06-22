@@ -170,7 +170,6 @@ public class Give {
 		if (anyCoinsLeft(coinNumbers)) {
 			game.getItem(GameEntities.ITEM_COINS).setItemLocation(GameEntities.ROOM_DESTROYED);
 		}
-		System.out.println(game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag());
 		return new ActionResult(game,player,true);
 	}
 	

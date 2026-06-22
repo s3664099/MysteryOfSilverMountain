@@ -79,7 +79,7 @@ public class Take {
 	 * Returns true if the command is picking apples or reeds, or one of the other take commands
 	 */
 	private boolean isPick(ParsedCommand command) {
-		System.out.println(command.getNounNumber());
+		
 		return (command.getVerbNumber() == GameEntities.CMD_PICK && 
 				(command.getNounNumber() == GameEntities.ITEM_APPLES ||
 				command.getNounNumber() == GameEntities.ITEM_APPLE ||
@@ -252,7 +252,7 @@ public class Take {
 	 * @return boolean
 	 */
 	private boolean isItemTaken(Game game,int nounNumber,int roomNumber) {
-		System.out.println(nounNumber);
+		
 		return game.getItem(nounNumber).getItemLocation() == roomNumber &&
 				game.getItem(nounNumber).getItemFlag() == 0;
 	}
