@@ -48,7 +48,7 @@ Break
 	- Break Door
 Climb - Standard Response
 	- Climb Vine
-	- Climb Rope
+
 	- Climb Sheet
 
 
@@ -126,9 +126,9 @@ Move
 	 		 - Grargs
 	 		 
 	 		 - rubble
-	 		 - ice
+	 		 
 	 		 - entering tunnel
-	 		 - oassage steep
+	 		 - passage steep
 	 		 - hound blocking
 	 		 - dark
 	 		 - forces present
@@ -153,9 +153,9 @@ Poison - Standard Response
 Reflect - Standard Response
 		- In Wizards Lair
 Remove 
-	   - Boots
+	   
 	   - Uniform
-	   - Bricks/Rubble
+	   - Rubble
 Rig - Standard Response
 	- Seeds
 	- Sail
@@ -171,14 +171,14 @@ Say - Standard Response
 Shift - Standard Response
 	  - Rubble (from stalactites)
 	  - Rubble (from tomb)
-	  - Bricks (in well)
+
 Show - Standard Response
 	 - Plate (in lair)
 	 - Stone
 Swing - Standard Response
 	  - Sword (in cobweb)
 	  - Axe (in corridor)
-	  - Axe (in well bottom)
+
 	  - Sword or Axe
 Take- Standard Response 
 	- Taking Water
@@ -193,20 +193,20 @@ Take- Standard Response
 	- Sheet
 	- Pick?
 Throw - Standard Response
-	  - Net
+
 	  - Item
 Tie - Standard response
 	- Sheet
-	- Rope
+
 Turn - Standard Response
 	 - Handle
 	 - Water Wheel
 Unlock - Standard Response
 	   - Wizard Door
 Use - Standard Response
-	- Sheet
-	- Bucket
-	- Jug
+
+
+
 	- Plank
 	- Axe/Sword
 
