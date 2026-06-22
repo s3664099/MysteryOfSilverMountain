@@ -22,12 +22,17 @@
 
 - Should remove sheet if drop boat so have to use it again
 - Sheet should be dropped at edge of lake
-- Can't remove boots
-
+- Fix wear boots/uniform to have response if already wearing it
+- should not say 'found something' if already found
+- check the directions around pond
+- up/down on path wrong
+- The well bottom doesn't flag when climbed down
 
 
 - Add clue to giving broach to Hermit
-
+- Have the rope dangling in well bottom
+- counter in logs for number of items being carried
+- counter for wear on boots in logs
 
 
 
@@ -147,7 +152,7 @@ Poison - Standard Response
 	   - Wine
 Reflect - Standard Response
 		- In Wizards Lair
-Remove - Standard Response
+Remove 
 	   - Boots
 	   - Uniform
 	   - Bricks/Rubble
@@ -209,7 +214,7 @@ Use - Standard Response
 Water - Standard Response
 	  - Seeds
 Wear 
-	 - Boots
+	 
 	 - Uniform
 
 Solution
@@ -233,6 +238,37 @@ w
 get bucket
 e
 n
+remove boots
+n
+w
+get boat
+use sheet
+w
+n
+n
+drop boat
+n
+examine kiln
+get jug
+n
+get reeds
+s
+s
+e
+examine ketch
+get net
+w
+get boat
+use sheet
+s
+use bucket
+s
+e
+drop boat
+e
+n
+n
+throw net
 
 
 	 		 
