@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Climb Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 28 February 2026
+Version: 1.3
+Date: 22 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -103,12 +103,13 @@ public class Climb {
 	 * @return boolean
 	 */
 	private boolean isNotAttached(Game game,int nounNumber,int roomNumber) {
-		return (nounNumber== GameEntities.ITEM_ROPE && 
+
+		return ((nounNumber== GameEntities.ITEM_ROPE && 
 				(game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == GameEntities.ROOM_CARRYING ||
 				game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == roomNumber)) ||
 				(nounNumber== GameEntities.ITEM_SHEET && 
 				(game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == GameEntities.ROOM_CARRYING ||
-				game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == roomNumber)) &&
+				game.getItem(GameEntities.ITEM_ROPE).getItemLocation() == roomNumber))) &&
 				(roomNumber != GameEntities.ROOM_PINNACLE && roomNumber != GameEntities.ROOM_WELL &&
 				roomNumber != GameEntities.ROOM_WELL_BOTTOM);
 	}
@@ -226,7 +227,7 @@ public class Climb {
      */
 	private ActionResult climbingRope(Game game,Player player) {
 		game.addMessage("It falls down - bump.", true, false);
-		game.getItem(GameEntities.ITEM_SHEET).setItemLocation(GameEntities.ROOM_WELL_BOTTOM);
+		game.getItem(GameEntities.ITEM_ROPE).setItemLocation(GameEntities.ROOM_WELL_BOTTOM);
 		game.getItem(GameEntities.FLAG_ROPE_TIED).setItemFlag(0);
 		return new ActionResult(game,player,true);
 	}
@@ -235,4 +236,5 @@ public class Climb {
 /* 25 February 2026 - Created file
  * 27 February 2026 - Added branches and started climb actions
  * 28 February 2026 - Completed actions & added javadocs
+ * 22 June 2026 - Fixed problems with climbing well
  */
