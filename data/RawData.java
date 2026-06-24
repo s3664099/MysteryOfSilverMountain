@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.16
-Date: 19 June 2026
+Version: 1.17
+Date: 24 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -57,7 +57,7 @@ public class RawData {
 		"44overgrown track1101",				// 22		R		17 (Road)
 		"31disused waterwheel0010",				// 23		WM		18 (Water Mill)
 		"33sluice gates0111",					// 24		DM		19 (Dam)
-		"11gap between some boulder0100",		// 25		R		17 (Road)
+		"11gap between some boulders0001",		// 25		R		17 (Road)
 		"41perilous path1100",					// 26		R		17 (Road)
 		"31silver bell in the rock1110",		// 27		B		20 (Bell)
 		"12dungeons of the palace1011",			// 28		D		21 (Dungeon)
@@ -476,4 +476,5 @@ public class RawData {
  * 15 June 2026 - Added load,save & quit commands
  * 18 June 2026 - Added restart
  * 19 June 2026 - Fixed mispelling of broach
+ * 24 June 2026 - Updated directions for gap between boulders
  */
