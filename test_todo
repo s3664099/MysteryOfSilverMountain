@@ -18,9 +18,9 @@
 
 
 
-- Should update the take message, seems odd
-- Also counting number of items?
-- count boot wear/tear
+- Fix the styling of the counters in commandExecutor
+
+
 - Allow 'look' command
 
 - Should remove sheet if drop boat so have to use it again

@@ -94,6 +94,9 @@ public class CommandExecutor {
 		} else if (command.checkMoveState()) {
 			logger.info("Moving");
 			result = new Move().executeMove(game,player,command);
+			if (game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag()==1) {
+				logger.info("Boots worn "+game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag()+" moves of 5");
+			}
 		} else if (command.checkInventory()) {
 			logger.info("Inventory");
 			result = new Inventory(game,player).getInventory();
@@ -321,4 +324,5 @@ public class CommandExecutor {
  * 25 May 2026 - Added check for caught by ghost goblin
  * 30 May 2026 - Added wizard glare blocker
  * 28 June 2026 - Added inventory counter to logger
+ * 				- Added book status counter
  */
