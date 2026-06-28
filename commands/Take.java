@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.9
-Date: 21 June 2026
+Version: 1.10
+Date: 28 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -27,6 +27,9 @@ public class Take {
     /** The current command instance. */
 	private final ParsedCommand command;
 	
+	/** flag indicating whether command was a success **/
+	private boolean success = false;
+	
     /**
      * Creates a {@code Take} handler for moving items into the users inventory
      * 
@@ -49,7 +52,7 @@ public class Take {
 	public ActionResult executeTake() {
 		
 		ActionResult result = new ActionResult(game,player,true);
-		
+
 		if (isPick(command)) {
 			if (isTakingWater(player.getRoom(),command.getNounNumber())) {
 				result = takingWater(game,player);
@@ -266,8 +269,9 @@ public class Take {
      */
 	private ActionResult itemTaken(Game game, Player player, int nounNumber) {
 		
-		game.addMessage("You have the "+game.getItem(nounNumber).getItemName(), true, true);
+		game.addMessage("You have "+game.getItem(nounNumber).getItemName(), true, true);
 		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_CARRYING);
+		this.success = true;
 		
 		if (isItemApples(nounNumber)) {
 			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
@@ -290,6 +294,7 @@ public class Take {
 		if (isItemSheet(command.getNounNumber())) {
 			game.getItem(GameEntities.FLAG_BOAT_POWER).setItemFlag(0);
 		}
+		
 		return new ActionResult(game,player,true);
 	}
 	
@@ -345,6 +350,15 @@ public class Take {
 				game.getItem(GameEntities.ITEM_SHIELD).getItemLocation() == GameEntities.ROOM_CARRYING &&
 				game.getItem(GameEntities.ITEM_RINGS).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
+	
+	/**
+	 * Returns the value of the success flag
+	 * 
+	 * @return boolean
+	 */
+	public boolean isSuccess() {
+		return this.success;
+	}
 }
 
 /* 22 January 2026 - Created File
@@ -357,4 +371,5 @@ public class Take {
  * 11 February 2026 - Updated JavaDocs
  * 16 February 2026 - Added pick command
  * 21 June 2026 - Removed unusued methods
+ * 28 June 2026 - Added inventory counter
  */

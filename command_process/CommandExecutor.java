@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.28
-Date: 30 May 2026
+Version: 1.29
+Date: 28 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -37,6 +37,7 @@ import commands.Unlock;
 import commands.Use;
 import commands.Water;
 import commands.Wear;
+import data.Constants;
 import data.GameEntities;
 import commands.Move;
 import commands.Open;
@@ -98,10 +99,16 @@ public class CommandExecutor {
 			result = new Inventory(game,player).getInventory();
 		} else if (command.checkTake()) {
 			logger.info("Take");
-			result = new Take(game,player,command).executeTake();
+			Take take = new Take(game,player,command);
+			result = take.executeTake();
+			if (take.isSuccess()) {
+				logger.info("Carrying "+game.countItemsCarrying()+" of "+Constants.INVENTORY_SPACE);
+			}
+			
 		} else if (command.checkDrop()) {
 			logger.info("Drop");
 			result = new Drop(game,player,command).executeDrop();
+			logger.info("Carrying "+game.countItemsCarrying()+" of "+Constants.INVENTORY_SPACE);
 		} else if (command.checkExamine()) {
 			logger.info("Examine");
 			result = new Examine(game,player,command).executeExamine();
@@ -313,4 +320,5 @@ public class CommandExecutor {
  * 7 May 2026 - Added Break (and others previously)
  * 25 May 2026 - Added check for caught by ghost goblin
  * 30 May 2026 - Added wizard glare blocker
+ * 28 June 2026 - Added inventory counter to logger
  */

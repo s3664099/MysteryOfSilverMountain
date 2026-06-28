@@ -18,10 +18,13 @@
 
 
 
-
+- Should update the take message, seems odd
+- Also counting number of items?
+- count boot wear/tear
+- Allow 'look' command
 
 - Should remove sheet if drop boat so have to use it again
-- Sheet should be dropped at edge of lake
+- Sheet should be dropped at edge of lake - remove sheet and have 'boat with sail'
 - Fix wear boots/uniform to have response if already wearing it
 - should not say 'found something' if already found
 - check the directions around pond
