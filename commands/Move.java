@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 31 May 2026
+Version: 1.2
+Date: 29 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -39,10 +39,6 @@ public class Move {
 		int verbNumber = command.getVerbNumber();
 		int nounNumber = GameEntities.NOUN_NIL;
 
-		 
-	    //public static final int FLAG_TWENTY_SIX = 26;
-	    //public static final int FLAG_TWENTY_SEVEN = 27;
-	    //public static final int FLAG_TWENTY_EIGHT = 28;
 		return new ParsedCommand(verbNumber,nounNumber,command.getSplitTwoCommand(),command.getCommand());
 	}
 	
@@ -581,7 +577,8 @@ public class Move {
 	 * @return boolean
 	 */
 	private boolean hasBoatNoPower(Game game,int roomNumber,int command) {
-		return (roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST &&
+		return (((roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST) ||
+				(roomNumber == GameEntities.ROOM_SHORE && command == GameEntities.CMD_SOUTH)) &&
 				game.getItem(GameEntities.ITEM_BOAT).getItemLocation() == GameEntities.CARRYING &&
 				game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() == 0);
 	}
@@ -1097,4 +1094,5 @@ public class Move {
  * 23 March 2026 - Fixed spelling error with uniform
  * 4 May 2026 - Changed flag name
  * 31 May 2026 - Changed name for flag 20
+ * 20 June 2026 - fixed so can't move if boat has no power and on island
  */

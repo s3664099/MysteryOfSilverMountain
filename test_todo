@@ -18,13 +18,13 @@
 
 
 
-- Fix the styling of the counters in commandExecutor
+
 
 
 - Allow 'look' command
 
-- Should remove sheet if drop boat so have to use it again
-- Sheet should be dropped at edge of lake - remove sheet and have 'boat with sail'
+
+
 - Fix wear boots/uniform to have response if already wearing it
 - should not say 'found something' if already found
 - check the directions around pond
@@ -34,8 +34,8 @@
 
 - Add clue to giving broach to Hermit
 - Have the rope dangling in well bottom
-- counter in logs for number of items being carried
-- counter for wear on boots in logs
+
+
 
 
 
@@ -105,7 +105,7 @@ Eat  -
      - apples
 Drop - Not Carrying Item
      - Item does not exist
-     - boat in lake
+
 	 - jug
 	 - sheets
 	 - boot

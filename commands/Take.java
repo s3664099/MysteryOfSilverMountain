@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.10
-Date: 28 June 2026
+Version: 1.11
+Date: 29 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -188,7 +188,7 @@ public class Take {
 	 * @return boolean
 	 */
 	private boolean isCarryingTooMuch() {
-		return game.countItemsCarrying()>Constants.INVENTORY_SPACE; 
+		return game.countItemsCarrying()==Constants.INVENTORY_SPACE; 
 	}
 	
     /**
@@ -326,7 +326,7 @@ public class Take {
 	 * @return boolean
 	 */
 	private boolean isItemBoat(Game game,int nounNumber) {
-		return game.getItem(GameEntities.FLAG_BOAT_POWER).getItemLocation() == 1 &&
+		return game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() == 1 &&
 				nounNumber == GameEntities.ITEM_BOAT;
 	}
 	
@@ -372,4 +372,5 @@ public class Take {
  * 16 February 2026 - Added pick command
  * 21 June 2026 - Removed unusued methods
  * 28 June 2026 - Added inventory counter
+ * 29 June 2026 - Fixed so boat has no power if take sheet
  */

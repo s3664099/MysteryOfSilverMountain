@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Drop Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 12 June 2026
+Version: 1.9
+Date: 29 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -25,7 +25,7 @@ public class Drop {
 	
     /** The current command instance. */
 	private final ParsedCommand command;
-	
+		
     /**
      * Creates a {@code Drop} handler for moving items from the users inventory
      * to the current location
@@ -90,7 +90,7 @@ public class Drop {
      */
 	private ActionResult droppedBoatInLake(Game game, Player player) {
 		game.addMessage("You drowned!", true, false);
-		game.getItem(GameEntities.FLAG_PLAYER_FAILED);
+		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);;
 		return new ActionResult(game,player,true);
 	}
 	
@@ -238,5 +238,6 @@ public class Drop {
  * 12 February 2026 - Changed initial action result to false.
  * 26 March 2026 - Added autoremove from dropping worn item
  * 10 June 2026 - Removed check carrying item
- * 12 June 2026-  Removed functions for checking item carried
+ * 12 June 2026 - Removed functions for checking item carried
+ * 29 June 2026 - Fixed so die if drop boat
  */

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Use Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.9
-Date: 21 June 2026
+Version: 1.10
+Date: 29 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -80,7 +80,8 @@ public class Use {
 	 * @return boolean
 	 */
 	private boolean isUseSheet(Game game, int roomNumber, int nounNumber) {
-		return roomNumber == GameEntities.ROOM_EDGE_LAKE && nounNumber == GameEntities.ITEM_SHEET;
+		return (roomNumber == GameEntities.ROOM_EDGE_LAKE || roomNumber == GameEntities.ROOM_SHORE)
+				&& nounNumber == GameEntities.ITEM_SHEET;
 	}
 	
     /**
@@ -224,4 +225,5 @@ public class Use {
  * 29 April 2026 - Added use plate
  * 14 June 2026 - Removed carrying checks
  * 21 June 2026 - Removed boat flag switch for use jug
+ * 29 June 2026 - Fixed so can use sheet at anywhere on lake
  */
