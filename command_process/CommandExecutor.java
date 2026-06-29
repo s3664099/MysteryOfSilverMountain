@@ -3,7 +3,7 @@ Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
 Version: 1.29
-Date: 28 June 2026
+Date: 29 June 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -94,9 +94,7 @@ public class CommandExecutor {
 		} else if (command.checkMoveState()) {
 			logger.info("Moving");
 			result = new Move().executeMove(game,player,command);
-			if (game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag()==1) {
-				logger.info("Boots worn "+game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag()+" moves of 5");
-			}
+			bootsWorn(game);
 		} else if (command.checkInventory()) {
 			logger.info("Inventory");
 			result = new Inventory(game,player).getInventory();
@@ -104,10 +102,7 @@ public class CommandExecutor {
 			logger.info("Take");
 			Take take = new Take(game,player,command);
 			result = take.executeTake();
-			if (take.isSuccess()) {
-				logger.info("Carrying "+game.countItemsCarrying()+" of "+Constants.INVENTORY_SPACE);
-			}
-			
+			carryingAmount(game,take);
 		} else if (command.checkDrop()) {
 			logger.info("Drop");
 			result = new Drop(game,player,command).executeDrop();
@@ -288,6 +283,28 @@ public class CommandExecutor {
 		game.addMessage("The wizard has you in his glare!", true, false);
 		return new ActionResult(game,player, true);
 	}
+	
+    /**
+     * Logs the wear status of the boots if worn and moving
+     *
+     * @param game the current game state
+     */
+	private void bootsWorn(Game game) {
+		if (game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag()==1) {
+			logger.info("Boots worn "+game.getItem(GameEntities.FLAG_BOOT_WEAR_STATUS).getItemFlag()+" moves of 5");
+		}
+	}
+	
+    /**
+     * Logs the number of items in inventory if taking is a success
+     *
+     * @param game the current game state
+     */
+	private void carryingAmount(Game game, Take take) {
+		if (take.isSuccess()) {
+			logger.info("Carrying "+game.countItemsCarrying()+" of "+Constants.INVENTORY_SPACE);
+		}
+	}
 }
 
 /* 3 December 2025 - Increased version number
@@ -325,4 +342,5 @@ public class CommandExecutor {
  * 30 May 2026 - Added wizard glare blocker
  * 28 June 2026 - Added inventory counter to logger
  * 				- Added book status counter
+ * 29 June 2026 - Moved the logging for wear status and carrying amount to separate methods
  */
