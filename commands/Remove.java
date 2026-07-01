@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Remove Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 22 June 2026
+Version: 1.5
+Date: 1 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -78,7 +78,7 @@ public class Remove {
      * @return an {@link ActionResult} describing the outcome
      */
 	private ActionResult boots(Game game,Player player) {
-		game.addMessage("Taken off", true, false);
+		game.addMessage("You are no longer invisible", true, false);
 		game.getItem(GameEntities.FLAG_WEARING_BOOTS).setItemFlag(0);
 		return new ActionResult(game,player,true);
 	}
@@ -125,4 +125,5 @@ public class Remove {
  * 17 April 2026 - Added remove bricks or rubble
  * 14 June 2026 - Removed carrying checks
  * 22 June 2026 - Fixed remove boots flags
+ * 1 July 2026 - Changed response for when boots are removed
  */

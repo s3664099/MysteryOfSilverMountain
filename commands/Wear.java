@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Wear Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 22 June 2026
+Version: 1.4
+Date: 1 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -50,11 +50,28 @@ public class Wear {
 		
 		if (isWearBoots(game,command.getNounNumber())) {
 			result = wearBoots(game,player);
+			
 		} else if (isWearUniform(game,command.getNounNumber())) {
 			result = wearUniform(game,player);
+		} else if (isAlreadyWearingBoots(game,command.getNounNumber())) {
+			result = alreadyWearing(game,player);
+		} else if (isAlreadyWearingUniform(game,command.getNounNumber())) {
+			result = alreadyWearing(game,player);
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * Checks if the player is already wearing the boots
+	 * 
+	 * @param nounNumber the command the player has entered
+	 * @param game   current game state
+	 * @return boolean
+	 */
+	private boolean isAlreadyWearingBoots(Game game, int nounNumber) {
+		return game.getItem(GameEntities.FLAG_WEARING_BOOTS).getItemFlag() == 1 &&
+				nounNumber == GameEntities.ITEM_BOOTS;
 	}
 	
 	/**
@@ -84,6 +101,18 @@ public class Wear {
 	}
 	
 	/**
+	 * Checks if the player is already wearing the uniform
+	 * 
+	 * @param nounNumber the command the player has entered
+	 * @param game   current game state
+	 * @return boolean
+	 */
+	private boolean isAlreadyWearingUniform(Game game, int nounNumber) {
+		return game.getItem(GameEntities.FLAG_WEARING_UNIFORM).getItemFlag() == 1 &&
+				nounNumber == GameEntities.ITEM_UNIFORM;
+	}
+	
+	/**
 	 * Checks if the player putting on a uniform
 	 * 
 	 * @param nounNumber the command the player has entered
@@ -108,6 +137,18 @@ public class Wear {
 		game.addMessage("You are disquised", true, false);
 		return new ActionResult(game,player,true);
 	}
+	
+    /**
+     * Handles if the player is already wearing the item
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} the result
+     */
+	private ActionResult alreadyWearing(Game game,Player player) {
+		game.addMessage("You are already wearing it", true, false);
+		return new ActionResult(game,player,true);
+	}
 }
 
 /*
@@ -115,4 +156,5 @@ public class Wear {
  * 23 March 2026 - Fixed spelling error with wearing uniform
  * 14 June 2026 - Removed carrying checks
  * 22 June 2026 - Changed auto response
+ * 1 July 2026 - Added response if already wearing
  */
