@@ -21,13 +21,13 @@
 
 
 
-- Allow 'look' command
 
 
 
-- Fix wear boots/uniform to have response if already wearing it
-- should not say 'found something' if already found
-- check the directions around pond
+
+
+
+
 - up/down on path wrong
 - The well bottom doesn't flag when climbed down
 

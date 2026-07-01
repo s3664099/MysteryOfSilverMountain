@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.13
-Date: 15 June 2026
+Version: 1.14
+Date: 1 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -81,8 +81,8 @@ public class Examine {
 				result = examineHut(game,player);
 			} else if (isExamineChest(command.getNounNumber(),player.getRoom())) {
 				result = examineChest(game,player);
-			} else if (isExamineMountainHut(command.getNounNumber(),player.getRoom())) {
-				result = examineMountainHut(game,player);
+			} else if (isExaminePot(command.getNounNumber(),player.getRoom())) {
+				result = examinePot(game,player);
 			} else if (isExamineBed(command.getNounNumber(),player.getRoom())) {
 				result = examineBed(game,player);
 			} else if (isExamineUniform(command.getNounNumber(),game)) {
@@ -143,7 +143,7 @@ public class Examine {
 	 */
 	private boolean isExamineHut(int noun,int room) {
 		return ((noun == GameEntities.ITEM_HUT || noun == GameEntities.ITEM_MOUNTAIN_HUT) &&
-			room == GameEntities.ROOM_HUT);
+			room == GameEntities.ROOM_HUT && game.getItem(GameEntities.FLAG_PLANKS).getItemFlag() !=0);
 	}
 	
     /**
@@ -185,24 +185,25 @@ public class Examine {
 	}
 	
 	/**
-	 * Returns true if the command is examining the mountain hut
+	 * Returns true if the command is examining the Pot
 	 * 
 	 * @param noun the value of the noun entered
 	 * @param room the room the player is in
 	 * @return boolean
 	 */
-	private boolean isExamineMountainHut(int noun, int room) {
-		return (room == GameEntities.ROOM_WHITE_COTTAGE && noun == GameEntities.ITEM_POT);
+	private boolean isExaminePot(int noun, int room) {
+		return (room == GameEntities.ROOM_WHITE_COTTAGE && noun == GameEntities.ITEM_POT &&
+				game.getItem(GameEntities.FLAG_COINS).getItemFlag() != 0);
 	}
 	
     /**
-     * Executes a response to Examining the mountain hut
+     * Executes a response to Examining the pot
      *
      * @param game the current game state
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
-	private ActionResult examineMountainHut(Game game, Player player) {
+	private ActionResult examinePot(Game game, Player player) {
 		game.addMessage("Aha!", true, false);
 		game.getItem(GameEntities.FLAG_COINS).setItemFlag(0);
 		return new ActionResult(game,player,true);
@@ -216,7 +217,8 @@ public class Examine {
 	 * @return boolean
 	 */
 	private boolean isExamineBed(int noun, int room) {
-		return (room == GameEntities.ROOM_ATTIC && noun == GameEntities.ITEM_BED);
+		return (room == GameEntities.ROOM_ATTIC && noun == GameEntities.ITEM_BED &&
+				game.getItem(GameEntities.FLAG_SHEET).getItemFlag() != 0);
 	}
 	
     /**
@@ -241,7 +243,7 @@ public class Examine {
 	 */
 	private boolean isExamineUniform(int noun, Game game) {
 		return (game.getItem(GameEntities.ITEM_UNIFORM).getItemLocation() == GameEntities.ROOM_CARRYING &&
-				noun == GameEntities.ITEM_UNIFORM);
+				noun == GameEntities.ITEM_UNIFORM && game.getItem(GameEntities.ITEM_MATCHES).getItemLocation() == 81);
 	}
 	
     /**
@@ -313,7 +315,7 @@ public class Examine {
 	 */
 	private boolean isExamineKiln(int noun, int room) {
 		return (noun == GameEntities.ITEM_KILN || noun == GameEntities.ITEM_OLD_KILN) &&
-				room == GameEntities.ROOM_KILN;
+				room == GameEntities.ROOM_KILN && game.getItem(GameEntities.FLAG_JUG).getItemFlag()!=0;
 	}
 	
     /**
@@ -337,7 +339,8 @@ public class Examine {
 	 * @return boolean
 	 */
 	private boolean isExamineKetch(int noun, int room) {
-		return noun == GameEntities.ITEM_KETCH && room == GameEntities.ROOM_KETCH;
+		return noun == GameEntities.ITEM_KETCH && room == GameEntities.ROOM_KETCH &&
+				game.getItem(GameEntities.FLAG_NET).getItemFlag()!=0;
 	}
 	
     /**
@@ -361,7 +364,8 @@ public class Examine {
 	 * @return boolean
 	 */
 	private boolean isExamineSacks(int noun, int room) {
-		return noun == GameEntities.ITEM_SACK && room == GameEntities.ROOM_SACKS;
+		return noun == GameEntities.ITEM_SACK && room == GameEntities.ROOM_SACKS &&
+				game.getItem(GameEntities.FLAG_SEEDS).getItemFlag()!=0;
 	}
 	
     /**
@@ -437,7 +441,7 @@ public class Examine {
 	private boolean isExaminePoolFoundShield(int noun, int room, Game game) {
 		return (noun == GameEntities.ITEM_POOL || noun == GameEntities.ITEM_MISTY_POOL) &&
 				game.getItem(GameEntities.FLAG_SHEILD_REVEALED).getItemFlag() == 1 &&
-				game.getItem(GameEntities.FLAG_SHIELD).getItemFlag() == 0  &&
+				game.getItem(GameEntities.FLAG_SHIELD).getItemFlag() != 0  &&
 				room == GameEntities.ROOM_POOL;
 	}
 	
@@ -676,7 +680,8 @@ public class Examine {
 	 * @return boolean
 	 */
 	private boolean isExamineDoor(int noun, int room) {
-		return noun == GameEntities.ITEM_DOOR && room == GameEntities.ROOM_STABLE;
+		return noun == GameEntities.ITEM_DOOR && room == GameEntities.ROOM_STABLE &&
+				game.getItem(GameEntities.FLAG_HORSESHOE).getItemFlag() !=0;
 	}
 	
     /**
@@ -800,4 +805,5 @@ public class Examine {
  * 6 June 2026 - Fixed examine in cottage
  * 7 June 2026 - Added counting coins
  * 15 June 2026 - Fixed flawed count response
+ * 1 July 2026 - Updated so if item revealed get differet response
  */
