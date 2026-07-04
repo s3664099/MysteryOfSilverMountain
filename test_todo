@@ -28,7 +28,7 @@
 
 
 
-- up/down on path wrong
+
 - The well bottom doesn't flag when climbed down
 
 
@@ -97,7 +97,7 @@ Examine - Standard Response
 	- inscription
 Enter - Standard Response
 	  - windmill
-	  - hut
+
 Empty - Standard Response
       - Water
 	  - phial
