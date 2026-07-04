@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 29 June 2026
+Version: 1.3
+Date: 4 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -88,12 +88,16 @@ public class Move {
 		} else if (direction == GameEntities.CMD_DOWN) {
 			if (isSouthDown(room)) {
 				direction = GameEntities.CMD_VALID_SOUTH;
+			} else if (isNorthDown(room)) {
+				direction = GameEntities.CMD_NORTH;
 			} else {
 				result = exitBlocked(game,player);
 			}
 		} else if (direction == GameEntities.CMD_UP) {
 			if (isNorthUp(room)) {
 				direction = GameEntities.CMD_NORTH;
+			} else if (isSouthUp(room)) {
+				direction = GameEntities.CMD_VALID_SOUTH;
 			} else {
 				result = exitBlocked(game,player);
 			}
@@ -103,7 +107,7 @@ public class Move {
 			result = notDirection(game,player);
 		} else if (isExitBlocked(game,room,direction)) {
 			result = exitBlocked(game,player);
-		} 		
+		}
 		return result;
 	}
 	
@@ -115,8 +119,17 @@ public class Move {
 	 */
 	private boolean isSouthDown(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_SACKS ||
-				roomNumber == GameEntities.ROOM_ICY_PATH ||
 				roomNumber == GameEntities.ROOM_ATTIC;
+	}
+	
+	/**
+	 * Returns true if the command is executed in a room where south is instead up
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
+	private boolean isSouthUp(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_ICY_PATH;
 	}
 	
 	/**
@@ -127,8 +140,17 @@ public class Move {
 	 */
 	private boolean isNorthUp(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_LOWER_MILL ||
-				roomNumber == GameEntities.ROOM_ICY_PATH ||
 				roomNumber == GameEntities.ROOM_WHITE_COTTAGE;
+	}
+	
+	/**
+	 * Returns true if the command is executed in a room where north is instead down
+	 * 
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
+	private boolean isNorthDown(int roomNumber) {
+		return roomNumber == GameEntities.ROOM_ICY_PATH;
 	}
 	
     /**
@@ -158,7 +180,7 @@ public class Move {
 					game.addMessage("Ok",true,true);
 					game.getRoom(newRoom).setVisited();			
 					blockedCheck = handleRoomEntryEffects(game,player,command);
-				}	
+				}
 			}
 		}
 		
@@ -178,10 +200,14 @@ public class Move {
 		if (directionNumber == GameEntities.CMD_DOWN) {
 			if (isSouthDown(roomNumber)) {
 				directionNumber = GameEntities.CMD_SOUTH;
-			} 
+			} else if (isNorthDown(roomNumber)) {
+				directionNumber = GameEntities.CMD_NORTH;
+			}
 		} else if (directionNumber == GameEntities.CMD_UP) {
 			if (isNorthUp(roomNumber)) {
 				directionNumber = GameEntities.CMD_NORTH;
+			} else if (isSouthUp(roomNumber)) {
+				directionNumber = GameEntities.CMD_SOUTH;
 			}
 		}
 		
@@ -1095,4 +1121,5 @@ public class Move {
  * 4 May 2026 - Changed flag name
  * 31 May 2026 - Changed name for flag 20
  * 20 June 2026 - fixed so can't move if boat has no power and on island
+ * 4 July 2026 - Fixed going up and down on icy path
  */
