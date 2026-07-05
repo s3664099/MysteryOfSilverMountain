@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 7 February 2026
+Version: 1.8
+Date: 5 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -167,7 +167,7 @@ public class Game implements Serializable {
 	    
 	    List<String> itemsFound = new ArrayList<>();
 		
-		String specialItems = specialItemHandler.getSpecialItems(roomNumber, itemList, locationList);
+		String specialItems = specialItemHandler.getSpecialItems(roomNumber, itemList, locationList,this);
 		
 		if(!specialItems.isEmpty()) {
 			itemsFound.add(specialItems);
@@ -490,4 +490,5 @@ public class Game implements Serializable {
  * 19 January 2026 - Added maze route generator
  * 26 January 2026 - Added function to count the number of items being carried
  * 7 February 2026 - Added method to return the raw name
+ * 5 July 2026 - Passed game for dangling rope
  */

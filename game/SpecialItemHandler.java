@@ -1,10 +1,10 @@
 /*
-Title: <Game Name> Special Item Handler Class
-Author: 
+Title: Mystery of Silver Mountain Special Item Handler Class
+Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 6 June 2026
-Source: 
+Version: 1.7
+Date: 5 July 2026
+Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package game;
@@ -52,6 +52,7 @@ public class SpecialItemHandler implements Serializable {
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_STATUE," a defaced statue");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_ATTIC," a bed under the window, and a cupboard on the north wall");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_WHITE_COTTAGE," a chest sitting against a wall, and a pot simmering on the fire");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_DANGLING_ROPE," a rope hanging from above");
 	}
 	
     /**
@@ -66,7 +67,7 @@ public class SpecialItemHandler implements Serializable {
      * @param locationList the array of {@link Location} instances (indexed by room number)
      * @return the special description for the room, or an empty string if none should be shown
      */
-	public String getSpecialItems(int roomNumber,Item[] itemList, Location[] locationList) {
+	public String getSpecialItems(int roomNumber,Item[] itemList, Location[] locationList,Game game) {
 		int specialItemType = 0;
 		
 		if (checkInBanquetHall(roomNumber)) {
@@ -101,6 +102,9 @@ public class SpecialItemHandler implements Serializable {
 			specialItemType = GameEntities.SPECIAL_ITEM_ATTIC;
 		} else if (checkInCottage(roomNumber)) {
 			specialItemType = GameEntities.SPECIAL_ITEM_WHITE_COTTAGE;
+		} else if (checkInWellBottom(roomNumber,game)) {
+			specialItemType = GameEntities.SPECIAL_ITEM_DANGLING_ROPE;
+			
 		}
 		
 		String description = itemDescriptions.getOrDefault(specialItemType,"");
@@ -172,6 +176,11 @@ public class SpecialItemHandler implements Serializable {
 	private boolean checkInCottage(int roomNumber) {
 		return roomNumber == GameEntities.ROOM_WHITE_COTTAGE;
 	}
+	
+	private boolean checkInWellBottom(int roomNumber,Game game) {
+		return roomNumber == GameEntities.ROOM_WELL_BOTTOM &&
+				game.getItem(GameEntities.FLAG_ROPE_TIED).getItemFlag() == 1;
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -183,4 +192,5 @@ public class SpecialItemHandler implements Serializable {
  * 8 February 2026 - Added special item statue
  * 5 June 2026 - Added item description for attic
  * 6 June 2026 - Added item description for white cottage
+ * 5 July 2026 - Added dangling rope special item
  */
