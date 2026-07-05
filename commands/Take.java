@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.11
-Date: 29 June 2026
+Version: 1.12
+Date: 5 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -291,8 +291,12 @@ public class Take {
 			game.getItem(GameEntities.ITEM_SHEET).setItemLocation(GameEntities.ROOM_CARRYING);
 		}
 		
-		if (isItemSheet(command.getNounNumber())) {
+		if (isItemSheetAsSail(command.getNounNumber(),game)) {
 			game.getItem(GameEntities.FLAG_BOAT_POWER).setItemFlag(0);
+		} else if (isItemSheetAsRope(command.getNounNumber(),game)) {
+			game = itemSheetAsRope(game);
+		} else if (isItemRope(command.getNounNumber(),game)) {
+			game = itemRope(game);
 		}
 		
 		return new ActionResult(game,player,true);
@@ -331,13 +335,60 @@ public class Take {
 	}
 	
 	/**
-	 * Returns true if the item is the sheet
+	 * Returns true if the item is the sheet and it is being used as a sail
 	 * 
+     * @param game the current game state
  	 * @param nounNumber the value of the noun entered
 	 * @return boolean
 	 */
-	private boolean isItemSheet(int nounNumber) {
-		return nounNumber == GameEntities.ITEM_SHEET;
+	private boolean isItemSheetAsSail(int nounNumber,Game game) {
+		return nounNumber == GameEntities.ITEM_SHEET && game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag()==1;
+	}
+	
+	/**
+	 * Returns true if the item is the sheet and it is tied
+	 * 
+     * @param game the current game state
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
+	private boolean isItemSheetAsRope(int nounNumber,Game game) {
+		return nounNumber == GameEntities.ITEM_SHEET && game.getItem(GameEntities.FLAG_SHEET_TIED).getItemFlag()==1;
+	}
+	
+    /**
+     * Executes a response is the item is the sheet and it is tied to the well
+     *
+     * @param game the current game state
+     * @return an {@link Game} describing the outcome
+     */
+	private Game itemSheetAsRope(Game game) {
+		game.getItem(GameEntities.FLAG_SHEET_TIED).setItemFlag(0);
+		game.addMessage("You untie it first.", true, false);
+		return game;
+	}
+	
+	/**
+	 * Returns true if the item is the rope and it is tied to the well
+	 * 
+     * @param game the current game state
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
+	private boolean isItemRope(int nounNumber,Game game) {
+		return nounNumber == GameEntities.ITEM_ROPE && game.getItem(GameEntities.FLAG_ROPE_TIED).getItemFlag()==1;
+	}
+	
+    /**
+     * Executes a response is the item is the rope and it is tied to the well
+     *
+     * @param game the current game state
+     * @return an {@link Game} describing the outcome
+     */
+	private Game itemRope(Game game) {
+		game.getItem(GameEntities.FLAG_ROPE_TIED).setItemFlag(0);
+		game.addMessage("You untie it first.", true, false);
+		return game;
 	}
 	
 	/**
@@ -373,4 +424,5 @@ public class Take {
  * 21 June 2026 - Removed unusued methods
  * 28 June 2026 - Added inventory counter
  * 29 June 2026 - Fixed so boat has no power if take sheet
+ * 5 July 2026 - Handle taking sheet and rope if tied to the well
  */
