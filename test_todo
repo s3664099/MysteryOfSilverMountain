@@ -15,7 +15,8 @@
 					1420 IF B=5 THEN C(28)=0
 
 
-
+- Have no power in other places
+- Can't read pinnacle when rope not there
 
 
 
@@ -79,9 +80,9 @@ Examine - Standard Response
 	- uniform
 	- inscription
 	- trees
-	- kiln
-	- ketch
-	- sacks
+
+
+
 	- gravestone
 	- pool
 	- sluice
@@ -95,19 +96,18 @@ Examine - Standard Response
 	- kitchen
 
 	- inscription
-Enter - Standard Response
-	  - windmill
+
+
 
 Empty - Standard Response
       - Water
 	  - phial
 Eat  - 
      - apples
-Drop - Not Carrying Item
-     - Item does not exist
+Drop 
 
 	 - jug
-	 - sheets
+
 	 - boot
 	 - uniform
 Drink

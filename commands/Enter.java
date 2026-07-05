@@ -45,7 +45,7 @@ public class Enter {
      * @return an {@link ActionResult} describing validity and effects
      */
 	public ActionResult executeEnter() {
-		game.addMessage("You cannot Enter that", true, false);
+		game.addMessage("You cannot enter that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
 		if (isEnterWindmill(player.getRoom(),command.getNounNumber())) {
