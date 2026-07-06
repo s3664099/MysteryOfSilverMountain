@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 4 July 2026
+Version: 1.4
+Date: 6 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -287,6 +287,8 @@ public class Move {
 			result = doorIsClosed(game,player);
 		} else if (isSteep(game,player.getRoom(),command.getVerbNumber())) {
 			result = passageIsSteep(game,player);
+		} else if (isRopeGone(game,player.getRoom(),command.getVerbNumber())) {
+			result = ropeIsGone(game,player);
 		} else {
 		
 			if(isLeavingBanquetHall(player.getRoom(),command.getVerbNumber())) {
@@ -772,6 +774,30 @@ public class Move {
 	}
 	
 	/**
+	 * Checks if the passage is cheap
+	 * 
+	 * @param command the command the player has entered
+	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
+	private boolean isRopeGone(Game game, int roomNumber, int command) {
+		return (roomNumber == GameEntities.ROOM_GLACIER && command == GameEntities.CMD_WEST &&
+				game.getItem(GameEntities.ITEM_ROPE).getItemLocation() != GameEntities.ROOM_PINNACLE);
+	}
+	
+    /**
+     * Handles when the passage is steep
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult}
+     */
+	private ActionResult ropeIsGone(Game game,Player player) {
+		game.addMessage("There is no way to get up there.", true, true);
+		return new ActionResult(game,player,true);
+	}
+	
+	/**
 	 * Checks if hound is blocking the path
 	 * 
      * @param game the current game state
@@ -1122,4 +1148,5 @@ public class Move {
  * 31 May 2026 - Changed name for flag 20
  * 20 June 2026 - fixed so can't move if boat has no power and on island
  * 4 July 2026 - Fixed going up and down on icy path
+ * 6 July 2026 - Can't climb to pinnacle once rope gone
  */
