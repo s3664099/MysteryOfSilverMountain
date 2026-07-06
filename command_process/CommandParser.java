@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Parser
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 1 July 2026
+Version: 1.8
+Date: 6 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -50,7 +50,7 @@ public class CommandParser {
 		rawInput = changeVerb(rawInput);
 		String[] splitCommand = splitCommand(rawInput);
 		int verbNumber = getVerbNumber(splitCommand[0]);
-		
+
 		splitCommand[1] = splitCommand[1].trim();
 		int nounNumber = getNounNumber(splitCommand[1],verbNumber);
 		ParsedCommand command = new ParsedCommand(verbNumber,nounNumber,splitCommand,rawInput);
@@ -141,11 +141,6 @@ public class CommandParser {
 		int nounNumber = Constants.NUMBER_OF_NOUNS;
 		
 		if (noun.length()>1) {
-			
-			if (noun.split(GameEntities.SPACE).length>1) {
-				noun = noun.split(" ")[0];
-			}
-			
 			int nounCount = 0;
 			for (String command:RawData.getNouns()) {
 				nounCount ++;
@@ -237,4 +232,5 @@ public class CommandParser {
  * 17 January 2026 - Removed section where up & down and being converted to north & south
  * 10 May 2026 - Added verb update for play (to blow)
  * 1 July 2026 - Added look command
+ * 6 July 2026 - Fixed non-recognition of multi-word nouns
  */

@@ -7,7 +7,7 @@
 
 
 
-- Looks like multi-word nouns not working
+
 
 - Can't pick apple - We have to go back to the original code to see how the apples are handled
 					 currently over verb maximum.
@@ -16,7 +16,6 @@
 
 
 - Have no power in other places
-- Can't read pinnacle when rope not there
 
 
 
@@ -30,11 +29,13 @@
 
 
 
-- The well bottom doesn't flag when climbed down
+
+
+
 
 
 - Add clue to giving broach to Hermit
-- Have the rope dangling in well bottom
+
 
 
 
@@ -50,10 +51,10 @@ Change some of the standard responses
 
 Break 
 	- Break Door
-Climb - Standard Response
+Climb 
 	- Climb Vine
 
-	- Climb Sheet
+
 
 
 
@@ -178,7 +179,7 @@ Shift - Standard Response
 Show - Standard Response
 	 - Plate (in lair)
 	 - Stone
-Swing - Standard Response
+Swing 
 	  - Sword (in cobweb)
 	  - Axe (in corridor)
 
@@ -199,7 +200,7 @@ Throw - Standard Response
 
 	  - Item
 Tie - Standard response
-	- Sheet
+
 
 Turn - Standard Response
 	 - Handle
