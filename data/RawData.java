@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.17
-Date: 24 June 2026
+Version: 1.18
+Date: 6 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -173,7 +173,7 @@ public class RawData {
 		"0books",								// 55
 		"0casks",								// 56
 		"0well",								// 57
-		"0walls",								// 58
+		"0wall",								// 58
 		"0rats",								// 59
 		"0safe",								// 60
 		"0cobwebs",								// 61
@@ -477,4 +477,5 @@ public class RawData {
  * 18 June 2026 - Added restart
  * 19 June 2026 - Fixed mispelling of broach
  * 24 June 2026 - Updated directions for gap between boulders
+ * 6 July 2026 - Changed walls to wall
  */

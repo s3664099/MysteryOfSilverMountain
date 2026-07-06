@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Climb Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.3
-Date: 22 June 2026
+Version: 1.5
+Date: 6 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -88,6 +88,7 @@ public class Climb {
 	private ActionResult climbVine(Game game, Player player) {
 		game.addMessage("All right", true, false);
 		player.setRoom(GameEntities.ROOM_INSCRIBED_CAVERN);
+		game.getRoom(GameEntities.ROOM_INSCRIBED_CAVERN).setVisited();
 		return new ActionResult(game,player,true);
 	}
 	
@@ -174,6 +175,7 @@ public class Climb {
 	private ActionResult goingDown(Game game,Player player) {
 		game.addMessage("Going down.", true, false);
 		player.setRoom(GameEntities.ROOM_WELL_BOTTOM);
+		game.getRoom(GameEntities.ROOM_WELL_BOTTOM).setVisited();
 		return new ActionResult(game,player,true);
 	}
 	
@@ -237,4 +239,5 @@ public class Climb {
  * 27 February 2026 - Added branches and started climb actions
  * 28 February 2026 - Completed actions & added javadocs
  * 22 June 2026 - Fixed problems with climbing well
+ * 6 July 2026 - Updated so that if room changed the visit flag is set
  */
