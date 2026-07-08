@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 6 July 2026
+Version: 1.5
+Date: 8 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -606,7 +606,9 @@ public class Move {
 	 */
 	private boolean hasBoatNoPower(Game game,int roomNumber,int command) {
 		return (((roomNumber == GameEntities.ROOM_EDGE_LAKE && command == GameEntities.CMD_WEST) ||
-				(roomNumber == GameEntities.ROOM_SHORE && command == GameEntities.CMD_SOUTH)) &&
+				(roomNumber == GameEntities.ROOM_SHORE && command == GameEntities.CMD_SOUTH) ||
+				(roomNumber == GameEntities.ROOM_ROUGH_WATER && (command == GameEntities.CMD_NORTH || command == GameEntities.CMD_SOUTH)) ||
+				(roomNumber == GameEntities.ROOM_MIDDLE_LAKE && (command == GameEntities.CMD_NORTH || command == GameEntities.CMD_EAST))) &&
 				game.getItem(GameEntities.ITEM_BOAT).getItemLocation() == GameEntities.CARRYING &&
 				game.getItem(GameEntities.FLAG_BOAT_POWER).getItemFlag() == 0);
 	}
@@ -1149,4 +1151,5 @@ public class Move {
  * 20 June 2026 - fixed so can't move if boat has no power and on island
  * 4 July 2026 - Fixed going up and down on icy path
  * 6 July 2026 - Can't climb to pinnacle once rope gone
+ * 8 July 2026 - Prevent movement in lake if sheet not attached
  */
