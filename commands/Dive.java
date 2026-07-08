@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Dive Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 28 March 2026
+Version: 1.2
+Date: 8 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -57,8 +57,9 @@ public class Dive {
 	 * @return boolean
 	 */
 	private boolean hasDrowned(int roomNumber) {
-		return roomNumber == GameEntities.ROOM_POOL &&
-				roomNumber == GameEntities.ROOM_MIDDLE_LAKE;
+		return roomNumber == GameEntities.ROOM_POOL ||
+				roomNumber == GameEntities.ROOM_MIDDLE_LAKE ||
+				roomNumber == GameEntities.ROOM_ROUGH_WATER;
 	}
 	
     /**
@@ -77,4 +78,5 @@ public class Dive {
 
 /* 27 March 2026 - Created file
  * 28 March 2026 - Added responses & JavaDocs
+ * 8 July 2026 - fixed so works
  */
