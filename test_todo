@@ -15,7 +15,7 @@
 					1420 IF B=5 THEN C(28)=0
 
 
-- Have no power in other places
+
 
 
 
@@ -85,12 +85,12 @@ Examine - Standard Response
 
 
 	- gravestone
-	- pool
-	- sluice
+	
+
 	- phial
 	- books
 	- grarg
-	- well bottom
+
 	- pinnacle
 	- stables
 	- door
@@ -109,11 +109,11 @@ Drop
 
 	 - jug
 
-	 - boot
+
 	 - uniform
 Drink
-Dive - Standard Response
-	 - drowned
+
+
 Insert - Standard Response
        - coins
 	   - coins in turret
@@ -125,7 +125,7 @@ Light - Standard Response
 	  - matches in cellar
 	  
 Move 
-     - south/down - north/up
+
 	 - Block - in maze
 	 		 - Grargs
 	 		 
@@ -187,14 +187,14 @@ Swing
 Take- Standard Response 
 	- Taking Water
 	- Horse shoe (nailed on)
-	- Carrying too much
+
 
 
 
 
 	- Apple
-	- Boat
-	- Sheet
+
+
 	- Pick?
 Throw - Standard Response
 
@@ -203,7 +203,7 @@ Tie - Standard response
 
 
 Turn - Standard Response
-	 - Handle
+
 	 - Water Wheel
 Unlock - Standard Response
 	   - Wizard Door
