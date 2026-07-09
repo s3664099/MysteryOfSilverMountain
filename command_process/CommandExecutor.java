@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Executor Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.29
-Date: 29 June 2026
+Version: 1.30
+Date: 9 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -241,7 +241,8 @@ public class CommandExecutor {
 	private boolean isCaughtByGhostGoblin(Game game, int roomNumber, int verbNumber) {
 		return roomNumber == GameEntities.ROOM_FALLEN_OAK &&
 				game.getItem(GameEntities.FLAG_GHOST_FREE).getItemFlag() == 0 &&
-				verbNumber != GameEntities.CMD_BLOW && verbNumber != GameEntities.CMD_MAKE;
+				verbNumber != GameEntities.CMD_BLOW && verbNumber != GameEntities.CMD_MAKE &&
+				verbNumber != GameEntities.CMD_RIG;
 	}
 	
     /**
@@ -343,4 +344,5 @@ public class CommandExecutor {
  * 28 June 2026 - Added inventory counter to logger
  * 				- Added book status counter
  * 29 June 2026 - Moved the logging for wear status and carrying amount to separate methods
+ * 9 July 2026 - Fixed so can use rig with ghost goblins
  */

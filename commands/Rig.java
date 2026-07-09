@@ -50,7 +50,7 @@ public class Rig {
 		
 		if (isUseReeds(game,command.getNounNumber())) {
 			
-			if (isAtFallenOak(player.getRoom())) {
+			if (isAtFallenOak(game, player.getRoom())) {
 				result = atFallenOak(game,player);
 			} else {
 				result = useReeds(game,player);
@@ -96,8 +96,9 @@ public class Rig {
 	 * @param roomNumber the room the player is in
 	 * @return boolean
 	 */
-	private boolean isAtFallenOak(int roomNumber) {
-		return roomNumber == GameEntities.ROOM_FALLEN_OAK;
+	private boolean isAtFallenOak(Game game, int roomNumber) {
+		return roomNumber == GameEntities.ROOM_FALLEN_OAK &&
+				game.getItem(GameEntities.FLAG_GHOST_FREE).getItemFlag() != 1;
 	}
 	
     /**
@@ -183,4 +184,5 @@ public class Rig {
  * 12 April 2026 - Added Responses & Javadocs
  * 25 April 2026 - Removed unused include
  * 9 July 2026 - Added rig sheet and rig sail at shore
+ * 			   - Fixed so doesn't give same response if ghost free
  */
