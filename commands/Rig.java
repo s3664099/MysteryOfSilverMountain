@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Rig Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 25 April 2026
+Version: 1.5
+Date: 9 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -57,6 +57,8 @@ public class Rig {
 			}
 		} else if (isRigSail(player.getRoom(),command.getNounNumber())) {
 			result = rigSail(game,player);
+		} else if (isRigSheet(game, player.getRoom(),command.getNounNumber())) {
+			result = new Use(game,player,command).executeUse();
 		} else if (isRigMusic(command.getNounNumber())) {
 			result = rigMusic(game,player);
 		}
@@ -121,7 +123,8 @@ public class Rig {
 	 * @return boolean
 	 */
 	private boolean isRigSail(int roomNumber,int nounNumber) {
-		return roomNumber == GameEntities.ROOM_EDGE_LAKE &&
+		return (roomNumber == GameEntities.ROOM_EDGE_LAKE ||
+				roomNumber == GameEntities.ROOM_SHORE) &&
 				nounNumber == GameEntities.ITEM_SAIL;
 	}
 	
@@ -136,6 +139,21 @@ public class Rig {
 		game.addMessage("What with?", true, false);
 		
 		return new ActionResult(game,player,true);
+	}
+	
+	/**
+	 * Returns true if the player attempting to rig the sheet
+	 * 
+	 * @param game the current game state
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
+	private boolean isRigSheet(Game game, int roomNumber,int nounNumber) {
+		return (roomNumber == GameEntities.ROOM_EDGE_LAKE ||
+				roomNumber == GameEntities.ROOM_SHORE) &&
+				nounNumber == GameEntities.ITEM_SHEET &&
+				game.getItem(GameEntities.ITEM_SHEET).getItemLocation() == GameEntities.ROOM_CARRYING;
 	}
 	
 	/**
@@ -164,4 +182,5 @@ public class Rig {
 /* 9 April 2026 - Created File
  * 12 April 2026 - Added Responses & Javadocs
  * 25 April 2026 - Removed unused include
+ * 9 July 2026 - Added rig sheet and rig sail at shore
  */
