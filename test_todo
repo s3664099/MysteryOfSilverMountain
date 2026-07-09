@@ -66,9 +66,9 @@ Give
 
 	 - apple
 	 - bone
-Fill - Standard response
 
-     - bucket in valley
+
+
 Feed - Rat, Boar, Pony, Hound
 Examine - Standard Response
 
@@ -107,11 +107,11 @@ Eat  -
      - apples
 Drop 
 
-	 - jug
+
 
 
 	 - uniform
-Drink
+
 
 
 Insert - Standard Response
@@ -160,10 +160,10 @@ Remove
 	   
 	   - Uniform
 	   - Rubble
-Rig - Standard Response
+Rig 
 	- Seeds
-	- Sail
-	- Music
+
+
 Ring - Standard Response
 	 - Bell
 Say - Standard Response

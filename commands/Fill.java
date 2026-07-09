@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Fill Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 12 June 2026
+Version: 1.3
+Date: 9 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -45,7 +45,7 @@ public class Fill {
      * @return an {@link ActionResult} describing validity and effects
      */
 	public ActionResult executeFill() {
-		game.addMessage("You cannot Fill that", true, false);
+		game.addMessage("You cannot fill that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
 		if (isFillBucketOrJugInLake(game,player.getRoom(),command.getNounNumber())) {
@@ -54,6 +54,8 @@ public class Fill {
 			result = fillJugInValley(game,player);
 		} else if (isFillBucketInValley(game,player.getRoom(),command.getNounNumber())) {
 			result = fillBucketInValley(game,player);
+		} else if (isAlreadyFull(player.getRoom(),command.getNounNumber())) {
+			result = alreadyFull(game,player);
 		}
 		
 		return result;
@@ -94,11 +96,12 @@ public class Fill {
 	 * @return boolean
 	 */
 	private boolean isFillJugInValley(Game game,int roomNumber,int nounNumber) {
-		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM && nounNumber == GameEntities.ITEM_JUG;
+		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM && nounNumber == GameEntities.ITEM_JUG
+				&& game.getItem(GameEntities.FLAG_JUG_FULL).getItemFlag() != 1;
 	}
 	
     /**
-     * Executes a response if the player if filling the jug in the valley
+     * Executes a response if the player is filling the jug in the valley
      *
      * @param game the current game state
      * @param player the player making the move
@@ -107,6 +110,30 @@ public class Fill {
 	private ActionResult fillJugInValley(Game game,Player player) {
 		game.addMessage("It is now full", true, false);
 		game.getItem(GameEntities.FLAG_JUG_FULL).setItemFlag(1);
+		return new ActionResult(game,player,true);
+	}
+	
+	/**
+	 * Returns true if the jug is already full
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+     * @param game the current game state
+	 * @return boolean
+	 */
+	private boolean isAlreadyFull(int roomNumber,int nounNumber) {
+		return roomNumber == GameEntities.ROOM_VALLEY_BOTTOM && nounNumber == GameEntities.ITEM_JUG;
+	}
+	
+    /**
+     * Executes a response if the jug is already full
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
+	private ActionResult alreadyFull(Game game,Player player) {
+		game.addMessage("It is already full", true, false);
 		return new ActionResult(game,player,true);
 	}
 
@@ -138,4 +165,5 @@ public class Fill {
 /* 10 March 2026 - Created File
  * 11 March 2026 - Completed responses
  * 13 June 2026 - Removed checks for carrying item
+ * 9 July 2026 - Added response if jug already full
  */
