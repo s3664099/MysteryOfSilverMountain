@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Special Item Handler Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.7
-Date: 5 July 2026
+Version: 1.8
+Date: 10 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -53,6 +53,8 @@ public class SpecialItemHandler implements Serializable {
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_ATTIC," a bed under the window, and a cupboard on the north wall");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_WHITE_COTTAGE," a chest sitting against a wall, and a pot simmering on the fire");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_DANGLING_ROPE," a rope hanging from above");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_GOBLIN_GHOST," a spectral goblin.");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_VINE," a vine growing over the wall.");
 	}
 	
     /**
@@ -104,6 +106,10 @@ public class SpecialItemHandler implements Serializable {
 			specialItemType = GameEntities.SPECIAL_ITEM_WHITE_COTTAGE;
 		} else if (checkInWellBottom(roomNumber,game)) {
 			specialItemType = GameEntities.SPECIAL_ITEM_DANGLING_ROPE;
+		} else if (checkGhostPresent(roomNumber,game)) {
+			specialItemType = GameEntities.SPECIAL_ITEM_GOBLIN_GHOST;
+		} else if (checkVineGrown(roomNumber,game)) {
+			specialItemType = GameEntities.SPECIAL_ITEM_VINE;
 			
 		}
 		
@@ -181,6 +187,17 @@ public class SpecialItemHandler implements Serializable {
 		return roomNumber == GameEntities.ROOM_WELL_BOTTOM &&
 				game.getItem(GameEntities.FLAG_ROPE_TIED).getItemFlag() == 1;
 	}
+	
+	private boolean checkGhostPresent(int roomNumber,Game game) {
+		return roomNumber == GameEntities.ROOM_FALLEN_OAK &&
+				game.getItem(GameEntities.FLAG_GHOST_FREE).getItemFlag() != 1;
+	}
+	
+	private boolean checkVineGrown(int roomNumber,Game game) {
+		return roomNumber == GameEntities.ROOM_GARDEN &&
+				game.getItem(GameEntities.FLAG_VINE_CLIMBABLE).getItemFlag() == 1;
+	}
+	
 }
 
 /* 3 December 2025 - Created File
@@ -193,4 +210,5 @@ public class SpecialItemHandler implements Serializable {
  * 5 June 2026 - Added item description for attic
  * 6 June 2026 - Added item description for white cottage
  * 5 July 2026 - Added dangling rope special item
+ * 10 July 2026 - Added goblin ghost and vine
  */

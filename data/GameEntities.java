@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.29
-Date: 5 July 2026
+Version: 1.30
+Date: 10 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -349,6 +349,8 @@ public class GameEntities {
 	public static final int SPECIAL_ITEM_ATTIC = 14;
 	public static final int SPECIAL_ITEM_WHITE_COTTAGE = 15;
 	public static final int SPECIAL_ITEM_DANGLING_ROPE = 16;
+	public static final int SPECIAL_ITEM_GOBLIN_GHOST = 17;
+	public static final int SPECIAL_ITEM_VINE = 18;
 
 }
 
@@ -388,4 +390,5 @@ public class GameEntities {
  * 15 June 2026 - Added load, save & quit commands
  * 18 June 2026 - Added restart
  * 5 July 2026 - Added Dangling Rope
+ * 10 July 2026 - Added ghost and vine
  */
