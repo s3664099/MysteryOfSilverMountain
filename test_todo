@@ -142,7 +142,7 @@ Move
 	 		 - door close
 Open - 
 	 - (kitchen Cupboard)
-	 - Gates
+
 	 - Casks
 	 - Safe
 	 - 
@@ -274,5 +274,53 @@ n
 n
 throw net
 n
+n
+n
+get lamp
+e
+examine pool
+s
+examine gates
+turn handle
+n
+examine pool
+get shield
+w
+s
+s
+s
+e
+u
+examine sacks
+get seeds
+d
+w
+s
+s
+e
+e
+fill jug
+s
+pay coin
+e
+e
+e
+n
+w
+w
+n
+play reeds
+n
+n
+n
+examine hut
+get planks
+w
+drop planks
+n
+n
+plant seeds
+water seeds
+climb vine
 
 	 		 
