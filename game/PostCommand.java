@@ -163,7 +163,10 @@ public class PostCommand {
 	}
 		
     // ================== Actions ================== //
-		
+	
+    /**
+     * Updates the game to a win game state
+     */
 	private void winGame() {
 		game.addMessage("Hooooorrrraaaaayyyy!!!!", false, true);
 		game.addMessage("", false, true);
@@ -172,6 +175,9 @@ public class PostCommand {
 		game.setEndGameState();
 	}
 	
+    /**
+     * Updates the game to a lose game state
+     */
 	private void loseGame() {
 		game.addMessage("You have failed in your quest!", false, true);
 		game.addMessage("But you are granted another try", false, true);
