@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 8 July 2026
+Version: 1.6
+Date: 13 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -339,13 +339,13 @@ public class Move {
 		String maze = game.getMaze(player.getMazeNumber());
 		
 		if (direction == 1) {
-			mazeMove = "N"+mazeMove;
+			mazeMove = mazeMove+"N";
 		} else if (direction == 2) {
-			mazeMove = "E"+mazeMove;
+			mazeMove = mazeMove+"E";
 		} else if (direction == 3) {
-			mazeMove = "S"+mazeMove;
+			mazeMove = mazeMove+"S";
 		} else {
-			mazeMove = "W"+mazeMove;
+			mazeMove = mazeMove+"W";
 		}
 		
 		if (mazeMove.length()==9) {
@@ -747,8 +747,14 @@ public class Move {
      * @return an {@link ActionResult}
      */
 	private ActionResult enteringTunnels(Game game, Player player, int direction) {
-		game.addMessage("You are lost in the tunnels!", true, true);
-		player.setPlayerStateMaze(direction);
+		if (player.getMazeDirection() == GameEntities.CMD_WEST && direction == GameEntities.CMD_EAST) {
+			player.setRoom(GameEntities.ROOM_VAULTED_CAVERN);
+		} else if (player.getMazeDirection() == GameEntities.CMD_EAST && direction == GameEntities.CMD_WEST) {
+			player.setRoom(GameEntities.ROOM_STALACTITES);
+		} else {
+			game.addMessage("You are lost in the tunnels!", true, true);
+			player.setPlayerStateMaze(direction);
+		}
 		return new ActionResult(game,player,true);
 	}
 	
@@ -1152,4 +1158,5 @@ public class Move {
  * 4 July 2026 - Fixed going up and down on icy path
  * 6 July 2026 - Can't climb to pinnacle once rope gone
  * 8 July 2026 - Prevent movement in lake if sheet not attached
+ * 13 July 2026 - Updated mave movement so can exit from first room
  */

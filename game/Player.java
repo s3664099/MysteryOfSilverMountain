@@ -1,9 +1,9 @@
 /*
-Title: <Game Name> Initialise Game Class
+Title: Mystery of Silver Mountain Initialise Game Class
 Author: 
 Translator: David Sarkies
-Version: 1.3
-Date: 6 June 2026
+Version: 1.4
+Date: 13 July 2026
 Source: 
 */
 
@@ -84,7 +84,7 @@ public class Player implements Serializable {
      *
      * @param mazeDirection
      */
-	private void setMazeDirection(int mazeDirection) {
+	public void setMazeDirection(int mazeDirection) {
 		this.mazeDirection = mazeDirection;
 	}
 	
@@ -129,7 +129,6 @@ public class Player implements Serializable {
 		} else if (direction == GameEntities.CMD_SOUTH || direction == GameEntities.CMD_WEST) {
 			setMazeNumber(1);
 		}
-		setMazeDirection(direction);
 		playerState = PlayerState.MAZE;
 	}
 	
@@ -179,5 +178,6 @@ public class Player implements Serializable {
  * 8 December 2025 - Increased version number
  * 12 January 2026 - Added player states
  * 19 January 2026 - Added mazeMovement string
- * 6 June 2026-  Removed stats not being used.
+ * 6 June 2026 - Removed stats not being used.
+ * 13 July 2026 - Updated so can exit from first room
  */

@@ -2,14 +2,15 @@
 Title: Mystery of Silver Mountain Post Command Functions
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 1 June 2026
+Version: 1.9
+Date: 13 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
 package game;
 
 import command_process.ActionResult;
+import command_process.ParsedCommand;
 import data.GameEntities;
 
 /**
@@ -28,17 +29,19 @@ public class PostCommand {
 	private Game game;
 	private Player player;
 	private ActionResult result;
+	private ParsedCommand command;
 
     /**
      * Constructs a {@code PostCommand} handler from an {@link ActionResult}.
      *
      * @param result the result of the previous player action containing game and player states
      */
-	public PostCommand(ActionResult result) {
+	public PostCommand(ActionResult result, ParsedCommand command) {
 				
 		this.game = result.getGame();
 		this.player = result.getPlayer();
 		this.result = result;
+		this.command = command;
 	}
 	
     /**
@@ -63,12 +66,17 @@ public class PostCommand {
 		} else if (isInRoughWater(player.getRoom())) {
 			result = inRoughWater(result.getGame(),result.getPlayer());
 		}
+
 		
 		if (hasGoblinGhostCaughtYou(game,player.getRoom())) {
 			result = goblinGhostCaughtYou(result.getGame(),result.getPlayer());
 		}
+		
+		if (hasEnteredTunnels(player,command)) {
+			result = enteredTunnels(result.getGame(),result.getPlayer(),command);
+		}
 
-		if (!isWinGame()) {
+		if (isWinGame()) {
 			winGame();
 		} else if (isLoseGame()) {
 			loseGame();
@@ -143,6 +151,17 @@ public class PostCommand {
 				game.getItem(GameEntities.ITEM_REEDS).getItemLocation() != 0;
 	}
 	
+	/**
+	 * Returns true if the player has entered the maze of tunnels
+	 * 
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
+	private boolean hasEnteredTunnels(Player player, ParsedCommand command) {
+		return (player.getRoom() == GameEntities.ROOM_TUNNELS && command.checkMoveState() 
+			&& ( command.getVerbNumber() == GameEntities.CMD_EAST || command.getVerbNumber() == GameEntities.CMD_WEST));
+	}
+		
     // ================== Actions ================== //
 		
 	private void winGame() {
@@ -223,6 +242,21 @@ public class PostCommand {
 		game.getItem(GameEntities.FLAG_PLAYER_FAILED).setItemFlag(1);
 		return new ActionResult(game,player,true);
 	}
+	
+    /**
+     * Updates the direction the player has entered the room by
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @param command the command the player has used
+     * @return an {@link ActionResult} describing the outcome
+     */
+	private ActionResult enteredTunnels(Game game, Player player, ParsedCommand command) {
+		System.out.println("In tunnels");
+		System.out.println(command.getVerbNumber());
+		player.setMazeDirection(command.getVerbNumber());
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -234,4 +268,5 @@ public class PostCommand {
  * 27 May 2026 - Added win game condition check
  * 30 May 2026 - Added ghost goblin response
  * 1 June 2026 - Win and lose game messages work
+ * 13 July 2026 - Updated so can exit from first maze room
  */
