@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.19
-Date: 15 July 2026
+Version: 1.20
+Date: 16 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -312,13 +312,13 @@ public class RawData {
 				"Ogban's boar",							// 39
 				"wheel",								// 40
 				"pony",									// 41
-				"gravestones",							// 42
+				"gravestone",							// 42
 				"pool",									// 43
 				"gates",								// 44
 				"handle",								// 45
 				"hut",									// 46
 				"vine",									// 47
-				"inscriptions",							// 48
+				"inscription",							// 48
 				"troll",								// 49
 				"rubble",								// 50
 				"hound",								// 51
@@ -373,7 +373,7 @@ public class RawData {
 	
 	private static final int[] ITEM_FLAG = {1,1,1,1,1,0,0,0,1,0,
 											0,1,1,0,0,1,1,0,0,1,
-											1,1,0,0,0,0,0,0,0,0,
+											1,1,0,0,0,0,0,1,0,0,
 											0,0,0,0,0,0,0,0,0,0,
 											0,0,0,4,0,0,0,0,0,0,
 											0,0,0,0,0,0,68,54,15,0,
@@ -478,5 +478,6 @@ public class RawData {
  * 19 June 2026 - Fixed mispelling of broach
  * 24 June 2026 - Updated directions for gap between boulders
  * 6 July 2026 - Changed walls to wall
- * 15 July 2026- Fixed Typo
+ * 15 July 2026 - Fixed Typo
+ * 16 July 2026 - Removed s from gravestone & inscription
  */
