@@ -14,9 +14,12 @@
 					1410 IF B=28 THEN C(5)=81
 					1420 IF B=5 THEN C(28)=0
 					So, if the apples are there and you take one, you get one. If you take all you get all
-					
+					give br
 
-
+Gravestone/s and inscription/s should be interchangeable
+should have special response if attempt to empty jug/water seeds when jug empty
+can't examine mountain hut
+should be able to pass grargs eating?
 
 
 
@@ -53,20 +56,20 @@ Change some of the standard responses
 
 Break 
 	- Break Door
-Climb 
-	- Climb Vine
 
 
 
 
 
-Cut - Standard Response
+
+
+
 	- Cut Web (Executes Swing)
 Give 
 
 	 - broach
 
-	 - apple
+
 	 - bone
 
 
@@ -74,31 +77,31 @@ Give
 Feed - Rat, Boar, Pony, Hound
 Examine - Standard Response
 
-	- read books, inscription
+	- read books
 	- Examine Mosaic
 	- hut
-	- chest
-	- mountain hut
+
+
 
 	- uniform
-	- inscription
-	- trees
 
 
 
-	- gravestone
+
+
+
 	
 
 	- phial
 	- books
 	- grarg
 
-	- pinnacle
-	- stables
+
+
 	- door
 	- kitchen
 
-	- inscription
+
 
 
 
@@ -135,7 +138,7 @@ Move
 	 		 
 	 		 - entering tunnel
 	 		 - passage steep
-	 		 - hound blocking
+
 	 		 - dark
 	 		 - forces present
 	 		 - Ogbhan present
@@ -147,13 +150,13 @@ Open -
 
 	 - Casks
 	 - Safe
-	 - 
+
 	 - Wizard Door
 
 	
 
-Plant - Standard Response
-	  - In Garden
+
+
 Poison - Standard Response
 	   - Wine
 Reflect - Standard Response
@@ -218,7 +221,7 @@ Use - Standard Response
 
 	- Plate
 Water - Standard Response
-	  - Seeds
+
 Wear 
 	 
 	 - Uniform
