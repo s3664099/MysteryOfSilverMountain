@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Parsed Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.37
-Date: 15 July 2026
+Version: 1.38
+Date: 16 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -250,11 +250,11 @@ public class ParsedCommand {
 		} else if (verbNumber == GameEntities.CMD_ENTER) {
 			commandType = CommandType.ENTER;
 		} else if (verbNumber == GameEntities.CMD_CROSS) {
-			commandType = CommandType.FEED;
+			commandType = CommandType.CROSS;
 		} else if (verbNumber == GameEntities.CMD_REMOVE) {
 			commandType = CommandType.REMOVE;
 		} else if (verbNumber == GameEntities.CMD_FEED) {
-			commandType = CommandType.CROSS;
+			commandType = CommandType.FEED;
 		} else if (verbNumber == GameEntities.CMD_TURN) {
 			commandType = CommandType.TURN;
 		} else if (verbNumber == GameEntities.CMD_THROW) {
@@ -639,4 +639,5 @@ public class ParsedCommand {
  * 18 June 2026 - Added restart
  * 22 June 2026 - Changed verb number for remove
  * 15 July 2026 - Fixed problem with feed
+ * 16 July 2026 - switched feed & cross
  */
