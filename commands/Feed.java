@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Feed Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.1
-Date: 11 March 2026
+Version: 1.2
+Date: 16 March 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -66,7 +66,9 @@ public class Feed {
 				(roomNumber == GameEntities.ROOM_COUNTRYSIDE && nounNumber == GameEntities.ITEM_BOAR) ||
 				(roomNumber == GameEntities.ROOM_RUSTY_GATES && nounNumber == GameEntities.ITEM_PONY) ||
 				(roomNumber == GameEntities.ROOM_TRACK && nounNumber == GameEntities.ITEM_PONY) ||
-				(roomNumber == GameEntities.ROOM_GLASS_GATES && nounNumber == GameEntities.ITEM_HOUND);
+				(roomNumber == GameEntities.ROOM_GLASS_GATES && nounNumber == GameEntities.ITEM_HOUND) ||
+				((roomNumber == GameEntities.ROOM_BRIDGE_WEST || roomNumber == GameEntities.ROOM_BRIDGE_WEST)  && 
+				nounNumber == GameEntities.ITEM_TROLL);
 	}
 	
     /**
@@ -84,4 +86,5 @@ public class Feed {
 
 /* 22 March 2026 - Created File
  * 25 March 2026 - Added responses and javadocs
+ * 16 July 2026 - Added feed troll
  */
