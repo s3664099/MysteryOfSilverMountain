@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.30
-Date: 10 July 2026
+Version: 1.31
+Date: 17 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -244,6 +244,8 @@ public class GameEntities {
     public static final int FLAG_BOAT_WORN = 67;
     public static final int FLAG_OBGAN = 68;
     public static final int FLAG_DOOR = 70;
+    public static final int FLAG_NUMBER_APPLES_ON_TREE = 71;
+    public static final int FLAG_NUMBER_APPLES_IN_HAND = 72;
     
 	// === Commands ===
 	public static final int MOVE_BOTTOM = 0;
@@ -391,4 +393,5 @@ public class GameEntities {
  * 18 June 2026 - Added restart
  * 5 July 2026 - Added Dangling Rope
  * 10 July 2026 - Added ghost and vine
+ * 17 July 2026 - Added flag for number of apples
  */
