@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Special Item Handler Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 10 July 2026
+Version: 1.9
+Date: 18 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -55,6 +55,8 @@ public class SpecialItemHandler implements Serializable {
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_DANGLING_ROPE," a rope hanging from above");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_GOBLIN_GHOST," a spectral goblin.");
 		itemDescriptions.put(GameEntities.SPECIAL_ITEM_VINE," a vine growing over the wall.");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_APPLES," some apples hanging from the tree.");
+		itemDescriptions.put(GameEntities.SPECIAL_ITEM_APPLE," an apple hanging from a tree.");
 	}
 	
     /**
@@ -110,7 +112,8 @@ public class SpecialItemHandler implements Serializable {
 			specialItemType = GameEntities.SPECIAL_ITEM_GOBLIN_GHOST;
 		} else if (checkVineGrown(roomNumber,game)) {
 			specialItemType = GameEntities.SPECIAL_ITEM_VINE;
-			
+		} else if (checkFoundApple(roomNumber,game)) {
+			specialItemType = getApples(game);
 		}
 		
 		String description = itemDescriptions.getOrDefault(specialItemType,"");
@@ -198,6 +201,20 @@ public class SpecialItemHandler implements Serializable {
 				game.getItem(GameEntities.FLAG_VINE_CLIMBABLE).getItemFlag() == 1;
 	}
 	
+	private boolean checkFoundApple(int roomNumber,Game game) {
+		return roomNumber == GameEntities.ROOM_ORCHARD &&
+				game.getItem(GameEntities.FLAG_APPLES).getItemFlag() == 0 &&
+				game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag()>0;
+	}
+	
+	private int getApples(Game game) {
+		int specialItemType = GameEntities.SPECIAL_ITEM_APPLES;
+		
+		if (game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag() == 1) {
+			specialItemType = GameEntities.SPECIAL_ITEM_APPLE;
+		}
+		return specialItemType;
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -211,4 +228,5 @@ public class SpecialItemHandler implements Serializable {
  * 6 June 2026 - Added item description for white cottage
  * 5 July 2026 - Added dangling rope special item
  * 10 July 2026 - Added goblin ghost and vine
+ * 18 July 2026 - Added special item apples
  */

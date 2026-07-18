@@ -2,7 +2,7 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.31
+Version: 1.32
 Date: 17 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
@@ -353,6 +353,8 @@ public class GameEntities {
 	public static final int SPECIAL_ITEM_DANGLING_ROPE = 16;
 	public static final int SPECIAL_ITEM_GOBLIN_GHOST = 17;
 	public static final int SPECIAL_ITEM_VINE = 18;
+	public static final int SPECIAL_ITEM_APPLES = 19;
+	public static final int SPECIAL_ITEM_APPLE = 20;
 
 }
 
@@ -394,4 +396,5 @@ public class GameEntities {
  * 5 July 2026 - Added Dangling Rope
  * 10 July 2026 - Added ghost and vine
  * 17 July 2026 - Added flag for number of apples
+ * 18 July 2026 - Added special items apples
  */
