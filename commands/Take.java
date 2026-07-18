@@ -43,6 +43,19 @@ public class Take {
 		this.command = command;
 	}
 	
+	//Taking Apples
+	//	Check in room, apples on trees, and not on ground
+	//	If player has none, has one apple
+	//	if player has one, then has more
+	//	Reduce on tree, increase carrying
+	//	Drop all is carrying multiple, one if carrying only one.
+	//  Feed reduced by one (unless use plural then takes all, like troll with coins)
+	//  Eat - only one at a time
+	// public static final int FLAG_NUMBER_APPLES_ON_TREE = 71;
+	// public static final int FLAG_NUMBER_APPLES_IN_HAND = 72;
+	// Do same with coins
+	
+	
     /**
      * Validates whether a take is possible based on the parsed command,
      * player state, and room conditions.
@@ -272,15 +285,7 @@ public class Take {
 		game.addMessage("You have "+game.getItem(nounNumber).getItemName(), true, true);
 		game.getItem(nounNumber).setItemLocation(GameEntities.ROOM_CARRYING);
 		this.success = true;
-		
-		if (isItemApples(nounNumber)) {
-			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
-		}
-		
-		if (isItemApple(nounNumber)) {
-			game.getItem(GameEntities.ITEM_APPLES).setItemLocation(GameEntities.ROOM_CARRYING);
-		}
-		
+				
 		if (haveSpecialItems()) {
 			game.getItem(GameEntities.FLAG_FORCES).setItemFlag(1);
 		} else {
@@ -301,27 +306,7 @@ public class Take {
 		
 		return new ActionResult(game,player,true);
 	}
-	
-	/**
-	 * Returns true if the items are apples
-	 * 
- 	 * @param nounNumber the value of the noun entered
-	 * @return boolean
-	 */
-	private boolean isItemApples(int nounNumber) {
-		return nounNumber == GameEntities.ITEM_APPLE;
-	}
-	
-	/**
-	 * Returns true if the item is an apple
-	 * 
- 	 * @param nounNumber the value of the noun entered
-	 * @return boolean
-	 */
-	private boolean isItemApple(int nounNumber) {
-		return nounNumber == GameEntities.ITEM_APPLES;
-	}
-	
+		
 	/**
 	 * Returns true if the item is the boat
 	 * 
