@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.21
-Date: 17 July 2026
+Version: 1.22
+Date: 18 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -361,9 +361,9 @@ public class RawData {
 				"mountain hut"							// 88
 	};
 		
-	private static final int[] ITEM_LOCATION = {80,70,60,69,74,72,63,52,20,11,
+	private static final int[] ITEM_LOCATION = {80,70,60,69,81,72,63,52,20,11,
 												1,14,36,54,61,21,32,10,50,29,
-												59,34,13,80,30,81,47,74,-1,-1,
+												59,34,13,80,30,81,47,81,-1,-1,
 												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
 												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
 												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
@@ -371,14 +371,14 @@ public class RawData {
 												-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
 												-1,-1,-1,-1,-1,-1,-1,-1,-1};
 	
-	private static final int[] ITEM_FLAG = {1,1,1,1,1,0,0,0,1,0,
+	private static final int[] ITEM_FLAG = {1,1,1,1,0,0,0,0,1,0,
 											0,1,1,0,0,1,1,0,0,1,
-											1,1,0,0,0,0,0,1,0,0,
+											1,1,0,0,0,0,0,0,0,0,
 											0,0,0,0,0,0,0,0,0,0,
 											0,0,0,4,0,0,0,0,0,0,
 											0,0,0,0,0,0,68,54,15,0,
 											0,0,0,0,0,0,0,0,0,0,
-											5,0,0,0,0,0,0,0,0,0,
+											5,0,1,0,0,0,0,0,0,0,
 											0,0,0,0,0,0,0,0,0};
 	
 	private static final String[] PREPOSITIONS_ONE = {
@@ -481,4 +481,5 @@ public class RawData {
  * 15 July 2026 - Fixed Typo
  * 16 July 2026 - Removed s from gravestone & inscription
  * 17 July 2026 - Added number of apples on tree
+ * 18 July 2026 - Updated apple flags and location
  */

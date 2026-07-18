@@ -172,7 +172,7 @@ public class Game implements Serializable {
 		if(!specialItems.isEmpty()) {
 			itemsFound.add(specialItems);
 		}
-				
+		
 		//Goes through each of the items
 		for (Item item:itemList) {
 			if(item != null && item.isAtLocation(roomNumber) && item.getItemFlag()==0) {

@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.15
-Date: 16 July 2026
+Version: 1.16
+Date: 18 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -302,7 +302,7 @@ public class Examine {
      */
 	private ActionResult examineTrees(Game game, Player player) {
 		game.addMessage("They are apple trees.", true, false);
-		game.getItem(GameEntities.FLAG_APPLES).setItemFlag(0);
+		game.getItem(GameEntities.FLAG_FOUND_APPLES).setItemFlag(0);
 		return new ActionResult(game,player,true);
 	}
 	
@@ -807,4 +807,5 @@ public class Examine {
  * 15 June 2026 - Fixed flawed count response
  * 1 July 2026 - Updated so if item revealed get differet response
  * 16 July 2026 - Fixed read inscription
+ * 18 July 2026 - Changed flag for examining trees
  */

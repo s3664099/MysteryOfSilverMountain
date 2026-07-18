@@ -246,6 +246,7 @@ public class GameEntities {
     public static final int FLAG_DOOR = 70;
     public static final int FLAG_NUMBER_APPLES_ON_TREE = 71;
     public static final int FLAG_NUMBER_APPLES_IN_HAND = 72;
+    public static final int FLAG_FOUND_APPLES = 73;
     
 	// === Commands ===
 	public static final int MOVE_BOTTOM = 0;

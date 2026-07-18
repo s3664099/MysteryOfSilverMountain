@@ -203,7 +203,7 @@ public class SpecialItemHandler implements Serializable {
 	
 	private boolean checkFoundApple(int roomNumber,Game game) {
 		return roomNumber == GameEntities.ROOM_ORCHARD &&
-				game.getItem(GameEntities.FLAG_APPLES).getItemFlag() == 0 &&
+				game.getItem(GameEntities.FLAG_FOUND_APPLES).getItemFlag() == 0 &&
 				game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag()>0;
 	}
 	
