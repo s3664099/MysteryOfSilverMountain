@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.12
-Date: 5 July 2026
+Version: 1.13
+Date: 19 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -44,10 +44,11 @@ public class Take {
 	}
 	
 	//Taking Apples
-	//	Check in room, apples on trees, and not on ground
-	//	If player has none, has one apple
-	//	if player has one, then has more
-	//	Reduce on tree, increase carrying
+	//	If player has none, has one apple - check
+	//	if player has one, then has more - check
+	//	Reduce on tree, increase carrying - check
+	//  Also why change the appearance on the tree
+	//
 	//	Drop all is carrying multiple, one if carrying only one.
 	//  Feed reduced by one (unless use plural then takes all, like troll with coins)
 	//  Eat - only one at a time
@@ -77,6 +78,8 @@ public class Take {
 				result = horseShoeNailedOn(game,player);
 			} else if (isCarryingTooMuch()) {
 				result = carryingTooMuch(game,player);
+			} else if (isTakeApple(game,player,command.getNounNumber())) {
+				result = takeApple(game,player,command.getNounNumber());
 			} else if (isItemCarriable(command.getNounNumber())) {
 				result = itemNotCarriable(game,player);
 			} else if (isItemNotTakeable(command.getNounNumber())) {
@@ -84,6 +87,7 @@ public class Take {
 			} else if (isItemTaken(game,command.getNounNumber(),player.getRoom())) {
 				result = itemTaken(game,player,command.getNounNumber());
 			}
+			System.out.println("Taken");
 		} else {
 			this.game.addMessage("You can't "+command.getCommand(), true, false);
 			result = new ActionResult(game,player,true);
@@ -223,6 +227,7 @@ public class Take {
 	 * @return boolean
 	 */
 	private boolean isItemCarriable(int nounNumber) {
+		System.out.println(nounNumber);
 		return nounNumber>=Constants.MAX_CARRIABLE_ITEMS; 
 	}
 	
@@ -377,6 +382,46 @@ public class Take {
 	}
 	
 	/**
+	 * Returns true if the player is picking apples in the orchard and apples are on the tree (and none on the ground)
+	 * 
+	 * @return boolean
+	 */
+	private boolean isTakeApple(Game game, Player player, int nounNumber) {
+		System.out.println(GameEntities.FLAG_FOUND_APPLES);
+		return player.getRoom() == GameEntities.ROOM_ORCHARD && game.getItem(GameEntities.ITEM_APPLES).getItemLocation() != player.getRoom() &&
+				game.getItem(GameEntities.FLAG_FOUND_APPLES).getItemFlag() == 0 && 
+				game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag() > 0 &&
+				(nounNumber == GameEntities.ITEM_APPLE || nounNumber == GameEntities.ITEM_APPLES);
+	}
+	
+    /**
+     * Executes a response to the player picking an apple
+     *
+     * @param game the current game state
+     * @return an {@link Game} describing the outcome
+     */
+	private ActionResult takeApple(Game game, Player player,int nounNumber) {
+		System.out.println("Picking Apple");
+		if(nounNumber == GameEntities.ITEM_APPLE) {
+			game.addMessage("You pick an apple from a tree", true, true);
+			int applesOnTrees = game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag();
+			int applesInHand = game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).getItemFlag();
+			game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).setItemFlag(applesOnTrees--);
+			applesInHand++;
+			game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).setItemFlag(applesInHand);
+			
+			if (applesInHand==1) {
+				game.getItem(GameEntities.ITEM_APPLE).setItemLocation(0);
+			} else {
+				game.getItem(GameEntities.ITEM_APPLES).setItemLocation(0);
+				game.getItem(GameEntities.ITEM_APPLE).setItemLocation(81);
+			}
+		}
+		
+		return new ActionResult(game,player,true);
+	}
+	
+	/**
 	 * Returns true if the player is carrying the special items
 	 * 
 	 * @return boolean
@@ -410,4 +455,5 @@ public class Take {
  * 28 June 2026 - Added inventory counter
  * 29 June 2026 - Fixed so boat has no power if take sheet
  * 5 July 2026 - Handle taking sheet and rope if tied to the well
+ * 19 July 2026 - Started picking apples
  */
