@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Raw Data
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.22
-Date: 18 July 2026
+Version: 1.23
+Date: 20 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -120,7 +120,7 @@ public class RawData {
 		"1sheet",								// 2
 		"3boots",								// 3
 		"1horseshoe",							// 4
-		"2apples",								// 5
+		"3apples",								// 5
 		"1bucket",								// 6
 		"4axe",									// 7
 		"1boat",								// 8
@@ -482,4 +482,5 @@ public class RawData {
  * 16 July 2026 - Removed s from gravestone & inscription
  * 17 July 2026 - Added number of apples on tree
  * 18 July 2026 - Updated apple flags and location
+ * 20 July 2026 - Changed preposition for apples
  */

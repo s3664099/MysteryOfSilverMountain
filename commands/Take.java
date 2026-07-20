@@ -44,7 +44,7 @@ public class Take {
 	}
 	
 	//Taking Apples
-	//	If player has none, has one apple - check
+
 	//	if player has one, then has more - check
 	//	Reduce on tree, increase carrying - check
 	//  Also why change the appearance on the tree
@@ -406,10 +406,14 @@ public class Take {
 			game.addMessage("You pick an apple from a tree", true, true);
 			int applesOnTrees = game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag();
 			int applesInHand = game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).getItemFlag();
-			game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).setItemFlag(applesOnTrees--);
+			System.out.println("Carrying "+applesInHand);
+			System.out.println("Tree "+applesOnTrees);
+			applesOnTrees--;
 			applesInHand++;
-			game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).setItemFlag(applesInHand);
-			
+			game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).setItemFlag(applesInHand);			
+			game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).setItemFlag(applesOnTrees);
+			System.out.println("Carrying "+applesInHand);
+			System.out.println("Tree "+applesOnTrees);
 			if (applesInHand==1) {
 				game.getItem(GameEntities.ITEM_APPLE).setItemLocation(0);
 			} else {
