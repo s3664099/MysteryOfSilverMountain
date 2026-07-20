@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.16
-Date: 18 July 2026
+Version: 1.17
+Date: 20 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -129,6 +129,8 @@ public class Examine {
 				result = examineInscription(game,player);
 			} else if (isCountCoins(command.getNounNumber(),game)) {
 				result = countCoins(game,player);
+			} else if (isCountApples(command.getNounNumber(),game)) {
+				result = countApples(game,player);
 			}
 		}
 		return result;
@@ -774,7 +776,7 @@ public class Examine {
 	 * @return boolean
 	 */
 	private boolean isCountCoins(int noun, Game game) {
-		return (noun == GameEntities.ITEM_COIN || noun == GameEntities.ITEM_COINS) &&
+		return (noun == GameEntities.ITEM_COINS) &&
 				(game.getItem(GameEntities.ITEM_COINS).getItemLocation() == GameEntities.ROOM_CARRYING);
 	}
 	
@@ -787,6 +789,31 @@ public class Examine {
      */
 	private ActionResult countCoins(Game game, Player player) {
 		game.addMessage("You have: "+game.getItem(GameEntities.FLAG_COIN_NUMBERS).getItemFlag(), true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	/**
+	 * Returns true if the command is examining/counting the apples
+	 * 
+	 * @param noun the value of the noun entered
+	 * @param room the room the player is in
+	 * @return boolean
+	 */
+	private boolean isCountApples(int noun, Game game) {
+		return (noun == GameEntities.ITEM_APPLES) && (
+				(game.getItem(GameEntities.ITEM_APPLES).getItemLocation() == GameEntities.ROOM_CARRYING) ||
+				(game.getItem(GameEntities.ITEM_APPLE).getItemLocation() == GameEntities.ROOM_CARRYING));
+	}
+	
+    /**
+     * Executes a response to counting the apples
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
+	private ActionResult countApples(Game game, Player player) {
+		game.addMessage("You have: "+game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).getItemFlag(), true, false);
 		return new ActionResult(game,player,true);
 	}
 }
@@ -808,4 +835,5 @@ public class Examine {
  * 1 July 2026 - Updated so if item revealed get differet response
  * 16 July 2026 - Fixed read inscription
  * 18 July 2026 - Changed flag for examining trees
+ * 20 July 2026 - Added count apples
  */
