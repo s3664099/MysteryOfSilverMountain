@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 21 June 2026
+Version: 1.10
+Date: 20 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -62,7 +62,7 @@ public class CommandValidator {
 		}
 		
 		if (validCommand && command.checkMultipleCarryCommandState()) {
-			if (!hasItem(game,command.getNounNumber()) && !isCarriableItem(command.getNounNumber())) {
+			if (!hasItem(game,command.getNounNumber(),command.getVerbNumber()) && !isCarriableItem(command.getNounNumber())) {
 				game = handleNotCarryingItem(game,command);
 				logger.info("Validation Failed - Not Carrying Item");
 				validCommand = false;
@@ -71,7 +71,7 @@ public class CommandValidator {
 		
 		if (validCommand && command.checkMultiplePresentCommandState()) {
 			if (!itemPresent(game,player,command.getNounNumber()) && !isCarriableItem(command.getNounNumber())) {
-				game = handleItemNotPresent(game,command);
+				game = handleItemNotPresent(game,command,command.getVerbNumber());
 				logger.info("Validation Failed - Item not present");
 				validCommand = false;
 			}
@@ -152,15 +152,34 @@ public class CommandValidator {
     /**
      * @return true if the result if the player is carrying the item.
      */
-	private boolean hasItem(Game game,int nounNumber) {
-		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING;
+	private boolean hasItem(Game game,int nounNumber,int verbNumber) {
+		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING || isEatingApples(game,nounNumber,verbNumber);
+	}
+	
+    /**
+     * @return true if the result if the player is eating an apple
+     */
+	private boolean isEatingApples(Game game, int nounNumber,int verbNumber) {
+		return verbNumber == GameEntities.CMD_EAT && nounNumber == GameEntities.ITEM_APPLE &&
+				(game.getItem(GameEntities.ITEM_APPLE).getItemLocation() == GameEntities.ROOM_CARRYING ||
+				game.getItem(GameEntities.ITEM_APPLES).getItemLocation() == GameEntities.ROOM_CARRYING);
 	}
 	
     /**
      * @return true if the result if the item is in the same room as the player.
      */
 	private boolean itemPresent(Game game,Player player,int nounNumber) {
-		return game.getItem(nounNumber).getItemLocation() == player.getRoom();
+		return (game.getItem(nounNumber).getItemLocation() == player.getRoom() || isAppleOrchard(game,player,nounNumber));
+	}
+	
+    /**
+     * @return true if the player is in the apple orchard and the player is picking apples & apples are present.
+     */
+	private boolean isAppleOrchard(Game game, Player player, int nounNumber) {
+		return ((nounNumber == GameEntities.ITEM_APPLE || nounNumber == GameEntities.ITEM_APPLES) &&
+				player.getRoom() == GameEntities.ROOM_ORCHARD &&
+				game.getItem(GameEntities.FLAG_FOUND_APPLES).getItemFlag() == 0 &&
+				game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag() > 0);
 	}
 	
 	/** 
@@ -174,9 +193,9 @@ public class CommandValidator {
 	/** 
 	 * Adds response when item isn't in the same room
 	 */
-	private Game handleItemNotPresent(Game game,ParsedCommand command) {
+	private Game handleItemNotPresent(Game game,ParsedCommand command,int verbNumber) {
 		
-		if (hasItem(game, command.getNounNumber())) {
+		if (hasItem(game, command.getNounNumber(),verbNumber)) {
 			game.addMessage("You already have it",true,true);
 		} else {
 			game.addMessage("It is not here!",true,true);
@@ -235,4 +254,6 @@ public class CommandValidator {
  * 10 June 2026 - Added checks for items in room/carrying
  * 17 June 2026 - Added check to allow saving game through valid noun check
  * 21 June 2026 - Added take validations
+ * 18 July 2026 - Added check in orchard
+ * 19 July 2026 - Added validator for eating apples
  */

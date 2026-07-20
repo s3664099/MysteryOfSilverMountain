@@ -60,6 +60,8 @@ public class Examine {
 				result = examineStones(game,player);
 			} else if (isCountCoins(command.getNounNumber(),game)) {
 				result = countCoins(game,player);
+			} else if (isCountApples(command.getNounNumber(),game)) {
+				result = countApples(game,player);
 			} else {
 				game.addMessage("You cannot count that!", true, false);
 				result = new ActionResult(game,player,true);
