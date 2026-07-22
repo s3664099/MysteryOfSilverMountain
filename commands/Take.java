@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.14
-Date: 20 July 2026
+Version: 1.15
+Date: 22 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -44,13 +44,13 @@ public class Take {
 	}
 	
 	//Taking Apples
-	//
-	//	Drop all is carrying multiple, one if carrying only one.
 	//  Feed reduced by one (unless use plural then takes all, like troll with coins)
-	//  Eat - only one at a time
-	// public static final int FLAG_NUMBER_APPLES_ON_TREE = 71;
-	// public static final int FLAG_NUMBER_APPLES_IN_HAND = 72;
+	//  Eat - Have eat all apples
+
+
+
 	// Do same with coins
+	// Drop all coins only
 	
     /**
      * Validates whether a take is possible based on the parsed command,
@@ -397,29 +397,37 @@ public class Take {
      */
 	private ActionResult takeApple(Game game, Player player,int nounNumber) {
 		
-		if(nounNumber == GameEntities.ITEM_APPLE) {
+		int applesOnTrees = game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag();
+		int applesInHand = game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).getItemFlag();
+		
+		if (applesInHand>0 && (game.getItem(GameEntities.ITEM_APPLE).getItemLocation() != GameEntities.ROOM_CARRYING &&
+				game.getItem(GameEntities.ITEM_APPLES).getItemLocation() != GameEntities.ROOM_CARRYING)) {
+			game.addMessage("You don't have anything to put the apples in.", true, true);
+		} else if(nounNumber == GameEntities.ITEM_APPLE) {
 			game.addMessage("You pick an apple from a tree", true, true);
-			int applesOnTrees = game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag();
-			int applesInHand = game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).getItemFlag();
+			if (applesInHand == 0) {
+				game.addMessage("You find a sack and put an apple in it.", true, true);
+			}
 			applesOnTrees--;
 			applesInHand++;
 			game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).setItemFlag(applesInHand);			
 			game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).setItemFlag(applesOnTrees);
 			if (applesInHand==1) {
-				game.getItem(GameEntities.ITEM_APPLE).setItemLocation(0);
+				game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_CARRYING);
 			} else {
-				game.getItem(GameEntities.ITEM_APPLES).setItemLocation(0);
-				game.getItem(GameEntities.ITEM_APPLE).setItemLocation(81);
+				game.getItem(GameEntities.ITEM_APPLES).setItemLocation(GameEntities.ROOM_CARRYING);
+				game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
 			}
 		} else if (nounNumber == GameEntities.ITEM_APPLES) {
 			game.addMessage("You pick all of the apples from the trees", true, true);
-			int applesOnTrees = game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag();
-			int applesInHand = game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).getItemFlag();
+			if (applesInHand == 0) {
+				game.addMessage("You find a sack and fill it with apples.", true, true);
+			}
 			applesInHand += applesOnTrees;
 			game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).setItemFlag(applesInHand);			
 			game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).setItemFlag(0);
-			game.getItem(GameEntities.ITEM_APPLES).setItemLocation(0);
-			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(81);
+			game.getItem(GameEntities.ITEM_APPLES).setItemLocation(GameEntities.ROOM_CARRYING);
+			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
 		}
 		
 		return new ActionResult(game,player,true);
@@ -460,4 +468,5 @@ public class Take {
  * 29 June 2026 - Fixed so boat has no power if take sheet
  * 5 July 2026 - Handle taking sheet and rope if tied to the well
  * 19 July 2026 - Started picking apples
+ * 22 July 2026 - Updated take apple method so can only take apples from tree if carrying unless first
  */
