@@ -42,16 +42,7 @@ public class Take {
 		this.player = player;
 		this.command = command;
 	}
-	
-	//Taking Apples
-	//  Feed reduced by one (unless use plural then takes all, like troll with coins)
-	//  Eat - Have eat all apples
-
-
-
-	// Do same with coins
-	// Drop all coins only
-	
+		
     /**
      * Validates whether a take is possible based on the parsed command,
      * player state, and room conditions.

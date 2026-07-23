@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Eat Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.4
-Date: 20 July 2026
+Version: 1.5
+Date: 22 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -52,6 +52,8 @@ public class Eat {
 			result = eatBread(game,player,command.getNounNumber());
 		} else if (isEatApple(game,command.getNounNumber())) {
 			result = eatApple(game,player);
+		} else if (isEatApples(game,command.getNounNumber())) {
+			result = eatApples(game,player);
 		}
 				
 		return result;
@@ -120,6 +122,41 @@ public class Eat {
 		
 		return new ActionResult(game,player,true);
 	}
+	
+	/**
+	 * Returns true if the player is eating all the apples
+	 * 
+	 * @param roomNumber the room the player is in
+ 	 * @param nounNumber the value of the noun entered
+     * @param game the current game state
+	 * @return boolean
+	 */
+	private boolean isEatApples(Game game,int commandNumber) {
+		return commandNumber == GameEntities.ITEM_APPLES;
+	}
+	
+    /**
+     * Executes the eat action if the player is eating all the apples
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
+	private ActionResult eatApples(Game game, Player player) {
+		game.addMessage("You snack on all them them!", true, false);
+		int numberApples = game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).getItemFlag();
+		
+		if (numberApples == 0) {
+			game.addMessage("You don't have any!", true, false);
+		} else {
+			numberApples =0;
+			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
+			game.getItem(GameEntities.ITEM_APPLES).setItemLocation(GameEntities.ROOM_DESTROYED);
+			game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).setItemFlag(numberApples);
+		}
+		
+		return new ActionResult(game,player,true);
+	}
 }
 
 /* 15 April 2026 - Created File
@@ -127,4 +164,5 @@ public class Eat {
  * 20 April 2026 - Added Javadocs
  * 12 June 2026 - Removed checks for carrying item.
  * 20 July 2026 - Added specific method for eating apples
+ * 22 July 2026 - Added eat apples
  */
