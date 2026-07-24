@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Give Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.9
-Date: 22 July 2026
+Version: 1.20
+Date: 24 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 package commands;
@@ -270,17 +270,7 @@ public class Give {
 				(game.getItem(GameEntities.ITEM_APPLE).getItemLocation() == GameEntities.ROOM_CARRYING ||
 				game.getItem(GameEntities.ITEM_APPLES).getItemLocation() == GameEntities.ROOM_CARRYING);
 	}
-	
-	/**
-	 * Returns true if player only has one apple
-	 * 
-	 * @param game the current game state
-	 * @return boolean
-	 */
-	private boolean hasOneApple(Game game) {
-		return game.getItem(GameEntities.ITEM_APPLES).getItemLocation() == GameEntities.ROOM_DESTROYED;
-	}
-	
+		
 	/**
 	 * Returns true if the player is giving the apple at the gates
 	 * 
@@ -304,9 +294,7 @@ public class Give {
 	private ActionResult giveAppleAtTrack(Game game, Player player) {
 		game.addMessage("He leads you north.", true, false);
 		player.setRoom(GameEntities.ROOM_RUSTY_GATES);
-		if (hasOneApple(game)) {
-			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
-		}
+		game = updateApples(game);
 		return new ActionResult(game,player,true);
 	}
 	
@@ -320,10 +308,27 @@ public class Give {
 	private ActionResult giveAppleAtGates(Game game, Player player) {
 		game.addMessage("He leads you south.", true, false);
 		player.setRoom(GameEntities.ROOM_TRACK);
-		if (hasOneApple(game)) {
+		game = updateApples(game);
+		return new ActionResult(game,player,true);
+	}
+	
+    /**
+     * Update the number of apples the player is carrying after feeding them
+     *
+     * @param game the current game state
+     * @return an {@link Game} with updated game state
+     */
+	private Game updateApples(Game game) {
+		int numberApples = game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).getItemFlag();
+		numberApples --;
+		if (numberApples == 1) {
+			game.getItem(GameEntities.ITEM_APPLES).setItemLocation(GameEntities.ROOM_DESTROYED);
+			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_CARRYING);
+		} else if (numberApples == 0) {
 			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
 		}
-		return new ActionResult(game,player,true);
+		game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).setItemFlag(numberApples);
+		return game;
 	}
 
 	/**
@@ -414,4 +419,5 @@ public class Give {
  * 15 June 2026 - Fixed coins not decreasing
  * 19 June 2026 - Fixed giving all coins and added failed message
  * 22 July 2026 - Added check to see if player is carrying apples
+ * 24 July 2026 - Added method to update number of apples after feeding to donkey
  */
