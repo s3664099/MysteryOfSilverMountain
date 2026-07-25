@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Feed Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.2
-Date: 16 March 2026
+Version: 1.3
+Date: 25 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -48,10 +48,24 @@ public class Feed {
 		game.addMessage("You cannot feed that", true, false);
 		ActionResult result = new ActionResult(game,player,true);
 		
-		if (isFeedResponse(player.getRoom(),command.getNounNumber())) {
+		if (isFeedApple(player.getRoom(),command.getNounNumber())) {
+			result = new Give(game,player,command).executeGive();
+		} else if (isFeedResponse(player.getRoom(),command.getNounNumber())) {
 			result = feedResponse(game,player);
 		}
 		return result;
+	}
+	
+	/**
+	 * Returns true if the player is feeding the apple at the pony
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+ 	 * @param roomNumber the room the player is in
+	 * @return boolean
+	 */
+	private boolean isFeedApple(int roomNumber,int nounNumber) {
+		return (roomNumber == GameEntities.ROOM_RUSTY_GATES || roomNumber == GameEntities.ROOM_TRACK) &&
+				(nounNumber == GameEntities.ITEM_APPLE || nounNumber == GameEntities.ITEM_APPLES);
 	}
 	
 	/**
@@ -87,4 +101,5 @@ public class Feed {
 /* 22 March 2026 - Created File
  * 25 March 2026 - Added responses and javadocs
  * 16 July 2026 - Added feed troll
+ * 25 July 2026 - Added feed apples
  */

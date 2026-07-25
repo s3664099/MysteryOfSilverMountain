@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.10
-Date: 20 July 2026
+Version: 1.11
+Date: 25 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -153,7 +153,8 @@ public class CommandValidator {
      * @return true if the result if the player is carrying the item.
      */
 	private boolean hasItem(Game game,int nounNumber,int verbNumber) {
-		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING || isEatingApples(game,nounNumber,verbNumber);
+		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING || isEatingApples(game,nounNumber,verbNumber) ||
+				isFeedingApples(game, nounNumber, verbNumber);
 	}
 	
     /**
@@ -161,6 +162,16 @@ public class CommandValidator {
      */
 	private boolean isEatingApples(Game game, int nounNumber,int verbNumber) {
 		return verbNumber == GameEntities.CMD_EAT && nounNumber == GameEntities.ITEM_APPLE &&
+				(game.getItem(GameEntities.ITEM_APPLE).getItemLocation() == GameEntities.ROOM_CARRYING ||
+				game.getItem(GameEntities.ITEM_APPLES).getItemLocation() == GameEntities.ROOM_CARRYING);
+	}
+	
+    /**
+     * @return true if the result if the player is feeding something an apple
+     */
+	private boolean isFeedingApples(Game game, int nounNumber,int verbNumber) {
+		return (verbNumber == GameEntities.CMD_GIVE || verbNumber == GameEntities.CMD_FEED) && 
+				nounNumber == GameEntities.ITEM_APPLE &&
 				(game.getItem(GameEntities.ITEM_APPLE).getItemLocation() == GameEntities.ROOM_CARRYING ||
 				game.getItem(GameEntities.ITEM_APPLES).getItemLocation() == GameEntities.ROOM_CARRYING);
 	}
@@ -256,4 +267,5 @@ public class CommandValidator {
  * 21 June 2026 - Added take validations
  * 18 July 2026 - Added check in orchard
  * 19 July 2026 - Added validator for eating apples
+ * 25 July 2026 - Added feeding apples
  */

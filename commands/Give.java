@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Give Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.20
-Date: 24 July 2026
+Version: 1.21
+Date: 25 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 package commands;
@@ -65,9 +65,9 @@ public class Give {
 				result = atBridge(game,player);
 			}
 		} else if (isGiveAppleAtTrack(player.getRoom(),command.getNounNumber(),game)) {
-			result = giveAppleAtTrack(game,player);
+			result = giveAppleAtTrack(game,player,command.getNounNumber());
 		} else if (isGiveAppleAtGates(player.getRoom(),command.getNounNumber(),game)) {
-			result = giveAppleAtGates(game,player);
+			result = giveAppleAtGates(game,player,command.getNounNumber());
 		} else if (isGiveBone(player.getRoom(),command.getNounNumber())) {
 			result = giveBone(game,player);
 		} else if (isItEaten(player.getRoom())) {
@@ -291,10 +291,15 @@ public class Give {
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
-	private ActionResult giveAppleAtTrack(Game game, Player player) {
+	private ActionResult giveAppleAtTrack(Game game, Player player, int nounNumber) {
 		game.addMessage("He leads you north.", true, false);
+		if (nounNumber == GameEntities.ITEM_APPLES) {
+			game.addMessage("He eats all the apples and leads you north.", true, false);
+			game = removeApples(game);
+		} else {
+			game = updateApples(game);
+		}
 		player.setRoom(GameEntities.ROOM_RUSTY_GATES);
-		game = updateApples(game);
 		return new ActionResult(game,player,true);
 	}
 	
@@ -305,10 +310,15 @@ public class Give {
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
-	private ActionResult giveAppleAtGates(Game game, Player player) {
+	private ActionResult giveAppleAtGates(Game game, Player player, int nounNumber) {
 		game.addMessage("He leads you south.", true, false);
+		if (nounNumber == GameEntities.ITEM_APPLES) {
+			game.addMessage("He eats all the apples and leads you south.", true, false);
+			game = removeApples(game);
+		} else {
+			game = updateApples(game);
+		}
 		player.setRoom(GameEntities.ROOM_TRACK);
-		game = updateApples(game);
 		return new ActionResult(game,player,true);
 	}
 	
@@ -327,6 +337,21 @@ public class Give {
 		} else if (numberApples == 0) {
 			game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
 		}
+		game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).setItemFlag(numberApples);
+		return game;
+	}
+	
+    /**
+     * Removes all of the apples the player is carrying
+     *
+     * @param game the current game state
+     * @return an {@link Game} with updated game state
+     */
+	private Game removeApples(Game game) {
+		int numberApples = game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).getItemFlag();
+		numberApples = 0;
+		game.getItem(GameEntities.ITEM_APPLES).setItemLocation(GameEntities.ROOM_DESTROYED);
+		game.getItem(GameEntities.ITEM_APPLE).setItemLocation(GameEntities.ROOM_DESTROYED);
 		game.getItem(GameEntities.FLAG_NUMBER_APPLES_IN_HAND).setItemFlag(numberApples);
 		return game;
 	}
@@ -420,4 +445,5 @@ public class Give {
  * 19 June 2026 - Fixed giving all coins and added failed message
  * 22 July 2026 - Added check to see if player is carrying apples
  * 24 July 2026 - Added method to update number of apples after feeding to donkey
+ * 25 July 2026 - Added all apples
  */
