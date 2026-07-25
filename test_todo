@@ -16,6 +16,13 @@
 
 
 
+	// Drop all coins only
+
+
+
+
+
+
 
 Gravestone/s and inscription/s should be interchangeable
 should have special response if attempt to empty jug/water seeds when jug empty
@@ -208,9 +215,9 @@ Throw - Standard Response
 Tie - Standard response
 
 
-Turn - Standard Response
 
-	 - Water Wheel
+
+
 Unlock - Standard Response
 	   - Wizard Door
 Use - Standard Response
