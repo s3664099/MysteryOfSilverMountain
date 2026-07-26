@@ -73,7 +73,6 @@ public class Take {
 			} else if (isItemTaken(game,command.getNounNumber(),player.getRoom())) {
 				result = itemTaken(game,player,command.getNounNumber());
 			}
-			System.out.println("Taken");
 		} else {
 			this.game.addMessage("You can't "+command.getCommand(), true, false);
 			result = new ActionResult(game,player,true);
@@ -213,7 +212,6 @@ public class Take {
 	 * @return boolean
 	 */
 	private boolean isItemCarriable(int nounNumber) {
-		System.out.println(nounNumber);
 		return nounNumber>=Constants.MAX_CARRIABLE_ITEMS; 
 	}
 	
@@ -373,7 +371,6 @@ public class Take {
 	 * @return boolean
 	 */
 	private boolean isTakeApple(Game game, Player player, int nounNumber) {
-		System.out.println(GameEntities.FLAG_FOUND_APPLES);
 		return player.getRoom() == GameEntities.ROOM_ORCHARD && game.getItem(GameEntities.ITEM_APPLES).getItemLocation() != player.getRoom() &&
 				game.getItem(GameEntities.FLAG_FOUND_APPLES).getItemFlag() == 0 && 
 				game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag() > 0 &&

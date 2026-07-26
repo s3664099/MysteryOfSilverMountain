@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.11
-Date: 25 July 2026
+Version: 1.12
+Date: 26 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -62,7 +62,8 @@ public class CommandValidator {
 		}
 		
 		if (validCommand && command.checkMultipleCarryCommandState()) {
-			if (!hasItem(game,command.getNounNumber(),command.getVerbNumber()) && !isCarriableItem(command.getNounNumber())) {
+			logger.info("Validation - Check if Carrying");
+			if (!hasItem(game,command.getNounNumber(),command.getVerbNumber())) {
 				game = handleNotCarryingItem(game,command);
 				logger.info("Validation Failed - Not Carrying Item");
 				validCommand = false;
@@ -153,6 +154,8 @@ public class CommandValidator {
      * @return true if the result if the player is carrying the item.
      */
 	private boolean hasItem(Game game,int nounNumber,int verbNumber) {
+		System.out.println(nounNumber);
+		System.out.println(game.getItem(nounNumber).getItemLocation());
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING || isEatingApples(game,nounNumber,verbNumber) ||
 				isFeedingApples(game, nounNumber, verbNumber);
 	}
@@ -268,4 +271,5 @@ public class CommandValidator {
  * 18 July 2026 - Added check in orchard
  * 19 July 2026 - Added validator for eating apples
  * 25 July 2026 - Added feeding apples
+ * 26 July 2026 - Fixed validator so can't drop non-carriable item
  */
