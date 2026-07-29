@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Post Command Functions
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.9
-Date: 13 July 2026
+Version: 1.10
+Date: 29 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -159,7 +159,8 @@ public class PostCommand {
 	 */
 	private boolean hasEnteredTunnels(Player player, ParsedCommand command) {
 		return (player.getRoom() == GameEntities.ROOM_TUNNELS && command.checkMoveState() 
-			&& ( command.getVerbNumber() == GameEntities.CMD_EAST || command.getVerbNumber() == GameEntities.CMD_WEST));
+			&& ( command.getVerbNumber() == GameEntities.CMD_EAST || command.getVerbNumber() == GameEntities.CMD_WEST) &&
+			player.isPlayerStateNormal());
 	}
 		
     // ================== Actions ================== //
@@ -258,9 +259,8 @@ public class PostCommand {
      * @return an {@link ActionResult} describing the outcome
      */
 	private ActionResult enteredTunnels(Game game, Player player, ParsedCommand command) {
-		System.out.println("In tunnels");
-		System.out.println(command.getVerbNumber());
 		player.setMazeDirection(command.getVerbNumber());
+		player.setPlayerStateMaze(command.getVerbNumber());
 		return new ActionResult(game,player,true);
 	}
 }
@@ -275,4 +275,5 @@ public class PostCommand {
  * 30 May 2026 - Added ghost goblin response
  * 1 June 2026 - Win and lose game messages work
  * 13 July 2026 - Updated so can exit from first maze room
+ * 29 JUly 2026 - Add set maze so doesn't alway activate entered tunnels and change move direction
  */

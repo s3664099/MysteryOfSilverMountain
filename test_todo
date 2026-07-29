@@ -6,8 +6,12 @@
 - Determine win/lose
 
 
-
-    
+- Clues in the book
+* GUIDE - Crossroads (the clue is an up arrow).
+* AWAKE - Fountain (the clue is an eye in the picture in the book).
+* HELP - High walled garden (the clue is an outlined "C" in the picture in the book).
+* PROTECT - Stone Circle (the clue is a circle of nine dots representing the stones).
+* LEAD - High pinnacle (the clue is a horizontal arrow in the picture in the book).
     
 
 
@@ -28,6 +32,7 @@ Gravestone/s and inscription/s should be interchangeable
 should have special response if attempt to empty jug/water seeds when jug empty
 can't examine mountain hut
 should be able to pass grargs eating?
+can't give single coin
 
 
 
