@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Game Specific Constant Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.32
-Date: 17 July 2026
+Version: 1.33
+Date: 29 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 This class is designed to hold the constants. They have been made public since they
@@ -356,6 +356,12 @@ public class GameEntities {
 	public static final int SPECIAL_ITEM_VINE = 18;
 	public static final int SPECIAL_ITEM_APPLES = 19;
 	public static final int SPECIAL_ITEM_APPLE = 20;
+	
+	// === Special Nouns ===
+	public static final String INSCRIPTIONS = "inscriptions";
+	public static final String INSCRIPTION = "inscription";
+	public static final String GRAVESTONES = "gravestones";
+	public static final String GRAVESTONE = "gravestone";
 
 }
 
@@ -398,4 +404,5 @@ public class GameEntities {
  * 10 July 2026 - Added ghost and vine
  * 17 July 2026 - Added flag for number of apples
  * 18 July 2026 - Added special items apples
+ * 29 July 2026 - Added noun number for plural/singular conversion
  */

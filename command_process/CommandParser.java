@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Parser
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.8
-Date: 6 July 2026
+Version: 1.9
+Date: 30 July 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -140,6 +140,8 @@ public class CommandParser {
 		
 		int nounNumber = Constants.NUMBER_OF_NOUNS;
 		
+		noun = handleMultiple(noun);
+		
 		if (noun.length()>1) {
 			int nounCount = 0;
 			for (String command:RawData.getNouns()) {
@@ -220,6 +222,24 @@ public class CommandParser {
 		}		
 		return command;
 	}
+	
+	/**
+	 * Checks if the noun can be entered as a plural or single
+	 * if so, converts it to single
+	 *
+	 * @param command the noun string 
+	 * @return the command
+	 */
+	private String handleMultiple(String command) {
+		
+		if (command.equals(GameEntities.INSCRIPTIONS)) {
+			command = GameEntities.INSCRIPTION;
+		} else if (command.equals(GameEntities.GRAVESTONES)) {
+			command = GameEntities.GRAVESTONE;
+		}
+		
+		return command;
+	}
 }
 
 /* 3 December 2025 - Created File
@@ -233,4 +253,5 @@ public class CommandParser {
  * 10 May 2026 - Added verb update for play (to blow)
  * 1 July 2026 - Added look command
  * 6 July 2026 - Fixed non-recognition of multi-word nouns
+ * 30 July 2026 - Added convertor for plural to singular
  */
