@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.12
-Date: 26 July 2026
+Version: 1.13
+Date: 2 August 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -97,7 +97,7 @@ public class CommandValidator {
 	private boolean checkVerbOrNounInvalid(ParsedCommand command) {
 		return (command.getVerbNumber()>Constants.NUMBER_OF_VERBS ||
 				(!command.checkSave() && !command.checkLoad() &&
-				command.getNounNumber() == Constants.NUMBER_OF_NOUNS));
+				command.getNounNumber() > Constants.NUMBER_OF_NOUNS));
 	}
 	
     /**
@@ -106,7 +106,7 @@ public class CommandValidator {
 	private boolean checkVerbAndNounInvalid(ParsedCommand command) {
 
 		return (command.getVerbNumber()>Constants.NUMBER_OF_VERBS && 
-				command.getNounNumber() == Constants.NUMBER_OF_NOUNS);
+				command.getNounNumber() > Constants.NUMBER_OF_NOUNS);
 	}
 	
     /**
@@ -272,4 +272,5 @@ public class CommandValidator {
  * 19 July 2026 - Added validator for eating apples
  * 25 July 2026 - Added feeding apples
  * 26 July 2026 - Fixed validator so can't drop non-carriable item
+ * 2 August 2026 - Changed noun check to see if it is more than the number of valid nouns
  */

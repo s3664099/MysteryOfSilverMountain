@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Parser
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.9
-Date: 30 July 2026
+Version: 1.10
+Date: 2 August 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -50,7 +50,6 @@ public class CommandParser {
 		rawInput = changeVerb(rawInput);
 		String[] splitCommand = splitCommand(rawInput);
 		int verbNumber = getVerbNumber(splitCommand[0]);
-
 		splitCommand[1] = splitCommand[1].trim();
 		int nounNumber = getNounNumber(splitCommand[1],verbNumber);
 		ParsedCommand command = new ParsedCommand(verbNumber,nounNumber,splitCommand,rawInput);
@@ -111,7 +110,7 @@ public class CommandParser {
 	 * @return the verb number if found, otherwise {@code Constants.NUMBER_OF_VERBS + 1}
 	 */
 	private int getVerbNumber(String verb) {
-		
+
 		int verbNumber = Constants.NUMBER_OF_VERBS+1;
 		int verbCount = 0;
 				
@@ -138,7 +137,7 @@ public class CommandParser {
 	 */
 	private int getNounNumber(String noun,int verbNumber) {
 		
-		int nounNumber = Constants.NUMBER_OF_NOUNS;
+		int nounNumber = Constants.NUMBER_OF_NOUNS+1;
 		
 		noun = handleMultiple(noun);
 		
@@ -147,6 +146,7 @@ public class CommandParser {
 			for (String command:RawData.getNouns()) {
 				nounCount ++;
 				if (noun.equals(command)) {
+					System.out.println("**"+command+"**"+noun);
 					nounNumber = nounCount;
 				}
 			}
@@ -254,4 +254,5 @@ public class CommandParser {
  * 1 July 2026 - Added look command
  * 6 July 2026 - Fixed non-recognition of multi-word nouns
  * 30 July 2026 - Added convertor for plural to singular
+ * 2 August 2026 - Increased invalid noun number by one
  */
