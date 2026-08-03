@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Move Command
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.6
-Date: 13 July 2026
+Version: 1.7
+Date: 3 August 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -65,7 +65,7 @@ public class Move {
      *
      * @param command the move command
      * @param game the current game state
-     * @param player the player attempting the move
+     * @param player the player attempting the moveareGragsInvolved(game)
      * @return an {@link ActionResult} describing validity and effects
      */
 	private ActionResult validateMove(ParsedCommand command, Game game, Player player){
@@ -291,7 +291,7 @@ public class Move {
 			result = ropeIsGone(game,player);
 		} else {
 		
-			if(isLeavingBanquetHall(player.getRoom(),command.getVerbNumber())) {
+			if(isLeavingBanquetHall(player.getRoom(),command.getVerbNumber()) && !areGragsInvolved(game)) {
 				result = leavingBanquetHall(game,player);
 			}
 			
@@ -1159,4 +1159,5 @@ public class Move {
  * 6 July 2026 - Can't climb to pinnacle once rope gone
  * 8 July 2026 - Prevent movement in lake if sheet not attached
  * 13 July 2026 - Updated mave movement so can exit from first room
+ * 3 August 2026 - Fixed problem where Grargs don't prevent you from leaving the banqueting hall
  */
