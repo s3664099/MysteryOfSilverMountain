@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Command Validator
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.13
-Date: 2 August 2026
+Version: 1.14
+Date: 3 August 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -69,7 +69,7 @@ public class CommandValidator {
 				validCommand = false;
 			}
 		}
-		
+				
 		if (validCommand && command.checkMultiplePresentCommandState()) {
 			if (!itemPresent(game,player,command.getNounNumber()) && !isCarriableItem(command.getNounNumber())) {
 				game = handleItemNotPresent(game,command,command.getVerbNumber());
@@ -147,17 +147,15 @@ public class CommandValidator {
      * @return true if the result if item is not a carriable item.
      */
 	private boolean isCarriableItem(int nounNumber) {
-		return nounNumber > Constants.MAX_CARRIABLE_ITEMS || nounNumber == 0;
+		return (nounNumber > Constants.MAX_CARRIABLE_ITEMS && nounNumber != GameEntities.ITEM_COIN) || nounNumber == 0;
 	}
 	
     /**
      * @return true if the result if the player is carrying the item.
      */
 	private boolean hasItem(Game game,int nounNumber,int verbNumber) {
-		System.out.println(nounNumber);
-		System.out.println(game.getItem(nounNumber).getItemLocation());
 		return game.getItem(nounNumber).getItemLocation() == GameEntities.ROOM_CARRYING || isEatingApples(game,nounNumber,verbNumber) ||
-				isFeedingApples(game, nounNumber, verbNumber);
+				isFeedingApples(game, nounNumber, verbNumber) || isUsingCoin(game,nounNumber);
 	}
 	
     /**
@@ -180,10 +178,19 @@ public class CommandValidator {
 	}
 	
     /**
+     * @return true if the result if the player entered coin and is carrying the coins
+     */
+	private boolean isUsingCoin(Game game, int nounNumber) {
+		return nounNumber == GameEntities.ITEM_COIN && 
+				game.getItem(GameEntities.ITEM_COINS).getItemLocation() == GameEntities.ROOM_CARRYING;
+	}
+	
+    /**
      * @return true if the result if the item is in the same room as the player.
      */
 	private boolean itemPresent(Game game,Player player,int nounNumber) {
-		return (game.getItem(nounNumber).getItemLocation() == player.getRoom() || isAppleOrchard(game,player,nounNumber));
+		return (game.getItem(nounNumber).getItemLocation() == player.getRoom() || isAppleOrchard(game,player,nounNumber) ||
+				isCoin(game,player,nounNumber));
 	}
 	
     /**
@@ -194,6 +201,14 @@ public class CommandValidator {
 				player.getRoom() == GameEntities.ROOM_ORCHARD &&
 				game.getItem(GameEntities.FLAG_FOUND_APPLES).getItemFlag() == 0 &&
 				game.getItem(GameEntities.FLAG_NUMBER_APPLES_ON_TREE).getItemFlag() > 0);
+	}
+	
+    /**
+     * @return true if the player is attempting to take a coin.
+     */
+	private boolean isCoin(Game game, Player player,int nounNumber) {
+		return nounNumber == GameEntities.ITEM_COIN && 
+				game.getItem(GameEntities.FLAG_COINS).getItemFlag() == 0;
 	}
 	
 	/** 
@@ -273,4 +288,5 @@ public class CommandValidator {
  * 25 July 2026 - Added feeding apples
  * 26 July 2026 - Fixed validator so can't drop non-carriable item
  * 2 August 2026 - Changed noun check to see if it is more than the number of valid nouns
+ * 3 August 2026 - Added drop coin
  */

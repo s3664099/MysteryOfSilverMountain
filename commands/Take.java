@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Take Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.15
-Date: 22 July 2026
+Version: 1.16
+Date: 3 August 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -52,7 +52,6 @@ public class Take {
 	public ActionResult executeTake() {
 		
 		ActionResult result = new ActionResult(game,player,true);
-
 		if (isPick(command)) {
 			if (isTakingWater(player.getRoom(),command.getNounNumber())) {
 				result = takingWater(game,player);
@@ -66,6 +65,8 @@ public class Take {
 				result = carryingTooMuch(game,player);
 			} else if (isTakeApple(game,player,command.getNounNumber())) {
 				result = takeApple(game,player,command.getNounNumber());
+			} else if (isTakingCoin(command.getNounNumber())) {
+				result = takingCoin(game,player);
 			} else if (isItemCarriable(command.getNounNumber())) {
 				result = itemNotCarriable(game,player);
 			} else if (isItemNotTakeable(command.getNounNumber())) {
@@ -246,6 +247,29 @@ public class Take {
      */
 	private ActionResult itemNotTakeable(Game game, Player player,String noun) {
 		game.addMessage("What "+noun+"?", isCarryingTooMuch(), isCarryingTooMuch());
+		return new ActionResult(game,player,true);
+	}
+	
+	/**
+	 * Returns true if the player is taking a coin
+	 * 
+ 	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
+	private boolean isTakingCoin(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_COIN;
+	}
+	
+    /**
+     * Executes a response if the player is taking a coin
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
+	private ActionResult takingCoin(Game game, Player player) {
+		game.getItem(GameEntities.ITEM_COINS).setItemLocation(GameEntities.ROOM_CARRYING);
+		game.addMessage("You take all of them.", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
@@ -457,4 +481,5 @@ public class Take {
  * 5 July 2026 - Handle taking sheet and rope if tied to the well
  * 19 July 2026 - Started picking apples
  * 22 July 2026 - Updated take apple method so can only take apples from tree if carrying unless first
+ * 3 August 2026 - Added ability to take coin
  */

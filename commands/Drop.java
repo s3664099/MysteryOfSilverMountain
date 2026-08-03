@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Drop Item Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.9
-Date: 29 June 2026
+Version: 1.10
+Date: 3 August 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -223,9 +223,32 @@ public class Drop {
      * @return an {@link ActionResult} describing the outcome
      */
 	private ActionResult dropItem(Game game, Player player, int nounNumber) {
+		
+		if (isDropCoin(nounNumber)) {
+			nounNumber = dropCoin();
+		}
 		game.getItem(nounNumber).setItemLocation(player.getRoom());
 		game.addMessage("Done", true,false);
 		return new ActionResult(game,player,true);
+	}
+	
+	/**
+	 * Returns true if the command is dropping a coin.
+	 * 
+	 * @param nounNumber the value of the noun entered
+	 * @return boolean
+	 */
+	private boolean isDropCoin(int nounNumber) {
+		return nounNumber == GameEntities.ITEM_COIN;
+	}
+	
+	/**
+	 * Changes the noun to coins if player droping a coin
+	 * 
+	 * @return int
+	 */
+	private int dropCoin() {
+		return GameEntities.ITEM_COINS;
 	}
 }
 
@@ -240,4 +263,5 @@ public class Drop {
  * 10 June 2026 - Removed check carrying item
  * 12 June 2026 - Removed functions for checking item carried
  * 29 June 2026 - Fixed so die if drop boat
+ * 3 August 2026 - Added drop coin
  */
