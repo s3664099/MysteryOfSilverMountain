@@ -146,7 +146,6 @@ public class CommandParser {
 			for (String command:RawData.getNouns()) {
 				nounCount ++;
 				if (noun.equals(command)) {
-					System.out.println("**"+command+"**"+noun);
 					nounNumber = nounCount;
 				}
 			}

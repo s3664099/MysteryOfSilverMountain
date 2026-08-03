@@ -103,7 +103,6 @@ public class Player implements Serializable {
      * @return maze number
      */
 	public int getMazeNumber() {
-		System.out.println(mazeNumber);
 		return this.mazeNumber;
 	}
 	
