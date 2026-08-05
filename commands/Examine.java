@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Examine Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.17
-Date: 20 July 2026
+Version: 1.18
+Date: 5 August 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 
 Need to set it so that examine can work as a single command
@@ -111,6 +111,8 @@ public class Examine {
 				result = examinePhial(game,player);
 			} else if (isExamineBooks(command.getNounNumber(),player.getRoom())) {
 				result = examineBooks(game,player);
+			} else if (isExamineSleepingGrarg(command.getNounNumber(),player.getRoom(),game)) {
+				result = examineSleepingGrarg(game,player);
 			} else if (isExamineGrarg(command.getNounNumber(),player.getRoom(),game)) {
 				result = examineGrarg(game,player);
 			} else if (isExamineWellBottom(command.getNounNumber(),player.getRoom())) {
@@ -544,7 +546,7 @@ public class Examine {
 	 * @param room the room the player is in
 	 * @return boolean
 	 */
-	private boolean isExamineGrarg(int noun, int room, Game game) {
+	private boolean isExamineSleepingGrarg(int noun, int room, Game game) {
 		return noun == GameEntities.ITEM_GRARG && room == GameEntities.ROOM_BANQUET_HALL &&
 				game.getItem(GameEntities.FLAG_GRARG_ASLEEP).getItemFlag() == 1;
 	}
@@ -556,8 +558,31 @@ public class Examine {
      * @param player the player making the move
      * @return an {@link ActionResult} describing the outcome
      */
-	private ActionResult examineGrarg(Game game, Player player) {
+	private ActionResult examineSleepingGrarg(Game game, Player player) {
 		game.addMessage("Very ugly!", true, false);
+		return new ActionResult(game,player,true);
+	}
+	
+	/**
+	 * Returns true if the command is examining the grarg
+	 * 
+	 * @param noun the value of the noun entered
+	 * @param room the room the player is in
+	 * @return boolean
+	 */
+	private boolean isExamineGrarg(int noun, int room, Game game) {
+		return noun == GameEntities.ITEM_GRARG && room == GameEntities.ROOM_BANQUET_HALL;
+	}
+	
+    /**
+     * Executes a response to examining the grarg
+     *
+     * @param game the current game state
+     * @param player the player making the move
+     * @return an {@link ActionResult} describing the outcome
+     */
+	private ActionResult examineGrarg(Game game, Player player) {
+		game.addMessage("Very hungry!", true, false);
 		return new ActionResult(game,player,true);
 	}
 	
@@ -838,4 +863,5 @@ public class Examine {
  * 16 July 2026 - Fixed read inscription
  * 18 July 2026 - Changed flag for examining trees
  * 20 July 2026 - Added count apples
+ * 5 August 2026 - Added examine for when Grargs aren't asleep
  */
