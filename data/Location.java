@@ -2,8 +2,8 @@
 Title: Mystery of Silver Mountain Location Class
 Author: Chris Oxlade & Judy Tatchell
 Translator: David Sarkies
-Version: 1.5
-Date: 6 March 2026
+Version: 1.6
+Date: 7 August 2026
 Source: https://archive.org/details/the-mystery-of-silver-mountain/mode/2up
 */
 
@@ -79,7 +79,7 @@ public class Location implements Serializable {
 	public void openExit(int exitNo) {
 		
 		//Validate exits
-		if (exitNo>3) {
+		if (exitNo<1 || exitNo>4) {
 			throw new IllegalArgumentException("Invalid exit number");
 		}
 		
@@ -134,4 +134,5 @@ public class Location implements Serializable {
  * 29 December 2025 - Added exits and updated name
  * 7 February 2025 - Added Raw Name field
  * 6 March 2026 - Added Open/Close exit functions
+ * 7 August 2026 - Fixed open exit method to reject correct numbers
  */
